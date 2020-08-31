@@ -28,13 +28,13 @@
 
 본인 소개를 추가하세요
 
-|이름 |이진희|<img src = "./img/ljh.jpg" width="30%">|
-|연락처 | 2060340006(@)kopo.ac.kr|
-|skill set| Frontend - HTML, CSS, Javascript|
-| | Backend - Java, Spring, Oracle|
-|자격증|  |
-|수상| |
-|특기사항| |
+|이름 |이진희|<img src = "/ljh.jpg" width="30%"></img> |<br>
+|연락처 | 2060340006(@)kopo.ac.kr | <br>
+|skill set| Frontend - HTML, CSS, Javascript |<br>
+| | Backend - Java, Spring, Oracle |<br>
+|자격증|  |<br>
+|수상| | <br>
+|특기사항| |<br>
 
 # 5. 기타
 그외 프로젝트를 더욱 설명할수 있는 것들을 추가하세요
