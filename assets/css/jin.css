@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+
+.bx-chevron-right:before{
+	/* background-color:#008C8C; */
+	color:#008C8C;
+}
+
+
+a:hover{
+	color:#343a40;
+	
+}
+
+.bxs-quote-alt-right:before {
+	color:#008C8C;
+	
+}
+
+.bxs-quote-alt-left:before {
+	color:#008C8C;
+	
+}
+
+.icofont-phone:before {
+	color: #A7B6BF;
+	}
+
+.icofont-google-map:before {
+	color: #A7B6BF;
+	}
+	
+.icofont-envelope:before {
+	color: #A7B6BF;
+	}
+	
+.about .icon-boxes h3 {
+	color:#444444
+	}
+
+#logo{
+	width:50px;
+	height:50px;
+}
+
+.text-primary{
+	color: #008C8C!important;
+}
+
+.btn-outline-light {
+	color:#4F76A3!important;	
+	border-color:#D4E0EE!important;	
+	background-color:#D4E0EE; 
+	border:2px;
+	border-radius:3px;
+	/* padding: 5px 5px 5px 5px;
+    font-size: 15px; */
+   
+}
+
+/* #replyAddBtn.btn.btn-info.text-dark {
+	color:#ffffff!importatnt;
+} */
+
+table, th, td {
+	border-collapse: collapse; /* 하나의 선으로 합쳐주기  */
+	font-family: verdana, sans-serif;
+	color: #555;
+	frame=void;
+}
+
+
+th, td{
+	padding: 5px;
+}
+td a:link, td a:visited{ /* td태그안의 a태그 중 link가 걸려있는 애들을 ---하게 바꿔준다. */
+	color:#2C4964;
+	text-decoration: none;  /* 언더라인 없애기  */
+}
+
+td a:hover{
+	text-decoration: underline; /*마우스 갖다 놓은 곳 언더라인  */	
+}
+
+
+tr.even{
+	background-color:#F7F9FC;
+}
+
+.titles{
+	color: #2C4964;
+}
+
+td{
+	color:#2C4964;
+}
+	
+.btn-outline-secondary{
+	padding: .1rem .2rem!important;
+    font-size: 0.7rem!important;
+    float: right!important;
+    border:2px;
+    border-radius:3px;
+    padding: 5px 5px 5px 5px;
+    /*font-size: 15px; */
+    }
+    
+ #jb-sidebar {
+        width: 260px;
+        height: 500px;
+        padding: 20px;
+        margin-bottom: 20px;
+        margin-right: 50px;        
+        margin-top:200px;
+        float: right;
+        border: 1px solid #bcbcbc;
+      }
+      
+ .btn-primary{
+ background-color: #008C8C!important;
+ border-color: #008C8C!important;
+ border:2px;
+ border-radius:3px;
+ }
+	
+.line{
+	border-bottom:1px solid #2C4964;
+	}
+
+.hh{
+	padding-right: 30px;
+}
+
+.dd{
+	border-color: #D4E0EE;
+}
+
+.btn-submit-w-100{
+ border:1px;
+ border-radius:3px;
+}
+
+
+element.style {
+}
+
+.login-form__btn {
+	border-color:#008C8C!important;
+	color: #fff!important;
+	background-color:#008C8C!important;
+	border:1px;
+}	
+	
