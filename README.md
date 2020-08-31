@@ -28,13 +28,13 @@
 
 본인 소개를 추가하세요
 
-|이름 |고길동|![gdKO](/.jpg)|
-|연락처 | gdko(@)kopo.ac.kr|
+|이름 |이진희|![ljh](/ljh.jpg)|
+|연락처 | 2060340006(@)kopo.ac.kr|
 |skill set| Frontend - HTML, CSS, Javascript|
 | | Backend - Java, Spring, Oracle|
 |자격증|  |
 |수상| |
-|특기사항|  TOEIC 990 |
+|특기사항| |
 
 # 5. 기타
 그외 프로젝트를 더욱 설명할수 있는 것들을 추가하세요
