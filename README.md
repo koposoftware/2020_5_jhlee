@@ -28,7 +28,7 @@
 
 본인 소개를 추가하세요
 
-|이름 |이진희|<img src = "/ljh.jpg" width="30%"></img> |<br>
+|이름 |이진희|<img src = "/ljh.jpg" width="10%"></img> |<br>
 |연락처 | 2060340006(@)kopo.ac.kr | <br>
 |skill set| Frontend - HTML, CSS, Javascript |<br>
 | | Backend - Java, Spring, Oracle |<br>
