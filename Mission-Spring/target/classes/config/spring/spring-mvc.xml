@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context   
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd ">
+
+	<context:component-scan base-package="kr.ac.hana" />  <!--MYLECTURE약자로 MLEC씀 KOPO로 바꿔도 됨. -->
+
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes"> <!--속성주입 -->
+					<list>
+						<value>text/html; charset=UTF-8</value>
+						<value>application/json; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+
+			<bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes"> <!--속성주입 -->
+					<list>
+						<value>text/html; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+
+		</mvc:message-converters>
+	</mvc:annotation-driven> <!--어노테이션 기법을 쓰겠다. COMPONENT SERVICE...4가지 -->
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:ORCL"/>
+		<property name="username" value="system"/>
+	    <property name="password" value="Wlsgml88"/>
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:config/mybatis/sqlMapConfig.xml"/>
+		<property name="mapperLocations" value="classpath:config/sqlmap/oracle/*.xml"/>  <!--  oracle 대신 **써도됨-->
+	</bean>
+
+
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<property name="maxUploadSize" value="10485760" />
+	</bean>
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
+	
+	<mvc:default-servlet-handler />
+	<mvc:view-controller path="/file/uploadForm.do" view-name="file/fileUploadForm"/>
+	<!--  path가 들어왔을 때 view-name을 포워드시켜주세요 jsp로-->
+	
+	<mvc:view-resolvers>
+		<mvc:jsp prefix="/WEB-INF/jsp/" suffix=".jsp" />  
+		<!-- 무조건 view는 맨마지막에 .jsp로 끝나는 거야~ jsp 기본적으로 나오는 폴더는 WEB-INF/web 폴더 밑에 
+			만들거야 외부에선 web-inf 못접근하니 보안이 좋아짐!!!!! -->
+	</mvc:view-resolvers>
+
+
+	<!--인터셉터 관련설정  -->
+	<bean class="kr.ac.hana.interceptor.LoginInterceptor" id="LoginInterceptor"></bean> <!--bean으로 등록  -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+		<!-- <mvc:mapping path="/board/write" /> -->
+		<mvc:mapping path="/**/" /> <!--/가 나오고 그 뒤에 depth가 몇이던 간에   -->
+		<mvc:exclude-mapping path="/login"/> <!--로그인이 들어오면 인터셉트를 호출하지 않겠다!   -->
+		<mvc:exclude-mapping path="/adminLogin"/>
+		<mvc:exclude-mapping path="/admin/logout"/>
+		<mvc:exclude-mapping path="/logout"/>
+		<mvc:exclude-mapping path="/board"/>
+		<mvc:exclude-mapping path="/enrollmentForm"/>
+		<!-- <mvc:exclude-mapping path="/reply"/> -->
+		<mvc:exclude-mapping path="/resources/**"/>
+			<ref bean="LoginInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+
+	<!-- 트랜잭션 처리 -->
+	<bean
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		id="transactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<tx:annotation-driven
+		transaction-manager="transactionManager"></tx:annotation-driven>
+
+</beans>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin.dao.AdminDAO">
+
+	<!--컬럼 값 _ 다른것 맞춰주기   -->
+	<resultMap type="adminVO" id="adminMap">
+		<result column="admin_name" property="adminName" />
+		<result column="consulting_channel" property="consultingChannel" />
+		<result column="branch_no" property="branchNo" />
+		<result column="add_consulting_cnt" property="addConsultingCnt" />
+		<result column="all_consulting_cnt" property="allConsultingCnt" />
+	</resultMap>
+
+	<select id="login" parameterType="adminVO" resultType="adminVO">
+		select empno, password 
+		from consulting_subject_tb
+		where empno= #{empno} and password = #{password}
+	</select>
+</mapper>
