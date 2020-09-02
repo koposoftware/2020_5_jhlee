@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member.dao.MemberDAO">
+	
+	<!--컬럼 값 _ 다른것 맞춰주기   -->
+	<resultMap type="memberVO" id="memberMap">
+		<result column="phone_no" property="phoneNo" />
+		<result column="email_id" property="emailId" />
+		<result column="email_domain" property="emailDomain" />
+		<result column="digital_edu" property="digitalEdu" />
+		<result column="customer_type" property="customerType" />
+	</resultMap>
+
+	<select id="login" parameterType="memberVO" resultType="memberVO">
+		select id, password <!-- email_id, email_domain, tel1, tel2, tel3, post, basic_addr, detail_addr, type, reg_date -->
+		from customer_tb 
+		where id= #{id} and password = #{password}
+	</select>
+	
+	<!--회원등록 -->
+	<insert id="updateMember" parameterType="memberVO">
+	 insert into customer_tb(id,name,password,birth,gender,phone_no,job,address, 
+	 email_id, email_domain,digital_edu,interest,age)
+	 values(#{id , jdbcType=VARCHAR},#{name , jdbcType=VARCHAR},#{password , jdbcType=VARCHAR},#{birth , jdbcType=VARCHAR},#{gender , jdbcType=VARCHAR},#{phone_no , jdbcType=VARCHAR},#{job , jdbcType=VARCHAR},#{address , jdbcType=VARCHAR},
+	 #{email_id , jdbcType=VARCHAR},#{email_domain , jdbcType=VARCHAR},#{digital_edu , jdbcType=VARCHAR},#{interest , jdbcType=VARCHAR},#{age , jdbcType=VARCHAR})
+	</insert>
+	
+</mapper>

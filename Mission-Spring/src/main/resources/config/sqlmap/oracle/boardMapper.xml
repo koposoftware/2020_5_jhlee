@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.dao.BoardDAO"> 
+
+	<!--컬럼 값 _ 다른것 맞춰주기   -->
+	<resultMap type="boardVO" id="boardMap">
+		<result column="main_category" property="mainCategory" />
+		<result column="middle_category" property="middleCategory" />
+		<result column="view_cnt" property="viewCnt" />
+		<result column="reg_date" property="regDate" />
+		<result column="reply_cnt" property="replyCnt" />
+		<result column="like_it" property="likeIt" />
+		<result column="admin_name" property="adminName" />
+		<result column="consulting_channel" property="consultingChannel" />
+		<result column="reply_cnt" property="replyCnt" />
+	</resultMap>
+	
+	
+	<select id="selectByNo" resultMap="boardMap" parameterType="int">
+		select no, writer, main_category, middle_category, title, content, view_cnt, to_char(reg_date, 'yyyy-mm-dd') as reg_date,
+			admin_name, empno, consulting_channel, reply_cnt
+			from inquiry_tb  where no = #{no}
+	</select>
+		
+	
+	<select id="selectAll" resultMap="boardMap">
+		select no, title, main_category, middle_category, writer, to_char(reg_date, 'yyyy-mm-dd') as reg_date ,reply_cnt
+			from inquiry_tb
+			order by no desc
+	</select>
+	
+	<insert id="insert" parameterType="boardVO">
+		insert into inquiry_tb(no, title, writer, main_category, middle_category, content)
+		 values(seq_inquiry_tb_no.nextval, #{title}, #{writer}, #{mainCategory}, #{middleCategory}, #{content})
+	</insert>
+
+	<!-- 댓글 카운트 증가 -->
+	<update id="incrementReplyCnt" parameterType="int"> <!-- 해당 게시물이라서 int -->
+		update inquiry_tb
+			set reply_cnt = reply_cnt + 1
+		  where no = #{no}
+	</update>
+	
+	<!-- 댓글 카운트 감소 -->
+	<update id="reduceReplyCnt" parameterType="int"> <!-- 해당 게시물이라서 int -->
+		update inquiry_tb
+			set reply_cnt = reply_cnt - 1
+		  where no = #{no}
+	</update>
+	
+	<!-- 게시판 조회수 증가  -->
+	<update id="incrementViewCnt" parameterType="int">
+		update inquiry_tb set
+		view_cnt = view_cnt + 1
+		 where no = #{no}
+	</update>		
+	
+</mapper>

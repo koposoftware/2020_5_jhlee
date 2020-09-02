@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reply.dao.ReplyDAO">
+	<insert id="insert" parameterType="replyVO">
+		insert into reply_tb(no, inquiry_no, content, writer)
+			values(seq_reply_tb_no.nextval, #{inquiryNo}, #{content}, #{writer})
+	</insert>	
+	
+	<!-- 게시물 번호의 해당 댓글리스트 조회 -->
+	<select id="selectAll" parameterType="int" resultType="replyVO">
+		select no, inquiry_no as inquiryNo, content, writer, 
+		case to_char(reg_date, 'yyyy-mm-dd') when to_char(sysdate,'yyyy-mm-dd')
+		then to_char(reg_date,'hh24:mi:ss') else to_char(sysdate,'yyyy-mm-dd') end regDate
+		from reply_tb
+		where inquiry_no = #{ inquiryNo } 
+		order by no asc <!-- 최근것 순서대로 나오게 하기  -->
+	</select>
+	
+	
+	<!-- 댓글번호에 해당 댓글 삭제   -->
+	<delete id="delete" parameterType="int">
+		delete from reply_tb
+			where no = ${no}		
+	</delete>
+	
+	
+	<select id="selectBoardNo" parameterType="int" resultType="int">
+		select inquiry_no
+			from reply_tb
+	 	where no= #{no}
+	</select>
+</mapper>
+
+

@@ -1,0 +1,32 @@
+@charset "UTF-8";
+table, th, td {
+	border: 2px solid #D4E0EE;
+	border-collapse: collapse; /* 하나의 선으로 합쳐주기  */
+	font-family: verdana, sans-serif;
+	color: #555;
+}
+
+th, td{
+	padding: 5px;
+}
+td a:link, td a:visited{ /* td태그안의 a태그 중 link가 걸려있는 애들을 ---하게 바꿔준다. */
+	color:#719ABE;
+	text-decoration: none;  /* 언더라인 없애기  */
+}
+
+td a:hover{
+	text-decoration: underline; /*마우스 갖다 놓은 곳 언더라인  */
+}
+
+table th{
+	background-color:#E6EDF5; 
+	color: #4F76A3;
+}
+
+/* tr:nth-child(odd){
+	background-color: #F7F9FC;
+} */
+
+tr.even{
+	background-color:#F7F9FC;
+}
