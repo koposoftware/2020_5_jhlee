@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="consulting.dao.ConsultingDAO">
+<!--컬럼 값 _ 다른것 맞춰주기   -->
+	<resultMap type="consultingVO" id="consultingMap">
+		<result column="consulting_no" property="consultingNo" />
+		<result column="report_ymd" property="reportYmd" />
+		<result column="customer_type" property="customerType" />
+		<result column="main_category" property="mainCategory" />
+		<result column="middle_category" property="middleCategory" />
+		<result column="consulting_report" property="consultingReport" />
+		<result column="consulting_channel" property="consultingChannel" />
+		<result column="admin_name" property="adminName" />
+		<result column="add_consulting" property="addConsulting" />
+	</resultMap>
+	
+	<!-- 상담리스트 전체 조회  -->
+	<select id="selectAll" resultMap="consultingMap">
+		select consulting_no, to_char(report_ymd, 'yyyy-mm-dd') as report_ymd, customer_type, id, name, birth,
+		main_category, middle_category,title, consulting_report, consulting_channel, admin_name, empno, progress, add_consulting
+		from report_tb
+			order by consulting_no desc
+	</select>
+	
+	<!-- 상담리스트 번호별 조회 -->
+	<select id="selectByNo" resultMap="consultingMap" parameterType="int">
+		select consulting_no, to_char(report_ymd, 'yyyy-mm-dd') as report_ymd, customer_type, id, name, birth,
+		main_category, middle_category,title, consulting_report, consulting_channel, admin_name, empno, progress, add_consulting
+			from  report_tb  where consulting_no = #{no}
+	</select>
+	
+	<!-- 상담기록 노트에 등록  -->
+	<insert id="insert" parameterType="consultingVO">
+		insert into report_tb(consulting_no, customer_type, id, name, birth,
+		main_category, middle_category,title, consulting_report, consulting_channel, admin_name, empno, progress)
+		 values(seq_report_tb_no.nextval, #{customer_type}, #{id}, #{name}, #{birth}, #{main_category}, #{middle_category}, 
+		 #{title}, #{consulting_report}, #{admin_name}, #{empno}, #{consulting_channel}, #{progress})
+	</insert> 
+	
+	<!-- 추가상담 컬럼 Y로 업데이트 -->
+	<update id="updateAddConsulting" parameterType="int"> <!-- 해당 게시물이라서 int -->
+		update  report_tb
+			set add_consulting = 'Y'
+		  where consulting_no = #{no}
+	</update>
+</mapper>

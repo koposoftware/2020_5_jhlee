@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="register.dao.RegisterDAO"> 
+
+	<!--컬럼 값 _ 다른것 맞춰주기   -->
+	<resultMap type="registerVO" id="registerMap">
+		<result column="consulting_no" property="consultingNo" />
+		<result column="main_category" property="mainCategory" />
+		<result column="middle_category" property="middleCategory" />
+		<result column="consulting_channel" property="consultingChannel" />
+		<result column="admin_name" property="adminName" />
+		<result column="add_consulting" property="addConsulting" />
+		<result column="registeration_ymd" property="registerationYmd" />
+		<result column="report_ymd" property="reportYmd" />
+	</resultMap>
+	
+	<select id="selectAllRegister" resultMap="registerMap">
+		select no, consulting_no, to_char(registeration_ymd, 'yyyy-mm-dd') as registeration_ymd, id, name, 
+		main_category, middle_category,title, consulting_channel, admin_name, registeration_ymd, report_ymd
+		from register_tb
+		order by no desc
+	</select>
+	
+	</mapper>
+	

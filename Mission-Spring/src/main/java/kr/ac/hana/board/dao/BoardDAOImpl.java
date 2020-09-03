@@ -18,23 +18,23 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public List<BoardVO> selectAll() {
 		
-		List<BoardVO> boardList = sqlSession.selectList("board.dao.BoardDAO.selectAll");		
+		List<BoardVO> inquiryList = sqlSession.selectList("board.dao.BoardDAO.selectAll");		
 		
-		return boardList;
+		return inquiryList;
 	}
 
 	@Override
-	public void insert(BoardVO board) {
+	public void insert(BoardVO inquiry) {
 		
-		sqlSession.insert("board.dao.BoardDAO.insert", board);
+		sqlSession.insert("board.dao.BoardDAO.insert", inquiry);
 		
 	}
 
 	@Override
 	public BoardVO selectByNo(int no) {
-		BoardVO board = sqlSession.selectOne("board.dao.BoardDAO.selectByNo", no);
+		BoardVO inquiry = sqlSession.selectOne("board.dao.BoardDAO.selectByNo", no);
 		
-		return board;
+		return inquiry;
 	}
 
 	@Override

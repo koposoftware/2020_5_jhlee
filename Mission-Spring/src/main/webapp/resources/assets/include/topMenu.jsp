@@ -42,7 +42,7 @@
           <li class="active"><a href="${ pageContext.request.contextPath }/">Home</a></li>
           <li class="drop-down"><a href="#">상담스토리</a>
           <ul>          
-          <li><a href="${ pageContext.request.contextPath }/consultingList1">상담리스트</a></li>
+          <li><a href="${ pageContext.request.contextPath }/consultingList">상담리스트</a></li>
           <li><a href="${ pageContext.request.contextPath }/addConsulting">추가상담</a></li>
           </ul>
           </li>
@@ -51,7 +51,7 @@
           <li><a href="${ pageContext.request.contextPath }/consultingNote">상담노트</a></li>
           </c:if>
           
-          <li><a href="${ pageContext.request.contextPath }/board">Q&A</a></li>
+          <li><a href="${ pageContext.request.contextPath }/inquiry">Q&A</a></li>
             <li><a href="${ pageContext.request.contextPath }/education">HANADO</a></li>
           <li><a href="${ pageContext.request.contextPath }/myPage">마이페이지 </a></li>
 <!--           <li class="drop-down"><a href="">Drop Down</a>

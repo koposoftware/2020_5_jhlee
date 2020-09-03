@@ -28,7 +28,7 @@ public class ReplyServiceImpl implements ReplyService {
 	@Transactional
 	@Override
 	public void insertReply(ReplyVO replyVO) {
-		boardDao.incrementReplyCnt(replyVO.getInquiryNo()); //DETAIL에서 BOARDNO로 넘겨줘서 알고 있음 BOARDNO를 ...?
+		boardDao.incrementReplyCnt(replyVO.getInquiryNo()); //DETAIL에서 inquiryNO로 넘겨줘서 알고 있음
 		replyDao.insert(replyVO);
 		
 	}

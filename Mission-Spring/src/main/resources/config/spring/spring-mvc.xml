@@ -4,6 +4,8 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans   
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context   
@@ -11,10 +13,15 @@
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc.xsd
     http://www.springframework.org/schema/tx
-    http://www.springframework.org/schema/tx/spring-tx.xsd ">
+    http://www.springframework.org/schema/tx/spring-tx.xsd 
+    http://www.springframework.org/schema/websocket
+    http://www.springframework.org/schema/websocket/spring-websocket.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util-4.0.xsd ">
 
 	<context:component-scan base-package="kr.ac.hana" />  <!--MYLECTURE약자로 MLEC씀 KOPO로 바꿔도 됨. -->
-
+	<util:properties id="property" location="classpath:/config/properties/key.properties"></util:properties>
+	
 	<mvc:annotation-driven>
 		<mvc:message-converters>
 			<bean
@@ -83,6 +90,8 @@
 		<mvc:exclude-mapping path="/admin/logout"/>
 		<mvc:exclude-mapping path="/logout"/>
 		<mvc:exclude-mapping path="/board"/>
+		<mvc:exclude-mapping path="/inquiry"/>
+		<mvc:exclude-mapping path="/consulting"/>
 		<mvc:exclude-mapping path="/enrollmentForm"/>
 		<!-- <mvc:exclude-mapping path="/reply"/> -->
 		<mvc:exclude-mapping path="/resources/**"/>

@@ -59,7 +59,7 @@ public class AdminController {
 			return mav; 
 		}
 		
-		@GetMapping("/admin/logout")
+		@GetMapping("/adminLogout")
 		public String logout(SessionStatus status) {
 			status.setComplete();
 			return "redirect:/";
