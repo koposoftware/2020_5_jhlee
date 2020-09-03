@@ -1,4 +1,4 @@
-# 상담기록옴니채널
+# 하나은행 상담기록 옴니채널
 
 [프로젝트 홈페이지 - https://koposoftware.github.io/template/](https://koposoftware.github.io/template/)
 
