@@ -12,6 +12,11 @@ public interface ConsultingService {
 	List<ConsultingVO> selectAllConsulting();
 	
 	/*
+	 * 고객별 상담리스트 조회서비스 
+	 */
+	List<ConsultingVO> selectById(String id);
+	
+	/*
 	 * 상담 노트에 상담등록 서비스
 	 */
 	void insert(ConsultingVO consulting);

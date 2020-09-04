@@ -2,7 +2,7 @@ package kr.ac.hana.register.service;
 
 import java.util.List;
 
-import kr.ac.hana.board.vo.BoardVO;
+
 import kr.ac.hana.register.vo.RegisterVO;
 
 public interface RegisterService {
@@ -12,4 +12,8 @@ public interface RegisterService {
 	 */
 	List<RegisterVO> selectAllRegister();
 
+	/*
+	 * 추가 상담 등록 서비스
+	 */
+	void insert(RegisterVO register); 
 }

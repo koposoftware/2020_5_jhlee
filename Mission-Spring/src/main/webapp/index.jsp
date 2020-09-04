@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-
+  
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -87,34 +87,43 @@
           <ul>
           <li class="active"><a href="${ pageContext.request.contextPath }/">Home</a></li>
           <li class="drop-down"><a href="#testimonials">상담스토리</a>
-          <ul>          
+          <ul> 
+          <c:if test="${ empty adminLoginVO and empty loginVO}">      
+          <li><a href="${ pageContext.request.contextPath }/login">상담리스트</a></li>
+          </c:if>
+          <c:if test="${ not empty adminLoginVO and empty loginVO}">          
+          <li><a href="${ pageContext.request.contextPath }/consultingList/admin">상담리스트</a></li>
+          </c:if>
+          <c:if test="${ empty adminLoginVO and not empty loginVO}">          
           <li><a href="${ pageContext.request.contextPath }/consultingList">상담리스트</a></li>
+          </c:if>
           <li><a href="${ pageContext.request.contextPath }/addConsulting">추가상담</a></li>
-          </ul>
-          </li>
           <c:if test="${ not empty adminLoginVO and empty loginVO}">  
           <li><a href="${ pageContext.request.contextPath }/consultingNote">상담노트</a></li>
           </c:if>
-          <li><a href="${ pageContext.request.contextPath }/inquiry">Q&A</a></li>
+          </ul>
+          </li>
+          <li class="drop-down"><a href="#testimonials">HANADO</a>
+          <ul>          
           <li><a href="${ pageContext.request.contextPath }/education">HANADO</a></li>
-          <li><a href="${ pageContext.request.contextPath }/board/write">마이페이지 </a></li>
-<!--           <li class="drop-down"><a href="">Drop Down</a>
-            <ul>
-              <li><a href="#">í µê³ </a></li>
-              <li class="drop-down"><a href="#">Deep Drop Down</a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li> 
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li> -->
+          <li><a href="${ pageContext.request.contextPath }/inquiry">Q&A</a></li>
+          </ul>
+          </li>       
+     <%--   
+          <li><a href="${ pageContext.request.contextPath }/inquiry">Q&A</a></li>
+          <li><a href="${ pageContext.request.contextPath }/education">HANADO</a></li> --%>
+          <c:if test="${ empty adminLoginVO and not empty loginVO}">  
+          <li><a href="${ pageContext.request.contextPath }/mypage">마이페이지 </a></li>
+          </c:if>
+          <c:if test="${ not empty adminLoginVO and empty loginVO}"> 
+          <li class="drop-down"><a href="#testimonials">마이페이지</a>
+          <ul>          
+          <li><a href="${ pageContext.request.contextPath }/management">실적관리</a></li>
+          <li><a href="${ pageContext.request.contextPath }/customerInform">고객관리</a></li>
+          </ul>
+          </li>
+          </c:if>
+         
           <li><a href="#contact">영업점찾기</a></li>
 	
         </ul>   

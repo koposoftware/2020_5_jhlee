@@ -232,6 +232,7 @@ $(document).ready(function(){
             </c:if>
          </table>
          </div>
+       
          
          <br>
          <input type="button" value="수정" class="btn btn-outline-light text-dark" onclick="doAction('U')">&nbsp;&nbsp; 

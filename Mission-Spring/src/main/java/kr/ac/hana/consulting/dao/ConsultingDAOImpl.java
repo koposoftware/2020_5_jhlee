@@ -1,7 +1,6 @@
 package kr.ac.hana.consulting.dao;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -20,6 +19,17 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 		
 		return consultingList;
 	}
+
+	
+	
+	@Override
+	public List<ConsultingVO> selectById(String id) {
+		List<ConsultingVO> customerConsultingList = SqlSession.selectList("consulting.dao.ConsultingDAO.selectById",id);
+		
+		return customerConsultingList;
+	}
+
+
 
 	@Override
 	public void insert(ConsultingVO consulting) {

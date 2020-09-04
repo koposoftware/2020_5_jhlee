@@ -20,10 +20,12 @@
 	<br>
 	<br>
 	<br>
+	<div class="album py-5 bg-light">
 	<div align="center">
 	
 	<h3>안녕하십니가 저는 관리자입니다.</h3>
 	<h4>여기는 상담노트가 남겨질 곳입니다.</h4>
+	</div>
 	</div>
 </section> 
 	<footer>

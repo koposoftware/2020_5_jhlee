@@ -14,6 +14,7 @@ public class RegisterVO {
 	private String adminName;
 	private String registerationYmd;
 	private String reportYmd;
+	private String progress;
 	public int getNo() {
 		return no;
 	}
@@ -86,13 +87,19 @@ public class RegisterVO {
 	public void setReportYmd(String reportYmd) {
 		this.reportYmd = reportYmd;
 	}
-	
+	public String getProgress() {
+		return progress;
+	}
+	public void setProgress(String progress) {
+		this.progress = progress;
+	}
 	@Override
 	public String toString() {
 		return "RegisterVO [no=" + no + ", consultingNo=" + consultingNo + ", mainCategory=" + mainCategory
 				+ ", middleCategory=" + middleCategory + ", id=" + id + ", name=" + name + ", title=" + title
 				+ ", consultingChannel=" + consultingChannel + ", empno=" + empno + ", adminName=" + adminName
-				+ ", registerationYmd=" + registerationYmd + ", reportYmd=" + reportYmd + "]";
+				+ ", registerationYmd=" + registerationYmd + ", reportYmd=" + reportYmd + ", progress=" + progress
+				+ "]";
 	}
-
+	
 }

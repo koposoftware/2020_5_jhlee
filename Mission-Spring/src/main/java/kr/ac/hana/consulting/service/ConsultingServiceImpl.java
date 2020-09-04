@@ -22,6 +22,18 @@ public class ConsultingServiceImpl implements ConsultingService {
 		
 		return consultingList;
 	}
+	
+	
+
+	@Override
+	public List<ConsultingVO> selectById(String id) {
+		
+		List<ConsultingVO> customerConsultingList = consultingDAO.selectById(id);
+		
+		return customerConsultingList;
+	}
+
+
 
 	@Override
 	public void insert(ConsultingVO consulting) {

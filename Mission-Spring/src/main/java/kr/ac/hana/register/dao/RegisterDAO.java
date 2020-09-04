@@ -12,4 +12,10 @@ public interface RegisterDAO {
 	 */
 	
 	public List<RegisterVO> selectAllRegister();
+	
+	
+	/*
+	 * 추가상담 등록 서비스 
+	 */
+	public void insert(RegisterVO register);
 }

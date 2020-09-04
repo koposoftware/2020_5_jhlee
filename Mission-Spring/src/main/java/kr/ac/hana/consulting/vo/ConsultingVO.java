@@ -115,5 +115,5 @@ public class ConsultingVO {
 				+ ", consultingChannel=" + consultingChannel + ", adminName=" + adminName + ", empno=" + empno
 				+ ", progress=" + progress + ", addConsulting=" + addConsulting + "]";
 	}
-
+	
 }

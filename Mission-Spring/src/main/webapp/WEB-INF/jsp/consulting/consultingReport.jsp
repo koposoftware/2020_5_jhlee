@@ -9,7 +9,8 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 <jsp:include page="/resources/assets/include/headCSS.jsp"></jsp:include>  
 </head>
-<body>
+
+ <body class="bg-light">
 <header>	
 		<jsp:include page="/resources/assets/include/topMenu.jsp" />
 	</header>
@@ -20,10 +21,12 @@
 	<br>
 	<br>
 	<br>
+	<div class="album py-5 bg-light">	
 	<div align="center">
 	
 	<h3>안녕하십니가 저는 이진희입니다.</h3>
 	<h4>여기는 상담 상세조회가 남겨질 곳입니다. </h4>
+	</div>
 	</div>
 </section>
 	<br>

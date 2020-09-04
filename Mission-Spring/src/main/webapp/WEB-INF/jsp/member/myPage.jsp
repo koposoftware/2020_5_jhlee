@@ -33,15 +33,33 @@
 	<br>
 	<div align="center">
 	
-	<canvas class="my-4" id="myChart" width="900" height="380"></canvas>
 	
-    <!-- Icons -->
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- 차트  -->
+	  <hr width="60%">	
+          <h4 class="titles"> <strong>${ loginVO.id }</strong>님의 문의 유형 별 관심도</h4>
+      <hr width="60%">
+	  <canvas class="my-4" id="myChart" width="900" height="300"></canvas>
+
+	 <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace()
     </script>
 
     <!-- Graphs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script>
       var ctx = document.getElementById("myChart");
@@ -53,12 +71,13 @@
             data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
             lineTension: 0,
             backgroundColor: 'transparent',
-            borderColor: '#007bff',
+            borderColor: '#008C8C',
             borderWidth: 4,
-            pointBackgroundColor: '#007bff'
+            pointBackgroundColor: '#008C8C'
           }]
         },
         options: {
+        responsive: false,
           scales: {
             yAxes: [{
               ticks: {

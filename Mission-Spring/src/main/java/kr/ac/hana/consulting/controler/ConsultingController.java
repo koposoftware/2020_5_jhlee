@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,7 @@ public class ConsultingController {
 	
 	
 	//상담리스트 전체 조회 
-	@RequestMapping("/consultingList")
+	@RequestMapping("/consultingList/admin")
 	public ModelAndView consultingList(){
 	
 	List<ConsultingVO> consultingList = consultingService.selectAllConsulting();
@@ -40,6 +41,22 @@ public class ConsultingController {
 	
 	return mav;
 	}
+	
+	
+	//고객별 상담리스트 전체 조회 
+	@RequestMapping("/consultingList")
+	public ModelAndView customerConsultingList(HttpSession session){
+		
+	MemberVO loginVO = (MemberVO)session.getAttribute("loginVO");
+	
+	List<ConsultingVO> customerConsultingList = consultingService.selectById(loginVO.getId());
+	
+	ModelAndView mav =new ModelAndView("consulting/consultingList"); //spring-mvc.xml에 view-resolvers태그에 정해둠 
+	mav.addObject("customerConsultingList", customerConsultingList);
+	
+	return mav;
+	}
+
 	
 	
 	//상담기록 번호로 상세조회 

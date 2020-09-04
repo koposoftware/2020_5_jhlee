@@ -126,6 +126,7 @@ $(document).ready(function(){
    <br>
    <br>
    <br>
+    
       <div align = "center" style="font-size:15px">
       <hr width="60%">
       <h1 style="font-size: 25px;">문의하기</h1>
@@ -178,6 +179,7 @@ $(document).ready(function(){
       </form>
       
           </div>
+
    </section>
    	<br>
 	<br>

@@ -26,4 +26,13 @@ public class RegisteDAOImpl implements RegisterDAO {
 		return registerList;
 	}
 
+	@Override
+	public void insert(RegisterVO register) {
+		
+		sqlSession.insert("register.dao.RegisterDAO.insert",register);
+		
+	}
+	
+	
+
 }
