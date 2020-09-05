@@ -16,10 +16,19 @@
 		<result column="report_ymd" property="reportYmd" />
 	</resultMap>
 	
-	<select id="selectAllRegister" resultMap="registerMap">
+	<select id="selectAllRegisterById" resultMap="registerMap" parameterType="String">
+		select no, consulting_no, to_char(registeration_ymd, 'yyyy-mm-dd HH24:MI:SS') as registeration_ymd, id, name, 
+		main_category, middle_category,title, consulting_channel, admin_name, empno, registeration_ymd, report_ymd, progress
+		from register_tb 
+		where id = #{id}
+		order by no desc
+	</select>
+	
+	<select id="selectAllRegisterByEmpno" resultMap="registerMap" parameterType="String">
 		select no, consulting_no, to_char(registeration_ymd, 'yyyy-mm-dd HH24:MI:SS') as registeration_ymd, id, name, 
 		main_category, middle_category,title, consulting_channel, admin_name, empno, registeration_ymd, report_ymd, progress
 		from register_tb
+		where empno = #{empno}
 		order by no desc
 	</select>
 	

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.hana.board.dao.BoardDAO;
 import kr.ac.hana.board.vo.BoardVO;
-import kr.ac.hana.consulting.dao.ConsultingDAO;
 import kr.ac.hana.register.dao.RegisterDAO;
 import kr.ac.hana.register.vo.RegisterVO;
 
@@ -19,17 +18,26 @@ public class RegisterServiceImpl implements RegisterService {
 	private RegisterDAO registerDAO;
 	
 	@Override
-	public List<RegisterVO> selectAllRegister() {
+	public List<RegisterVO> selectAllRegisterById(String id) {
 		
-		List<RegisterVO> registerList = registerDAO.selectAllRegister();
+		List<RegisterVO> userAddConsultingList = registerDAO.selectAllRegisterById(id);
 		
-		return registerList;
+		return userAddConsultingList;
 	}
+	
+
+	@Override
+	public List<RegisterVO> selectAllRegisterByEmpno(String empno) {
+
+		List<RegisterVO> adminAddConsultingList  = registerDAO.selectAllRegisterByEmpno(empno);
+		
+		return adminAddConsultingList;
+	}
+
 
 	@Override
 	public void insert(RegisterVO register) {
 		registerDAO.insert(register);
-		
 		
 	}
 }

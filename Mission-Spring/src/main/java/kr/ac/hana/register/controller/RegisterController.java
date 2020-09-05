@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.ac.hana.admin.vo.AdminVO;
 import kr.ac.hana.board.service.BoardService;
 import kr.ac.hana.board.vo.BoardVO;
 import kr.ac.hana.consulting.vo.ConsultingVO;
+import kr.ac.hana.member.vo.MemberVO;
 import kr.ac.hana.register.service.RegisterService;
 import kr.ac.hana.register.vo.RegisterVO;
 
@@ -25,16 +27,33 @@ public class RegisterController {
 	@Autowired
  	private RegisterService registerService;
 	
-	//추가상담리스트 조회
+	//고객별 추가상담리스트 전체 조회
 	@RequestMapping("/addConsulting") //이 메소드를 실행해라
-	public ModelAndView list() { //모델앤뷰가 포워드+공융영역에 객체 등록시킴 httpservletRequest request영역에 올림
-		
-		List<RegisterVO> consultingList = registerService.selectAllRegister();
-		
-		ModelAndView mav =new ModelAndView("consulting/addConsulting"); //spring-mvc.xml에 view-resolvers태그에 정해둠 
-		mav.addObject("consultingList", consultingList);
-		
-		return mav;
+	public ModelAndView userAddConsultingList(HttpSession session){
+			
+	   MemberVO loginVO = (MemberVO)session.getAttribute("loginVO");
+	  
+	   List<RegisterVO> userAddConsultingList = registerService.selectAllRegisterById(loginVO.getId());
+			
+	   ModelAndView mav =new ModelAndView("consulting/addConsulting"); //spring-mvc.xml에 view-resolvers태그에 정해둠 
+	   mav.addObject("userAddConsultingList", userAddConsultingList);
+			
+	  return mav;
+	}
+	
+	//관리자별 추가상담리스트 조회 
+	@RequestMapping("/addConsulting/admin")
+	public ModelAndView adminAddConsultingList(HttpSession session){
+	
+	AdminVO adminLoginVO = (AdminVO)session.getAttribute("adminLoginVO");
+	System.out.println(adminLoginVO.getEmpno());
+	
+	List<RegisterVO>  adminAddConsultingList = registerService.selectAllRegisterByEmpno(adminLoginVO.getEmpno());
+	
+	ModelAndView mav =new ModelAndView("consulting/addConsulting"); //spring-mvc.xml에 view-resolvers태그에 정해둠 
+	mav.addObject("adminAddConsultingList",  adminAddConsultingList);
+	
+	return mav;
 	}
 	
 	//추가상담 등록 
@@ -44,7 +63,7 @@ public class RegisterController {
 		
 	RegisterVO register = new RegisterVO();
 	
-	ConsultingVO consultignVO = (ConsultingVO)session.getAttribute("consultingVO");
+	RegisterVO registerVO = (RegisterVO)session.getAttribute("registerVO");
 	model.addAttribute("registerVO", register);
 	
 	return "/register";

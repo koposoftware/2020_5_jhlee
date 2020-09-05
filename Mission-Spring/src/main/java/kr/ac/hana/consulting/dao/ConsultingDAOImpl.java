@@ -10,12 +10,12 @@ import kr.ac.hana.consulting.vo.ConsultingVO;
 public class ConsultingDAOImpl implements ConsultingDAO {
 	
 	@Autowired
-	private SqlSessionTemplate SqlSession;
+	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<ConsultingVO> selectAll() {
+	public List<ConsultingVO> selectAllConsulting() {
 		
-		List<ConsultingVO> consultingList = SqlSession.selectList("consulting.dao.ConsultingDAO.selectAll");
+		List<ConsultingVO> consultingList = sqlSession.selectList("consulting.dao.ConsultingDAO.selectAllConsulting");
 		
 		return consultingList;
 	}
@@ -24,7 +24,7 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 	
 	@Override
 	public List<ConsultingVO> selectById(String id) {
-		List<ConsultingVO> customerConsultingList = SqlSession.selectList("consulting.dao.ConsultingDAO.selectById",id);
+		List<ConsultingVO> customerConsultingList = sqlSession.selectList("consulting.dao.ConsultingDAO.selectById",id);
 		
 		return customerConsultingList;
 	}
@@ -34,20 +34,20 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 	@Override
 	public void insert(ConsultingVO consulting) {
 		
-		SqlSession.insert("consulting.dao.ConsultingDAO.insert",consulting);
+		sqlSession.insert("consulting.dao.ConsultingDAO.insert",consulting);
 		
 	}
 
 	@Override
 	public ConsultingVO selectByNo(int no) {
-		ConsultingVO consulting = SqlSession.selectOne("consulting.dao.CounsultingDAO.selectByNo", no);
+		ConsultingVO consulting = sqlSession.selectOne("consulting.dao.CounsultingDAO.selectByNo", no);
 		
 		return consulting;
 	}
 
 	@Override
 	public void updateAddConsulting(int no) {
-		SqlSession.update("consulting.dao.ConsultingDAO.updateAddConsulting",no);
+		sqlSession.update("consulting.dao.ConsultingDAO.updateAddConsulting",no);
 		
 	}
 }

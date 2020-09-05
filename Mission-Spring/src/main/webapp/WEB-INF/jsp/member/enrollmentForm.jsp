@@ -16,21 +16,62 @@
 
 <script type="text/javascript">
 
-/* $(document).ready(function(){
-	$(document).on('click','.btn btn-primary:hover', function(){
-		
-		if(!confirm('회원가입을 진행하시겠습니까?'))return;
-		
-		$.ajax({ 
-			url: '${ pageContext.request.contextPath }/enrollmentForm',
-			type: 'post',
-			success : function(){
-				alert('회원가입이 완료되었습니다. 로그인 후 이용해주세요');
-				
-			},error: function(){
-				alert('오류')
-			}
-		}); */
+function goEnrollment(frm) {
+	   var name = frm.name.value;
+	   var id = frm.id.value;
+	   var password = frm.password.value;
+	   var birth = frm.birth.value;
+	   var phone_no = frm.phone_no.value;
+	   var job = frm.job.value;
+	   var digital_edu = frm.digital_edu.value;
+	   var interest = frm.interest.value;
+	   var age = frm.age.value;
+	   
+	   if (name.trim() == ''){
+	      alert("이름을 입력해주세요");
+	      return false;
+	   }
+	   if (id.trim() == ''){
+	      alert("id를 입력해주세요");
+	      return false;
+	   } 
+	   if (password.trim() == ''){
+	      alert("password을 입력해주세요");
+	      return false;
+	   }
+	   if (birth.trim() == ''){
+		      alert("생년월일을 입력해주세요");
+		      return false;
+		   }
+	   if (phone_no.trim() == ''){
+		      alert("전화번호를 입력해주세요");
+		      return false;
+		   }
+	   if (job.trim() == ''){
+		      alert("직업을 선택해주세요");
+		      return false;
+		   }
+	   if (digital_edu.trim() == ''){
+		      alert("디지털교육을 선택해주세요");
+		      return false;
+		   }
+	   if (interest.trim() == ''){
+		      alert("관심사를 선택해주세요");
+		      return false;
+		   }
+	   if (age.trim() == ''){
+		      alert("나이대를 선택해주세요");
+		      return false;
+		   }
+	
+	  alert("하나의 손님이 되신걸 환영합니다. 로그인 후 이용해주세요");
+	}
+	
+/* $('#enrollmentBtn').click(function(e){
+	if(this.form.trim() != ''){
+	 e.preventDefault(); 
+	$('#enrollmentModal').modal("show");
+	} */
 	
 
 </script>
@@ -74,14 +115,14 @@ margin-left:5px;
     <br>
     <form method="post" autocomplete="off"> <%-- action="${ pageContext.request.contextPath }/login" --%>
         <table class="table table-boardered">
+            <tr>    
+                <th>이름</th>
+                <td ><input type="text" class="form-control" name="name" placeholder="이름을 입력하세요"></td>      
+            </tr>
             <tr>
                 <th>아이디</th>
                 <td ><input type="text" class="form-control" name="id" placeholder="id를 입력하세요">
                 </td>  
-            </tr>
-            <tr>    
-                <th>이름</th>
-                <td ><input type="text" class="form-control" name="name" placeholder="이름을 입력하세요"></td>      
             </tr>
             <tr>
                 <th>패스워드</th>
@@ -176,18 +217,39 @@ margin-left:5px;
              
             <tr align="right">
                 <td colspan="2">
-                <input type="submit" class="btn btn-outline-light text-dark" value="가입">
+                <button id="enrollmentBtn" class="btn btn-outline-light text-dark" onclick="goEnrollment(this.form)">가입</button>
+               <!--  <input type="submit"  id="enrollmentBtn" class="btn btn-outline-light text-dark" value="가입"> -->
                 <input type="reset" class="btn btn-outline-light text-dark" value="취소">
                 </td>
             </tr>     
         </table>
+        
+    <!-- 모달 창 -->  
+<!-- 	 <div class="modal fade" id="enrollmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+						<button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				
+					<h6 class="modal-title" id="exampleModalLabel" align="center"><strong>회원 등록 확인</strong></h6>
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close"> </button>
+				</div>
+				<div class="modal-body">하나만의 손님이 되신걸 환영합니다, 로그인 후 이용해주세요</div>
+				<div class="modal-footer">
+					 <input type="submit" id="enrollmentBtn" class="btn btn-outline-light text-dark" value="확인" align="center">
+				</div>
+			</div>
+		</div>
+	</div> -->
+        
     </form>
     </div>
      
     </div>
     </div>
 </div>
-</section> 
+
+ </section> 
  	<br>
 	<br>
 	<br>

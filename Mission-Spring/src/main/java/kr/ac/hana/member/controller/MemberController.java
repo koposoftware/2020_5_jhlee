@@ -1,6 +1,11 @@
 package kr.ac.hana.member.controller;
 
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -20,47 +25,7 @@ import kr.ac.hana.board.vo.BoardVO;
 import kr.ac.hana.member.service.MemberService;
 import kr.ac.hana.member.vo.MemberVO;
 
-//@Controller
-/*public class MemberController2 {
-	
-	@Autowired
-	private MemberService memberService;
-		
-	//@RequestMapping(value = "/login", method = RequestMethod.GET)
-	@GetMapping("/login")//로그인 uri들어왔을 때 최초 포워드 
-	public String loginForm() { 
-		
-		return "/login/login"; 
-	}
-	
-	
-	//@RequestMapping(value="/login", method = RequestMethod.POST)
-	@PostMapping("/login") //로그인 폼태그에서 submit눌렀을 때 여기로 가라 
-	public String login(MemberVO member , HttpSession session) {  @RequestParam("id")String id, @RequestParam("password")String password 
-		//session 객체 달라고 하면 파라미터로 날라감 
-		MemberVO loginVO = memberService.login(member);
-		
-		//로그인 실패
-		if(loginVO == null) {
-			return "redirect:/login"; //null이라면 로그인
-		}
-		
-		//로그인 성공
-		//HttpSession session = request.getSession();
-		session.setAttribute("loginVO", loginVO);
-		
-		return "redirect:/"; //index.jsp 로 가라 
-		
-	}
-	
-	@RequestMapping("/logout")
-	 public String logout(HttpSession session) { 
-		
-		session.invalidate(); //session에 등록되어 있는것 지우기 
-		return "redirect:/";		 
-	 }
-}
-*/
+
 @SessionAttributes({"loginVO"}) //MAV객체에 등록되는 이름이 로그인 객체인경우에는  세션에 등록시켜 
 @Controller
 public class MemberController {
@@ -77,7 +42,7 @@ public class MemberController {
 
 	// @RequestMapping(value="/login", method = RequestMethod.POST)
 	@PostMapping("/login") // 로그인 폼태그에서 submit눌렀을 때 여기로 가라
-	public ModelAndView login(MemberVO member, HttpSession session) { /* @RequestParam("id")String id, @RequestParam("password")String password */
+	public ModelAndView login(MemberVO member, HttpSession session, HttpServletResponse response) throws IOException { /* @RequestParam("id")String id, @RequestParam("password")String password */
 		// session 객체 달라고 하면 파라미터로 날라감
 		
 		MemberVO loginVO = memberService.login(member);
@@ -85,14 +50,20 @@ public class MemberController {
 		
 		// 로그인 실패
 		if (loginVO == null) {
+	    PrintWriter out = response.getWriter();
+		out.println("<script>alert('ID(직원의 경우 사번)와 비밀번호를 확인해주세요.')</script>");
+		out.flush();
 			mav.setViewName("redirect:/login");
 			
 		}else {
 			// 로그인 성공
 		String dest = (String)session.getAttribute("dest");
 		
+		
+		
 		//바로 로그인을 한 상황 
 		if(dest == null) {//프리핸들 거친것  로그인을 한 뒤에 누른것 
+			
 			mav.setViewName("redirect:/");//매인페이지로 			
 		
 		//상세게시물을 클릭하고 로그인한 경우 	
@@ -106,6 +77,7 @@ public class MemberController {
 		}			
 		return mav; 
 	}
+
 
 	@RequestMapping("/logout")
 	public String logout(SessionStatus status) { //세션에 등록된애가 있는지 

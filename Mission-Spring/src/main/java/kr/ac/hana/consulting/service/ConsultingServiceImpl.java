@@ -18,7 +18,7 @@ public class ConsultingServiceImpl implements ConsultingService {
 	public List<ConsultingVO> selectAllConsulting() {
 		
 		
-		List<ConsultingVO> consultingList = consultingDAO.selectAll();
+		List<ConsultingVO> consultingList = consultingDAO.selectAllConsulting();
 		
 		return consultingList;
 	}

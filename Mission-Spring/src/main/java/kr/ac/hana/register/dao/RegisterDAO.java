@@ -2,6 +2,8 @@ package kr.ac.hana.register.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+
 import kr.ac.hana.board.vo.BoardVO;
 import kr.ac.hana.register.vo.RegisterVO;
 
@@ -10,12 +12,18 @@ public interface RegisterDAO {
 	/*
 	 * 전체 추가상담 조회서비스 
 	 */
+	public List<RegisterVO> selectAllRegisterById(String id);
 	
-	public List<RegisterVO> selectAllRegister();
-	
-	
+	/*
+	 * 직원별 추가상담리스트 조회서비스 
+	 */
+	public List<RegisterVO> selectAllRegisterByEmpno(String empno);
+
 	/*
 	 * 추가상담 등록 서비스 
 	 */
 	public void insert(RegisterVO register);
+	
+	
+	
 }

@@ -97,7 +97,15 @@
           <c:if test="${ empty adminLoginVO and not empty loginVO}">          
           <li><a href="${ pageContext.request.contextPath }/consultingList">상담리스트</a></li>
           </c:if>
+          <c:if test="${ empty adminLoginVO and empty loginVO}">      
+          <li><a href="${ pageContext.request.contextPath }/login">추가상담</a></li>
+          </c:if>
+          <c:if test="${ empty adminLoginVO and not empty loginVO}">   
           <li><a href="${ pageContext.request.contextPath }/addConsulting">추가상담</a></li>
+          </c:if>
+          <c:if test="${ not empty adminLoginVO and empty loginVO}">   
+          <li><a href="${ pageContext.request.contextPath }//addConsulting/admin">추가상담</a></li>
+          </c:if>
           <c:if test="${ not empty adminLoginVO and empty loginVO}">  
           <li><a href="${ pageContext.request.contextPath }/consultingNote">상담노트</a></li>
           </c:if>
@@ -120,6 +128,7 @@
           <ul>          
           <li><a href="${ pageContext.request.contextPath }/management">실적관리</a></li>
           <li><a href="${ pageContext.request.contextPath }/customerInform">고객관리</a></li>
+          <li><a href="${ pageContext.request.contextPath }/calendar">일정관리</a></li>
           </ul>
           </li>
           </c:if>

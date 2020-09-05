@@ -15,7 +15,44 @@
 <link href="/resources/assets/css/offcanvas.css" rel="stylesheet">
 <jsp:include page="/resources/assets/include/headCSS.jsp"></jsp:include> 
 
- 
+<style>
+*{margin:0;padding:0;}
+body {background-color:#fafafa;padding:50px;}
+h1 {font-family:tahoma;color:#999;font-size:24px;}
+/* P{font-family:����;font-size:12px;letter-spacing:-1px;margin-bottom:40px;} */
+
+
+.search-box {
+    background: url("/resources/assets/img/searchbar.png") no-repeat scroll left top transparent;
+    height: 30px;
+    margin-top: 5px;
+    overflow: hidden;
+    width: 288px;
+}
+
+input.search-field {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    color: #666666;
+    float: left;
+	font-family:tahoma;
+    height: 26px;
+    line-height: 26px;
+    margin: 0;
+    padding: 1px 0 0 14px;
+    width: 232px;
+}
+input.search-go {
+    background: url("/resources/assets/img/searchbar.png") no-repeat scroll right 0 transparent;
+    border: 0 none;
+    cursor: pointer;
+    float: left;
+    height: 30px;
+    margin: 0;
+    padding: 0; 
+    width: 42px;
+}
+</style>
 </head>
 
 <body>
@@ -65,7 +102,12 @@
        <hr width="70%">	
           <h4 class="titles"> <strong>${ loginVO.id }</strong>님의 상담 리스트</h4>
       <hr width="70%">
-      <br>
+      </c:if>
+      <c:if test="${ not empty adminLoginVO and empty loginVO}">  
+       <hr width="70%">	
+          <h4 class="titles">상담 리스트 조회</h4>
+      <hr width="70%">
+      </c:if>
       <br>
       <br>
       	 <select name="mainCategory" class="f0" style="width:20%">
@@ -73,15 +115,18 @@
                     <option value="금융상품">금융상품</option>
                     <option value="금융경험">금융경험</option>
                     <option value="기타">기타</option>
-          </select><button>검색</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      	<input type="text"><button>검색</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="date">-<input type="date"><button>검색</button>
+          </select><button style="border-width: 0.5px; height: 25px;" class="btn btn-outline-light text-dark">검색</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      	<input type="text"><button style="border-width: 0.5px; height: 30px;" class="btn btn-outline-light text-dark">검색</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      	<input type="date">-<input type="date"><button style="border-width: 0.5px; height: 30px;" class="btn btn-outline-light text-dark">검색</button>
+      	
+      	<div class="search-box">
+		<form method="get" action="#">
+			<input size="15" class="search-field" name="s" id="s" value="Search.." onfocus="if(this.value == 'Search..') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search..';}" type="text">
+			<input value="" class="search-go" type="submit"> 
+		</form>
+		</div>
+      	
       	<br>
-      </c:if>
-      <c:if test="${ not empty adminLoginVO and empty loginVO}">  
-       <hr width="70%">	
-          <h4 class="titles">상담 리스트 조회</h4>
-      <hr width="70%">
-      </c:if>
       <br>
           <div class="table-responsive" align="center">
             <table class="table table-striped table-sm" style="width:80%">
@@ -103,10 +148,11 @@
 				 
                 </tr>
               </thead>
-              <c:forEach items="${ customerConsultingList }" var="consulting" varStatus="loop">
-              <tbody>
-                  <form>                  
-                <tr>
+              <!--유저 로그인시 보여지는 ui  -->
+              <c:if test="${ empty adminLoginVO and  not empty loginVO}"> 
+               <c:forEach items="${ customerConsultingList }" var="consulting" varStatus="loop">
+                 <tbody>
+                 <tr>
                   <td>${ consulting.consultingNo }</td>
                   <td>${ consulting.reportYmd }</td>
                   <td>${ consulting.customerType }</td>
@@ -118,20 +164,64 @@
                   <td>${ consulting.adminName }</td>
                   <td>${ consulting.empno }</td>
                   <td>${ consulting.progress }</td>
-                  <td>${ consulting.addConsulting } <button onclick="reserveForm(${ consulting.consultingNo })">신청</button></td>
-                  <td id="${ consulting.consultingNo }" style="display: none;">
-                  	<input type="datetime-local" name="date${ consulting.consultingNo }"  style="width: 3.5rem;" value="reserveDate">
-                  	<button onclick="reserve(${ consulting.consultingNo })">예약</button> </td>
-                  
-                </tr>
-                  </form>
-              </tbody>
+                  <td>${ consulting.addConsulting } 
+                  	<button onclick="openModal(${ consulting.consultingNo })" style="border-width: 0.5px; height: 28px;" class="btn bt-dark">신청</button>
+                  </td>
+                 </tr>
+                </tbody>
+                                     <!-- 모달 창 -->  
+	<div class="modal fade" id="reserveModal${ consulting.consultingNo }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="text-align: center;">
+				<div class="modal-header">
+					<h6 class="modal-title" id="exampleModalLabel"><strong>추가 상담 예약</strong></h6>
+					<!-- <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+					<!-- <button class="close" type="button" data-dismiss="modal" aria-label="Close"> </button> -->
+				</div>
+				<div class="modal-body">예약하실 날짜를 선택해주세요</div>
+				<input type="datetime-local" name="date" style="align-self: center ;width: 20rem" value="reserveDate" >
+				<hr>	 
+				<div style="text-align: center; margin-bottom: 1.8rem;">
+					 <input type="submit" id="enrollmentBtn" class="btn btn-outline-light text-dark" value="접수" style="width: 20%;  align:center;">
+					 <input type="button" onclick="closeModal()" class="btn btn-outline-light text-dark" value="취소" style="width: 20%;  align:center;">
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+
               </c:forEach>
+             </c:if>
+                
+               <!-- 관리자로 로그인 시 보여지는 ui --> 
+             <c:if test="${ not empty adminLoginVO and empty loginVO}"> 
+               <c:forEach items="${ consultingList }" var="consulting" varStatus="loop">
+                 <tbody>
+                 <tr>
+                  <td>${ consulting.consultingNo }</td>
+                  <td>${ consulting.reportYmd }</td>
+                  <td>${ consulting.customerType }</td>
+                  <td>${ consulting.id }</td>
+                  <td>${ consulting.birth }</td>
+                  <td>${ consulting.mainCategory }</td>
+                  <td>${ consulting.middleCategory }</td>
+                  <td>${ consulting.title }</td>
+                  <td>${ consulting.adminName }</td>
+                  <td>${ consulting.empno }</td>
+                  <td>${ consulting.progress }</td>
+                  <td>${ consulting.addConsulting } 
+<%--                   <button id="reserveBtn${ consulting.consultingNo }" style="border-width: 0.5px; height: 28px;" class="btn btn-outline-light text-dark">신청</button></td> --%>
+                 </tr>
+                </tbody>
+                
+              </c:forEach>
+             </c:if> 
             </table>
         <br>
         </div>
-      </div>
-  
+        
+     </div>
 	</section> 
 	<br>
 	<br>
@@ -143,18 +233,25 @@
 		<%@ include file="/resources/assets/include/footer.jsp"%>
 	</footer>
     <jsp:include page="/resources/assets/include/jsFiles.jsp"></jsp:include>
-    <script type="text/javascript">
     
-    function reserveForm(no) {
-    	$("#"+no).show();
-	}
+<script>
+
+function openModal(consultingNo) {
+	$("#reserveModal"+consultingNo).modal("show")
+	
+}
+
+function closeModal() {
+	$(".modal").modal("hide")
+}
+ 
+//  $('#reserveBtn').click(function(e){
+// 	 e.preventDefault(); 
+// 	$('#reserveModal').modal("show");
+	 
+//  });
+	
+ </script>
     
-    function reserve(no) {
-    	console.log(no)
-		
-	}
-    
-    
-    </script> 
 </body>
 </html>

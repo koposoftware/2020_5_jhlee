@@ -17,7 +17,7 @@
 	</resultMap>
 	
 	<!-- 상담리스트 전체 조회  -->
-	<select id="selectAll" resultMap="consultingMap">
+	<select id="selectAllConsulting" resultMap="consultingMap">
 		select consulting_no, to_char(report_ymd, 'yyyy-mm-dd') as report_ymd, customer_type, id, name, birth,
 		main_category, middle_category,title, consulting_report, consulting_channel, admin_name, empno, progress, add_consulting
 		from report_tb

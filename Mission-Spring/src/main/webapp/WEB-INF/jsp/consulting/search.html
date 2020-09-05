@@ -1,0 +1,59 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>http://www.blueb.co.kr</title>
+<style>
+*{margin:0;padding:0;}
+body {background-color:#fafafa;padding:50px;}
+h1 {font-family:tahoma;color:#999;font-size:24px;}
+P{font-family:����;font-size:12px;letter-spacing:-1px;margin-bottom:40px;}
+
+/*�˻��� ��Ÿ��*/
+.search-box {
+    background: url("searchbar.png") no-repeat scroll left top transparent;
+    height: 30px;
+    margin-top: 5px;
+    overflow: hidden;
+    width: 288px;
+}
+
+input.search-field {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    color: #666666;
+    float: left;
+	font-family:tahoma;
+    height: 26px;
+    line-height: 26px;
+    margin: 0;
+    padding: 1px 0 0 14px;
+    width: 232px;
+}
+input.search-go {
+    background: url("searchbar.png") no-repeat scroll right 0 transparent;
+    border: 0 none;
+    cursor: pointer;
+    float: left;
+    height: 30px;
+    margin: 0;
+    padding: 0; 
+    width: 42px;
+}
+</style>
+</head>
+<body>
+
+<h1>��Search Form</h1>
+<p>�������� #FAFAFA���� ����Ǿ�� �˻��� �̹����� ������ ��ȭ�� �̷�ϴ�.</p>
+
+	<div class="search-box">
+		<form method="get" action="#">
+			<input size="15" class="search-field" name="s" id="s" value="Search.." onfocus="if(this.value == 'Search..') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search..';}" type="text">
+			<input value="" class="search-go" type="submit"> 
+		</form>
+	</div>
+
+</body>
+</html>

@@ -19,11 +19,18 @@ public class RegisteDAOImpl implements RegisterDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<RegisterVO> selectAllRegister() {
+	public List<RegisterVO> selectAllRegisterById(String id) {
 		
-		List<RegisterVO> registerList = sqlSession.selectList("register.dao.RegisterDAO.selectAllRegister");
+		List<RegisterVO> userAddConsultingList = sqlSession.selectList("register.dao.RegisterDAO.selectAllRegisterById",id);
 		
-		return registerList;
+		return userAddConsultingList;
+	}
+
+	@Override
+	public List<RegisterVO> selectAllRegisterByEmpno(String empno) {
+		List<RegisterVO> adminAddConsultingList = sqlSession.selectList("register.dao.RegisterDAO.selectAllRegisterByEmpno",empno);
+		
+		return adminAddConsultingList;
 	}
 
 	@Override
@@ -33,6 +40,10 @@ public class RegisteDAOImpl implements RegisterDAO {
 		
 	}
 	
-	
 
 }
+
+
+
+
+

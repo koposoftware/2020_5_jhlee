@@ -10,7 +10,7 @@ public interface ConsultingDAO {
 	 * 전체 상담리스트 조회서비스 
 	 */
 	
-	public List<ConsultingVO> selectAll();
+	public List<ConsultingVO> selectAllConsulting();
 	
 	/*
 	 * 고객별 상담리스트 조회서비스 

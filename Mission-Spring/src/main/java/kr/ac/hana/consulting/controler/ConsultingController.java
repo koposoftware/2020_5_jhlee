@@ -73,7 +73,7 @@ public class ConsultingController {
 	
 	
 	//상담노트 작성 서비스1
-	@GetMapping("/consulting/consultingNote")
+	@GetMapping("/consultingNote")
 	//public void writeForm(Model model) { //void면 mapping 내 uri값으로 포워드함
 	public String writeForm(Model model, HttpSession session) { 
 	 
@@ -88,7 +88,7 @@ public class ConsultingController {
 
 	
 	//상담노트 작성 서비스2
-	@PostMapping("/consulting/consultingNote")
+	@PostMapping("/consultingNote")
 	public String write(@Valid ConsultingVO consultingVO, BindingResult result) {
 	 //유효성 검사, boardVO boardVo 에 대한 validationcheck
 	 System.out.println(consultingVO);
