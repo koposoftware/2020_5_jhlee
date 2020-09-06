@@ -35,7 +35,7 @@ public class ConsultingController {
 	public ModelAndView consultingList(){
 	
 	List<ConsultingVO> consultingList = consultingService.selectAllConsulting();
-	
+	;
 	ModelAndView mav =new ModelAndView("consulting/consultingList"); //spring-mvc.xml에 view-resolvers태그에 정해둠 
 	mav.addObject("consultingList", consultingList);
 	
@@ -60,16 +60,33 @@ public class ConsultingController {
 	
 	
 	//상담기록 번호로 상세조회 
-	@RequestMapping("/consulting/{no}") //pstmt가 아닌 주소값 그대로 가져오기  {써주고싶은이름} 가변적일때 {}로묶기
+	@RequestMapping("/consulting/admin/{no}") //pstmt가 아닌 주소값 그대로 가져오기  {써주고싶은이름} 가변적일때 {}로묶기
 	public ModelAndView detail(@PathVariable("no")int consultingNo) { //주소값 이름 no를 int boardNo로 설정 밑에 메소드 안에서 쓸거다!
-		
-	ConsultingVO consulting = consultingService.selectByNo(consultingNo);
-			
+		System.out.println(consultingNo);
+	ConsultingVO consulting = consultingService.selectByConsultingNo(consultingNo);
+	System.out.println(consulting);		
 	ModelAndView mav = new ModelAndView("consulting/consultingReport");
+	
 	mav.addObject("consulting",consulting);
+	
 	return mav;
  }
 	
+	//고객별 상담기록 id로 상세조회 
+	
+	
+	  @RequestMapping("/consultingList/{id}") //pstmt가 아닌 주소값 그대로 가져오기 {써주고싶은이름}
+	  public ModelAndView consultingList(@PathVariable("id")String
+	  paId) { //주소값 이름 no를 int boardNo로 설정 밑에 메소드 안에서 쓸거다!
+	  
+	  
+	  List<ConsultingVO> consultingList = consultingService.selectById(paId);
+	  
+	  ModelAndView mav = new ModelAndView("consulting/consultingList");
+	  mav.addObject("consultingList", consultingList); //공유영역에 올림
+	  
+	  return mav; }
+	 
 	
 	
 	//상담노트 작성 서비스1

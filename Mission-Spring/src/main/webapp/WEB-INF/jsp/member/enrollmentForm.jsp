@@ -110,7 +110,7 @@ margin-left:5px;
      
     <div class="col-sm-7">
     <hr>
-    <h3>회원 가입</h3>
+    <h4>회원 가입</h4>
     <hr>
     <br>
     <form method="post" autocomplete="off"> <%-- action="${ pageContext.request.contextPath }/login" --%>

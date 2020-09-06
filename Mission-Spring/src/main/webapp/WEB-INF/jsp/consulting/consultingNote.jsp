@@ -24,17 +24,15 @@
 	<br>
 	<section>
 	<br>
+	<div align="center">
+	<br>
+	<hr width="70%">
+    <h4 class="title"><strong>${ adminLoginVO.empno }님의 상담 노트</strong></h4>
+     <hr width="70%">   
 	<br>
 	<br>
 	<div class="album py-5 bg-light">
-	<div align="center">
 	
-	
-	
-	
-	
-	
-
             <div class="mb-3">
               <label for="address">Address</label>
               <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>

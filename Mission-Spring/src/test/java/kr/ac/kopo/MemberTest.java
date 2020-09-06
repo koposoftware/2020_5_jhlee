@@ -27,8 +27,10 @@ public class MemberTest {
 	
 	@Autowired
 	private MemberDAO memberDAO;
+	
 	@Autowired
 	private SqlSessionTemplate SqlSession;
+	
 	
 	
 	@Ignore
@@ -43,7 +45,7 @@ public class MemberTest {
 		
 		assertNotNull(loginVO);
 	}
-	
+	@Ignore
 	@Test
 	public void 회원상담리스트불러오기() {
 		List<ConsultingVO> customerConsultingList = SqlSession.selectList("consulting.dao.CounsultingDAO.selectById","user");
@@ -53,10 +55,15 @@ public class MemberTest {
 			System.out.println(c);
 		}
 		
+	}
+	
+	@Test
+	public void 상담상세() {
+		ConsultingVO consulting = SqlSession.selectOne("consulting.dao.CounsultingDAO.selectByConsultingNo",2);
+
+			System.out.println(consulting);
 		
 		
 	}
-	
-	
 	
 }

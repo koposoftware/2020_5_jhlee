@@ -29,6 +29,7 @@
 .jj{
 	border-bottom:1px solid #4F76A3;
 	}
+
 </style>
 </head>
 <body>
@@ -41,12 +42,13 @@
 	<section>
 	<br>
       <div align = "center">
-      <hr width="60%">
-      <h4 class="">Q&A</h4>
-      <hr width="60%">      
+      <hr width="70%">
+      <h4 class="title"><strong>Q&A</strong></h4>
+      <hr width="70%">      
       <br>
       <br>
-      <table style="width: 60%">
+
+      <table style="width: 70%">
          <tr class="jj">
             <th width="7%">번호</th>
             <th width="10%">대분류</th>
@@ -55,9 +57,9 @@
             <th width="10%"></th>
             <th width="8%" align="center">글쓴이</th>
             <th width="14%">등록일</th>
-            <c:if test="${not empty adminLoginVO and empty loginVO }"> 
-            <th width="7%">접수</th>
-            </c:if>
+          <%--   <c:if test="${not empty adminLoginVO and empty loginVO }"> 
+            <th style="width:7%; padding-left:35px">접수</th>
+            </c:if> --%>
          </tr>
          
          <c:forEach items="${ inquiryList }" var="inquiry" varStatus="loop">
@@ -71,15 +73,15 @@
                      <c:out value= "${ inquiry.title }" />
                   </a>
                  </td> 
-               <td class="jj" style="padding-right: 8px; font-size: 14px; color:red; align:right">   
+               <td class="jj" style="padding-right: 8px; font-size: 14px; color:#D70037; align:right">   
                                  댓글 ${ inquiry.replyCnt }건
                </td>
-               <td class="jj">${ inquiry.writer }</td>
+               <td class="jj"><strong>${ inquiry.writer }</strong></td>
                <td class="jj">${ inquiry.regDate }</td>
                
-               <c:if test="${not empty adminLoginVO and empty loginVO }"> 
-               <td class="jj"><input type="button" value="접수"></td>
-               </c:if>
+               <%-- <c:if test="${not empty adminLoginVO and empty loginVO }"> 
+               <td class="jj"><input type="button" class="btn btn-primary px-3 ml-4" value="접수" style="align:center"></td>
+               </c:if> --%>
                
             </tr>
          </c:forEach>       
@@ -90,9 +92,13 @@
       <%-- <button>새글등록</button>  이렇게 버튼을 통해서 가게 해주려면 javascript나 jquery 문법 필요함 --%>
       <!-- 로그인 되어있을 때만 새 글 등록하게! -->
       <c:if test="${ not empty loginVO }">
-         <button onclick="goWriteForm()" class="btn btn-outline-light text-dark" style="align:write">문의하기</button>  
+         <button onclick="goWriteForm()" class="btn btn-primary px-3 ml-4" style="align:write">문의하기</button>  
       <br>
       </c:if>
+      <br>
+      <br>
+      <br>
+
   <!-- 검색기능  -->
   <br>
    <div class="form-group row justify-content-center">
@@ -116,7 +122,7 @@
 			</div>
 
 			<div>
-				<button class="btn btn-outline-light text-dark" name="btnSearch" style="width:100pt" id="btnSearch">검색</button>
+				<button class="btn btn-primary px-3 ml-4" name="btnSearch" style="width:100pt" id="btnSearch">검색</button>
 			</div>
 		</div>
    </div>

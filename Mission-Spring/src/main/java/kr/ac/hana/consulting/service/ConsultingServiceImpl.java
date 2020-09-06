@@ -23,7 +23,7 @@ public class ConsultingServiceImpl implements ConsultingService {
 		return consultingList;
 	}
 	
-	
+
 
 	@Override
 	public List<ConsultingVO> selectById(String id) {
@@ -34,6 +34,16 @@ public class ConsultingServiceImpl implements ConsultingService {
 	}
 
 
+	/*
+	 * @Override public List<ConsultingVO> selectByPaId(String id) {
+	 * 
+	 * List<ConsultingVO> customerConsulting = consultingDAO.selectByPaId(id);
+	 * 
+	 * return customerConsulting; }
+	 */
+
+	
+	
 
 	@Override
 	public void insert(ConsultingVO consulting) {
@@ -42,8 +52,10 @@ public class ConsultingServiceImpl implements ConsultingService {
 	}
 
 	@Override
-	public ConsultingVO selectByNo(int no) {
-		ConsultingVO consulting = consultingDAO.selectByNo(no);
+	public ConsultingVO selectByConsultingNo(int no) {
+		
+		ConsultingVO consulting = consultingDAO.selectByConsultingNo(no);
+		
 		return consulting;
 	}
 

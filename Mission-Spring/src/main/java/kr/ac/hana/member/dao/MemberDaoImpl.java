@@ -1,5 +1,7 @@
 package kr.ac.hana.member.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,6 +29,24 @@ public class MemberDaoImpl implements MemberDAO{
 		sqlSession.update("member.dao.MemberDAO.updateMember", member);
 		
 	}
+
+	@Override
+	public List<MemberVO> selectAllInform() {
+		
+		List<MemberVO> allInformList =sqlSession.selectList("member.dao.MemberDAO.selectAllInform");
+		
+	    return allInformList;
+	}
+
+	@Override
+	public List<MemberVO> selectCustomerInform(String id) {
+		
+		List<MemberVO> customerInform =sqlSession.selectList("member.dao.MemberDAO.selectCustomerInform",id);
+		
+		return customerInform;
+	}
+	
+	
 	
 	
 

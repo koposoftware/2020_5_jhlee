@@ -3,9 +3,9 @@
 <%-- <%@ taglib uri="http://www.springframework.org/tags/form" %> --%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 
-<head>
+<head> 
   
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -104,13 +104,13 @@
           <li><a href="${ pageContext.request.contextPath }/addConsulting">추가상담</a></li>
           </c:if>
           <c:if test="${ not empty adminLoginVO and empty loginVO}">   
-          <li><a href="${ pageContext.request.contextPath }//addConsulting/admin">추가상담</a></li>
+          <li><a href="${ pageContext.request.contextPath }/addConsulting/admin">추가상담</a></li>
           </c:if>
           <c:if test="${ not empty adminLoginVO and empty loginVO}">  
           <li><a href="${ pageContext.request.contextPath }/consultingNote">상담노트</a></li>
           </c:if>
-          </ul>
-          </li>
+          </ul>  
+          </li> 
           <li class="drop-down"><a href="#testimonials">HANADO</a>
           <ul>          
           <li><a href="${ pageContext.request.contextPath }/education">HANADO</a></li>
@@ -121,13 +121,13 @@
           <li><a href="${ pageContext.request.contextPath }/inquiry">Q&A</a></li>
           <li><a href="${ pageContext.request.contextPath }/education">HANADO</a></li> --%>
           <c:if test="${ empty adminLoginVO and not empty loginVO}">  
-          <li><a href="${ pageContext.request.contextPath }/mypage">마이페이지 </a></li>
+          <li><a href="${ pageContext.request.contextPath }/myPage">마이페이지 </a></li>
           </c:if>
           <c:if test="${ not empty adminLoginVO and empty loginVO}"> 
-          <li class="drop-down"><a href="#testimonials">마이페이지</a>
+          <li class="drop-down"><a href="#">마이페이지</a>
           <ul>          
           <li><a href="${ pageContext.request.contextPath }/management">실적관리</a></li>
-          <li><a href="${ pageContext.request.contextPath }/customerInform">고객관리</a></li>
+          <li><a href="${ pageContext.request.contextPath }/customerInform">손님관리</a></li>
           <li><a href="${ pageContext.request.contextPath }/calendar">일정관리</a></li>
           </ul>
           </li>

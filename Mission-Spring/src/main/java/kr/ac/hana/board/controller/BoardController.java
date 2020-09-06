@@ -50,7 +50,7 @@ public class BoardController {
 		//http://localhost:9999/Mission-Spring/board/12
 		@RequestMapping("/inquiry/{no}") //pstmt가 아닌 주소값 그대로 가져오기  {써주고싶은이름} 가변적일때 {}로묶기
 		public ModelAndView detail(@PathVariable("no")int inquiryNo) { //주소값 이름 no를 int boardNo로 설정 밑에 메소드 안에서 쓸거다!
-			
+		
 		//int boardNo = Integer.parseInt(request.getParameter("no"));
 		
 		BoardVO inquiry = boardService.selectByNo(inquiryNo);

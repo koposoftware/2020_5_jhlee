@@ -178,7 +178,7 @@ $(document).ready(function(){
 	<br>
       <div align="center">
          <hr width="70%">
-         <h4 class="titles">손님의 소중한 문의</h4>
+         <h4 class="titles"><strong>손님의 소중한 문의</strong></h4>
          <hr width="70%">
          <br>
          <div class="container">
@@ -235,9 +235,14 @@ $(document).ready(function(){
        
          
          <br>
-         <input type="button" value="수정" class="btn btn-outline-light text-dark" onclick="doAction('U')">&nbsp;&nbsp; 
-         &nbsp;&nbsp;<input type="button"  value="삭제" class="btn btn-outline-light text-dark" onclick="doAction('D')">&nbsp;&nbsp; 
-         &nbsp;&nbsp;<input type="button"  value="목록" class="btn btn-outline-light text-dark"onclick="doAction('L')">&nbsp;&nbsp;
+         <c:if test="${ empty adminLoginVO and  not empty loginVO}"> 
+         <input type="button" value="수정" class="btn btn-primary px-3 ml-4" onclick="doAction('U')">&nbsp;&nbsp; 
+         </c:if>
+         <c:if test="${ not empty adminLoginVO and empty loginVO}"> 
+         <input type="button" value="접수" class="btn btn-primary px-3 ml-4" onclick="doAction('E')">&nbsp;&nbsp; 
+         </c:if>
+         &nbsp;&nbsp;<input type="button"  value="삭제" class="btn btn-primary px-3 ml-4" onclick="doAction('D')">&nbsp;&nbsp; 
+         &nbsp;&nbsp;<input type="button"  value="목록" class="btn btn-primary px-3 ml-4" onclick="doAction('L')">&nbsp;&nbsp;
          
          <br>
          <br>
@@ -251,7 +256,7 @@ $(document).ready(function(){
 		<div id="replyList" style="width:70%" align="left"></div> 
 		<br>
 		<br>
-		<table frame="box" style="width:70%" class="dd" >
+		<%-- <table frame="box" style="width:70%" class="dd" >
 		<td class="jj">
 		<form name="rform" class="titles" style="height:100px" autocomplete="off">
 		&nbsp;&nbsp;<strong> 댓글 :</strong> 
@@ -262,7 +267,22 @@ $(document).ready(function(){
 		<input type="button" class="btn btn-outline-light text-dark" value="댓글추가 " id="replyAddBtn" name="replyAddBtn">
 		</form>       
 		</td>
-		</table>
+		</table> --%>
+		
+		 <div class="col-lg-8 col-xl-9">
+                        <div class="card">
+                            <div class="card-body">
+                                <form name="rform" class="form-profile">
+                                    <div class="form-group">
+                                        <textarea class="form-control" id="textarea" cols="30" rows="2" placeholder="댓글 작성" name="content"></textarea>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                      <input type="hidden" class="btn btn-outline-light text-dark" name="writer" value="${ loginVO.id }"> 
+                                        <input type="button" class="btn btn-primary px-3 ml-4" id="replyAddBtn" name="replyAddBtn" value="Send"></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
       </div>
    </section>
    	<br>

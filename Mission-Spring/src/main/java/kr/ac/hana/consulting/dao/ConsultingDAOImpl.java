@@ -30,7 +30,6 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 	}
 
 
-
 	@Override
 	public void insert(ConsultingVO consulting) {
 		
@@ -39,8 +38,9 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 	}
 
 	@Override
-	public ConsultingVO selectByNo(int no) {
-		ConsultingVO consulting = sqlSession.selectOne("consulting.dao.CounsultingDAO.selectByNo", no);
+	public ConsultingVO selectByConsultingNo(int no) {
+		
+		ConsultingVO consulting = sqlSession.selectOne("consulting.dao.ConsultingDAO.selectByConsultingNo",no);
 		
 		return consulting;
 	}

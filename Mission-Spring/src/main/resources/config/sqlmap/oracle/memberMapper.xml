@@ -12,12 +12,14 @@
 		<result column="digital_edu" property="digitalEdu" />
 		<result column="customer_type" property="customerType" />
 	</resultMap>
-
+	
+	<!-- 로그인  -->
 	<select id="login" parameterType="memberVO" resultType="memberVO">
 		select id, password <!-- email_id, email_domain, tel1, tel2, tel3, post, basic_addr, detail_addr, type, reg_date -->
 		from customer_tb 
 		where id= #{id} and password = #{password}
 	</select>
+	
 	
 	<!--회원등록 -->
 	<insert id="updateMember" parameterType="memberVO">
@@ -26,5 +28,22 @@
 	 values(#{id , jdbcType=VARCHAR},#{name , jdbcType=VARCHAR},#{password , jdbcType=VARCHAR},#{birth , jdbcType=VARCHAR},#{gender , jdbcType=VARCHAR},#{phone_no , jdbcType=VARCHAR},#{job , jdbcType=VARCHAR},#{address , jdbcType=VARCHAR},
 	 #{email_id , jdbcType=VARCHAR},#{email_domain , jdbcType=VARCHAR},#{digital_edu , jdbcType=VARCHAR},#{interest , jdbcType=VARCHAR},#{age , jdbcType=VARCHAR})
 	</insert>
+	
+	
+	<!-- 전체 회원 정보 조회 -->
+	<select id="selectAllInform" resultMap="memberMap">
+		select name,id,password,birth,gender,phone_no,job,address,email_id, email_domain,digital_edu,interest,age,type,customer_type  
+		from customer_tb 
+		order by name desc
+	</select>
+	
+	
+	<!-- 손님별 회원 정보 조회 -->
+	<select id="selectCustomerInform" resultMap="memberMap" parameterType="String">
+		select name,id,password,birth,gender,phone_no,job,address,email_id, email_domain,digital_edu,interest 
+		from customer_tb 
+		where id = #{id}
+	</select>
+	
 	
 </mapper>

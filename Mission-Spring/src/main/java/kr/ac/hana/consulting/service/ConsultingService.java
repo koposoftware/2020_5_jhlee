@@ -12,10 +12,11 @@ public interface ConsultingService {
 	List<ConsultingVO> selectAllConsulting();
 	
 	/*
-	 * 고객별 상담리스트 조회서비스 
+	 * 고객별 상담리스트 조회서비스(session id) 
 	 */
 	List<ConsultingVO> selectById(String id);
-	
+
+
 	/*
 	 * 상담 노트에 상담등록 서비스
 	 */
@@ -23,9 +24,9 @@ public interface ConsultingService {
 	
 	
 	/*
-	 * 상담 노트 상세 조회 서비스 
+	 * 상담 노트 번호로 상세 조회 서비스 
 	 */
-	ConsultingVO selectByNo(int no);
+	ConsultingVO selectByConsultingNo(int no);
 	
 	/*
 	 * 추가상담 컬럼의 N값을 Y값으로 업데이트 

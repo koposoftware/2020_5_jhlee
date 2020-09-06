@@ -16,7 +16,7 @@ $('#enrollmentBtn').click(function(e){
 	if(this.form.trim() != ''){
 	 e.preventDefault(); 
 	$('#enrollmentModal').modal("show");
-	} 
+	)}; 
 
 </script>
 
@@ -63,7 +63,7 @@ $('#enrollmentBtn').click(function(e){
 				<strong>상담채널</strong>: ${ register.consultingChannel }<br>                   
                 <strong>담당직원</strong>: ${ register. adminName }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <strong>사원번호</strong>:  ${ register.empno }<br>
-                <strong style="color:#008C8C">추가 상담 예약일시</strong>: ${ register.registerationYmd }<br> 
+                <strong style="color:#D70037">추가 상담 예약일시</strong>: ${ register.registerationYmd }<br> 
                   </p>
                   <hr>
                   <div class="d-flex justify-content-between align-items-center">
@@ -97,7 +97,7 @@ $('#enrollmentBtn').click(function(e){
 				<strong>상담채널</strong>: ${ register.consultingChannel }<br>                   
                 <strong>담당직원</strong>: ${ register. adminName }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <strong>사원번호</strong>:  ${ register.empno }<br>
-                <strong style="color:#008C8C">추가 상담 예약일시</strong>: ${ register.registerationYmd }<br> 
+                <strong style="color:#D70037">추가 상담 예약일시: ${ register.registerationYmd }</strong><br> 
                   </p>
                   <hr>
                   <div class="d-flex justify-content-between align-items-center">

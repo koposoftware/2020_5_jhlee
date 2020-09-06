@@ -19,7 +19,8 @@
   <link href="/Mission-Spring/resources/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="/Mission-Spring/resources/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
   <link href="/Mission-Spring/resources/assets/css/jin.css" rel="stylesheet">
-
+  <!-- <link href="/Mission-Spring/resources/assets/css/quick.css" rel="stylesheet">
+ -->
 
   <!-- Template Main CSS File -->
   <link href="/Mission-Spring/resources/assets/css/style.css" rel="stylesheet">

@@ -43,7 +43,7 @@ input.search-field {
     width: 232px;
 }
 input.search-go {
-    background: url("/resources/assets/img/searchbar.png") no-repeat scroll right 0 transparent;
+    background: url("img/searchbar.png") no-repeat scroll right 0 transparent;
     border: 0 none;
     cursor: pointer;
     float: left;
@@ -52,7 +52,21 @@ input.search-go {
     padding: 0; 
     width: 42px;
 }
+
 </style>
+
+ <script>
+
+function doAction(customerInformId){
+	
+	location.href="${ pageContext.request.contextPath }/myPage/" + customerInformId;
+}
+
+function goReport(reportNo){
+	location.href="${ pageContext.request.contextPath }/consulting/admin/" + reportNo;
+}
+
+</script>
 </head>
 
 <body>
@@ -105,31 +119,31 @@ input.search-go {
       </c:if>
       <c:if test="${ not empty adminLoginVO and empty loginVO}">  
        <hr width="70%">	
-          <h4 class="titles">상담 리스트 조회</h4>
+          <h4 class="titles"><strong>상담 리스트 조회</strong></h4>
       <hr width="70%">
       </c:if>
       <br>
       <br>
-      	 <select name="mainCategory" class="f0" style="width:20%">
+      	 <select name="mainCategory" class="f0" style="width:10%">
                     <option>대분류</option>
                     <option value="금융상품">금융상품</option>
                     <option value="금융경험">금융경험</option>
                     <option value="기타">기타</option>
-          </select><button style="border-width: 0.5px; height: 25px;" class="btn btn-outline-light text-dark">검색</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      	<input type="text"><button style="border-width: 0.5px; height: 30px;" class="btn btn-outline-light text-dark">검색</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      	<input type="date">-<input type="date"><button style="border-width: 0.5px; height: 30px;" class="btn btn-outline-light text-dark">검색</button>
-      	
-      	<div class="search-box">
+          </select><button style="height: 27px;" class="btn btn-primary px-3 ml-4" >검색</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      	<input type="text"><button style= "height: 28px;" class="btn btn-primary px-3 ml-4" >검색</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      	<input type="date">-<input type="date"><button style="height: 29px;"  class="btn btn-primary px-3 ml-4" >검색</button>
+      	                                                                      
+     <!--  	<div class="search-box">
 		<form method="get" action="#">
 			<input size="15" class="search-field" name="s" id="s" value="Search.." onfocus="if(this.value == 'Search..') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search..';}" type="text">
 			<input value="" class="search-go" type="submit"> 
 		</form>
-		</div>
-      	
-      	<br>
-      <br>
+		</div> -->
+     <br>
+     <br>
+       <!--유저 로그인시 보여지는 ui  -->
           <div class="table-responsive" align="center">
-            <table class="table table-striped table-sm" style="width:80%">
+            <table class="table table-hover table-sm" style="width:77%";>
               <thead>
                 <tr class="jj">
                   <th>상담번호</th>
@@ -144,18 +158,15 @@ input.search-go {
                   <th>사원번호</th>
                   <th>진행상태</th>
                   <th>추가상담</th>
-                  <th></th>
-				 
                 </tr>
               </thead>
-              <!--유저 로그인시 보여지는 ui  -->
               <c:if test="${ empty adminLoginVO and  not empty loginVO}"> 
-               <c:forEach items="${ customerConsultingList }" var="consulting" varStatus="loop">
+        	 <c:forEach items="${ customerConsultingList }" var="consulting" varStatus="loop">
                  <tbody>
                  <tr>
-                  <td>${ consulting.consultingNo }</td>
+                  <td align="center">${ consulting.consultingNo }</td>
                   <td>${ consulting.reportYmd }</td>
-                  <td>${ consulting.customerType }</td>
+                  <td align="center">${ consulting.customerType }</td>
                   <td>${ consulting.id }</td>
                   <td>${ consulting.birth }</td>
                   <td>${ consulting.mainCategory }</td>
@@ -163,14 +174,16 @@ input.search-go {
                   <td>${ consulting.title }</td>
                   <td>${ consulting.adminName }</td>
                   <td>${ consulting.empno }</td>
-                  <td>${ consulting.progress }</td>
-                  <td>${ consulting.addConsulting } 
-                  	<button onclick="openModal(${ consulting.consultingNo })" style="border-width: 0.5px; height: 28px;" class="btn bt-dark">신청</button>
+                  <td align="center">${ consulting.progress }</td>
+                  <td align="center">${ consulting.addConsulting } 
+                  <button onclick="openModal(${ consulting.consultingNo })" class="btn btn-primary px-3 ml-4">신청</button>
                   </td>
                  </tr>
                 </tbody>
-                                     <!-- 모달 창 -->  
-	<div class="modal fade" id="reserveModal${ consulting.consultingNo }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              
+                
+                <!-- 모달 창 -->  
+	  <div class="modal fade" id="reserveModal${ consulting.consultingNo }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content" style="text-align: center;">
 				<div class="modal-header">
@@ -182,46 +195,40 @@ input.search-go {
 				<input type="datetime-local" name="date" style="align-self: center ;width: 20rem" value="reserveDate" >
 				<hr>	 
 				<div style="text-align: center; margin-bottom: 1.8rem;">
-					 <input type="submit" id="enrollmentBtn" class="btn btn-outline-light text-dark" value="접수" style="width: 20%;  align:center;">
-					 <input type="button" onclick="closeModal()" class="btn btn-outline-light text-dark" value="취소" style="width: 20%;  align:center;">
+					 <input type="submit" id="enrollmentBtn" class="btn btn-primary px-3 ml-4"  value="접수" style="width: 20%;  align:center;">
+					 <input type="button" onclick="closeModal()" class="btn btn-primary px-3 ml-4"  value="취소" style="width: 20%;  align:center;">
 				</div>
-				
 			</div>
-		</div>
-	</div>
-	
-
-              </c:forEach>
-             </c:if>
-                
+		  </div>
+	     </div>
+	    </c:forEach>
+       </c:if>
+      
                <!-- 관리자로 로그인 시 보여지는 ui --> 
-             <c:if test="${ not empty adminLoginVO and empty loginVO}"> 
-               <c:forEach items="${ consultingList }" var="consulting" varStatus="loop">
+         <c:if test="${ not empty adminLoginVO and empty loginVO}"> 
+          <c:forEach items="${ consultingList }" var="consulting" varStatus="loop">
                  <tbody>
                  <tr>
-                  <td>${ consulting.consultingNo }</td>
+                  <td align="center">${ consulting.consultingNo }</td>
                   <td>${ consulting.reportYmd }</td>
                   <td>${ consulting.customerType }</td>
-                  <td>${ consulting.id }</td>
+                  <td><a href="javascript:doAction('${ consulting.id }')">${ consulting.id }</a></td>
                   <td>${ consulting.birth }</td>
                   <td>${ consulting.mainCategory }</td>
                   <td>${ consulting.middleCategory }</td>
-                  <td>${ consulting.title }</td>
+                  <td><a href="javascript:goReport(${ consulting.consultingNo })">${ consulting.title }</a></td>
                   <td>${ consulting.adminName }</td>
                   <td>${ consulting.empno }</td>
-                  <td>${ consulting.progress }</td>
-                  <td>${ consulting.addConsulting } 
-<%--                   <button id="reserveBtn${ consulting.consultingNo }" style="border-width: 0.5px; height: 28px;" class="btn btn-outline-light text-dark">신청</button></td> --%>
+                  <td align="center">${ consulting.progress }</td>
+                  <td align="center">${ consulting.addConsulting } 
                  </tr>
                 </tbody>
-                
-              </c:forEach>
-             </c:if> 
-            </table>
+          </c:forEach>
+         </c:if>
+       </table>
+      </div>
+      </div>        
         <br>
-        </div>
-        
-     </div>
 	</section> 
 	<br>
 	<br>

@@ -17,22 +17,20 @@ public class MemberVO {
 	@NotEmpty(message = "필수항목입니다")
 	private String gender;
 	@NotEmpty(message = "필수항목입니다")
-	private String phone_no;
+	private String phoneNo;
 	@NotEmpty(message = "필수항목입니다")
 	private String job;
 	private String address;
-	private String email_id;
-	private String email_domain;
+	private String emailId;
+	private String emailDomain;
 	@NotEmpty(message = "필수항목입니다")
-	private String digital_edu;
+	private String digitalEdu;
 	@NotEmpty(message = "필수항목입니다")
 	private String interest;
 	@NotEmpty(message = "필수항목입니다")
 	private String age;
 	private String type;
-	private String customer_type;
-	
-	
+	private String customerType;
 	public String getId() {
 		return id;
 	}
@@ -63,11 +61,11 @@ public class MemberVO {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getPhone_no() {
-		return phone_no;
+	public String getPhoneNo() {
+		return phoneNo;
 	}
-	public void setPhone_no(String phone_no) {
-		this.phone_no = phone_no;
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
 	}
 	public String getJob() {
 		return job;
@@ -81,23 +79,23 @@ public class MemberVO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getEmail_id() {
-		return email_id;
+	public String getEmailId() {
+		return emailId;
 	}
-	public void setEmail_id(String email_id) {
-		this.email_id = email_id;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
-	public String getEmail_domain() {
-		return email_domain;
+	public String getEmailDomain() {
+		return emailDomain;
 	}
-	public void setEmail_domain(String email_domain) {
-		this.email_domain = email_domain;
+	public void setEmailDomain(String emailDomain) {
+		this.emailDomain = emailDomain;
 	}
-	public String getDigital_edu() {
-		return digital_edu;
+	public String getDigitalEdu() {
+		return digitalEdu;
 	}
-	public void setDigital_edu(String digital_edu) {
-		this.digital_edu = digital_edu;
+	public void setDigitalEdu(String digitalEdu) {
+		this.digitalEdu = digitalEdu;
 	}
 	public String getInterest() {
 		return interest;
@@ -117,18 +115,18 @@ public class MemberVO {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getCustomer_type() {
-		return customer_type;
+	public String getCustomerType() {
+		return customerType;
 	}
-	public void setCustomer_type(String customer_type) {
-		this.customer_type = customer_type;
+	public void setCustomerType(String customerType) {
+		this.customerType = customerType;
 	}
 	@Override
 	public String toString() {
 		return "MemberVO [id=" + id + ", name=" + name + ", password=" + password + ", birth=" + birth + ", gender="
-				+ gender + ", phone_no=" + phone_no + ", job=" + job + ", address=" + address + ", email_id=" + email_id
-				+ ", email_domain=" + email_domain + ", digital_edu=" + digital_edu + ", interest=" + interest
-				+ ", age=" + age + ", type=" + type + ", customer_type=" + customer_type + "]";
+				+ gender + ", phoneNo=" + phoneNo + ", job=" + job + ", address=" + address + ", emailId=" + emailId
+				+ ", emailDomain=" + emailDomain + ", digitalEdu=" + digitalEdu + ", interest=" + interest + ", age="
+				+ age + ", type=" + type + ", customerType=" + customerType + "]";
 	}
 	
 }

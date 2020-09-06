@@ -117,11 +117,19 @@ td{
       }
       
  .btn-primary{
- background-color: #008C8C!important;
- border-color: #008C8C!important;
+ background-color: #5f9ea0!important;
+ border-color: #5f9ea0!important;
  border:2px;
  border-radius:3px;
  }
+
+.btn-primart:hover{
+  background-color: white!important; /* Green */
+  border-color: #5f9ea0!important;
+  color: #5f9ea0!important;
+  
+}
+
 	
 .line{
 	border-bottom:1px solid #2C4964;
@@ -133,9 +141,9 @@ td{
     color:red;
 } */
 
-.dd{
+/* .dd{
 	border-color: #D4E0EE;
-}
+} */
 
 .btn-submit-w-100{
  border:1px;
@@ -152,7 +160,3 @@ element.style {
 	background-color:#008C8C!important;
 	border:1px;
 }	
-
-/* .text-muted {
-    color: #008C8C!important;
-} */

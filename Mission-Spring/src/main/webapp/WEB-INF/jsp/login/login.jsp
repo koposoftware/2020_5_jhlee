@@ -12,6 +12,7 @@
 
 
 <script>
+
    function isNull(obj, msg) {
       if (obj.value == '') {
          alret(msg);
@@ -25,22 +26,24 @@
       var f = document.lform;
       if (isNull(f.id, '아이디를 입력해주세요'))
          return false;
+      
       if (isNull(f.password, '패스워드를 입력해주세요'))
          return false;
-      /* if(f.id.value == ''){
-         alert('아이디를 입력해주세요')
-         f.id.focus();
-         return false;
-      }
       
-      if(f.password.value==''){
-         alert('패스워드를 입력해주세요')
-         f.password.focus();
+      if(f.id.value != '${loginVo.id}') {
+         alert('아이디와 패스워드를 확인해주세요')
+        
          return false;
-      } */
+         
+      if(f.password.value != '${loginVO.password}'){
+    	  alert('아이디와 패스워드를 확인해주세요');
+    	  return false;
+      }
 
-      return true;
-   }
+    return true;
+   } 
+
+      
 </script>
 </head>
 <body>
@@ -65,7 +68,7 @@
                             <div class="card-body pt-5">
                                 <a class="text-center" href="#"> <h3>로그인</h3></a>
         							
-                                <form class="mt-5 mb-5 login-input" action="${ pageContext.request.contextPath }/login" method="post" onsubmit="return checkForm()" name="lform">
+                                <form class="mt-5 mb-5 login-input" action="${ pageContext.request.contextPath }/login" method="post" onclick="checkForm()" name="lform">
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="ID" name="id">
                                     </div>

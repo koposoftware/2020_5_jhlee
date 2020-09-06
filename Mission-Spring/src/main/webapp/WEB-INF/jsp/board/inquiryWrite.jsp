@@ -23,6 +23,7 @@
 <jsp:include page="/resources/assets/include/headCSS.jsp"></jsp:include>  
 
 <script>
+
 function goWrite(frm) {
    var title = frm.title.value;
  //  var writer = frm.writer.value;
@@ -129,7 +130,7 @@ $(document).ready(function(){
     
       <div align = "center" style="font-size:15px">
       <hr width="60%">
-      <h1 style="font-size: 25px;">문의하기</h1>
+      <h1 style="font-size: 25px;"><strong>문의하기</strong></h1>
       <hr width="60%">      
       <br>
       
