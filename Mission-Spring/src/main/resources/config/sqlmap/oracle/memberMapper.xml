@@ -22,13 +22,20 @@
 	
 	
 	<!--회원등록 -->
-	<insert id="updateMember" parameterType="memberVO">
+	<insert id="insertMember" parameterType="memberVO">
+	 insert into customer_tb(id, name, password, birth, gender, phone_no, job, address, 
+	 email_id, email_domain, digital_edu, interest,age )
+	 values(#{id}, #{name}, #{password}, #{birth}, #{gender}, #{phoneNo}, #{job}, #{address},
+	  #{emailId}, #{emailDomain}, #{digitalEdu}, #{interest}, #{age} )
+	</insert>
+	
+	<!-- 	<insert id="updateMember" parameterType="memberVO">
 	 insert into customer_tb(id,name,password,birth,gender,phone_no,job,address, 
 	 email_id, email_domain,digital_edu,interest,age)
 	 values(#{id , jdbcType=VARCHAR},#{name , jdbcType=VARCHAR},#{password , jdbcType=VARCHAR},#{birth , jdbcType=VARCHAR},#{gender , jdbcType=VARCHAR},#{phone_no , jdbcType=VARCHAR},#{job , jdbcType=VARCHAR},#{address , jdbcType=VARCHAR},
 	 #{email_id , jdbcType=VARCHAR},#{email_domain , jdbcType=VARCHAR},#{digital_edu , jdbcType=VARCHAR},#{interest , jdbcType=VARCHAR},#{age , jdbcType=VARCHAR})
 	</insert>
-	
+	 -->
 	
 	<!-- 전체 회원 정보 조회 -->
 	<select id="selectAllInform" resultMap="memberMap">

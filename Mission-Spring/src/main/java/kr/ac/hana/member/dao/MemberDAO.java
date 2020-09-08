@@ -12,7 +12,7 @@ public interface MemberDAO {
 	 * 회원 등록 서비스 
 	 */
 	
-	public void updateMember(MemberVO member);
+	public void insertMember(MemberVO member);
 	
 	/*
 	 * 전체 회원 조회 서비스 

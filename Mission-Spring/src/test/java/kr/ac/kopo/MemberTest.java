@@ -56,7 +56,7 @@ public class MemberTest {
 		}
 		
 	}
-	
+	@Ignore
 	@Test
 	public void 상담상세() {
 		ConsultingVO consulting = SqlSession.selectOne("consulting.dao.CounsultingDAO.selectByConsultingNo",2);
@@ -66,4 +66,11 @@ public class MemberTest {
 		
 	}
 	
+	/*
+	 * @Test public void 회원등록() { MemberVO member = new MemberVO("df", "df", "df",
+	 * "df", "df", "df", "df", "df", "df", "df", "df", "df", "df", "df","df");
+	 * SqlSession.insert("member.dao.MemberDAO.updateMember", member);
+	 * 
+	 * }
+	 */
 }

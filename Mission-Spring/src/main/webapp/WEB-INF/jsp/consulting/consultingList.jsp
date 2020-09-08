@@ -113,17 +113,15 @@ function goReport(reportNo){
       
       <div align="center">
       <c:if test="${ empty adminLoginVO and  not empty loginVO}">  
-       <hr width="70%">	
-          <h4 class="titles"> <strong>${ loginVO.id }</strong>님의 상담 리스트</h4>
-      <hr width="70%">
+         <div class="section-title">
+          <h2>${ loginVO.id }님의 상담 리스트</h2>
+        </div>
       </c:if>
       <c:if test="${ not empty adminLoginVO and empty loginVO}">  
-       <hr width="70%">	
-          <h4 class="titles"><strong>상담 리스트 조회</strong></h4>
-      <hr width="70%">
+      <div class="section-title">
+          <h2>상담 리스트 조회</h2>
+        </div>
       </c:if>
-      <br>
-      <br>
       	 <select name="mainCategory" class="f0" style="width:10%">
                     <option>대분류</option>
                     <option value="금융상품">금융상품</option>

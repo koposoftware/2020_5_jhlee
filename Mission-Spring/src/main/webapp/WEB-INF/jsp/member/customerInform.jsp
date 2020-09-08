@@ -57,15 +57,12 @@ function doAction(customerInformId){
 	<section style="align:center">
 	<br>
 	<br>
-	<br>
   <!-- 관리자 로그인 시 ui  -->
     
       <div align="center">
-			<hr width="70%">
-			<h4 class="title"><strong>손님 관리 리스트</strong></h4>
-			<hr width="70%">
-			<br>
-			<br>
+         <div class="section-title">
+          <h2>손님 리스트</h2>
+        </div>
 		<div class="table-responsive" align="center">
             <table class="table table-hover table-sm" style="width:89%; height:15%" id="inform">
               <thead> 
@@ -98,7 +95,7 @@ function doAction(customerInformId){
 					<td><c:out value='${ customerInform.password }'/></td>
 					<td><c:out value='${ customerInform.birth }'/></td>
 					<td align="center"><c:out value='${ customerInform.gender }'/></td>
-					<td><c:out value='${ customerInform.phoneNo }'/></td>
+					<td><a href='tel:${ customerInform.phoneNo }'><c:out value='${ customerInform.phoneNo }'/></a></td>
 					<td><c:out value='${ customerInform.job }'/></td>
 					<td><c:out value='${ customerInform.address }'/></td>
 					<td><c:out value='${ customerInform.emailId }'/>@<c:out value='${ customerInform.emailDomain }'/></td>
@@ -109,8 +106,10 @@ function doAction(customerInformId){
 					<td align="center"><c:out value='${ customerInform.customerType }'/></td>
 				</tr>
 				</tbody> 
-		</c:forEach>		
+		</c:forEach>	
 		</table>
+		<br>
+		 <input type="button"  style="align:right" class="btn btn-primary px-3 ml-4" value="손님등록" onclick="enrollAction()">
 		<br>
 		<br>
 		<br>

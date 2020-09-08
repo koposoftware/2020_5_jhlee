@@ -8,7 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>회원가입</title>
+<c:if test="${ not empty adminLoginVO and empty loginVO}">
+<title>손님 등록</title>
+</c:if>
+<c:if test="${ empty adminLoginVO and not empty loginVO}">
+<title>회원 가입</title>
+</c:if>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 <jsp:include page="/resources/assets/include/headCSS.jsp"></jsp:include>  
 
@@ -21,9 +26,9 @@ function goEnrollment(frm) {
 	   var id = frm.id.value;
 	   var password = frm.password.value;
 	   var birth = frm.birth.value;
-	   var phone_no = frm.phone_no.value;
+	   var phoneNo = frm.phoneNo.value;
 	   var job = frm.job.value;
-	   var digital_edu = frm.digital_edu.value;
+	   var digitalEdu = frm.digitalEdu.value;
 	   var interest = frm.interest.value;
 	   var age = frm.age.value;
 	   
@@ -43,7 +48,7 @@ function goEnrollment(frm) {
 		      alert("생년월일을 입력해주세요");
 		      return false;
 		   }
-	   if (phone_no.trim() == ''){
+	   if (phoneNo.trim() == ''){
 		      alert("전화번호를 입력해주세요");
 		      return false;
 		   }
@@ -51,7 +56,7 @@ function goEnrollment(frm) {
 		      alert("직업을 선택해주세요");
 		      return false;
 		   }
-	   if (digital_edu.trim() == ''){
+	   if (digitalEdu.trim() == ''){
 		      alert("디지털교육을 선택해주세요");
 		      return false;
 		   }
@@ -63,8 +68,8 @@ function goEnrollment(frm) {
 		      alert("나이대를 선택해주세요");
 		      return false;
 		   }
-	
-	  alert("하나의 손님이 되신걸 환영합니다. 로그인 후 이용해주세요");
+	  frm.submit();
+	   alert("하나의 손님이 되신 걸 환영합니다. 로그인 후 이용해주세요"); 
 	}
 	
 /* $('#enrollmentBtn').click(function(e){
@@ -102,16 +107,22 @@ margin-left:5px;
 	<section>
 	<br>
 	<br>
-	<br>
  <div class="container">
+ <c:if test="${ not empty adminLoginVO and empty loginVO}">
+  <div class="section-title">
+          <h2>손님 등록</h2>
+   </div>
+   </c:if>
+  <c:if test="${ empty adminLoginVO and empty loginVO}">
+  <div class="section-title">
+          <h2>회원 가입</h2>
+   </div>
+   </c:if>
+ 
    <div class="row">
    <div class="col-sm-12 text-center" >
    <div class="col-sm-3"></div> 
-     
     <div class="col-sm-7">
-    <hr>
-    <h4>회원 가입</h4>
-    <hr>
     <br>
     <form method="post" autocomplete="off"> <%-- action="${ pageContext.request.contextPath }/login" --%>
         <table class="table table-boardered">
@@ -146,7 +157,7 @@ margin-left:5px;
             </tr>
              <tr>
                 <th>전화번호</th>
-                <td><input type="tel" class="form-control" name="phone_no" placeholder="-표시 없이 입력하세요"></td>      
+                <td><input type="text" class="form-control" name="phoneNo" placeholder="-표시 없이 입력하세요"></td>      
             </tr>
             <tr>
                 <th>당신의 직업은</th>
@@ -167,8 +178,8 @@ margin-left:5px;
               </tr>
                <tr>
                 <th>이메일</th>
-                <td ><input type="text" class="form-control" name="email_id" placeholder="이메일 ID"> @              
-                	<input type="text" class="form-control" name="email_domain" placeholder="이메일주소">
+                <td ><input type="text" class="form-control" name="emailId" placeholder="이메일 ID"> @              
+                	<input type="text" class="form-control" name="emailDomain" placeholder="이메일주소">
                 </td>                 
                   <!--  <td> <input type="radio" name="email_domain" value="naver.com">naver.com 
                    		<input type="radio" name="email_domain" value="naver.com">daum.net 
@@ -179,8 +190,8 @@ margin-left:5px;
 			<tr>
                 <th>디지털 교육 유무</th>
                 <td>
-                	<input type="radio"  name="digital_edu" value="Y">Y &nbsp;&nbsp;
-                	<input type="radio"  name="digital_edu" value="N">N &nbsp;&nbsp;
+                	<input type="radio"  name="digitalEdu" value="Y">Y &nbsp;&nbsp;
+                	<input type="radio"  name="digitalEdu" value="N">N &nbsp;&nbsp;
                 </td>     
             </tr>  
             <tr>
@@ -217,12 +228,19 @@ margin-left:5px;
              
             <tr align="right">
                 <td colspan="2">
-                <button id="enrollmentBtn" class="btn btn-outline-light text-dark" onclick="goEnrollment(this.form)">가입</button>
-               <!--  <input type="submit"  id="enrollmentBtn" class="btn btn-outline-light text-dark" value="가입"> -->
-                <input type="reset" class="btn btn-outline-light text-dark" value="취소">
+               <c:if test="${ empty adminLoginVO and empty loginVO}">
+                <button type="submit" class="btn btn-primary px-3 ml-4" onclick="goEnrollment(this.form)">가입</button>
+               </c:if>
+               <c:if test="${ not empty adminLoginVO and empty loginVO}">
+                <button type="submit" class="btn btn-primary px-3 ml-4" onclick="goEnrollment(this.form)">등록</button>
+               </c:if>
+               <!--  <input type="submit" id="enrollmentBtn" class="btn btn-outline-light text-dark" value="가입"> -->
+                <input type="reset" class="btn btn-primary px-3 ml-4" value="취소">
                 </td>
             </tr>     
         </table>
+        
+ 
         
     <!-- 모달 창 -->  
 <!-- 	 <div class="modal fade" id="enrollmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -240,7 +258,8 @@ margin-left:5px;
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div> 
+	 -->
         
     </form>
     </div>

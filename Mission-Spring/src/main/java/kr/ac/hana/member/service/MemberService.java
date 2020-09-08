@@ -12,7 +12,7 @@ public interface MemberService {
 	/*
 	 * 회원 등록
 	 */
-	void updateMember(MemberVO member);
+	void insertMember(MemberVO member);
 	
 
 	/*

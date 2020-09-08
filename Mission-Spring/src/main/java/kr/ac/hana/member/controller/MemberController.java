@@ -1,6 +1,5 @@
 package kr.ac.hana.member.controller;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -25,6 +24,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.ac.hana.board.vo.BoardVO;
+import kr.ac.hana.consulting.service.ConsultingService;
 import kr.ac.hana.consulting.vo.ConsultingVO;
 import kr.ac.hana.member.service.MemberService;
 import kr.ac.hana.member.vo.MemberVO;
@@ -106,9 +106,10 @@ public class MemberController {
 		    
 		    return "member/enrollmentForm"; 		    
 		 }
-		 memberService.updateMember(memberVO);//바꿈 	
-		 return "redirect:/login";
+		 memberService.insertMember(memberVO);//바꿈 	
 		 
+			/* return "redirect:/login"; */
+		 return "redirect:/";
 		}
 	
 
@@ -143,7 +144,24 @@ public class MemberController {
 	return mav;
 	
 	}
+	
+	
+	  //상담노트로 값 넘겨주기위한 mypage단 url
+		@RequestMapping("/consultingNote/{id}")
 		
+		public ModelAndView write(@PathVariable("id")String cuId) {
+			
+		List<MemberVO> customerInform = memberService.selectCustomerInform(cuId);	
+		
+		ModelAndView mav = new ModelAndView("consulting/consultingNote");
+		
+		mav.addObject("customerInform",customerInform);
+		
+		return mav; 
+		
+		}
+
+	
 	
 	
 	//전체 손님 조회 (관리자단)

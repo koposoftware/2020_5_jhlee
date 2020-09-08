@@ -19,6 +19,27 @@ function doAction(customerInformId){
 	location.href="${ pageContext.request.contextPath }/consultingList/" + customerInformId;
 }
 
+/* 
+function deleteAction() {
+	var result = confirm("회원 탈퇴를 하시겠습니까?");
+	if (result == true) { //확인 
+		location.href = "/IntegratedAccountSystem/WebContent/member/resignation.jsp?id=${ userVO.id }"
+	} else { //취소
+		location.href = "#"; //기존 사이트 그대로 , 링크만 걸어주기!  /mission-WEB/jsp/board/list.jsp
+	}
+}
+
+function updateAction() {
+	location.href = "/IntegratedAccountSystem/WebContent/member/updateMemberForm.jsp?id=${ userVO.id }";
+}
+ */
+
+ function writeAction(id){
+	 location.href="${ pageContext.request.contextPath }/consultingNote/" + id;
+	 
+ } //매퍼에서 select써서 넘겨주기 기능
+
+
 </script>	
 </head>
 <body>
@@ -38,8 +59,8 @@ function doAction(customerInformId){
 			<br>
 			<br>
 			<div class="container">
-			<table>
 			<c:forEach items="${ customerInform }" var="customerInform">
+			<table>
 				
 				<tr>
 					<th>이름</th>
@@ -63,16 +84,12 @@ function doAction(customerInformId){
 				</tr>
 				<tr>
 					<th>전화번호</th>
-					<td><c:out value='${ customerInform.phoneNo }'/></td>
+					<td><a href='tel:${ customerInform.phoneNo }'><c:out value='${ customerInform.phoneNo }'/></a></td>
 				</tr>
 				<tr>
 					<th>직업</th>
 					<td><c:out value='${ customerInform.job }'/></td>
 				</tr>
-			<%-- 	<tr>
-					<th>우편번호</th>
-					<td><c:out value='${ customerInform.post}'/></td>
-				</tr> --%>
 				<tr>
 					<th>주소</th>
 					<td><c:out value='${ customerInform.address }'/></td>
@@ -98,14 +115,18 @@ function doAction(customerInformId){
 			</td>
 			</tr>
 		  </c:if>
-		</c:forEach>		
 		</table>
 		<br>
- 		 
  		 <input type="button" class="btn btn-primary px-3 ml-4" value="정보 수정" onclick="updateAction()">
+ 		 <c:if test="${ not empty adminLoginVO and empty loginVO}"> 
 		 <input type="button" class="btn btn-primary px-3 ml-4" value="회원  삭제" onclick="deleteAction()">
+		 <input type="button" class="btn btn-primary px-3 ml-4" value="상담 노트 작성" onclick="writeAction('${ customerInform.id }')">
+		</c:if>
+		 <c:if test="${ empty adminLoginVO and not empty loginVO}"> 
+		 <input type="button" class="btn btn-primary px-3 ml-4" value="회원  탈퇴" onclick="deleteAction()">
+		</c:if>
+		</c:forEach>		
 			 	
-
 <br><br><br>
 	</div>
 	</div>

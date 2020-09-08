@@ -129,10 +129,10 @@ $(document).ready(function(){
    <br>
     
       <div align = "center" style="font-size:15px">
-      <hr width="60%">
-      <h1 style="font-size: 25px;"><strong>문의하기</strong></h1>
-      <hr width="60%">      
-      <br>
+      <div class="section-title">
+          <h2>손님의 소중한 문의</h2>
+       </div>     
+    
       
       <form method="post" autocomplete="off">
       <table style="width:60%"> <!--  -->
@@ -176,7 +176,7 @@ $(document).ready(function(){
                    </td>
                 </tr>
              </table>
-             <button type="submit" class="btn btn-outline-light text-dark" onclick="goWrite(this.form)">등록</button>
+             <button type="submit" class="btn btn-primary px-3 ml-4" onclick="goWrite(this.form)">등록</button>
       </form>
       
           </div>

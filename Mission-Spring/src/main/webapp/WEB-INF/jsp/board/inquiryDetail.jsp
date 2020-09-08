@@ -6,10 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 <jsp:include page="/resources/assets/include/headCSS.jsp"></jsp:include>
-
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <script>
@@ -86,9 +84,7 @@ $(document).ready(function(){
 				writer : writer 
 			}, 
 			success : function(){
-			
-// 				window.location.reload();
-				getReplyList(); //전체 댓글리스트 호출
+			getReplyList(); //전체 댓글리스트 호출
 			}, 
 			error : function(){
 				alert('실패')
@@ -125,16 +121,6 @@ $(document).ready(function(){
 				}
 			});
 			
-/* 			$.ajax({ //삭제하기 위해서 ajax통신 다시 
-				url: '${ pageContext.request.contextPath }/reply/' + replyNo,
-				type: 'delete',
-				success : function(){
-					//alert('성공')
-					getReplyList()
-				},error: function(){
-					alert('실패')
-				}
-			}); */
 		})
 	})	
 	
@@ -176,10 +162,11 @@ $(document).ready(function(){
 	<br>
 	<section>
 	<br>
+	<br>
       <div align="center">
-         <hr width="70%">
-         <h4 class="titles"><strong>손님의 소중한 문의</strong></h4>
-         <hr width="70%">
+          <div class="section-title">
+          <h2>손님의 소중한 문의</h2>
+        </div>
          <br>
          <div class="container">
          <table style="width: 70%">
@@ -256,18 +243,6 @@ $(document).ready(function(){
 		<div id="replyList" style="width:70%" align="left"></div> 
 		<br>
 		<br>
-		<%-- <table frame="box" style="width:70%" class="dd" >
-		<td class="jj">
-		<form name="rform" class="titles" style="height:100px" autocomplete="off">
-		&nbsp;&nbsp;<strong> 댓글 :</strong> 
-		<textarea class="btn btn-outline-light text-dark" cols="50" name="content" style="text-align: left; height: 100px; resize: none;"></textarea>
-		&nbsp; 
-		<strong>작성자:</strong>
-		<input type="hidden" class="btn btn-outline-light text-dark" name="writer" value="${ loginVO.id }" size="10"> ${ loginVO.id }&nbsp;
-		<input type="button" class="btn btn-outline-light text-dark" value="댓글추가 " id="replyAddBtn" name="replyAddBtn">
-		</form>       
-		</td>
-		</table> --%>
 		
 		 <div class="col-lg-8 col-xl-9">
                         <div class="card">
@@ -283,6 +258,7 @@ $(document).ready(function(){
                                 </form>
                             </div>
                         </div>
+      </div>
       </div>
    </section>
    	<br>

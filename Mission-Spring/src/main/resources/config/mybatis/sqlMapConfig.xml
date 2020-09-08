@@ -3,6 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
+ 	<settings>
+		<setting value="VARCHAR" name="jdbcTypeForNull"/>
+ 	</settings>
+
 	<typeAliases>
 		<typeAlias type="kr.ac.hana.board.vo.BoardVO" alias="boardVO"/>
 		<typeAlias type="kr.ac.hana.member.vo.MemberVO" alias="memberVO"/>
@@ -11,4 +16,7 @@
 		<typeAlias type="kr.ac.hana.consulting.vo.ConsultingVO" alias="consultingVO"/>
 		<typeAlias type="kr.ac.hana.register.vo.RegisterVO" alias="registerVO"/>
 	</typeAliases>
+	
 </configuration>
+
+

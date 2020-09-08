@@ -47,8 +47,8 @@
 	<insert id="insert" parameterType="consultingVO">
 		insert into report_tb(consulting_no, customer_type, id, name, birth,
 		main_category, middle_category,title, consulting_report, consulting_channel, admin_name, empno, progress)
-		 values(seq_report_tb_no.nextval, #{customer_type}, #{id}, #{name}, #{birth}, #{main_category}, #{middle_category}, 
-		 #{title}, #{consulting_report}, #{admin_name}, #{empno}, #{consulting_channel}, #{progress})
+		 values(seq_report_tb_no.nextval, #{customerType}, #{id}, #{name}, #{birth}, #{mainCategory}, #{middleCategory}, 
+		 #{title}, #{consultingReport}, #{adminName}, #{empno}, #{consultingChannel}, #{progress})
 	</insert> 
 	
 	

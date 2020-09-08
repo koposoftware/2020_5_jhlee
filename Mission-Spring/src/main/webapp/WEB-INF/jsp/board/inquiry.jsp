@@ -41,13 +41,11 @@
 	<br>
 	<section>
 	<br>
-      <div align = "center">
-      <hr width="70%">
-      <h4 class="title"><strong>Q&A</strong></h4>
-      <hr width="70%">      
-      <br>
-      <br>
-
+	<br>
+      <div align = "center">  
+        <div class="section-title">
+          <h2>Q&A</h2>
+        </div>    
       <table style="width: 70%">
          <tr class="jj">
             <th width="7%">번호</th>

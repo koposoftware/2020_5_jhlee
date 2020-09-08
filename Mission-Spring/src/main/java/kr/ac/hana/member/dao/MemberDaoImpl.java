@@ -24,9 +24,9 @@ public class MemberDaoImpl implements MemberDAO{
 	}
 
 	@Override
-	public void updateMember(MemberVO member) {
+	public void insertMember(MemberVO member) {
 		
-		sqlSession.update("member.dao.MemberDAO.updateMember", member);
+		sqlSession.insert("member.dao.MemberDAO.insertMember", member);
 		
 	}
 

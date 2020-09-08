@@ -72,23 +72,30 @@ public class ConsultingController {
 	return mav;
  }
 	
+	
 	//고객별 상담기록 id로 상세조회 
-	
-	
 	  @RequestMapping("/consultingList/{id}") //pstmt가 아닌 주소값 그대로 가져오기 {써주고싶은이름}
 	  public ModelAndView consultingList(@PathVariable("id")String
 	  paId) { //주소값 이름 no를 int boardNo로 설정 밑에 메소드 안에서 쓸거다!
-	  
 	  
 	  List<ConsultingVO> consultingList = consultingService.selectById(paId);
 	  
 	  ModelAndView mav = new ModelAndView("consulting/consultingList");
 	  mav.addObject("consultingList", consultingList); //공유영역에 올림
 	  
-	  return mav; }
-	 
+	  return mav; 
+	  }
+	  
 	
-	
+	 //상담등록 화면 보여주기 
+	  @RequestMapping("/consultingEnrollment")
+	  public String enrollment() {
+			/* ConsultingVO consulting = new ConsultingVO(); */
+		  return "consulting/consultingEnrollment";
+	  }
+	  
+	  
+		
 	//상담노트 작성 서비스1
 	@GetMapping("/consultingNote")
 	//public void writeForm(Model model) { //void면 mapping 내 uri값으로 포워드함
@@ -100,7 +107,8 @@ public class ConsultingController {
 	     consulting.setEmpno(adminLoginVO.getEmpno()); //자동으로 글쓴이 보여지게 등록 
 
 	 model.addAttribute("consultingVO", consulting);
-	 return "consulting/consultingNote";  //viewer에 의해서 /jsp로  포워드 보내줌 
+	
+	 return "/consulting/consultingNote";  //viewer에 의해서 /jsp로  포워드 보내줌 
 	}
 
 	
@@ -113,12 +121,11 @@ public class ConsultingController {
 	 if (result.hasErrors()) {
 	    System.out.println("오류발생...");
 	    
-	    return "consulting/consultingNote";
+	    return "/consulting/consultingNote";
 	 }
 	 
 	 consultingService.insert(consultingVO);//바꿈 
-	 return "redirect:/consulting";
+	 return "redirect:/consultingList";
 	}
-
 
 }

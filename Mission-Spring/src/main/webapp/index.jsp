@@ -34,7 +34,7 @@
   <link href="resources/assets/css/jin.css" rel="stylesheet">
 
 
-  <!-- Template Main CSS File -->
+  <!-- Template Main CSS File -->	
   <link href="resources/assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
@@ -44,10 +44,10 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-<body>
+<body> 
 	<%-- <%@include file="resources/assets/include/topMenu.jsp" %> --%>
 
- 
+  
   <!-- ======= Top Bar ======= -->
   <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
     
@@ -86,28 +86,28 @@
       <nav class="nav-menu d-none d-lg-block"> 
           <ul>
           <li class="active"><a href="${ pageContext.request.contextPath }/">Home</a></li>
-          <li class="drop-down"><a href="#testimonials">상담스토리</a>
-          <ul> 
+          <li class="drop-down"><a href="#testimonials">상담 스토리</a>
+          <ul>
+          <c:if test="${ not empty adminLoginVO and empty loginVO}">  
+          <li><a href="${ pageContext.request.contextPath }/consultingEnrollment">상담 등록</a></li>
+          </c:if> 
           <c:if test="${ empty adminLoginVO and empty loginVO}">      
-          <li><a href="${ pageContext.request.contextPath }/login">상담리스트</a></li>
+          <li><a href="${ pageContext.request.contextPath }/login">상담 리스트</a></li>
           </c:if>
           <c:if test="${ not empty adminLoginVO and empty loginVO}">          
-          <li><a href="${ pageContext.request.contextPath }/consultingList/admin">상담리스트</a></li>
+          <li><a href="${ pageContext.request.contextPath }/consultingList/admin">상담 리스트</a></li>
           </c:if>
           <c:if test="${ empty adminLoginVO and not empty loginVO}">          
-          <li><a href="${ pageContext.request.contextPath }/consultingList">상담리스트</a></li>
+          <li><a href="${ pageContext.request.contextPath }/consultingList">상담 리스트</a></li>
           </c:if>
           <c:if test="${ empty adminLoginVO and empty loginVO}">      
-          <li><a href="${ pageContext.request.contextPath }/login">추가상담</a></li>
+          <li><a href="${ pageContext.request.contextPath }/login">추가 상담</a></li>
           </c:if>
           <c:if test="${ empty adminLoginVO and not empty loginVO}">   
-          <li><a href="${ pageContext.request.contextPath }/addConsulting">추가상담</a></li>
+          <li><a href="${ pageContext.request.contextPath }/addConsulting">추가 상담</a></li>
           </c:if>
           <c:if test="${ not empty adminLoginVO and empty loginVO}">   
-          <li><a href="${ pageContext.request.contextPath }/addConsulting/admin">추가상담</a></li>
-          </c:if>
-          <c:if test="${ not empty adminLoginVO and empty loginVO}">  
-          <li><a href="${ pageContext.request.contextPath }/consultingNote">상담노트</a></li>
+          <li><a href="${ pageContext.request.contextPath }/addConsulting/admin">추가 상담</a></li>
           </c:if>
           </ul>  
           </li> 
@@ -126,14 +126,14 @@
           <c:if test="${ not empty adminLoginVO and empty loginVO}"> 
           <li class="drop-down"><a href="#">마이페이지</a>
           <ul>          
-          <li><a href="${ pageContext.request.contextPath }/management">실적관리</a></li>
-          <li><a href="${ pageContext.request.contextPath }/customerInform">손님관리</a></li>
-          <li><a href="${ pageContext.request.contextPath }/calendar">일정관리</a></li>
+          <li><a href="${ pageContext.request.contextPath }/management">실적 관리</a></li>
+          <li><a href="${ pageContext.request.contextPath }/customerInform">손님 관리</a></li>
+          <li><a href="${ pageContext.request.contextPath }/calendar">일정 관리</a></li>
           </ul>
           </li>
           </c:if>
          
-          <li><a href="#contact">영업점찾기</a></li>
+          <li><a href="#contact">영업점 찾기</a></li>
 	
         </ul>   
       </nav><!-- .nav-menu -->

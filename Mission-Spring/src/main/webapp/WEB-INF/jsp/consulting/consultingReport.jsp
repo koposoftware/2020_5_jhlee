@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>추가상담</title>
+<title>상담리포트</title>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 <jsp:include page="/resources/assets/include/headCSS.jsp"></jsp:include>  
 </head>
@@ -18,122 +18,53 @@
 	<br>
 	<br>
 	<br>
-	<section class="section">
+<section class="section">
   <div class="container">
+  <br><br>
+   <div class="section-title">
+          <h2>${ consulting.name }님의 상담리포트</h2>
+        </div>
     <div class="row">
       <div class="col-lg-10 mx-auto">
         <div class="p-5 shadow rounded content">
-          <h1>${ consulting.name }님의 상담리포트</h1>
+          <h3> ${ consulting.reportYmd } &nbsp;&nbsp; ${ consulting.mainCategory } [${ consulting.middleCategory }]</h3>
           <p>
-          <table>
-                 <tbody>
-                 <tr>
-                  <td align="center">${ consulting.consultingNo }</td>
-                  <td>${ consulting.reportYmd }</td>
-                  <td align="center">${ consulting.customerType }</td>
-                  <td>${ consulting.id }</td>
-                  <td>${ consulting.name }</td>
-                  <td>${ consulting.birth }</td>
-                  <td>${ consulting.mainCategory }</td>
-                  <td>${ consulting.middleCategory }</td>
-                  <td>${ consulting.title }</td>
-                  <td>${ consulting.consultingReport }</td>
-                  <td>${ consulting.adminName }</td>
-                  <td>${ consulting.empno }</td>
-                  <td align="center">${ consulting.progress }</td>
-                  <td align="center">${ consulting.addConsulting }</td>
-                 </tr>
-                </tbody> 
-              </table>
+       		   상담번호 : [${ consulting.consultingNo }]  &nbsp;&nbsp;&nbsp;&nbsp; 
+       		   담당직원 : ${ consulting.adminName } (${ consulting.empno }) <br>
+  
+                            
           </p>
+           <hr>
           <div class="mt-5">
-
             <!-- changelog post -->
-            <h3 id="february-updates">February Updates</h3>
-            <p><strong>Feb 6, 2019</strong></p>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt dolore
-              magna aliquyam erat, sed diam voluptua. At vero eos et ustoLorem ipsum dolor sit amet, consetetur.&rdquo;
+            <h3 id="february-updates"> [${ consulting.title }] </h3>
+            <p><strong>고객ID : ${ consulting.id } &nbsp;&nbsp;&nbsp;&nbsp; 손님유형 : ${ consulting.customerType }&nbsp;&nbsp;&nbsp;&nbsp;
+                            생년월일 : ${ consulting.birth } &nbsp;&nbsp;&nbsp;&nbsp; </strong></p>
+            <p>
             </p>
             <div class="mt-4">
-              <div class="badge changed">Changed</div>
+              <div class="badge changed">상담 리포트</div>
               <ul>
                 <li>
-                  <p>Better support for using applying additional filters to posts_tax_query for categories for custom
-                    WordPress syncs</p>
-                </li>
-                <li>
-                  <p>Reporting fine-tuning for speed improvements (up to 60% improvement in latency)</p>
-                </li>
-                <li>
-                  <p>Replaced login / registration pre-app screens with a cleaner design</p>
+                  <p> ${ consulting.consultingReport }</p>
                 </li>
               </ul>
             </div>
-            <div class="mt-4">
-              <div class="badge removed">Removed</div>
-              <ul>
-                <li>Removed an issue with the sync autolinker only interlinking selectively.</li>
-                <li>Removed up an issue with prematurely logging out users</li>
-              </ul>
-            </div>
-            
             <hr>
-
+            <br>
             <!-- changelog post -->
-            <h3 id="march-updates">March Updates</h3>
-            <p><strong>Mar 6, 2019</strong></p>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor <br> invidunt
-              dolore magna aliquyam erat, sed diam voluptua. At vero eos et ustoLorem ipsum dolor sit amet,
-              consetetur.&rdquo;</p>
+            <h3 id="changelog-label">하나 손님을 위한 추천 상품</h3>
             <div class="mt-4">
-              <div class="badge added">Added</div>
-              <ul>
-                <li>Some scheduled changelogs, tweets, and slack messages queued up this weekend and were not published
-                  on time. We fixed the issue and all delayed publications should be out.</li>
-                <li>We now prioritize keywords over title and body so customers can more effectively influence search
-                  results</li>
-                <li>Support form in the Assistant is now protected with reCaptcha to reduce spam reinitializeOnUrlChange
-                  added to the JavaScript API to improve support for pages with turbolinks</li>
-              </ul>
-            </div>
-            <div class="mt-4">
-              <div class="badge fixed">Fixed</div>
-              <ul>
-                <li>Fixed an issue with the sync autolinker only interlinking selectively.</li>
-                <li>Fixed up an issue with prematurely logging out users</li>
-              </ul>
-            </div>
-            
-            <hr>
-
-            <!-- changelog post -->
-            <h3 id="changelog-label">Changelog label</h3>
-            <div class="mt-4">
-              <div class="badge added">Added</div>
-            </div>
-            <div class="mt-4">
-              <div class="badge changed">Changed</div>
-            </div>
-            <div class="mt-4">
-              <div class="badge depricated">Depricated</div>
-            </div>
-            <div class="mt-4">
-              <div class="badge removed">Removed</div>
-            </div>
-            <div class="mt-4">
-              <div class="badge fixed">Fixed</div>
-            </div>
-            <div class="mt-4">
-              <div class="badge security">Security</div>
-            </div>
-            <div class="mt-4">
-              <div class="badge unreleased">Unreleased</div>
-            </div>
+              <div class="badge added">하나 원큐 대출  하나 적금  하나 보험  핀크</div>
           </div>
-        </div>
-      </div>
+          <br>
+           <input type="button" value="수정" class="btn btn-primary px-3 ml-4" onclick="doAction('U')">
     </div>
   </div>
+ </div>
+ </div>
+ </div>
+  
 </section>
 	<footer id="footer">
 		<%@ include file="/resources/assets/include/footer.jsp"%>

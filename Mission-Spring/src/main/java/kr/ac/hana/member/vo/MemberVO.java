@@ -31,9 +31,13 @@ public class MemberVO {
 	private String age;
 	private String type;
 	private String customerType;
+	
+
+	
 	public String getId() {
 		return id;
 	}
+	
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -121,6 +125,7 @@ public class MemberVO {
 	public void setCustomerType(String customerType) {
 		this.customerType = customerType;
 	}
+	
 	@Override
 	public String toString() {
 		return "MemberVO [id=" + id + ", name=" + name + ", password=" + password + ", birth=" + birth + ", gender="
@@ -129,5 +134,36 @@ public class MemberVO {
 				+ age + ", type=" + type + ", customerType=" + customerType + "]";
 	}
 	
+
+	/*
+	 * public MemberVO() { super();
+	 * 
+	 * } public MemberVO(@NotEmpty(message = "필수항목입니다") String id, @NotEmpty(message
+	 * = "필수항목입니다") String name,
+	 * 
+	 * @NotEmpty(message = "필수항목입니다") String password,
+	 * 
+	 * @Length(min = 1, max = 6, message = "생년월일은 6자리로 입력해주세요") String birth,
+	 * 
+	 * @NotEmpty(message = "필수항목입니다") String gender, @NotEmpty(message = "필수항목입니다")
+	 * String phoneNo,
+	 * 
+	 * @NotEmpty(message = "필수항목입니다") String job, String address, String emailId,
+	 * String emailDomain,
+	 * 
+	 * @NotEmpty(message = "필수항목입니다") String digitalEdu, @NotEmpty(message =
+	 * "필수항목입니다") String interest,
+	 * 
+	 * @NotEmpty(message = "필수항목입니다") String age, String type, String customerType)
+	 * { super(); this.id = id; this.name = name; this.password = password;
+	 * this.birth = birth; this.gender = gender; this.phoneNo = phoneNo; this.job =
+	 * job; this.address = address; this.emailId = emailId; this.emailDomain =
+	 * emailDomain; this.digitalEdu = digitalEdu; this.interest = interest; this.age
+	 * = age; this.type = type; this.customerType = customerType; }
+	 */
+		
 }
+
+
+
 
