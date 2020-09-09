@@ -230,7 +230,11 @@ $(document).ready(function(){
          </c:if>
          &nbsp;&nbsp;<input type="button"  value="삭제" class="btn btn-primary px-3 ml-4" onclick="doAction('D')">&nbsp;&nbsp; 
          &nbsp;&nbsp;<input type="button"  value="목록" class="btn btn-primary px-3 ml-4" onclick="doAction('L')">&nbsp;&nbsp;
-         
+
+         <c:if test="${ not empty adminLoginVO and empty loginVO}"> 
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <input type="button"  style="align:right" value="상담접수" class="btn btn-primary px-3 ml-4" onclick="doAction('R')">&nbsp;&nbsp;
+         </c:if>
          <br>
          <br>
          <br>

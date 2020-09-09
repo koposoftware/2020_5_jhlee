@@ -4,6 +4,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.Map;
+
 import kr.ac.hana.consulting.vo.ConsultingVO;
 
 @Repository
@@ -12,6 +14,24 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	
+	
+	
+	@Override
+	public List<ConsultingVO> selectSearchInfoList(Map<String, String> searchMap) {
+		// TODO Auto-generated method stub
+		List<ConsultingVO> consultingList = sqlSession.selectList("consulting.dao.ConsultingDAO.selectSearchInfoList",searchMap);
+		return consultingList;
+	}
+
+	/*
+	 * @Override public List<ConsultingVO> selectSearchInfoByMainCategory(String
+	 * mainCategory) { // TODO Auto-generated method stub List<ConsultingVO>
+	 * consultingList = sqlSession.selectList(
+	 * "consulting.dao.ConsultingDAO.selectSearchInfoByMainCategory",mainCategory);
+	 * return consultingList; }
+	 */
+
 	@Override
 	public List<ConsultingVO> selectAllConsulting() {
 		

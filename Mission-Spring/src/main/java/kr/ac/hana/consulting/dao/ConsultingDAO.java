@@ -1,6 +1,8 @@
 package kr.ac.hana.consulting.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import kr.ac.hana.consulting.vo.ConsultingVO;
 
@@ -33,5 +35,14 @@ public interface ConsultingDAO {
 	 * @param no 업데이트시킬 상담게시물 번호 
 	 */
 	public void updateAddConsulting(int no);
+	
+	/*
+	 * 메인카테고리로 고객정보 검색
+	*/
+	/* List<ConsultingVO> selectSearchInfoByMainCategory(String mainCategory); */
+	
+	
+	List<ConsultingVO> selectSearchInfoList(Map<String, String> searchMap);
+
 	
 }

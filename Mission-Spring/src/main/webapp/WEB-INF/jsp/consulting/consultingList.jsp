@@ -65,6 +65,7 @@ function doAction(customerInformId){
 function goReport(reportNo){
 	location.href="${ pageContext.request.contextPath }/consulting/admin/" + reportNo;
 }
+ 
 
 </script>
 </head>
@@ -122,21 +123,27 @@ function goReport(reportNo){
           <h2>상담 리스트 조회</h2>
         </div>
       </c:if>
-      	 <select name="mainCategory" class="f0" style="width:10%">
-                    <option>대분류</option>
+      
+<!--       여기서부터 검색항목 시작 -->
+      	 <select id="mainCategory" name="mainCategory" class="f0" style="width:10%">
+                    <option value="">대분류</option>
                     <option value="금융상품">금융상품</option>
                     <option value="금융경험">금융경험</option>
                     <option value="기타">기타</option>
-          </select><button style="height: 27px;" class="btn btn-primary px-3 ml-4" >검색</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      	<input type="text"><button style= "height: 28px;" class="btn btn-primary px-3 ml-4" >검색</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      	<input type="date">-<input type="date"><button style="height: 29px;"  class="btn btn-primary px-3 ml-4" >검색</button>
+          </select>
+          <select id="middleCategory" name="middleCategory" class="f1" style="width:15%">
+                     <option value="">중분류</option>
+	      </select>
+	    <c:if test="${ not empty adminLoginVO and empty loginVO}">  
+      	<input type="text" id="searchWord" placeholder="  손님 ID / 이름  및 직원사번 조회" style="width:20%">
+      	</c:if>
+      	<c:if test="${ empty adminLoginVO and  not empty loginVO}"> 
+      	<input type="text" id="searchWord" placeholder="제목으로 검색" style="width:20%">
+      	</c:if>
+      	<input type="date" id="startDate">-<input type="date" id="endDate">
+      	<button style="height: 29px;"  class="btn btn-primary px-3 ml-4" onclick="search()">검색</button>
+<!--       	여기서 검색 항목 끝 -->
       	                                                                      
-     <!--  	<div class="search-box">
-		<form method="get" action="#">
-			<input size="15" class="search-field" name="s" id="s" value="Search.." onfocus="if(this.value == 'Search..') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search..';}" type="text">
-			<input value="" class="search-go" type="submit"> 
-		</form>
-		</div> -->
      <br>
      <br>
        <!--유저 로그인시 보여지는 ui  -->
@@ -204,8 +211,8 @@ function goReport(reportNo){
       
                <!-- 관리자로 로그인 시 보여지는 ui --> 
          <c:if test="${ not empty adminLoginVO and empty loginVO}"> 
+                 <tbody id="adminConsultingList" >
           <c:forEach items="${ consultingList }" var="consulting" varStatus="loop">
-                 <tbody>
                  <tr>
                   <td align="center">${ consulting.consultingNo }</td>
                   <td>${ consulting.reportYmd }</td>
@@ -220,8 +227,8 @@ function goReport(reportNo){
                   <td align="center">${ consulting.progress }</td>
                   <td align="center">${ consulting.addConsulting } 
                  </tr>
-                </tbody>
           </c:forEach>
+                </tbody>
          </c:if>
        </table>
       </div>
@@ -234,12 +241,86 @@ function goReport(reportNo){
 	<br>
 	<br>
 	<br>
+	
 	<footer id="footer">
 		<%@ include file="/resources/assets/include/footer.jsp"%>
 	</footer>
     <jsp:include page="/resources/assets/include/jsFiles.jsp"></jsp:include>
     
 <script>
+
+
+function search() {
+// 	let mainCategory = document.sForm.mainCategory.value
+	let mainCategory = $("#mainCategory").val()
+	let middleCategory = $("#middleCategory").val()
+	let searchWord = $("#searchWord").val()
+	let startDate = $("#startDate").val()
+	let endDate = $("#endDate").val()
+
+	console.log(mainCategory)
+	console.log(middleCategory)
+	console.log(searchWord)
+	console.log(startDate )
+	console.log(endDate)
+
+	if(mainCategory != '' || middleCategory != '' || searchWord != '' || startDate != '' || endDate != '') {
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/searchConsulting",
+		type : 'get',
+		data : {
+			mainCategory :  mainCategory,
+			middleCategory : middleCategory, 
+			searchWord : searchWord, 
+			startDate : startDate, 
+			endDate : endDate 
+		},
+		success : function(data) {
+			console.log("성공")
+// 			console.log(typeof data)
+			let cd = JSON.parse(data) 
+			console.log(cd)
+			$("#adminConsultingList").empty()
+			for (key in cd) {
+				
+				console.log(cd[key]["id"])
+				
+				let str = ""
+				
+				str += "<tr>";
+				str += '<td align="center">' + cd[key]["consultingNo"] + '</td>'
+				str += '<td>' + cd[key]['reportYmd'] + '</td>'
+				str += '<td>' + cd[key]['customerType'] + '</td>'
+				str += '<td>' + '<a href="javascript:doAction('+cd[key]['id']+')">'+ cd[key]['id'] + '</a>' + '</td>'
+				str += '<td>' + cd[key]['birth'] + '</td>'
+				str += '<td>' + cd[key]['mainCategory'] + '</td>'
+				str += '<td>' + cd[key]['middleCategory'] + '</td>'
+				str += '<td>' + '<a href="javascript:goReport(' + [key]['consultingNo']+ ')">' + cd[key]['title'] +'</a>' + '</td>'
+                str += '<td>' + cd[key]['adminName'] + '</td>'
+                str += '<td>' + cd[key]['empno'] + '</td>'
+                str += '<td align="center">' + cd[key]['progress'] +'</td>'
+                str += '<td align="center">' + cd[key]['addConsulting'] +'</td>'
+                str += '<tr>'
+                
+                $("#adminConsultingList").append(str)
+
+			}
+			
+		},
+		error : function() {
+			console.log("실패")
+		}
+		
+		
+		
+	})
+} else {
+	location.href = "${pageContext.request.contextPath}/consultingList/admin"
+}
+	
+	
+}
 
 function openModal(consultingNo) {
 	$("#reserveModal"+consultingNo).modal("show")
@@ -249,6 +330,35 @@ function openModal(consultingNo) {
 function closeModal() {
 	$(".modal").modal("hide")
 }
+
+
+$(document).ready(function(){
+	var pr=['예금','적금','카드','대출','연금','펀드','보험','외환','수표','금'];
+	var ex=['모바일','인터넷','콜센터','창구','원격'];
+	var et=['기타'];
+		$('.f0').change(function(){
+			var sel = $(this).val();
+// 			console.log(sel);
+			if(sel == '금융상품'){
+				$('.op').remove();
+				$.each(pr,function(i,item){
+					$('.f1').append('<option class="op">'+item+'</option>');
+				});
+			}
+			if(sel == '금융경험'){
+				$('.op').remove();
+				$.each(ex,function(i,item){
+					$('.f1').append('<option class="op">'+item+'</option>');
+				});
+			}
+			if(sel == '기타'){
+				$('.op').remove();
+				$.each(et,function(i,item){
+					$('.f1').append('<option class="op">'+item+'</option>');
+				});
+			}
+		});
+}); 
  
 //  $('#reserveBtn').click(function(e){
 // 	 e.preventDefault(); 

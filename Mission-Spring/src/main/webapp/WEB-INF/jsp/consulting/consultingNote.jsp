@@ -97,16 +97,17 @@
          
         </div>
   	
-  	<form method="post" autocomplete="off"><%--  action="${ pageContext.request.contextPath }/consultingNote --%>
+  	<form autocomplete="off" action="${ pageContext.request.contextPath }/consultingNote"
+  			method="post"><%--  action="${ pageContext.request.contextPath }/consultingNote --%>
     <div class="row"> 
       <div class="col-lg-10 mx-auto">
         <div class="p-5 shadow rounded content">
           <h2>${ customer.id }님의 상담</h2>
-            <%-- <input type="hidden" name="id" value=${ customer.id } > --%>
-           <%--  <input type="hidden" name="customerType" value=${ customer.customerType } > --%>
+<%--             <input type="hidden" name="id" value=${ customer.id } >  --%>
+            <input type="hidden" name="customerType" value=${ customer.customerType } >
           <p>
        		   담당직원사번 : ${ adminLoginVO.empno } 
-       		           <%--  <input type="hidden" name="empno" value=${ adminLoginVO.empno } > --%>
+       		           <input type="hidden" name="empno" value=${ adminLoginVO.empno } > 
        	     			<br>
        	     			
        	            상담채널 :  <select name="consultingChannel" style="width:20%">
@@ -117,13 +118,13 @@
                  </select> <br>
                              
                              고객ID : ${ customer.id }
-                     <%-- <input type="hidden" name="id" value=${ customer.id } > --%><br>
+                     <input type="hidden" name="id" value=${ customer.id } ><br>
                              
                              고객이름 : <a href="javascript:goMember('${ customer.id }')" style="color:#2C4964">${ customer.name }</a>
-                     <%--  <input type="hidden" name="name" value=${ customer.name } > --%><br>
+                     <input type="hidden" name="name" value=${ customer.name } ><br>
                            
                              생년월일 : ${ customer.birth } 
-                     <%-- <input type="hidden" name="birth" value=${ customer.birth } > --%><br>   
+                     <input type="hidden" name="birth" value=${ customer.birth } ><br>   
              <hr>
                            
                              대분류 :  <select name="mainCategory" class="f0" style="width:20%">

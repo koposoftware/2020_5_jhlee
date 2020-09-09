@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>온라인예약-예약일선택</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+body {
+	background-image: url(../images/reserve/body_bg.gif);
+}
+-->
+</style>
+</head>
+
+<body>
+
+<div id="body">
+
+<!--- 타이틀--->
+<table width="699" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><img src="../images/reserve/tit_onlinereserv.gif"></td>
+    <td class="depth"><a href="#">Home</a> &gt; 상담&amp;예약 &gt; <b>온라인예약</b></td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="../images/reserve/tit_baseline.gif" width="699" height="1" /></td>
+    </tr>
+</table>
+
+<div style="margin-top:20px;"></div>
+
+<form method=post id=form name=form>
+<div style="margin-left:9px;"><img src="../images/reserve/msg_reserve.gif" /></div>
+<div style="margin:13px 0 0 9px;"><img src="../images/reserve/stit_reservday.gif" /></div>
+<div style="margin-left:27px;">
+    <table width="647" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="252" height="3" bgcolor="#a47eba"></td>
+        <td width="14" rowspan="3"></td>
+        <td width="193" height="3" bgcolor="#a47eba"></td>
+        <td width="14" rowspan="3"></td>
+        <td width="174" height="3" bgcolor="#a47eba"></td>
+      </tr>
+      <tr>
+        <td height="259" valign="top" bgcolor="#f7f7f7" style="padding:8px 0 0 16px;">
+       	  
+          <!--- 시작: 예약일 선택--->
+          <div><img src="../images/reserve/sstit_reservday.gif" /></div>
+            
+            <!---달력--->
+          <div>
+            <table width="213" cellpadding="0" cellspacing="1" bgcolor="#b2b2b2">
+              <tr>
+                <td height="31" colspan="7" align="center" bgcolor="#ffffff"><span class="reg_field1">
+                  <select name="select3" id="select3">
+                    <option>2009</option>
+                                    </select>&nbsp;
+                                    <a href="#"><img src="../images/reserve/calen_prev.gif" width="10" height="11" align="absmiddle" /></a>
+                  <select name="select" id="select">
+                    <option>09</option>
+                                    </select>
+                  <a href="#"><img src="../images/reserve/calen_next.gif" width="10" height="11" align="absmiddle" /></a></span></td>
+              </tr>
+              <tr>
+                <td><img src="../images/reserve/date_sun.gif" width="30" height="20" /></td>
+                <td><img src="../images/reserve/date_mon.gif" width="30" height="20" /></td>
+                <td><img src="../images/reserve/date_tue.gif" width="29" height="20" /></td>
+                <td><img src="../images/reserve/date_wed.gif" width="29" height="20" /></td>
+                <td><img src="../images/reserve/date_thu.gif" width="29" height="20" /></td>
+                <td><img src="../images/reserve/date_fri.gif" width="29" height="20" /></td>
+                <td><img src="../images/reserve/date_sat.gif" width="29" height="20" /></td>
+              </tr>
+              <tr>
+                <td class="calen">&nbsp;</td>
+                <td class="calen">&nbsp;</td>
+                <td class="calen">01</td>
+                <td class="calen">02</td>
+                <td class="calen">03</td>
+                <td class="calen">04</td>
+                <td class="calen">05</td>
+              </tr>
+              <tr>
+                <td class="calen">06</td>
+                <td class="calen">07</td>
+                <td class="calen">08</td>
+                <td class="calen">09</td>
+                <td class="calen">10</td>
+                <td class="calen">11</td>
+                <td class="calen">12</td>
+              </tr>
+              <tr>
+                <td class="calen">13</td>
+                <td class="calen">14</td>
+                <td class="calen">15</td>
+                <td class="calen">16</td>
+                <td class="calen">17</td>
+                <td class="calen">18</td>
+                <td class="calen">19</td>
+              </tr>
+              <tr>
+                <td class="calen">20</td>
+                <td class="calen">21</td>
+                <td class="calen">22</td>
+                <td class="calen">23</td>
+                <td class="calen">24</td>
+                <td class="calen">25</td>
+                <td class="calen_today">26</td>
+              </tr>
+              <tr>
+                <td class="calen">27</td>
+                <!--- 예약 가능한 날짜 표시--->
+                <td class="calen_sel"><a href="#" class="calen_sel">28</a></td>
+                <td class="calen_sel"><a href="#" class="calen_sel">29</a></td>
+                <td class="calen_sel"><a href="#" class="calen_sel">30</a></td>
+                <td class="calen">&nbsp;</td>
+                <td class="calen">&nbsp;</td>
+                <td class="calen">&nbsp;</td>
+              </tr>
+            </table>
+            </div>
+            
+          <div style="padding-left:4px;"><img src="../images/reserve/msg_reservday.gif" /></div>
+            <div style="padding:5px 0 0 5px;"><img src="../images/reserve/dot01.gif" align="absmiddle" />예약선택일 :
+            <input name="textfield7" type="text" id="textfield8" size="10"  style="background-color:#ffffff;"> 
+            일</div>        
+            
+            <!--- 끝: 예약일 선택--->
+        </td>
+        <td valign="top" bgcolor="#f7f7f7" style="padding:8px 0 0 13px;">
+        	<!--- 시작: 예약시간 선택--->
+            <div><img src="../images/reserve/sstit_reservtime.gif" /></div>
+            <div>
+              <textarea name="textfield4" cols="20" rows="13" id="textfield4"  style="background-color:#ffffff;">10:00 (예약가능)
+10:00 (예약가능)
+10:00 (예약가능)
+10:00 (예약가능)
+10:00 (예약가능)
+10:00 (예약가능)
+10:00 (예약가능)
+10:00 (예약가능)
+10:00 (예약가능)
+10:00 (예약가능)
+10:00 (예약가능)
+10:00 (예약가능)</textarea>
+            </div>
+            <div><img src="../images/reserve/msg_reservtime.gif" /></div>
+            <div style="padding-top:5px;"><img src="../images/reserve/dot01.gif" align="absmiddle" />예약선택시간 :
+            <input name="textfield7" type="text" id="textfield8" size="8"  style="background-color:#ffffff;"> 
+            시</div>  
+            <!--- 끝: 예약시간 선택--->      
+        </td>
+        <td valign="top" bgcolor="#f7f7f7" style="padding:8px 0 0 13px;">
+        	<!---시작:진료과목 선택--->
+            <div><img src="../images/reserve/sstit_reservsel.gif" /></div>
+            <div>
+             <textarea name="textfield4" cols="15" rows="13" id="textfield4"  style="background-color:#ffffff;">급속라미네이트
+일반교정
+임플란트
+충치및기타
+치아미백
+턱성형수술</textarea>
+            </div>        
+            <!---끝:진료과목 선택--->
+          </td>
+      </tr>
+      <tr>
+        <td height="1" bgcolor="#d5d5d5"></td>
+        <td height="1" bgcolor="#d5d5d5"></td>
+        <td height="1" bgcolor="#d5d5d5"></td>
+      </tr>
+    </table>
+
+</div>
+
+<!--- 개인정보취급방침-->
+<div style="padding:30px 0 7px 9px;"><img src="../images/reserve/stit_privacy.gif" /></div>
+<div style="margin-left:27px; "> 	
+	  <textarea name="textarea" cols="105" rows="8" readonly="readonly" style="padding:12px;">개인정보의 수집 목적 및 이용 목적</textarea>
+	  <br />
+      <div align="center">
+	  <input name="" type="checkbox" value="" style="border:0; background-color:#ffffff;">
+	  <font color="#776091"><b> 개인정보 취급방침에 동의함</b></font>
+      </div>
+</div>
+
+<!--- 예약자정보-->
+<div style="padding:15px 0 7px 9px;"><img src="../images/reserve/stit_reservinfo.gif" /></div>
+<div style="margin-left:27px;">
+    <table width="647" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="3" colspan="4" bgcolor="#a47eba"></td>
+      </tr>
+      <tr>
+        <td width="65" class="bbs_item01"><img src="../images/reserve/field_name1.gif" width="22" height="13" /></td>
+        <td width="237" class="bbs_item02">
+          <input name="textfield4" type="text" id="textfield4" size="17" />        </td>
+        <td width="65" class="bbs_item01"><img src="../images/reserve/field_pw.gif" width="43" height="13" /></td>
+        <td width="237" class="bbs_item02">
+          <input name="textfield" type="text" id="textfield" size="12" /></td>
+      </tr>
+      <tr>
+        <td class="bbs_item01"><img src="../images/reserve/field_hp.gif" width="33" height="13" /></td>
+        <td class="bbs_item02"><select name="select" id="select">
+          <option>010 </option>
+                                                </select>
+          -
+          <input name="textfield3" type="text" id="textfield3" size="5" />
+          -
+          <input name="textfield5" type="text" id="textfield5" size="5" /></td>
+        <td class="bbs_item01"><img src="../images/reserve/field_email.gif" width="33" height="13" /></td>
+        <td class="bbs_item02"><input name="textfield2" type="text" id="textfield2" size="12" />
+          @
+          <input name="textfield6" type="text" id="textfield6" size="16" /></td>
+      </tr>
+    </table>
+</div>
+
+<!--- 기타사항-->
+<div style="padding:15px 0 7px 9px;"><img src="../images/reserve/stit_etc.gif" /></div>
+<div style="margin-left:27px;">
+    <table width="647" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="3" colspan="2" bgcolor="#a47eba"></td>
+      </tr>
+      <tr>
+        <td width="65" height="90" bgcolor="#f7f7f7" style="padding-left:17px; border-bottom: 1px solid #d5d5d5;" ><img src="../images/reserve/field_etc.gif" width="43" height="13" /></td>
+        <td width="560" height="90" style="padding-left:6px; border-bottom: 1px solid #d5d5d5;" >
+          <textarea name="textfield8" cols="70" rows="5" id="textfield7"></textarea></td>
+        </tr>
+    </table>
+</div>
+<div style="width:674px; padding-top:10px;" align=right><a href="#"><img src="../images/reserve/btn_reserve.gif" /></a></div>
+
+
+
+
+</form>
+ <div style="margin:80px;"></div>
+
+</div>
+
+</body>
+</html>

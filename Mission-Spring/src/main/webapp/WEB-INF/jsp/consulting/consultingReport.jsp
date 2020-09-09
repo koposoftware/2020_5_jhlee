@@ -10,7 +10,13 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 <jsp:include page="/resources/assets/include/headCSS.jsp"></jsp:include>  
 </head>
+<script>
+	function goList(){
+		location.href="${ pageContext.request.contextPath }/consultingList/admin";
+	}
 
+
+</script>
  <body class="bg-light">
 <header>	
 		<jsp:include page="/resources/assets/include/topMenu.jsp" />
@@ -58,7 +64,7 @@
               <div class="badge added">하나 원큐 대출  하나 적금  하나 보험  핀크</div>
           </div>
           <br>
-           <input type="button" value="수정" class="btn btn-primary px-3 ml-4" onclick="doAction('U')">
+           <input type="button" value="목록" class="btn btn-primary px-3 ml-4" onclick="goList()">
     </div>
   </div>
  </div>

@@ -147,20 +147,20 @@ public class MemberController {
 	
 	
 	  //상담노트로 값 넘겨주기위한 mypage단 url
-		@RequestMapping("/consultingNote/{id}")
-		
-		public ModelAndView write(@PathVariable("id")String cuId) {
-			
-		List<MemberVO> customerInform = memberService.selectCustomerInform(cuId);	
-		
-		ModelAndView mav = new ModelAndView("consulting/consultingNote");
-		
-		mav.addObject("customerInform",customerInform);
-		
-		return mav; 
-		
-		}
-
+	
+	  @RequestMapping("/consultingNote/{id}")
+	  
+	  public ModelAndView write(@PathVariable("id")String cuId) {
+	  
+	  List<MemberVO> customerInform = memberService.selectCustomerInform(cuId);
+	  
+	  ModelAndView mav = new ModelAndView("consulting/consultingNote");
+	  
+	  mav.addObject("customerInform",customerInform);
+	  System.out.println("멤버컨트롤러:"+customerInform); return mav;
+	  
+	  }
+	 
 	
 	
 	

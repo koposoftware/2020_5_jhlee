@@ -40,15 +40,49 @@
 		main_category, middle_category,title, consulting_report, consulting_channel, admin_name, empno, progress, add_consulting
 			from  report_tb 
 			where consulting_no = #{no}
+			order by consulting_no desc
+	</select>
+	
+	<!--메인카테고리로 회원정보 검색 -->
+	<select id="selectSearchInfoByMainCategory" parameterType="String" resultMap="consultingMap" >
+		select consulting_no, to_char(report_ymd, 'yyyy-mm-dd') as report_ymd, customer_type, id, name, birth,
+		main_category, middle_category,title, consulting_report, consulting_channel, admin_name, empno, progress, add_consulting
+			from  report_tb 
+			where main_category = #{mainCategory}
+			order by consulting_no desc
+	</select>
+	
+	<!-- 상담 리스트 정보 검색 -->
+	<select id="selectSearchInfoList" parameterType="map" resultMap="consultingMap" >
+		select consulting_no, to_char(report_ymd, 'yyyy-mm-dd') as report_ymd, customer_type, id, name, birth,
+		main_category, middle_category,title, consulting_report, consulting_channel, admin_name, empno, progress, add_consulting
+			from  report_tb 
+			where 
+			<choose>
+				<when test="mainCategory != '' and middleCategory == ''">
+					main_category = #{mainCategory}
+				</when>
+				<when test="middleCategory != '' ">
+					main_category = #{mainCategory} and middle_category = #{middleCategory}
+				</when>
+				<when test="searchWord != '' ">
+					id like '%'||#{searchWord}||'%' or name like '%'||#{searchWord}||'%' or empno like '%'||#{searchWord}||'%'
+				</when>
+				<when test="startDate != '' and endDate == '' ">
+					report_ymd >= #{startDate}
+				</when>
+			
+			</choose>
+			order by consulting_no desc
 	</select>
 	
 	
 	<!-- 상담기록 노트에 등록  -->
 	<insert id="insert" parameterType="consultingVO">
-		insert into report_tb(consulting_no, customer_type, id, name, birth,
-		main_category, middle_category,title, consulting_report, consulting_channel, admin_name, empno, progress)
-		 values(seq_report_tb_no.nextval, #{customerType}, #{id}, #{name}, #{birth}, #{mainCategory}, #{middleCategory}, 
-		 #{title}, #{consultingReport}, #{adminName}, #{empno}, #{consultingChannel}, #{progress})
+		insert into report_tb(consulting_no, id, name, birth,
+		main_category, middle_category,title, consulting_report, consulting_channel, admin_name, empno )
+		 values(seq_report_tb_no.nextval, #{id}, #{name}, #{birth}, #{mainCategory}, #{middleCategory}, 
+		 #{title}, #{consultingReport}, #{consultingChannel}, #{adminName}, #{empno})
 	</insert> 
 	
 	

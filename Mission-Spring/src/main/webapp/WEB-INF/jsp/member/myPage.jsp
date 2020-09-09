@@ -19,6 +19,11 @@ function doAction(customerInformId){
 	location.href="${ pageContext.request.contextPath }/consultingList/" + customerInformId;
 }
 
+function listAction(){
+	
+	location.href="${ pageContext.request.contextPath }/consultingList/admin";
+}
+
 /* 
 function deleteAction() {
 	var result = confirm("회원 탈퇴를 하시겠습니까?");
@@ -128,6 +133,7 @@ function updateAction() {
 		</c:forEach>		
 			 	
 <br><br><br>
+ <!-- <input type="button" class="btn btn-primary px-3 ml-4" value="목록" onclick="listAction()"> -->
 	</div>
 	</div>
       </div>

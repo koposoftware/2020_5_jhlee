@@ -15,7 +15,7 @@
 	
 	<!-- 로그인  -->
 	<select id="login" parameterType="memberVO" resultType="memberVO">
-		select id, password <!-- email_id, email_domain, tel1, tel2, tel3, post, basic_addr, detail_addr, type, reg_date -->
+		select * <!-- email_id, email_domain, tel1, tel2, tel3, post, basic_addr, detail_addr, type, reg_date -->
 		from customer_tb 
 		where id= #{id} and password = #{password}
 	</select>

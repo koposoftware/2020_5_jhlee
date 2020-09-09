@@ -111,9 +111,9 @@
           </c:if>
           </ul>  
           </li> 
-          <li class="drop-down"><a href="#testimonials">HANADO</a>
+          <li class="drop-down"><a href="${ pageContext.request.contextPath }/calendar">HANADO</a>
           <ul>          
-          <li><a href="${ pageContext.request.contextPath }/education">HANADO</a></li>
+          <li><a href="${ pageContext.request.contextPath }/calendar">HANADO</a></li>
           <li><a href="${ pageContext.request.contextPath }/inquiry">Q&A</a></li>
           </ul>
           </li>       

@@ -1,7 +1,10 @@
 package kr.ac.hana.consulting.controler;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.websocket.Session;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.ac.hana.admin.vo.AdminVO;
@@ -57,6 +61,35 @@ public class ConsultingController {
 	return mav;
 	}
 
+	//고객 정보 검색
+	@ResponseBody
+	@RequestMapping("/searchConsulting")
+	public List<ConsultingVO> searchConsulting(HttpServletRequest request){
+		
+		String mainCategory = request.getParameter("mainCategory");
+		String middleCategory = request.getParameter("middleCategory");
+		String searchWord= request.getParameter("searchWord");
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
+		
+		System.out.println(mainCategory);
+		System.out.println(middleCategory);
+		System.out.println(searchWord);
+		System.out.println(startDate);
+		System.out.println(endDate);
+		
+		Map<String, String> searchMap = new HashMap<String, String>();
+		searchMap.put("mainCategory", mainCategory);
+		searchMap.put("middleCategory", middleCategory );
+		searchMap.put("searchWord", searchWord);
+		searchMap.put("startDate", startDate);
+		searchMap.put("endDate", endDate);
+		
+		List<ConsultingVO> searchInfoList = consultingService.selectSearchInfoList(searchMap);
+		
+		return searchInfoList;
+	}
+
 	
 	
 	//상담기록 번호로 상세조회 
@@ -95,6 +128,14 @@ public class ConsultingController {
 	  }
 	  
 	  
+	 //캘린더 화면 보여주기 
+	  @RequestMapping("/calendar")
+	  public String calendar() {
+			
+		  return "consulting/calendar";
+	  }
+	  
+	  
 		
 	//상담노트 작성 서비스1
 	@GetMapping("/consultingNote")
@@ -107,16 +148,18 @@ public class ConsultingController {
 	     consulting.setEmpno(adminLoginVO.getEmpno()); //자동으로 글쓴이 보여지게 등록 
 
 	 model.addAttribute("consultingVO", consulting);
-	
+	 System.out.println("컨설팅 컨트롤러:"+ consulting);
 	 return "/consulting/consultingNote";  //viewer에 의해서 /jsp로  포워드 보내줌 
 	}
 
 	
 	//상담노트 작성 서비스2
 	@PostMapping("/consultingNote")
-	public String write(@Valid ConsultingVO consultingVO, BindingResult result) {
+	public String write(@Valid ConsultingVO consultingVO, BindingResult result, HttpSession session) {
 	 //유효성 검사, boardVO boardVo 에 대한 validationcheck
-	 System.out.println(consultingVO);
+	AdminVO adminLoginVO  = (AdminVO)session.getAttribute("adminLoginVO");
+	consultingVO.setAdminName(adminLoginVO.getAdmin_name());
+	 System.out.println("찍어보자: "+consultingVO);
 	// System.out.println("result: " + result.hasErrors());
 	 if (result.hasErrors()) {
 	    System.out.println("오류발생...");
@@ -125,7 +168,7 @@ public class ConsultingController {
 	 }
 	 
 	 consultingService.insert(consultingVO);//바꿈 
-	 return "redirect:/consultingList";
+	 return "redirect:/consultingList/admin";
 	}
 
 }

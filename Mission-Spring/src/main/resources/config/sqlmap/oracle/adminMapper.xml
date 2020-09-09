@@ -14,7 +14,7 @@
 	</resultMap>
 
 	<select id="login" parameterType="adminVO" resultType="adminVO">
-		select empno, password 
+		select *
 		from consulting_subject_tb
 		where empno= #{empno} and password = #{password}
 	</select>

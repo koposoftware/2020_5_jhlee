@@ -3,6 +3,7 @@ package kr.ac.hana.consulting.service;
 import kr.ac.hana.consulting.vo.ConsultingVO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ConsultingService {
 	
@@ -33,5 +34,11 @@ public interface ConsultingService {
 	 * @param no 업데이트시킬 상담게시물 번호 
 	 */
 	void updateAddConsulting(int no);
+	
+	/*
+	 * 고객 정보 검색
+	*/
+	List<ConsultingVO> selectSearchInfoList(Map<String,String> searchMap);
+	
 	
 }
