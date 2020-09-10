@@ -64,6 +64,27 @@ function doAction(customerInformId){
           <h2>손님 리스트</h2>
         </div>
 		<div class="table-responsive" align="center">
+	   
+	   <select id="mainCategory" name="mainCategory" class="f0" style="width:10%">
+                    <option value="">선택하세요</option>
+                    <option value="이름">이름</option>
+                    <option value="아이디">아이디</option>
+                    <option value="비밀번호">비밀번호</option>
+                    <option value="생년월일">생년월일</option>
+                    <option value="성별">성별</option>
+                    <option value="전화번호">전화번호</option>
+                    <option value="직업">직업</option>
+                    <option value="주소">주소</option>
+                    <option value="이메일">이메일</option>
+                    <option value="디지털교육">디지털교육</option>
+                    <option value="관심사">관심사</option>
+                    <option value="나이대">나이대</option>
+                    <option value="유형">유형</option>
+                    <option value="고객유형">고객 유형</option>
+          </select>
+      	<input type="text" id="searchWord" placeholder="검색어를 입력하세요" style="width:20%">
+      
+      	<br><br>
             <table class="table table-hover table-sm" style="width:89%; height:15%" id="inform">
               <thead> 
                <tr class="jj">

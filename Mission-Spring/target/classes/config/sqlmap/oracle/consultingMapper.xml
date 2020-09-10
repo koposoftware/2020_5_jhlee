@@ -59,23 +59,73 @@
 			from  report_tb 
 			where 
 			<choose>
-				<when test="mainCategory != '' and middleCategory == ''">
-					main_category = #{mainCategory}
-				</when>
-				<when test="middleCategory != '' ">
-					main_category = #{mainCategory} and middle_category = #{middleCategory}
-				</when>
-				<when test="searchWord != '' ">
-					id like '%'||#{searchWord}||'%' or name like '%'||#{searchWord}||'%' or empno like '%'||#{searchWord}||'%'
-				</when>
-				<when test="startDate != '' and endDate == '' ">
-					report_ymd >= #{startDate}
-				</when>
+					<when test="mainCategory != '' and middleCategory == ''">
+						main_category = #{mainCategory}
+					</when>
+					<when test="middleCategory != '' ">
+						main_category = #{mainCategory} and middle_category = #{middleCategory}
+					</when>
+					<when test="searchWord != '' ">
+						id like '%'||#{searchWord}||'%' or name like '%'||#{searchWord}||'%' or empno like '%'||#{searchWord}||'%'
+					</when>
+					<when test="startDate != '' and endDate == '' ">
+						report_ymd >= #{startDate}
+					</when>
 			
 			</choose>
 			order by consulting_no desc
 	</select>
 	
+	 
+	 <!-- 상담 리스트 고객 id로 정보 검색 -->
+	<select id="selectSearchInfoListById" parameterType="map" resultMap="consultingMap" >
+		select consulting_no, to_char(report_ymd, 'yyyy-mm-dd') as report_ymd, customer_type, id, name, birth,
+		main_category, middle_category,title, consulting_report, consulting_channel, admin_name, empno, progress, add_consulting
+			from  report_tb 
+			where 
+					id = #{id} and 
+					<choose>
+				
+						<when test="mainCategory != '' and middleCategory == ''">
+							main_category = #{mainCategory}
+						</when>
+						<when test="middleCategory != '' ">
+							main_category = #{mainCategory} and middle_category = #{middleCategory}
+						</when>
+						<when test="searchWord != '' ">
+							title like '%'||#{searchWord}||'%' 
+						</when>
+						<when test="startDate != '' and endDate == '' ">
+							report_ymd >= #{startDate}
+						</when>
+					</choose>
+			order by consulting_no desc
+	</select>
+	
+	
+	<select id="cntConsulting" resultType="int">
+		select count(*) from report_tb
+	</select>
+	
+	<select id="selectPageConsulting" parameterType="map" resultMap="consultingMap">
+		SELECT *
+			FROM ( 
+				SELECT ROWNUM AS RNUM, A.* 
+					FROM ( select * from report_tb  order by consulting_no desc) A 
+				<![CDATA[ WHERE ROWNUM <= #{ boardCntPerPage } * #{ pageNo } ]]>
+				)
+		WHERE RNUM > #{ boardCntPerPage } * ( #{ pageNo } - 1 )  
+		
+<!-- 	부등호 문제 해결법 -->
+<!-- 		<![CDATA[where rownum <= 10]]>		 -->
+		
+	</select>
+	
+	
+	 
+	 
+	 
+	 
 	
 	<!-- 상담기록 노트에 등록  -->
 	<insert id="insert" parameterType="consultingVO">

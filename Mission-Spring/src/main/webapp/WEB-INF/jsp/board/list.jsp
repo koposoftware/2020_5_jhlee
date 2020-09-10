@@ -52,11 +52,9 @@
 	<br>
 	<section>
 	<br>
-	<br>
-	<br>
       <div align = "center">
       <hr width="60%">
-      <h2>Q&A</h2>
+      <h4>Q&A</h4>
       <hr width="60%">      
       <br>
       <br>

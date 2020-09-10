@@ -2,7 +2,9 @@ package kr.ac.kopo;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -18,6 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import kr.ac.hana.board.dao.BoardDAO;
 import kr.ac.hana.board.service.BoardService;
 import kr.ac.hana.board.vo.BoardVO;
+import kr.ac.hana.consulting.vo.ConsultingVO;
 import kr.ac.hana.register.service.RegisterService;
 import kr.ac.hana.register.vo.RegisterVO;
 
@@ -40,9 +43,28 @@ public class MyBatisTest {
    @Autowired
    private RegisterService registerService;
    
+   @Autowired
+   private SqlSessionTemplate sqlSession;
    
    
+   @Test
+	public void selectPageConsulting() {
+		// TODO Auto-generated method stub
+		
+		//파라미터 두개가 필요한데 넘어갈 때 하나로 넘어가야 해서 map으로 넘겨줌 
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pageNo", 2);
+		map.put("boardCntPerPage", 10);
+		
+		List<ConsultingVO> consultingList = sqlSession.selectList("consulting.dao.ConsultingDAO.selectPageConsulting",map);
+		
+		for (ConsultingVO c : consultingList) {
+			System.out.println("출력해라"+c);
+		}
+
+	}
    
+   @Ignore
    @Test
    public void 관리자_상담리스트_불러오기() {
 		List<RegisterVO>  adminAddConsultingList = registerService.selectAllRegisterByEmpno("hnc1002");

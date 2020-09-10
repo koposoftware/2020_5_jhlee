@@ -49,7 +49,7 @@
           <li><a href="${ pageContext.request.contextPath }/login">상담 리스트</a></li>
           </c:if>
           <c:if test="${ not empty adminLoginVO and empty loginVO}">          
-          <li><a href="${ pageContext.request.contextPath }/consultingList/admin">상담 리스트</a></li>
+          <li><a href="${ pageContext.request.contextPath }/consultingList/admin/1/1">상담 리스트</a></li>
           </c:if>
           <c:if test="${ empty adminLoginVO and not empty loginVO}">          
           <li><a href="${ pageContext.request.contextPath }/consultingList">상담 리스트</a></li>

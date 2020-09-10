@@ -152,7 +152,7 @@ margin-left:5px;
            		<th>성별</th>
                 <td>
                 <input type="radio"  name="gender" value="M">M &nbsp;&nbsp;
-                <input type="radio"  name="gender" value="W">W &nbsp;&nbsp;
+                <input type="radio"  name="gender" value="F">F &nbsp;&nbsp;
                 </td>    
             </tr>
              <tr>

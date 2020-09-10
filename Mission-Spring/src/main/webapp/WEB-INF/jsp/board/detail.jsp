@@ -7,18 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
- <link href="/resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
- <link href="/resources/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
- <link href="/resources/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
- <link href="/resources/assets/vendor/venobox/venobox.css" rel="stylesheet">
- <link href="/resources/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
- <link href="/resources/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
- <link href="/resources/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
- <link href="/resources/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
- <link href="/resources/assets/css/jin.css" rel="stylesheet">
- <link href="/resources/assets/css/style.css" rel="stylesheet"> 
- 
 <jsp:include page="/resources/assets/include/headCSS.jsp"></jsp:include>
 
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -172,6 +161,7 @@ $(document).ready(function(){
 <header>	
 		<jsp:include page="/resources/assets/include/topMenu.jsp" />
 	</header>
+	<c:if test="${ not empty adminLoginVO and empty loginVO}">
 	<div id="jb-sidebar">
         <h4>손님과 함께 smile~!</h4>
         <ul>
@@ -180,16 +170,15 @@ $(document).ready(function(){
           <li>미정</li>
         </ul>
       </div>
+      </c:if>
 	<br>
 	<br>
 	<br>
 	<section>
 	<br>
-	<br>
-	<br>
       <div align="center">
          <hr width="70%">
-         <h2 class="titles">손님의 소중한 문의</h2>
+         <h4 class="titles">손님의 소중한 문의</h4>
          <hr width="70%">
          <br>
          <div class="container">

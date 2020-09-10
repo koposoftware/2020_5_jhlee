@@ -19,7 +19,7 @@
  <link href="/resources/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
  <link href="/resources/assets/css/jin.css" rel="stylesheet">
  <link href="/resources/assets/css/style.css" rel="stylesheet"> 
- 
+
 <jsp:include page="/resources/assets/include/headCSS.jsp"></jsp:include>  
 </head>
 <body>

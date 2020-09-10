@@ -55,19 +55,6 @@ input.search-go {
 
 </style>
 
- <script>
-
-function doAction(customerInformId){
-	
-	location.href="${ pageContext.request.contextPath }/myPage/" + customerInformId;
-}
-
-function goReport(reportNo){
-	location.href="${ pageContext.request.contextPath }/consulting/admin/" + reportNo;
-}
- 
-
-</script>
 </head>
 
 <body>
@@ -135,25 +122,33 @@ function goReport(reportNo){
                      <option value="">중분류</option>
 	      </select>
 	    <c:if test="${ not empty adminLoginVO and empty loginVO}">  
-      	<input type="text" id="searchWord" placeholder="  손님 ID / 이름  및 직원사번 조회" style="width:20%">
+      		<input type="text" id="searchWord" placeholder="  손님 ID / 이름  및 직원사번 조회" style="width:20%">
       	</c:if>
       	<c:if test="${ empty adminLoginVO and  not empty loginVO}"> 
-      	<input type="text" id="searchWord" placeholder="제목으로 검색" style="width:20%">
+      		<input type="text" id="searchWord" placeholder="제목으로 검색" style="width:20%">
       	</c:if>
+      	
       	<input type="date" id="startDate">-<input type="date" id="endDate">
-      	<button style="height: 29px;"  class="btn btn-primary px-3 ml-4" onclick="search()">검색</button>
+	    <c:if test="${ not empty adminLoginVO and empty loginVO}">  
+      	
+	      	<button style="height: 29px;"  class="btn btn-primary px-3 ml-4" onclick="searchByAdmin()">검색</button>
+	     </c:if>
+	     <c:if test="${ empty adminLoginVO and  not empty loginVO}"> 
+      		<button style="height: 29px;"  class="btn btn-primary px-3 ml-4" onclick="searchByUser()">검색</button>
+      	</c:if>
 <!--       	여기서 검색 항목 끝 -->
       	                                                                      
      <br>
      <br>
        <!--유저 로그인시 보여지는 ui  -->
           <div class="table-responsive" align="center">
-            <table class="table table-hover table-sm" style="width:77%";>
+            <table class="table table-hover table-sm" style="width:77%">
               <thead>
                 <tr class="jj">
                   <th>상담번호</th>
                   <th>등록일시</th>
                   <th>고객유형</th>
+                  <th>고객이름</th>
                   <th>ID</th>
                   <th>생일</th>
                   <th>대분류</th>
@@ -166,13 +161,14 @@ function goReport(reportNo){
                 </tr>
               </thead>
               <c:if test="${ empty adminLoginVO and  not empty loginVO}"> 
+                 <tbody id="userConsultingList">
         	 <c:forEach items="${ customerConsultingList }" var="consulting" varStatus="loop">
-                 <tbody>
                  <tr>
                   <td align="center">${ consulting.consultingNo }</td>
                   <td>${ consulting.reportYmd }</td>
                   <td align="center">${ consulting.customerType }</td>
                   <td>${ consulting.id }</td>
+                  <td>${ consulting.name }</td>
                   <td>${ consulting.birth }</td>
                   <td>${ consulting.mainCategory }</td>
                   <td>${ consulting.middleCategory }</td>
@@ -181,10 +177,10 @@ function goReport(reportNo){
                   <td>${ consulting.empno }</td>
                   <td align="center">${ consulting.progress }</td>
                   <td align="center">${ consulting.addConsulting } 
-                  <button onclick="openModal(${ consulting.consultingNo })" class="btn btn-primary px-3 ml-4">신청</button>
+                  	<button onclick="openModal(${ consulting.consultingNo })" class="btn btn-primary px-3 ml-4">신청</button>
                   </td>
                  </tr>
-                </tbody>
+                
               
                 
                 <!-- 모달 창 -->  
@@ -207,6 +203,7 @@ function goReport(reportNo){
 		  </div>
 	     </div>
 	    </c:forEach>
+	    </tbody>
        </c:if>
       
                <!-- 관리자로 로그인 시 보여지는 ui --> 
@@ -217,6 +214,7 @@ function goReport(reportNo){
                   <td align="center">${ consulting.consultingNo }</td>
                   <td>${ consulting.reportYmd }</td>
                   <td>${ consulting.customerType }</td>
+                   <td>${ consulting.name }</td>
                   <td><a href="javascript:doAction('${ consulting.id }')">${ consulting.id }</a></td>
                   <td>${ consulting.birth }</td>
                   <td>${ consulting.mainCategory }</td>
@@ -234,6 +232,37 @@ function goReport(reportNo){
       </div>
       </div>        
         <br>
+        
+<!-- ====페이징======================================================================================= -->
+	<div style="margin-left: 40%">
+<!-- ---------이전 버튼 구현 --------------------------- -->
+			<c:if test="${blockNo != 1 }"> 
+				<a href= "${pageContext.request.contextPath}/consultingList/admin/${blockNo - 1}/${blockStartPageNo-1 }">이전</a> &nbsp;
+			</c:if>
+			
+<!-- ---------페이지 구현 --------------------------- -->			
+			<c:forEach var="i" begin="${blockStartPageNo }" end="${blockEndPageNo }">
+				<c:choose>
+				
+					<c:when test="${pageNo == i }"> <!-- 현 페이지 넘버와 클릭할수있는 페이지 넘버가 같으면 링크없애줌 -->
+						${i }&nbsp;|&nbsp;
+					</c:when>
+					
+					<c:otherwise>
+						<a href="${pageContext.request.contextPath}/consultingList/admin/${blockNo}/${i }">${i }&nbsp;</a>|&nbsp;
+					</c:otherwise>
+					
+				</c:choose>
+			</c:forEach>
+			
+<!-- ---------다음 버튼 구현 --------------------------- -->	
+			<c:if test="${blockNo != totalBlockCnt}">&nbsp;
+				<a href="${pageContext.request.contextPath}/consultingList/admin/${blockNo + 1}/${blockEndPageNo+1 }">다음</a> &nbsp;
+			</c:if>
+	</div>	
+	
+<!-- ==== 페이징 끝! (여기까지만 보셔도 됩니다.)================================================================== -->	
+
 	</section> 
 	<br>
 	<br>
@@ -250,7 +279,85 @@ function goReport(reportNo){
 <script>
 
 
-function search() {
+//유저단 검색
+
+function searchByUser() {
+	let mainCategory = $("#mainCategory").val()
+	let middleCategory = $("#middleCategory").val()
+	let searchWord = $("#searchWord").val()
+	let startDate = $("#startDate").val()
+	let endDate = $("#endDate").val()
+
+	console.log(mainCategory)
+	console.log(middleCategory)
+	console.log(searchWord)
+	console.log(startDate )
+	console.log(endDate)
+
+	if(mainCategory != '' || middleCategory != '' || searchWord != '' || startDate != '' || endDate != '') {
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/searchConsultingById",
+		type : 'get',
+		data : {
+			mainCategory :  mainCategory,
+			middleCategory : middleCategory, 
+			searchWord : searchWord, 
+			startDate : startDate, 
+			endDate : endDate 
+		},
+		success : function(data) {
+			console.log("성공")
+//			console.log(typeof data)
+			let cd = JSON.parse(data) 
+			console.log(cd)
+			$("#userConsultingList").empty()
+			for (key in cd) {
+				
+				console.log(cd[key]["id"])
+				
+				let str = ""
+				
+				str += "<tr>";
+				str += '<td align="center">' + cd[key]["consultingNo"] + '</td>'
+				str += '<td>' + cd[key]['reportYmd'] + '</td>'
+				str += '<td>' + cd[key]['customerType'] + '</td>'
+				str += '<td>' + cd[key]['name'] + '</td>'
+				str += '<td>' + '<a href="javascript:doAction(' + cd[key]['id'] + ')">' + cd[key]['id'] +'</a>' + '</td>'
+				str += '<td>' + cd[key]['birth'] + '</td>'
+				str += '<td>' + cd[key]['mainCategory'] + '</td>'
+				str += '<td>' + cd[key]['middleCategory'] + '</td>'
+				str += '<td>' + '<a href="javascript:goReport(' + cd[key]['consultingNo'] + ')">' + cd[key]['title'] +'</a>' + '</td>'
+              str += '<td>' + cd[key]['adminName'] + '</td>'
+              str += '<td>' + cd[key]['empno'] + '</td>'
+              str += '<td align="center">' + cd[key]['progress'] +'</td>'
+              str += '<td align="center">' + cd[key]['addConsulting']
+              str += '<button onclick="openModal(' + cd[key]['consultingNo'] + ')" class="btn btn-primary px-3 ml-4">' + '신청' + '</button>'
+              str += '</td>'
+              str += '<tr>';
+              
+              $("#userConsultingList").append(str)
+
+			}
+			
+		},
+		error : function() {
+			console.log("실패")
+		}
+		
+		
+		
+	})
+} else {
+	location.href = "${pageContext.request.contextPath}/consultingList"
+}		
+}
+
+
+
+
+
+function searchByAdmin() {
 // 	let mainCategory = document.sForm.mainCategory.value
 	let mainCategory = $("#mainCategory").val()
 	let middleCategory = $("#middleCategory").val()
@@ -292,16 +399,17 @@ function search() {
 				str += '<td align="center">' + cd[key]["consultingNo"] + '</td>'
 				str += '<td>' + cd[key]['reportYmd'] + '</td>'
 				str += '<td>' + cd[key]['customerType'] + '</td>'
-				str += '<td>' + '<a href="javascript:doAction('+cd[key]['id']+')">'+ cd[key]['id'] + '</a>' + '</td>'
+				str += '<td>' + cd[key]['name'] + '</td>'
+				str += '<td>' + '<a href="javascript:doAction(' + cd[key]['id'] + ')">' + cd[key]['id'] +'</a>' + '</td>'
 				str += '<td>' + cd[key]['birth'] + '</td>'
 				str += '<td>' + cd[key]['mainCategory'] + '</td>'
 				str += '<td>' + cd[key]['middleCategory'] + '</td>'
-				str += '<td>' + '<a href="javascript:goReport(' + [key]['consultingNo']+ ')">' + cd[key]['title'] +'</a>' + '</td>'
+				str += '<td>' + '<a href="javascript:goReport(' + cd[key]['consultingNo'] + ')">' + cd[key]['title'] +'</a>' + '</td>'
                 str += '<td>' + cd[key]['adminName'] + '</td>'
                 str += '<td>' + cd[key]['empno'] + '</td>'
                 str += '<td align="center">' + cd[key]['progress'] +'</td>'
                 str += '<td align="center">' + cd[key]['addConsulting'] +'</td>'
-                str += '<tr>'
+                str += '<tr>';
                 
                 $("#adminConsultingList").append(str)
 
@@ -317,10 +425,23 @@ function search() {
 	})
 } else {
 	location.href = "${pageContext.request.contextPath}/consultingList/admin"
+ }		
 }
+
+
+
+
+function doAction(customerInformId){
 	
-	
+	location.href="${ pageContext.request.contextPath }/myPage/" + customerInformId;
 }
+
+function goReport(reportNo){
+	location.href="${ pageContext.request.contextPath }/consulting/admin/" + reportNo;
+}
+ 
+
+
 
 function openModal(consultingNo) {
 	$("#reserveModal"+consultingNo).modal("show")

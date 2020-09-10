@@ -1,5 +1,6 @@
 package kr.ac.hana.consulting.service;
 
+import kr.ac.hana.board.vo.BoardVO;
 import kr.ac.hana.consulting.vo.ConsultingVO;
 
 import java.util.List;
@@ -39,6 +40,13 @@ public interface ConsultingService {
 	 * 고객 정보 검색
 	*/
 	List<ConsultingVO> selectSearchInfoList(Map<String,String> searchMap);
+	
+	
+	int cntConsulting();
+	
+	List<ConsultingVO> selectPageConsulting(int pageNo,int boardCntPerPage);
+
+
 	
 	
 }

@@ -6,31 +6,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
- <link href="/resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
- <link href="/resources/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
- <link href="/resources/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
- <link href="/resources/assets/vendor/venobox/venobox.css" rel="stylesheet">
- <link href="/resources/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
- <link href="/resources/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
- <link href="/resources/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
- <link href="/resources/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
- 
- <link href="/resources/assets/css/board.css" rel="stylesheet">
- <link href="/resources/assets/css/jin.css" rel="stylesheet">
- <link href="/resources/assets/css/style.css" rel="stylesheet"> 
- 
+<title>문의하기</title>
+<%-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 <jsp:include page="/resources/assets/include/headCSS.jsp"></jsp:include> 
-<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+ --%>
 
-<script src="/resources/assets/summernote-0.8.18-dist/summernote-lite.js"></script>
-<script src="/resources/assets/summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 
-<link rel="stylesheet" href="/resources/assets/summernote-0.8.18-dist/summernote-lite.css">
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
+<jsp:include page="/resources/assets/include/headCSS.jsp"></jsp:include>  
+
 <script>
-
-
 function goWrite(frm) {
    var title = frm.title.value;
  //  var writer = frm.writer.value;
@@ -79,12 +71,22 @@ $(document).ready(function(){
 		});
 });
 
-//서머노트 쓰기 활성화
-$('#summernote').summernote('enable');
-
-$(document).ready(function() {
+  $(document).ready(function() {
+	  $('#summernote').summernote({
+	    	placeholder: '문의 내용을 입력해주세요',
+	        minHeight: 370,
+	        maxHeight: null,
+	        focus: true, 
+	        lang : 'ko-KR',
+	        fontNames: ['verdana','Arial','Arial Black','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+	  });
+	}); 
+ 
+ /*  $(document).ready(function() {
 	//여기 아래 부분
 	$('#summernote').summernote({
+
 		  toolbar: [
 			    // [groupName, [list of button]]
 			    ['fontname', ['fontname']],
@@ -100,13 +102,21 @@ $(document).ready(function() {
 			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
 			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
 	  });
-});
+});   */
+	 
 </script>
+
+<style>
+.panel-default {
+    width: 80%;
+	}
+
+</style>
 
 </head>
 <body>
 <header>   
-   <jsp:include page="/resources/assets/include/topMenu.jsp" />
+   <jsp:include page="/resources/assets/include/topMenu.jsp" /> 
 </header>
    <br>
    <br>
@@ -114,9 +124,11 @@ $(document).ready(function() {
    <section>
    <br>
    <br>
-      <div align = "center">
+   <br>
+   <br>
+      <div align = "center" style="font-size:15px">
       <hr width="60%">
-      <h2>문의하기</h2>
+      <h1 style="font-size: 25px;">문의하기</h1>
       <hr width="60%">      
       <br>
       
@@ -125,7 +137,7 @@ $(document).ready(function() {
                 <tr>
                    <th width="23%">제목</th>
                    <td>
-                      <input type="text" name="title" style="width:80%">
+                      <input type="text" name="title" style="width:80%" placeholder="제목을 입력해주세요">
                    </td>
                 </tr>
                 <tr>
@@ -158,21 +170,19 @@ $(document).ready(function() {
                 <tr>
                    <th>내용</th>
                    <td>
-                      <textarea id="summernote" rows="14" cols="55" name="content" style="text-align: left;"></textarea>
+                      <textarea id="summernote" width="60%" name="content" style="text-align: left;"></textarea>
                    </td>
                 </tr>
              </table>
-             <br>
-             <br>
              <button type="submit" class="btn btn-outline-light text-dark" onclick="goWrite(this.form)">등록</button>
       </form>
       
           </div>
    </section>
    
-   <footer>
+   <%-- <footer>
       <%@ include file="/resources/assets/include/footer.jsp"%>
    </footer>
-    <jsp:include page="/resources/assets/include/jsFiles.jsp"></jsp:include> 
+    <jsp:include page="/resources/assets/include/jsFiles.jsp"></jsp:include> --%> 
 </body>
 </html>

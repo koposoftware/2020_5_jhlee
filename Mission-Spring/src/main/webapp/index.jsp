@@ -95,7 +95,7 @@
           <li><a href="${ pageContext.request.contextPath }/login">상담 리스트</a></li>
           </c:if>
           <c:if test="${ not empty adminLoginVO and empty loginVO}">          
-          <li><a href="${ pageContext.request.contextPath }/consultingList/admin">상담 리스트</a></li>
+          <li><a href="${ pageContext.request.contextPath }/consultingList/admin/1/1">상담 리스트</a></li>
           </c:if>
           <c:if test="${ empty adminLoginVO and not empty loginVO}">          
           <li><a href="${ pageContext.request.contextPath }/consultingList">상담 리스트</a></li>
@@ -736,7 +736,6 @@
                 </p>
               </div>
             </li>
-
             <li data-aos="fade-up" data-aos-delay="400">
               <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-5" class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-5" class="collapse" data-parent=".faq-list">

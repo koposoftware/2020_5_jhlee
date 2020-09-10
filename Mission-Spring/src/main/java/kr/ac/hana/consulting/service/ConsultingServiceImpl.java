@@ -54,22 +54,25 @@ public class ConsultingServiceImpl implements ConsultingService {
 		return consulting;
 	}
 
-
-	
-
 	@Override
 	public void updateAddConsulting(int no) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	@Override
-	public List<ConsultingVO> selectSearchInfoList(Map<String, String> searchMap) {//맵이라는 객체의 변수명 searchMap
+	public List<ConsultingVO> selectSearchInfoList(Map<String, String> searchMap) {// 맵이라는 객체의 변수명 searchMap
 		// TODO Auto-generated method stub
-		
+
 		List<ConsultingVO> searchInfoList = new ArrayList<ConsultingVO>();
-		
-		searchInfoList = consultingDAO.selectSearchInfoList(searchMap);
+
+		if (searchMap.get("id") != "") {
+			searchInfoList = consultingDAO.selectSearchInfoListById(searchMap);
+
+		} else {
+
+			searchInfoList = consultingDAO.selectSearchInfoList(searchMap);
+		}
 
 //		if (searchMap.get("mainCategory") != null) {
 //			searchInfoList = consultingDAO.selectSearchInfoByMainCategory(searchMap.get("mainCategory"));
@@ -77,9 +80,29 @@ public class ConsultingServiceImpl implements ConsultingService {
 //			searchInfoList = consultingDAO.selectSearchInfoByMiddleCategory(searchMap.get("middleCategory"));
 //			
 //		}
-		
+
 		return searchInfoList;
 	}
+
+	@Override
+	public int cntConsulting() {
+		// TODO Auto-generated method stub
+		int totalBoardCnt = consultingDAO.cntConsulting();
+
+		return totalBoardCnt;
+	}
+
+	@Override
+	public List<ConsultingVO> selectPageConsulting(int pageNo, int boardCntPerPage) {
+		// TODO Auto-generated method stub
+		List<ConsultingVO> consultingList = consultingDAO.selectPageConsulting(pageNo, boardCntPerPage);
+		
+		return consultingList;
+	}
+	
+	
+	
+	
 	
 
 }

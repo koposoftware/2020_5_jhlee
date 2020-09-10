@@ -3,6 +3,8 @@ package kr.ac.hana.consulting.dao;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,13 +26,19 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 		return consultingList;
 	}
 
-	/*
-	 * @Override public List<ConsultingVO> selectSearchInfoByMainCategory(String
-	 * mainCategory) { // TODO Auto-generated method stub List<ConsultingVO>
-	 * consultingList = sqlSession.selectList(
-	 * "consulting.dao.ConsultingDAO.selectSearchInfoByMainCategory",mainCategory);
-	 * return consultingList; }
-	 */
+
+
+	@Override
+	public List<ConsultingVO> selectSearchInfoListById(Map<String, String> searchMap) {
+		
+		List<ConsultingVO> consultingList = sqlSession.selectList("consulting.dao.ConsultingDAO.selectSearchInfoListById",searchMap);
+		
+		return consultingList;
+	}
+
+
+
+
 
 	@Override
 	public List<ConsultingVO> selectAllConsulting() {
@@ -70,4 +78,34 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 		sqlSession.update("consulting.dao.ConsultingDAO.updateAddConsulting",no);
 		
 	}
+
+
+
+	@Override
+	public int cntConsulting() {
+		// TODO Auto-generated method stub
+		int totalBoardCnt = sqlSession.selectOne("consulting.dao.ConsultingDAO.cntConsulting");
+		return totalBoardCnt;
+	}
+
+
+
+	@Override
+	public List<ConsultingVO> selectPageConsulting(int pageNo, int boardCntPerPage) {
+		// TODO Auto-generated method stub
+		
+		//파라미터 두개가 필요한데 넘어갈 때 하나로 넘어가야 해서 map으로 넘겨줌 
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pageNo", pageNo);
+		map.put("boardCntPerPage", boardCntPerPage);
+		
+		List<ConsultingVO> consultingList = sqlSession.selectList("consulting.dao.ConsultingDAO.selectPageConsulting",map);
+
+		return consultingList;
+	}
+	
+	
+	
+	
+	
 }

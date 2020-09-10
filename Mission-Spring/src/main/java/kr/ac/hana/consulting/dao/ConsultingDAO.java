@@ -44,5 +44,17 @@ public interface ConsultingDAO {
 	
 	List<ConsultingVO> selectSearchInfoList(Map<String, String> searchMap);
 
+	/*
+	 * 고객id로 검색 
+	 */
+	List<ConsultingVO> selectSearchInfoListById(Map<String, String> searchMap);
+	
+
+	int cntConsulting();
+	
+	List<ConsultingVO> selectPageConsulting(int pageNo, int boardCntPerPage);
+
+
+	
 	
 }
