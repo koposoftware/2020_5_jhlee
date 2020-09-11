@@ -2,7 +2,9 @@ package kr.ac.hana.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -161,8 +164,7 @@ public class MemberController {
 	  
 	  }
 	 
-	
-	
+
 	
 	//전체 손님 조회 (관리자단)
 	@RequestMapping("/customerInform")
@@ -176,5 +178,96 @@ public class MemberController {
 	return mav;
 	
 	}
+	
+	
+	//전체 손님 조회 with 페이징(관리자단)
+	@RequestMapping(value = { "/customerInform/{blockNo}/{pageNo}"})
+	public String consultingList(@PathVariable("blockNo")int blockNo, @PathVariable("pageNo")int pageNo,  HttpServletRequest request) {
+
+		System.out.println("블럭넘"+blockNo);
+		System.out.println("페이지넘"+pageNo);
+
+		// 임의 설정이 필요한 부분
+		int boardCntPerPage = 10;
+		int pageCntPerBlock = 3;
+
+		// 블록의 시작 페이지와 끝 페이지 (등차수열 적용)
+		int blockStartPageNo = 1 + pageCntPerBlock * (blockNo - 1);
+		int blockEndPageNo = pageCntPerBlock * blockNo;
+
+		//// 전체 게시글 수 구하는 코드(dao로 db에 접근해서 cnt 얻어옴) 
+		int totalBoardCnt = memberService.cntMember();
+
+		//// 전체 페이지 수 구하는 코드
+		int totalPageCnt = totalBoardCnt / boardCntPerPage;
+		if (totalBoardCnt % boardCntPerPage > 0) {
+			totalPageCnt++; // 나머지가 있으면 페이지가 다 돌고 남은 게시글이 있는 것이기에 전체 페이지 수에 +1 해줌
+		}
+
+		//// 만약 위 연산으로 계산한 해당 블록 끝 번호가 전체 페이지 번호 수 보다 크다면 블록 끝 번호는 전체 페이지 번호 수 (블록 끝 번호가
+		//// 계속 전체 페이지 번호수보다 작다가 마지막에만 커지거나 같아짐)
+		if (blockEndPageNo > totalPageCnt) {
+			blockEndPageNo = totalPageCnt;
+		}
+
+		// 전체 블록 개수 구하기 (다음 버튼 기능을 구현해주기 위해)
+		int totalBlockCnt = totalPageCnt / pageCntPerBlock;
+		if (totalPageCnt % pageCntPerBlock > 0) {
+			totalBlockCnt++;
+
+		}
+
+		// 해당 페이지에서 필요한만큼의 게시글 데이터 얻어오기
+		List<MemberVO> allInformList = memberService.selectPageMember(pageNo, boardCntPerPage); // 이거 dao 설명 필요 (rownum)
+
+		request.setAttribute("blockStartPageNo", blockStartPageNo);
+		request.setAttribute("blockEndPageNo", blockEndPageNo);
+		request.setAttribute("blockNo", blockNo);
+		request.setAttribute("totalBlockCnt", totalBlockCnt);
+		request.setAttribute("pageNo", pageNo);
+
+		request.setAttribute("allInformList", allInformList);
+
+		return "member/customerInform";
+	}
+
+	//손님 정보 검색 
+	
+	// 고객 정보 검색(관리자 ui)
+	@ResponseBody
+	@RequestMapping("/searchMember")
+	public List<MemberVO> searchMember(HttpServletRequest request) {
+
+		String gender = request.getParameter("gender");
+		String digitalEdu = request.getParameter("digitalEdu");
+		String interest = request.getParameter("interest");
+		String age = request.getParameter("age");
+		String job = request.getParameter("job");
+		String customerType = request.getParameter("customerType");
+		String searchWord = request.getParameter("searchWord");
+
+		System.out.println(gender);
+		System.out.println(digitalEdu);
+		System.out.println(interest);
+		System.out.println(age);
+		System.out.println(job);
+		System.out.println(customerType);
+		System.out.println(searchWord);
+
+		Map<String, String> searchMap = new HashMap<String, String>();
+		searchMap.put("gender", gender);
+		searchMap.put("digitalEdu", digitalEdu);
+		searchMap.put("interest", interest);
+		searchMap.put("age", age);
+		searchMap.put("job", job);
+		searchMap.put("customerType", customerType);
+		searchMap.put("searchWord", searchWord);
+
+		List<MemberVO> searchMember = memberService.selectSearchMember(searchMap);
+
+		return searchMember;
+	}
+
+	
  }
 

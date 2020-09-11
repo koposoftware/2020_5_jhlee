@@ -36,17 +36,19 @@ public interface ConsultingService {
 	 */
 	void updateAddConsulting(int no);
 	
-	/*
-	 * 고객 정보 검색
+   /*
+	* 고객 정보 검색
 	*/
 	List<ConsultingVO> selectSearchInfoList(Map<String,String> searchMap);
 	
-	
+	//상담건수
 	int cntConsulting();
 	
+	//전체 상담 조회(페이징포함)
 	List<ConsultingVO> selectPageConsulting(int pageNo,int boardCntPerPage);
 
-
+	//고객별 상담조회(페이징포함 )
+	List<ConsultingVO> selectPageConsultingById(int pageNo,int boardCntPerPage,String id);
 	
 	
 }

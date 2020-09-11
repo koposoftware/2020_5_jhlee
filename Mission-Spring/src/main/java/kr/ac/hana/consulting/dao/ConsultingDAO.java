@@ -49,11 +49,14 @@ public interface ConsultingDAO {
 	 */
 	List<ConsultingVO> selectSearchInfoListById(Map<String, String> searchMap);
 	
-
+    //상담건수  
 	int cntConsulting();
 	
+	//페이징(전체상담조회)
 	List<ConsultingVO> selectPageConsulting(int pageNo, int boardCntPerPage);
-
+	
+	//페이징(id별 전체상담조회)
+	List<ConsultingVO> selectPageConsultingById(int pageNo, int boardCntPerPage, String id);
 
 	
 	

@@ -12,11 +12,6 @@
  
  <script>
 
-function doAction(customerInformId){
-	
-	location.href="${ pageContext.request.contextPath }/myPage/" + customerInformId;
-}
-
 </script>	
 
 <style>
@@ -58,32 +53,58 @@ function doAction(customerInformId){
 	<br>
 	<br>
   <!-- 관리자 로그인 시 ui  -->
-    
       <div align="center">
          <div class="section-title">
           <h2>손님 리스트</h2>
         </div>
 		<div class="table-responsive" align="center">
-	   
-	   <select id="mainCategory" name="mainCategory" class="f0" style="width:10%">
-                    <option value="">선택하세요</option>
-                    <option value="이름">이름</option>
-                    <option value="아이디">아이디</option>
-                    <option value="비밀번호">비밀번호</option>
-                    <option value="생년월일">생년월일</option>
-                    <option value="성별">성별</option>
-                    <option value="전화번호">전화번호</option>
-                    <option value="직업">직업</option>
-                    <option value="주소">주소</option>
-                    <option value="이메일">이메일</option>
-                    <option value="디지털교육">디지털교육</option>
-                    <option value="관심사">관심사</option>
-                    <option value="나이대">나이대</option>
-                    <option value="유형">유형</option>
-                    <option value="고객유형">고객 유형</option>
-          </select>
-      	<input type="text" id="searchWord" placeholder="검색어를 입력하세요" style="width:20%">
-      
+          <select id="gender" name="gender" style="width:6%">
+                      <option>성별</option>
+                     <option value="M">남성</option>
+                     <option value="F">여성</option>
+	      </select>
+	      <select id="digitalEdu" name="digitalEdu" style="width:8%">
+                     <option>디지털교육</option>
+                     <option value="Y">교육 받음</option>
+                     <option value="N">교육 받지 않음</option>
+	      </select>
+	       <select id="interest" name="interest" style="width:8%">
+                      <option>관심사</option>
+                    <option value="예금">예금</option>
+                    <option value="적금">적금</option>
+                    <option value="대출">대출</option>
+                    <option value="카드">카드</option>
+                    <option value="보험">보험</option>
+                    <option value="펀드">펀드</option>
+                    <option value="외환">외환</option>
+                    <option value="연금">연금</option>
+                    <option value="기타">기타</option>
+	      </select>
+	      <select id="age" name="age" style="width:8%">
+	      			 <option>연령</option>
+                     <option value="20대">20대</option>
+                     <option value="30대">30대</option>
+                     <option value="40대">40대</option>
+                     <option value="50대">50대</option>
+                     <option value="60대이상">60대 이상</option>
+	      </select>
+	      <select id="job" name="job" style="width:8%">
+	      			 <option>직업</option>
+                    <option value="회사원">회사원</option>
+                    <option value="주부">주부</option>
+                    <option value="학생">학생</option>
+                    <option value="기타">기타</option>
+	      </select>
+	      <select id="customerType" name="customerType" style="width:8%">
+	      			 <option>유형</option>
+                    <option value="잠재">잠재</option>  <!-- 상품가입안함, 상담만 진행 -->
+                    <option value="일반">일반</option>  <!-- 상품 가입하고 이용중 -->
+                    <option value="VIP">VIP</option> <!-- 다수의 상품 가입, 5년이상 이용 -->
+                    <option value="블랙">블랙</option>  <!-- 이유없는 폭언, 영업장 피해 ETC -->
+	      </select>
+	      
+          <input type="text" id="searchWord" placeholder=" ID/이름 /생년월일  조회" style="width:20%">
+          <button style="height: 29px;" class="btn btn-primary px-3 ml-4" onclick="searchMember()">검색</button>
       	<br><br>
             <table class="table table-hover table-sm" style="width:89%; height:15%" id="inform">
               <thead> 
@@ -106,8 +127,8 @@ function doAction(customerInformId){
               </tr>
              </thead>
              
+				<tbody id="memberList">
 			<c:forEach items="${ allInformList }" var="customerInform">
-				<tbody>
 				<tr>
 					<td><c:out value='☆'/></td>
 					<td><c:out value='${ customerInform.name }'/></td>
@@ -126,11 +147,41 @@ function doAction(customerInformId){
 					<td align="center"><c:out value='${ customerInform.type }'/></td>
 					<td align="center"><c:out value='${ customerInform.customerType }'/></td>
 				</tr>
-				</tbody> 
 		</c:forEach>	
+				</tbody> 
 		</table>
 		<br>
-		 <input type="button"  style="align:right" class="btn btn-primary px-3 ml-4" value="손님등록" onclick="enrollAction()">
+			<!-- ====페이징======================================================================================= -->
+	<div><!--style="margin-left: 10%"  -->
+<!-- ---------이전 버튼 구현 --------------------------- -->
+			<c:if test="${blockNo != 1 }"> 
+				<a href= "${pageContext.request.contextPath}/customerInform/${blockNo - 1}/${blockStartPageNo-1 }">이전</a> &nbsp;
+			</c:if>
+			
+<!-- ---------페이지 구현 --------------------------- -->			
+			<c:forEach var="i" begin="${blockStartPageNo }" end="${blockEndPageNo }">
+				<c:choose>
+				
+					<c:when test="${pageNo == i }"> <!-- 현 페이지 넘버와 클릭할수있는 페이지 넘버가 같으면 링크없애줌 -->
+						${i }&nbsp;|&nbsp;
+					</c:when>
+					
+					<c:otherwise>
+						<a href="${pageContext.request.contextPath}/customerInform/${blockNo}/${i }">${i }&nbsp;</a>|&nbsp;
+					</c:otherwise>
+					
+				</c:choose>
+			</c:forEach>
+			
+<!-- ---------다음 버튼 구현 --------------------------- -->	
+			<c:if test="${blockNo != totalBlockCnt}">&nbsp;
+				<a href="${pageContext.request.contextPath}/customerInform/${blockNo + 1}/${blockEndPageNo+1 }">다음</a> &nbsp;
+			</c:if>
+	</div>	
+	
+<!-- ==== 페이징 끝! ================================================================== -->	
+
+		 <input type="button"  style="align:right; margin-left: 80%!important;" class="btn btn-primary px-3 ml-4" value="손님등록" onclick="enrollAction()">
 		<br>
 		<br>
 		<br>
@@ -139,7 +190,7 @@ function doAction(customerInformId){
 		 --><br><br><br>
 	</div>
 	</div>
-   
+
 </section>
 	<br>
 	<br>
@@ -147,10 +198,100 @@ function doAction(customerInformId){
 	<br>
 	<br>
 	<br>
+
+<script>
+
+
+function searchMember() {
+	let gender = $("#gender").val()
+	let digitalEdu = $("#digitalEdu").val()
+	let interest = $("#interest").val()
+	let age = $("#age").val()
+	let job = $("#job").val()
+	let customerType = $("#customerType").val()
+	let searchWord = $("#searchWord").val()
+
+	console.log(gender)
+	console.log(digitalEdu)
+	console.log(interest)
+	console.log(age )
+	console.log(job)
+	console.log(customerType)
+	console.log(searchWord)
+	
+
+	if(gender != '' || digitalEdu != '' || interest != '' || age != '' || job != '' || customerType != '' || searchWord != '' ) {
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/searchMember",
+		type : 'get',
+		data : {
+			gender :  gender,
+			digitalEdu : digitalEdu, 
+			interest : interest, 
+			age : age, 
+			job : job,
+			customerType : customerType,
+			searchWord : searchWord
+			
+		},
+		success : function(data) {
+			console.log("성공")
+			let md = JSON.parse(data) 
+			console.log(md)
+			$("#memberList").empty()
+			for (key in md) {
+				
+				console.log(md[key]["id"])
+				
+				let str = ""
+				
+				str += "<tr>";
+				str += '<td>' + '☆' +'</td>'
+				str += '<td>' + md[key]['name'] + '</td>'
+				str += '<td>' + '<a href="javascript:doAction(' + md[key]['id'] + ')">' + md[key]['id'] +'</a>' + '</td>'
+				str += '<td>' + md[key]['password'] + '</td>'
+				str += '<td>' + md[key]['birth'] + '</td>'
+				str += '<td align="center">' + md[key]['gender'] + '</td>'
+				str += '<td>' + '<a href=tel:'+ md[key]['phoneNo'] + '>'+ md[key]['phoneNo'] +'</a>'+ '</td>'
+				str += '<td>' + md[key]['job'] + '</td>'
+				str += '<td>' + md[key]['address'] + '</td>'
+                str += '<td>' + md[key]['emailId'] + '@' + md[key]['emailDomain'] +'</td>'
+                str += '<td align="center">' + md[key]['digitalEdu'] + '</td>'
+                str += '<td>' + md[key]['interest'] + '</td>'
+                str += '<td>' + md[key]['age'] + '</td>'
+                str += '<td align="center">' + md[key]['type'] + '</td>'
+                str += '<td align="center">' + md[key]['customerType'] +'</td>'
+                str += '<tr>';
+                
+                $("#memberList").append(str)
+
+			}
+			
+		},
+		error : function() {
+			console.log("실패")
+		}
+	
+	})
+} else {
+	location.href = "${pageContext.request.contextPath}/customerInform"
+ }		
+}
+
+function doAction(customerInformId){
+			
+			location.href="${ pageContext.request.contextPath }/myPage/" + customerInformId;
+		}
+
+
+
+</script>
 	
 	<footer id="footer">
 		<%@ include file="/resources/assets/include/footer.jsp"%>
 	</footer>
     <jsp:include page="/resources/assets/include/jsFiles.jsp"></jsp:include> 
+   
 </body>
 </html>

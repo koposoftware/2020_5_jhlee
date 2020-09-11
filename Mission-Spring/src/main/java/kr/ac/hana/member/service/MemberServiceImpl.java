@@ -1,10 +1,13 @@
 package kr.ac.hana.member.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.ac.hana.consulting.vo.ConsultingVO;
 import kr.ac.hana.member.dao.MemberDAO;
 import kr.ac.hana.member.vo.MemberVO;
 
@@ -39,6 +42,32 @@ public class MemberServiceImpl implements MemberService {
 		List<MemberVO> customerInform = memberDAO.selectCustomerInform(id);
 		
 		return customerInform;
+	}
+
+	@Override
+	public int cntMember() {
+		
+		int totalBoardCnt = memberDAO.cntMember();
+		
+		return totalBoardCnt;
+	}
+
+	@Override
+	public List<MemberVO> selectPageMember(int pageNo, int boardCntPerPage) {
+		
+		List<MemberVO> memberList = memberDAO.selectPageMember(pageNo, boardCntPerPage);
+				
+		return memberList;
+	}
+
+	@Override
+	public List<MemberVO> selectSearchMember(Map<String, String> searchMap) {
+
+		List<MemberVO> searchMemberList = new ArrayList<MemberVO>();
+		
+		searchMemberList = memberDAO.selectSearchMember(searchMap);
+		
+		return  searchMemberList;
 	}
 	
 	

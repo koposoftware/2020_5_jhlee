@@ -1,7 +1,9 @@
 package kr.ac.hana.member.dao;
 
 import java.util.List;
+import java.util.Map;
 
+import kr.ac.hana.consulting.vo.ConsultingVO;
 import kr.ac.hana.member.vo.MemberVO;
 
 public interface MemberDAO {
@@ -25,4 +27,14 @@ public interface MemberDAO {
 	
 	public List<MemberVO> selectCustomerInform(String id);
 	
+	//멤버수 
+	int cntMember();
+	
+	//페이징(전체상담조회)
+	List<MemberVO> selectPageMember(int pageNo, int boardCntPerPage);
+	
+	//고객정보 검색 
+	List<MemberVO> selectSearchMember(Map<String, String> searchMap);
+
+		
 }

@@ -52,7 +52,7 @@
           <li><a href="${ pageContext.request.contextPath }/consultingList/admin/1/1">상담 리스트</a></li>
           </c:if>
           <c:if test="${ empty adminLoginVO and not empty loginVO}">          
-          <li><a href="${ pageContext.request.contextPath }/consultingList">상담 리스트</a></li>
+          <li><a href="${ pageContext.request.contextPath }/consultingList/1/1">상담 리스트</a></li>
           </c:if>
           <c:if test="${ empty adminLoginVO and empty loginVO}">      
           <li><a href="${ pageContext.request.contextPath }/login">추가 상담</a></li>
@@ -78,7 +78,7 @@
           <li class="drop-down"><a href="#testimonials">마이페이지</a>
           <ul>          
           <li><a href="${ pageContext.request.contextPath }/management">실적 관리</a></li>
-          <li><a href="${ pageContext.request.contextPath }/customerInform">손님 관리</a></li>
+          <li><a href="${ pageContext.request.contextPath }/customerInform/1/1">손님 관리</a></li>
           <li><a href="${ pageContext.request.contextPath }/calendar">일정 관리</a></li>
           </ul>
           </li>

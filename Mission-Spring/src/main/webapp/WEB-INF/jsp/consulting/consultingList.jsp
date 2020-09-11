@@ -111,7 +111,7 @@ input.search-go {
         </div>
       </c:if>
       
-<!--       여기서부터 검색항목 시작 -->
+<!-- 여기서부터 검색항목 시작 -->
       	 <select id="mainCategory" name="mainCategory" class="f0" style="width:10%">
                     <option value="">대분류</option>
                     <option value="금융상품">금융상품</option>
@@ -162,7 +162,7 @@ input.search-go {
               </thead>
               <c:if test="${ empty adminLoginVO and  not empty loginVO}"> 
                  <tbody id="userConsultingList">
-        	 <c:forEach items="${ customerConsultingList }" var="consulting" varStatus="loop">
+        	 <c:forEach items="${ consultingList }" var="consulting" varStatus="loop">
                  <tr>
                   <td align="center">${ consulting.consultingNo }</td>
                   <td>${ consulting.reportYmd }</td>
@@ -231,13 +231,18 @@ input.search-go {
        </table>
       </div>
       </div>        
-        <br>
-        
 <!-- ====페이징======================================================================================= -->
-	<div style="margin-left: 40%">
+	<br>
+	<div style="margin-left: 45%">
 <!-- ---------이전 버튼 구현 --------------------------- -->
 			<c:if test="${blockNo != 1 }"> 
+			 <c:if test="${ not empty adminLoginVO and  empty loginVO}"> 
 				<a href= "${pageContext.request.contextPath}/consultingList/admin/${blockNo - 1}/${blockStartPageNo-1 }">이전</a> &nbsp;
+			</c:if>
+			
+			 <c:if test="${ empty adminLoginVO and  not empty loginVO}"> 
+			 <a href= "${pageContext.request.contextPath}/consultingList/${blockNo - 1}/${blockStartPageNo-1 }">이전</a> &nbsp;
+			 </c:if>
 			</c:if>
 			
 <!-- ---------페이지 구현 --------------------------- -->			
@@ -249,7 +254,12 @@ input.search-go {
 					</c:when>
 					
 					<c:otherwise>
+					<c:if test="${ not empty adminLoginVO and  empty loginVO}"> 
 						<a href="${pageContext.request.contextPath}/consultingList/admin/${blockNo}/${i }">${i }&nbsp;</a>|&nbsp;
+					</c:if>
+					<c:if test="${ empty adminLoginVO and not empty loginVO}"> 
+						<a href="${pageContext.request.contextPath}/consultingList/${blockNo}/${i }">${i }&nbsp;</a>|&nbsp;
+					</c:if>
 					</c:otherwise>
 					
 				</c:choose>
@@ -257,11 +267,17 @@ input.search-go {
 			
 <!-- ---------다음 버튼 구현 --------------------------- -->	
 			<c:if test="${blockNo != totalBlockCnt}">&nbsp;
+			<c:if test="${ not empty adminLoginVO and  empty loginVO}"> 
 				<a href="${pageContext.request.contextPath}/consultingList/admin/${blockNo + 1}/${blockEndPageNo+1 }">다음</a> &nbsp;
+			</c:if>
+			<c:if test="${ empty adminLoginVO and not empty loginVO}"> 
+				<a href="${pageContext.request.contextPath}/consultingList/${blockNo + 1}/${blockEndPageNo+1 }">다음</a> &nbsp;
+			</c:if>
 			</c:if>
 	</div>	
 	
-<!-- ==== 페이징 끝! (여기까지만 보셔도 됩니다.)================================================================== -->	
+<!-- ==== 페이징 끝! ================================================================== -->	
+
 
 	</section> 
 	<br>

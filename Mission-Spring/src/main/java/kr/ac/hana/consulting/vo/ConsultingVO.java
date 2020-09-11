@@ -17,6 +17,8 @@ public class ConsultingVO {
 	private String empno;
 	private String progress;
 	private String addConsulting;
+	
+	
 	public int getConsultingNo() {
 		return consultingNo;
 	}

@@ -12,7 +12,7 @@
 </head>
 <script>
 	function goList(){
-		location.href="${ pageContext.request.contextPath }/consultingList/admin";
+		location.href="${ pageContext.request.contextPath }/consultingList/admin/1/1";
 	}
 
 

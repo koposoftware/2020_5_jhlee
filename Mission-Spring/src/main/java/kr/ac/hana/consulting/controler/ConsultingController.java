@@ -38,21 +38,12 @@ public class ConsultingController {
 //	public ModelAndView consultingList(HttpServletRequest request) {
 	public String consultingList(@PathVariable("blockNo")int blockNo, @PathVariable("pageNo")int pageNo,  HttpServletRequest request) {
 
-		// 쉬운 부분부터..
-		
-//		int blockNo = Integer.parseInt(request.getParameter("blockNo"));
-//		int pageNo = Integer.parseInt(request.getParameter("pageNo"));
-		
 		System.out.println("블럭넘"+blockNo);
 		System.out.println("페이지넘"+pageNo);
-		
-//		if (blockNo == 0 && pageNo == 0) {
-//			blockNo = 1;
-//			pageNo = 1;
-//		}
+
 
 		// 임의 설정이 필요한 부분
-		int boardCntPerPage = 5;
+		int boardCntPerPage = 10;
 		int pageCntPerBlock = 3;
 
 		// 블록의 시작 페이지와 끝 페이지 (등차수열 적용)
@@ -99,19 +90,87 @@ public class ConsultingController {
 		return "consulting/consultingList";
 	}
 
-	// 고객별 상담리스트 전체 조회
+	// 고객별 상담리스트 전체 조회 (페이징포함)
 	@RequestMapping("/consultingList/{blockNo}/{pageNo}")
-	public ModelAndView customerConsultingList(HttpSession session) {
+	public String consultingList(@PathVariable("blockNo")int blockNo, @PathVariable("pageNo")int pageNo, HttpServletRequest request,HttpSession session) {
 
+		System.out.println("블럭넘"+blockNo);
+		System.out.println("페이지넘"+pageNo);
+		
 		MemberVO loginVO = (MemberVO) session.getAttribute("loginVO");
 
-		List<ConsultingVO> customerConsultingList = consultingService.selectById(loginVO.getId());
+		    String id = loginVO.getId();
+			// 임의 설정이 필요한 부분
+			int boardCntPerPage = 5;
+			int pageCntPerBlock = 3;
 
-		ModelAndView mav = new ModelAndView("consulting/consultingList"); // spring-mvc.xml에 view-resolvers태그에 정해둠
-		mav.addObject("customerConsultingList", customerConsultingList);
+			
+			// 블록의 시작 페이지와 끝 페이지 (등차수열 적용)
+			int blockStartPageNo = 1 + pageCntPerBlock * (blockNo - 1);
+			int blockEndPageNo = pageCntPerBlock * blockNo;
 
-		return mav;
-	}
+			//// 전체 게시글 수 구하는 코드(dao로 db에 접근해서 cnt 얻어옴)
+			int totalBoardCnt = consultingService.cntConsulting();
+
+			//// 전체 페이지 수 구하는 코드
+			int totalPageCnt = totalBoardCnt / boardCntPerPage;
+			if (totalBoardCnt % boardCntPerPage > 0) {
+				totalPageCnt++; // 나머지가 있으면 페이지가 다 돌고 남은 게시글이 있는 것이기에 전체 페이지 수에 +1 해줌
+			}
+
+			//// 만약 위 연산으로 계산한 해당 블록 끝 번호가 전체 페이지 번호 수 보다 크다면 블록 끝 번호는 전체 페이지 번호 수 (블록 끝 번호가
+			//// 계속 전체 페이지 번호수보다 작다가 마지막에만 커지거나 같아짐)
+			if (blockEndPageNo > totalPageCnt) {
+				blockEndPageNo = totalPageCnt;
+			}
+
+			// 전체 블록 개수 구하기 (다음 버튼 기능을 구현해주기 위해)
+			int totalBlockCnt = totalPageCnt / pageCntPerBlock;
+			if (totalPageCnt % pageCntPerBlock > 0) {
+				totalBlockCnt++;
+
+			}
+
+			// 해당 페이지에서 필요한만큼의 게시글 데이터 얻어오기
+			
+			//List<ConsultingVO> customerConsultingList = consultingService.selectById(loginVO.getId());
+			List<ConsultingVO> consultingList = consultingService.selectPageConsultingById(pageNo, boardCntPerPage,loginVO.getId()); // 이거 dao 설명 필요 (rownum)
+
+			request.setAttribute("blockStartPageNo", blockStartPageNo);
+			request.setAttribute("blockEndPageNo", blockEndPageNo);
+			request.setAttribute("blockNo", blockNo);
+			request.setAttribute("totalBlockCnt", totalBlockCnt);
+			request.setAttribute("pageNo", pageNo);
+			/* request.setAttribute("id", id); */
+			
+			System.out.println("id:"+id);
+			
+			request.setAttribute("consultingList", consultingList);
+			
+//			List<ConsultingVO> consultingList = consultingService.selectAllConsulting();
+//			ModelAndView mav = new ModelAndView("consulting/consultingList"); // spring-mvc.xml에 view-resolvers태그에 정해둠
+//			mav.addObject("consultingList", consultingList);
+			System.out.println(consultingList);
+			return "consulting/consultingList";
+		}
+
+		// 고객별 상담리스트 전체 조회
+		/*
+		 * @RequestMapping("/consultingList") public ModelAndView
+		 * customerConsultingList(HttpSession session) {
+		 * 
+		 * MemberVO loginVO = (MemberVO) session.getAttribute("loginVO");
+		 * 
+		 * List<ConsultingVO> customerConsultingList =
+		 * consultingService.selectById(loginVO.getId());
+		 * 
+		 * ModelAndView mav = new ModelAndView("consulting/consultingList"); //
+		 * spring-mvc.xml에 view-resolvers태그에 정해둠 mav.addObject("customerConsultingList",
+		 * customerConsultingList);
+		 * 
+		 * return mav; }
+		 */
+
 
 	// 고객 정보 검색(관리자 ui)
 	@ResponseBody
@@ -243,7 +302,7 @@ public class ConsultingController {
 		}
 
 		consultingService.insert(consultingVO);// 바꿈
-		return "redirect:/consultingList/admin";
+		return "redirect:/consultingList/admin/1/1";
 	}
 
 }

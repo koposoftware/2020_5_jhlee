@@ -99,6 +99,14 @@ public class ConsultingServiceImpl implements ConsultingService {
 		
 		return consultingList;
 	}
+
+	@Override
+	public List<ConsultingVO> selectPageConsultingById(int pageNo, int boardCntPerPage, String id) {
+		
+		List<ConsultingVO> consultingList = consultingDAO.selectPageConsultingById(pageNo, boardCntPerPage, id);
+		
+		return consultingList;
+	}
 	
 	
 	

@@ -45,6 +45,55 @@
 	</select>
 	
 	
+	<!-- 전체 회원 조회 with 페이징  -->
+	<select id="selectPageMember" parameterType="map" resultMap="memberMap">
+		SELECT *
+			FROM ( 
+				SELECT ROWNUM AS RNUM, A.*
+					FROM ( select * from customer_tb  order by name asc ) A 
+				<![CDATA[ WHERE ROWNUM <= #{ boardCntPerPage } * #{ pageNo } ]]>
+				)
+		WHERE RNUM > #{ boardCntPerPage } * ( #{ pageNo } - 1 )  
+	</select>
+	
+	<!--페이징 건수마다 나오게 하려고   -->
+	<select id="cntMember" resultType="int">
+		select count(*) from customer_tb 
+	</select>
+	
+	<!-- 고객 리스트 정보 검색 -->
+	<select id="selectSearchMember" parameterType="map" resultMap="memberMap" >
+		select *
+			from  customer_tb 
+			where 
+			<choose>
+					<when test="gender != ''">
+						gender = #{gender}
+					</when>
+					<when test="digitalEdu != ''">
+						digital_edu = #{digitalEdu}
+					</when>
+					<when test="interest != ''">
+						interest = #{interest} 
+					</when>
+					<when test="age != ''">
+						age = #{age}
+					</when>
+					<when test="job != ''">
+						job = #{job}
+					</when>
+					<when test="customerType != ''">
+						customer_type = #{customerType}
+					</when>
+					<when test="searchWord != ''">
+						id like '%'||#{searchWord}||'%' or name like '%'||#{searchWord}||'%' or birth like '%'||#{searchWord}||'%'
+					</when>
+			
+			</choose>
+			order by name asc
+	</select>
+	
+	
 	<!-- 손님별 회원 정보 조회 -->
 	<select id="selectCustomerInform" resultMap="memberMap" parameterType="String">
 		select name,id,password,birth,gender,phone_no,job,address,email_id, email_domain,digital_edu,interest 

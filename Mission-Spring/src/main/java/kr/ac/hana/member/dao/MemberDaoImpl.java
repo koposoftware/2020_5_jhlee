@@ -1,11 +1,14 @@
 package kr.ac.hana.member.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.hana.consulting.vo.ConsultingVO;
 import kr.ac.hana.member.vo.MemberVO;
 
 @Repository
@@ -45,10 +48,33 @@ public class MemberDaoImpl implements MemberDAO{
 		
 		return customerInform;
 	}
-	
-	
-	
-	
 
+	@Override
+	public int cntMember() {
+		int totalBoardCnt = sqlSession.selectOne("member.dao.MemberDAO.cntMember");
+		
+		return totalBoardCnt;
+	}
+
+	@Override
+	public List<MemberVO> selectPageMember(int pageNo, int boardCntPerPage) {
+
+		//파라미터 두개가 필요한데 넘어갈 때 하나로 넘어가야 해서 map으로 넘겨줌 
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pageNo", pageNo);
+		map.put("boardCntPerPage", boardCntPerPage);
+		
+		List<MemberVO>  memberList = sqlSession.selectList("member.dao.MemberDAO.selectPageMember",map);
+
+		return  memberList;
+	}
+
+	@Override
+	public List<MemberVO> selectSearchMember(Map<String, String> searchMap) {
+		
+		List<MemberVO> memberList = sqlSession.selectList("member.dao.MemberDAO.selectSearchMember",searchMap);
+		
+		return memberList;
+	}
 	
 }

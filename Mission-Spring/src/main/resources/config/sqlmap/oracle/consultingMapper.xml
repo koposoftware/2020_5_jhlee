@@ -103,14 +103,18 @@
 	</select>
 	
 	
+	<!--페이징 건수마다 나오게 하려고   -->
 	<select id="cntConsulting" resultType="int">
 		select count(*) from report_tb
 	</select>
 	
+	
+	<!--관리자 접속 전체상담조회 페이징  -->
 	<select id="selectPageConsulting" parameterType="map" resultMap="consultingMap">
 		SELECT *
 			FROM ( 
-				SELECT ROWNUM AS RNUM, A.* 
+				SELECT ROWNUM AS RNUM, A.consulting_no, to_char(report_ymd, 'yyyy-mm-dd') as report_ymd, customer_type, id, name, birth,
+		main_category, middle_category,title, consulting_report, consulting_channel, admin_name, empno, progress, add_consulting
 					FROM ( select * from report_tb  order by consulting_no desc) A 
 				<![CDATA[ WHERE ROWNUM <= #{ boardCntPerPage } * #{ pageNo } ]]>
 				)
@@ -121,11 +125,19 @@
 		
 	</select>
 	
+
+	<!--유저 접속 ID별 전체상담조회 페이징   -->
+	<select id="selectPageConsultingById" parameterType="map" resultMap="consultingMap">
+		SELECT *
+			FROM ( 
+				SELECT ROWNUM AS RNUM, A.consulting_no, to_char(report_ymd, 'yyyy-mm-dd') as report_ymd, customer_type, id, name, birth,
+		main_category, middle_category,title, consulting_report, consulting_channel, admin_name, empno, progress, add_consulting 
+					FROM ( select * from report_tb  where id = #{ id }  order by consulting_no desc) A 
+				<![CDATA[ WHERE ROWNUM <= #{ boardCntPerPage } * #{ pageNo } ]]>
+				)
+		WHERE RNUM > #{ boardCntPerPage } * ( #{ pageNo } - 1 )  
+	</select>	
 	
-	 
-	 
-	 
-	 
 	
 	<!-- 상담기록 노트에 등록  -->
 	<insert id="insert" parameterType="consultingVO">

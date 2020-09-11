@@ -103,9 +103,23 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 
 		return consultingList;
 	}
-	
-	
-	
+
+
+
+	@Override
+	public List<ConsultingVO> selectPageConsultingById(int pageNo, int boardCntPerPage, String id) {
+		
+		//파라미터 여러개가 필요한데 넘어갈 때 하나로 넘어가야 해서 map으로 넘겨줌 
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pageNo", pageNo);
+		map.put("boardCntPerPage", boardCntPerPage);
+		map.put("id", id);
+		
+		
+		List<ConsultingVO> consultingList = sqlSession.selectList("consulting.dao.ConsultingDAO.selectPageConsultingById",map);
+
+		return consultingList;
+	}
 	
 	
 }

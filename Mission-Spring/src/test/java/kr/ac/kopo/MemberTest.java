@@ -66,6 +66,7 @@ public class MemberTest {
 		
 	}
 	
+
 	/*
 	 * @Test public void 회원등록() { MemberVO member = new MemberVO("df", "df", "df",
 	 * "df", "df", "df", "df", "df", "df", "df", "df", "df", "df", "df","df");
