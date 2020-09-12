@@ -24,6 +24,13 @@
 
 <script>
 
+function goInquiry(){
+	
+	location.href="${ pageContext.request.contextPath }/inquiry/1/1";
+}
+
+
+
 function goWrite(frm) {
    var title = frm.title.value;
  //  var writer = frm.writer.value;
@@ -137,7 +144,7 @@ $(document).ready(function(){
       <form method="post" autocomplete="off">
       <table style="width:60%"> <!--  -->
                 <tr>
-                   <th width="23%">제목</th>
+                   <th width="20%">제목</th>
                    <td>
                       <input type="text" name="title" style="width:80%" placeholder="제목을 입력해주세요">
                    </td>
@@ -176,7 +183,8 @@ $(document).ready(function(){
                    </td>
                 </tr>
              </table>
-             <button type="submit" class="btn btn-primary px-3 ml-4" onclick="goWrite(this.form)">등록</button>
+             <button type="submit" class="btn btn-primary px-3 ml-4" onclick="goWrite(this.form)" style="margin-left:3%!important">등록</button>
+     		 <button type="button" class="btn btn-primary px-3 ml-4" onclick="goInquiry()">목록</button>	
       </form>
       
           </div>

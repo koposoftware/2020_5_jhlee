@@ -151,7 +151,7 @@
 				</tbody> 
 		</table>
 		<br>
-			<!-- ====페이징======================================================================================= -->
+<!-- ====페이징======================================================================================= -->
 	<div><!--style="margin-left: 10%"  -->
 <!-- ---------이전 버튼 구현 --------------------------- -->
 			<c:if test="${blockNo != 1 }"> 
@@ -200,7 +200,6 @@
 	<br>
 
 <script>
-
 
 function searchMember() {
 	let gender = $("#gender").val()
@@ -284,10 +283,7 @@ function doAction(customerInformId){
 			location.href="${ pageContext.request.contextPath }/myPage/" + customerInformId;
 		}
 
-
-
 </script>
-	
 	<footer id="footer">
 		<%@ include file="/resources/assets/include/footer.jsp"%>
 	</footer>

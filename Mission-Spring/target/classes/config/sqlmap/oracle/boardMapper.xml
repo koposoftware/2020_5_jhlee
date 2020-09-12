@@ -55,6 +55,46 @@
 		update inquiry_tb set
 		view_cnt = view_cnt + 1
 		 where no = #{no}
-	</update>		
+	</update>	
 	
+	<!--페이징 건수마다 나오게 하려고   -->
+	<select id="cntInquiry" resultType="int">
+		select count(*) from inquiry_tb 
+	</select>
+	
+		
+	<!-- 전체 회원 조회 with 페이징  -->
+	<select id="selectPageInquiry" parameterType="map" resultMap="boardMap">
+		SELECT *
+			FROM ( 
+				SELECT ROWNUM AS RNUM, A.no, title, main_category, middle_category, writer, to_char(reg_date, 'yyyy-mm-dd') as reg_date ,reply_cnt
+					FROM ( select * from inquiry_tb  order by no desc ) A 
+				<![CDATA[ WHERE ROWNUM <= #{ boardCntPerPage } * #{ pageNo } ]]>
+				)
+		WHERE RNUM > #{ boardCntPerPage } * ( #{ pageNo } - 1 )  
+	</select>
+	
+	
+	<!-- 고객 리스트 정보 검색 -->
+	<select id="selectSearchInquiry" parameterType="map" resultMap="boardMap" >
+		select *
+			from  inquiry_tb 
+			where 
+			<choose>
+					<when test="title != '' ">
+						title = #{title}
+					</when>
+					<when test="writer != '' ">
+						  writer = #{writer}
+					</when>
+					<when test="interest != '' ">
+						interest = #{interest} 
+					</when>
+					<when test="searchWord != '' ">
+						id like '%'||#{searchWord}||'%' or name like '%'||#{searchWord}||'%' or birth like '%'||#{searchWord}||'%'
+					</when>
+			</choose>
+			order by no desc
+	</select>
+
 </mapper>

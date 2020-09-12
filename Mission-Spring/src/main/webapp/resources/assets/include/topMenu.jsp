@@ -68,7 +68,7 @@
           <li class="drop-down"><a href="#testimonials">HANADO</a>
           <ul>          
           <li><a href="${ pageContext.request.contextPath }/education">HANADO</a></li>
-          <li><a href="${ pageContext.request.contextPath }/inquiry">Q&A</a></li>
+          <li><a href="${ pageContext.request.contextPath }/inquiry/1/1">Q&A</a></li>
           </ul>
           </li>       
           <c:if test="${ empty adminLoginVO and not empty loginVO}">  

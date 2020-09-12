@@ -1,6 +1,8 @@
 package kr.ac.hana.board.dao;
 
-import java.util.List; 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.hana.board.vo.BoardVO;
+import kr.ac.hana.member.vo.MemberVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO{
@@ -54,7 +57,39 @@ public class BoardDAOImpl implements BoardDAO{
 	public void incrementViewCnt(int no) {
 		sqlSession.update("board.dao.BoardDAO.incrementViewCnt", no);
 		
-	}     
+	}
+
+	@Override
+	public int cntInquiry() {
+		
+		int totalInquiryCnt = sqlSession.selectOne("board.dao.BoardDAO.cntInquiry");
+		
+		return totalInquiryCnt;
+	}
+
+	@Override
+	public List<BoardVO> selectPageInquiry(int pageNo, int boardCntPerPage) {
+		
+	//파라미터 두개가 필요한데 넘어갈 때 하나로 넘어가야 해서 map으로 넘겨줌 
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pageNo", pageNo);
+		map.put("boardCntPerPage", boardCntPerPage);
+				
+		List<BoardVO>  boardList = sqlSession.selectList("board.dao.BoardDAO.selectPageInquiry",map);
+
+		return  boardList;	
+		
+	}
+
+	@Override
+	public List<BoardVO> selectSearchInquiry(Map<String, String> searchMap) {
+		
+		List<BoardVO> boardList = sqlSession.selectList("board.dao.BoardDAO.selectSearchInquiry",searchMap);
+		
+		return boardList;
+	}    
+	
+	
 
 	
 }

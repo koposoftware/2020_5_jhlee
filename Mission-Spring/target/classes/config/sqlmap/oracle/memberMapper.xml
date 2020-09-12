@@ -67,28 +67,29 @@
 			from  customer_tb 
 			where 
 			<choose>
-					<when test="gender != ''">
+					<when test="gender != '' ">
 						gender = #{gender}
 					</when>
-					<when test="digitalEdu != ''">
-						digital_edu = #{digitalEdu}
+			
+					<when test="digitalEdu != '' ">
+						  digital_edu = #{digitalEdu}
 					</when>
-					<when test="interest != ''">
+					<when test="interest != '' ">
 						interest = #{interest} 
 					</when>
-					<when test="age != ''">
+					<when test="age != '' ">
 						age = #{age}
 					</when>
-					<when test="job != ''">
+					<when test="job != '' ">
 						job = #{job}
 					</when>
-					<when test="customerType != ''">
+					<when test="customerType != '' ">
 						customer_type = #{customerType}
 					</when>
-					<when test="searchWord != ''">
+					<when test="searchWord != '' ">
 						id like '%'||#{searchWord}||'%' or name like '%'||#{searchWord}||'%' or birth like '%'||#{searchWord}||'%'
 					</when>
-			
+			     
 			</choose>
 			order by name asc
 	</select>

@@ -10,22 +10,13 @@ public interface MemberService {
 	
 	MemberVO login(MemberVO member);
 
-	
-	/*
-	 * 회원 등록
-	 */
+    //회원 등록
 	void insertMember(MemberVO member);
 	
-
-	/*
-	 * 전체 회원 조회 서비스 
-	 */
+	//전체 회원 조회 서비스 
 	List<MemberVO> selectAllInform();
 	
-	
-	/*
-	 * 고객별 회원 정보 조회 서비스 
-	 */
+	//고객별 회원 정보 조회 서비스 
 	List<MemberVO> selectCustomerInform(String id);
 	
 	//상담건수

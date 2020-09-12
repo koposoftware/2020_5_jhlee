@@ -12,7 +12,7 @@
 <script>
 function doSelect(){
 	
-	location.href="${ pageContext.request.contextPath }/customerInform";
+	location.href="${ pageContext.request.contextPath }/customerInform/1/1";
 }
 
 function doEnrollment(){

@@ -114,7 +114,7 @@
           <li class="drop-down"><a href="${ pageContext.request.contextPath }/calendar">HANADO</a>
           <ul>          
           <li><a href="${ pageContext.request.contextPath }/calendar">HANADO</a></li>
-          <li><a href="${ pageContext.request.contextPath }/inquiry">Q&A</a></li>
+          <li><a href="${ pageContext.request.contextPath }/inquiry/1/1">Q&A</a></li>
           </ul>
           </li>       
      <%--   
@@ -128,7 +128,7 @@
           <ul>          
           <li><a href="${ pageContext.request.contextPath }/management">실적 관리</a></li>
           <li><a href="${ pageContext.request.contextPath }/customerInform/1/1">손님 관리</a></li>
-          <li><a href="${ pageContext.request.contextPath }/calendar">일정 관리</a></li>
+          <li><a href="${ pageContext.request.contextPath }/scedule">일정 관리</a></li>
           </ul>
           </li>
           </c:if>
@@ -184,7 +184,7 @@
                                        사용자, 관리자 모두 편하다!                 
               </p>
               <div class="text-center">
-                <a href="${ pageContext.request.contextPath }/education" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
+                <a href="#faq" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
               </div>
             </div>
           </div>
@@ -195,7 +195,7 @@
                   <div class="icon-box mt-4 mt-xl-0">
                     <i class="bx bx-receipt"></i>
                     <h4>적금 가입을 하고 싶어요</h4>
-                    <p>고객님의 상담기록을 바탕으로  보수적 투자성향으로 분석되어 ---적금을 추천드려요!</p>
+                    <p>고객님의 상담기록을 바탕으로  보수적 투자성향으로 분석되어 하나원큐 적금을 추천드려요!</p>
                   </div>
                 </div>
                 <div class="col-xl-4 d-flex align-items-stretch">
@@ -232,10 +232,11 @@
             <div class="testimonial-item">
              <!--  <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt=""> -->
               <h3>amond7788</h3>
-              <h4>student &amp; Founder</h4>
+              <h4>회사원 </h4>
               <p>
                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                                   하나은행 홈페이지 접속을 위해 공인인증서 로그인을 하였으나 인증실패 후 방법 문의했는데, 상담원분이 로그인부터 인증까지 차근차근 설명해주셔서 해결됐어요!
+                                   친절한 하나은행 추천이요.
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
             </div>
@@ -244,11 +245,11 @@
           <div class="testimonial-wrap">
             <div class="testimonial-item">
 <!--               <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
- -->              <h3>jinhee11</h3>
-              <h4>Designer</h4>
+ -->              <h3>hyunjunhg11</h3>
+              <h4>주부</h4>
               <p>
                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                                     제가 주부라서 저에게 맞는 신용카드를 발급받거나 추천받기 어려웠는데, 콜센터-은행으로 이어지는 통합 상담을 통해 제가 원하던 카드를 발급받았어요.
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
             </div>
@@ -256,12 +257,11 @@
 
           <div class="testimonial-wrap">
             <div class="testimonial-item">
-             <!--  <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt=""> -->
               <h3>kopo213</h3>
-              <h4>Store Owner</h4>
+              <h4>기타</h4>
               <p>
                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                                    공장 운영에 필요한 기업 통장을 발급 받기 전 필요서류를 ONEHANA인터넷 문의를 통해 알 수 있었고, 문의에 이어 추가적인 상담이 가능해서 편했어요!
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
             </div>
@@ -269,12 +269,12 @@
 
           <div class="testimonial-wrap">
             <div class="testimonial-item">
-              <!-- <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt=""> -->
               <h3>hanazzang</h3>
-              <h4>Freelancer</h4>
+              <h4>학생</h4>
               <p>
                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+                   	생애 첫 입출금통장을 받기 위해 은행들을 알아본 결과 한 명 한 명에게 상세한 상담이 진행되는 하나은행을 알게 되었고, 실제 통장 발급 전 상담을 받고 
+                   	믿음이 가서 상품을 가입하게 되었어요. 
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
             </div>
@@ -284,10 +284,10 @@
             <div class="testimonial-item">
               <!-- <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt=""> -->
               <h3>John88</h3>
-              <h4>Entrepreneur</h4>
+              <h4>기타</h4>
               <p>
                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                              최근 저금리 기조로 투자 상품에 관심이 많이 갔는데 아무래도 상담기록이 자세히 남아 있는 하나은행이 신뢰가 가서 이곳에서 상품을 만들었어요! 
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
             </div>
@@ -696,51 +696,51 @@
 
         <div class="section-title">
           <h2>자주 묻는 질문</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>ONEHANA를 이용하시는 손님분들의 자주 묻는 질문들을 확인해주세요!</p>
         </div>
 
         <div class="faq-list">
           <ul>
             <li data-aos="fade-up">
-              <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" class="collapse" href="#faq-list-1">Non consectetur a erat nam at lectus urna duis? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" class="collapse" href="#faq-list-1"> ONEHANA를 어떻게 이용해요? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-1" class="collapse show" data-parent=".faq-list">
                 <p>
-                  Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                                  하나은행 상담채널에서 받으신 상담이 있으시다면 회원가입 시 자동으로 연동이 되어 이용하실 수 있습니다. 기존 상담내역이 존재하지 않으시다면 회원가입을 통해 이용하실 수 있습니다. 
                 </p>
               </div>
             </li>
 
             <li data-aos="fade-up" data-aos-delay="100">
-              <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-2" class="collapsed">Feugiat scelerisque varius morbi enim nunc? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-2" class="collapsed"> 상담기록은 언제까지 보관되나요? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-2" class="collapse" data-parent=".faq-list">
                 <p>
-                  Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                                 상담기록은 5년동안 보관되며, 1년 이상 상담을 받지 않으실 경우 자동으로 상담기록이 소멸되며, 손님이 원하실 경우 5년 후에 연장이 가능합니다. 
                 </p>
               </div>
             </li>
 
             <li data-aos="fade-up" data-aos-delay="200">
-              <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-3" class="collapsed">Dolor sit amet consectetur adipiscing elit? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-3" class="collapsed"> 콜센터에서도 구체적인 상담이 가능할까요? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-3" class="collapse" data-parent=".faq-list">
                 <p>
-                  Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                   	 손님의 상담기록이 통합적으로 기록되기 때문에 콜센터에서도 손님 맞춤 상담을 받아보실 수 있습니다. 
                 </p>
               </div>
             </li>
 
             <li data-aos="fade-up" data-aos-delay="300">
-              <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-4" class="collapsed">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-4" class="collapsed"> 하나은행 상담채널을 모두 알려주세요! <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-4" class="collapse" data-parent=".faq-list">
                 <p>
-                  Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in.
+                                 하나은행의 상담채널은 총 8곳으로 ONEHANA홈페이지 하단에서 확인하실 수 있습니다. 
                 </p>
               </div>
             </li>
             <li data-aos="fade-up" data-aos-delay="400">
-              <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-5" class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-5" class="collapsed"> 상담 기록을 공유하고 싶어요! <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-5" class="collapse" data-parent=".faq-list">
                 <p>
-                  Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.
+                                       상담기록은 카카오톡(PDF다운?)으로 공유가 가능합니다. 
                 </p>
               </div>
             </li>
@@ -922,47 +922,54 @@
      <!--  <div>
         <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
       </div> -->
+      <div class="container" style="align:center">
       <!--지도 api 생성   -->    
 	  <h5>찾아오시는 길 </h5><br> 
-	  <h6>주소  [14222] 경기도 광명시 오리로 904</h6><br>
-	  	
-	<div id="map" style="width:100%;height:350px;"></div>
+	  <h6>주소  [04538] 하나은행 서울시 중구 을지로66 (66, Eulji-ro, Jung-gu, Seoul, Republic of Korea)</h6><br>
+	  <div id="map" style="width:1000px;height:400px;"></div>
+	
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?"></script>
+	    <script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = { 
+		        center: new kakao.maps.LatLng(37.477478, 126.862539), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };
+		
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
+		// 마커가 표시될 위치입니다 
+		var markerPosition  = new kakao.maps.LatLng(37.477478, 126.862539); 
 
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=&libraries=clusterer"></script>
-	<script>
-    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
-        center : new kakao.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표 
-        level : 14 // 지도의 확대 레벨 
-    });
-    
-    // 마커 클러스터러를 생성합니다 
-    var clusterer = new kakao.maps.MarkerClusterer({
-        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-        minLevel: 10 // 클러스터 할 최소 지도 레벨 
-    });
- 
-    // 데이터를 가져오기 위해 jQuery를 사용합니다
-    // 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
-    $.get("/${pageContext.request.contextPath}"/branchMap, function(data) {
-        // 데이터에서 좌표 값을 가지고 마커를 표시합니다
-        // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
-        var markers = $(data.positions).map(function(i, position) {
-            return new kakao.maps.Marker({
-                position : new kakao.maps.LatLng(position.lat, position.lng)
-            });
-        });
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+		    position: markerPosition
+		});
 
-        // 클러스터러에 마커들을 추가합니다
-        clusterer.addMarkers(markers);
-    });
-</script>
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
+
+
+		var iwContent = '<div style="padding:5px;"> GNEE로! &nbsp; <a href="https://map.kakao.com/link/to/Gnee!,37.477478, 126.862539" style="color:purple" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+		    iwPosition = new kakao.maps.LatLng(37.477478, 126.862539); //인포윈도우 표시 위치입니다
+
+		// 인포윈도우를 생성합니다
+		var infowindow = new kakao.maps.InfoWindow({
+		    position : iwPosition, 
+		    content : iwContent 
+		});
+		  
+		// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+		infowindow.open(map, marker);    
+	
+		</script>
 		<br>
 	    <h6>[교통수단 안내]</h6><br>
-		<h6>지하철 7호선 철산역 3번출구 광명사거리 방면 478m</h6>
-		<h6>버스 6616, 6638, 504, 101, 11-1, 11-2, 12, 21, 22, 27, 17, 2: 버9스정류장 광명시청 하차 </h6>
+		<h6> 지하철 2호선 을지로입구역 </h6>
+		<h6>버스 6616, 6638, 504, 101, 2: 버스정류장 을지로입구역 하차 </h6>
 	
-
+          
+</div>
   <!--     <div class="container">
         <div class="row mt-5">
 

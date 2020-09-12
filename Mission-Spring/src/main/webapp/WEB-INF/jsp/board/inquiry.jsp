@@ -45,6 +45,9 @@
       <div align = "center">  
         <div class="section-title">
           <h2>Q&A</h2>
+       <c:if test="${ not empty loginVO }">
+         <button onclick="goWriteForm()" class="btn btn-primary px-3 ml-4" style="align:write; margin-left: 63%!important;">문의하기</button>  
+      </c:if>
         </div>    
       <table style="width: 70%">
          <tr class="jj">
@@ -85,46 +88,128 @@
          </c:forEach>       
       </table>
       <br>
+<!-- ====페이징======================================================================================= -->
+	<div><!--style="margin-left: 10%"  -->
+<!-- ---------이전 버튼 구현 --------------------------- -->
+			<c:if test="${blockNo != 1 }"> 
+				<a href= "${pageContext.request.contextPath}/inquiry/${blockNo - 1}/${blockStartPageNo-1 }">이전</a> &nbsp;
+			</c:if>
+			
+<!-- ---------페이지 구현 --------------------------- -->			
+			<c:forEach var="i" begin="${blockStartPageNo }" end="${blockEndPageNo }">
+				<c:choose>
+				
+					<c:when test="${pageNo == i }"> <!-- 현 페이지 넘버와 클릭할수있는 페이지 넘버가 같으면 링크없애줌 -->
+						${i }&nbsp;|&nbsp;
+					</c:when>
+					
+					<c:otherwise>
+						<a href="${pageContext.request.contextPath}/inquiry/${blockNo}/${i }">${i }&nbsp;</a>|&nbsp;
+					</c:otherwise>
+					
+				</c:choose>
+			</c:forEach>
+			
+<!-- ---------다음 버튼 구현 --------------------------- -->	
+			<c:if test="${blockNo != totalBlockCnt}">&nbsp;
+				<a href="${pageContext.request.contextPath}/inquiry/${blockNo + 1}/${blockEndPageNo+1 }">다음</a> &nbsp;
+			</c:if>
+	</div>	
+<!-- ==== 페이징 끝! ================================================================== -->	
 
       
       <%-- <button>새글등록</button>  이렇게 버튼을 통해서 가게 해주려면 javascript나 jquery 문법 필요함 --%>
       <!-- 로그인 되어있을 때만 새 글 등록하게! -->
-      <c:if test="${ not empty loginVO }">
-         <button onclick="goWriteForm()" class="btn btn-primary px-3 ml-4" style="align:write">문의하기</button>  
-      <br>
-      </c:if>
-      <br>
-      <br>
-      <br>
-
+    
   <!-- 검색기능  -->
   <br>
    <div class="form-group row justify-content-center">
 
 			<div class="w100" style="padding-right:10px">
-
 				<select class="form-control form-control-sm" name="searchType" id="searchType">
-
 					<option value="title">제목</option>
-
-					<option value="Content">본문</option>
-
-					<option value="reg_id">작성자</option>
-
+					<option value="writer">작성자</option>
 				</select>
-
 			</div>
-
+			
 			<div class="w300" style="padding-right:10px">
 				<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
 			</div>
-
 			<div>
 				<button class="btn btn-primary px-3 ml-4" name="btnSearch" style="width:100pt" id="btnSearch">검색</button>
 			</div>
 		</div>
    </div>
    </section>
+   
+ <script>
+
+function searchInquiry() {
+	let title = $("#title").val()
+	let writer = $("#writer").val()
+
+	console.log(title)
+	console.log(writer)
+	
+
+	if(title != '' || writer != '' ) {
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/searchInquiry",
+		type : 'get',
+		data : {
+			title :  writer,
+			digitalEdu : digitalEdu
+			
+		},
+		success : function(data) {
+			console.log("성공")
+			let md = JSON.parse(data) 
+			console.log(md)
+			$("#boardList").empty()
+			for (key in md) {
+				
+				console.log(md[key]["id"])
+				
+				let str = ""
+				
+				str += "<tr>";
+				str += '<td>' + '☆' +'</td>'
+				str += '<td>' + md[key]['name'] + '</td>'
+				str += '<td>' + '<a href="javascript:doAction(' + md[key]['id'] + ')">' + md[key]['id'] +'</a>' + '</td>'
+				str += '<td>' + md[key]['password'] + '</td>'
+				str += '<td>' + md[key]['birth'] + '</td>'
+				str += '<td align="center">' + md[key]['gender'] + '</td>'
+				str += '<td>' + '<a href=tel:'+ md[key]['phoneNo'] + '>'+ md[key]['phoneNo'] +'</a>'+ '</td>'
+				str += '<td>' + md[key]['job'] + '</td>'
+				str += '<td>' + md[key]['address'] + '</td>'
+                str += '<td>' + md[key]['emailId'] + '@' + md[key]['emailDomain'] +'</td>'
+                str += '<td align="center">' + md[key]['digitalEdu'] + '</td>'
+                str += '<td>' + md[key]['interest'] + '</td>'
+                str += '<td>' + md[key]['age'] + '</td>'
+                str += '<td align="center">' + md[key]['type'] + '</td>'
+                str += '<td align="center">' + md[key]['customerType'] +'</td>'
+                str += '<tr>';
+                
+                $("#boardList").append(str)
+
+			}
+			
+		},
+		error : function() {
+			console.log("실패")
+		}
+	
+	})
+} else {
+	location.href = "${pageContext.request.contextPath}/inquiry"
+    
+    }		
+  }
+
+
+</script>  
+   
     <br>
 	<br>
 	<br>
