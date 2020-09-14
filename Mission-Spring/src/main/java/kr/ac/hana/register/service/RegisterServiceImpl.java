@@ -10,6 +10,7 @@ import kr.ac.hana.board.dao.BoardDAO;
 import kr.ac.hana.board.vo.BoardVO;
 import kr.ac.hana.register.dao.RegisterDAO;
 import kr.ac.hana.register.vo.RegisterVO;
+import kr.ac.hana.reply.vo.ReplyVO;
 
 @Service
 public class RegisterServiceImpl implements RegisterService {
@@ -40,4 +41,21 @@ public class RegisterServiceImpl implements RegisterService {
 		registerDAO.insert(register);
 		
 	}
+
+
+	@Override
+	public List<RegisterVO> selectAllByEmpno(String empno) {
+	List<RegisterVO> reservationList = registerDAO.selectAllByEmpno(empno);
+		
+		return reservationList;
+	}
+
+
+	@Override
+	public void insertSchedule(RegisterVO register) {
+		
+		registerDAO.insertSchedule(register);
+
+	}
+
 }

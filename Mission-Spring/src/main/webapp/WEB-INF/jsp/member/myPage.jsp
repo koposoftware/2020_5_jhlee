@@ -140,7 +140,7 @@ function updateAction() {
       </div>
 
  		<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden" style="width:50%">
-        <div class="my-3 p-3">
+        <div class="my-3 p-3" align="center">
         
 	<!-- 유저로그인 시 ui  -->	
     <!-- 차트  -->

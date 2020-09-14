@@ -8,26 +8,20 @@ import java.util.Map;
 
 public interface ConsultingService {
 	
-	/*
-	 * 전체 상담리스트 조회
-	 */
+	
+	//전체 상담리스트 조회
 	List<ConsultingVO> selectAllConsulting();
 	
-	/*
-	 * 고객별 상담리스트 조회서비스(session id) 
-	 */
+	//고객별 상담리스트 조회서비스(session id) 
 	List<ConsultingVO> selectById(String id);
 
+	//사원번호별 상담리스트 조회서비스
+	ConsultingVO selectByEmpno(String empno);
 
-	/*
-	 * 상담 노트에 상담등록 서비스
-	 */
+	//상담 노트에 상담등록 서비스
 	void insert(ConsultingVO consulting);
 	
-	
-	/*
-	 * 상담 노트 번호로 상세 조회 서비스 
-	 */
+    //상담 노트 번호로 상세 조회 서비스 
 	ConsultingVO selectByConsultingNo(int no);
 	
 	/*
@@ -36,9 +30,8 @@ public interface ConsultingService {
 	 */
 	void updateAddConsulting(int no);
 	
-   /*
-	* 고객 정보 검색
-	*/
+   
+	//고객 정보 검색
 	List<ConsultingVO> selectSearchInfoList(Map<String,String> searchMap);
 	
 	//상담건수

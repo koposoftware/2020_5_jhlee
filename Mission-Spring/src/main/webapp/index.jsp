@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <%@ taglib uri="http://www.springframework.org/tags/form" %> --%>
 
 <!DOCTYPE html>
 <html lang="en"> 
@@ -43,7 +42,7 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-</head>
+</head> 
 <body> 
 	<%-- <%@include file="resources/assets/include/topMenu.jsp" %> --%>
 
@@ -111,9 +110,9 @@
           </c:if>
           </ul>  
           </li> 
-          <li class="drop-down"><a href="${ pageContext.request.contextPath }/calendar">HANADO</a>
+          <li class="drop-down"><a href="${ pageContext.request.contextPath }/education">HANADO</a>
           <ul>          
-          <li><a href="${ pageContext.request.contextPath }/calendar">HANADO</a></li>
+          <li><a href="${ pageContext.request.contextPath }/education">HANADO</a></li>
           <li><a href="${ pageContext.request.contextPath }/inquiry/1/1">Q&A</a></li>
           </ul>
           </li>       
@@ -128,7 +127,7 @@
           <ul>          
           <li><a href="${ pageContext.request.contextPath }/management">실적 관리</a></li>
           <li><a href="${ pageContext.request.contextPath }/customerInform/1/1">손님 관리</a></li>
-          <li><a href="${ pageContext.request.contextPath }/scedule">일정 관리</a></li>
+          <li><a href="${ pageContext.request.contextPath }/adminSchedule">일정 관리</a></li>
           </ul>
           </li>
           </c:if>
@@ -216,7 +215,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </section> <!-- End Why Us Section -->
     
@@ -727,7 +725,7 @@
                 </p>
               </div>
             </li>
-
+ 
             <li data-aos="fade-up" data-aos-delay="300">
               <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-4" class="collapsed"> 하나은행 상담채널을 모두 알려주세요! <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-4" class="collapse" data-parent=".faq-list">
@@ -932,14 +930,14 @@
 	    <script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = { 
-		        center: new kakao.maps.LatLng(37.477478, 126.862539), // 지도의 중심좌표
+		        center: new kakao.maps.LatLng(37.566598, 126.981927), // 지도의 중심좌표
 		        level: 3 // 지도의 확대 레벨
 		    };
 		
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 		
 		// 마커가 표시될 위치입니다 
-		var markerPosition  = new kakao.maps.LatLng(37.477478, 126.862539); 
+		var markerPosition  = new kakao.maps.LatLng(37.566598, 126.981927); 
 
 		// 마커를 생성합니다
 		var marker = new kakao.maps.Marker({
@@ -950,8 +948,8 @@
 		marker.setMap(map);
 
 
-		var iwContent = '<div style="padding:5px;"> GNEE로! &nbsp; <a href="https://map.kakao.com/link/to/Gnee!,37.477478, 126.862539" style="color:purple" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-		    iwPosition = new kakao.maps.LatLng(37.477478, 126.862539); //인포윈도우 표시 위치입니다
+		var iwContent = '<div style="padding:5px;"> 하나로! &nbsp; <a href="https://map.kakao.com/link/to/Gnee!,37.477478, 126.862539" style="color:purple" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+		    iwPosition = new kakao.maps.LatLng(37.566598, 126.981927); //인포윈도우 표시 위치입니다
 
 		// 인포윈도우를 생성합니다
 		var infowindow = new kakao.maps.InfoWindow({

@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import kr.ac.hana.admin.vo.AdminVO;
+import kr.ac.hana.consulting.vo.ConsultingVO;
 import kr.ac.hana.member.vo.MemberVO;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
@@ -40,7 +41,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		
 		MemberVO loginVO = (MemberVO)session.getAttribute("loginVO");
 		AdminVO adminLoginVO = (AdminVO)session.getAttribute("adminLoginVO");
-		
+		//ConsultingVO consultingVO = (ConsultingVO)session.getAttribute("consultingVO");
 		
 		
 		if(loginVO == null && adminLoginVO == null) {

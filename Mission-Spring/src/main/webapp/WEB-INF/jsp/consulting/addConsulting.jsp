@@ -11,14 +11,14 @@
 <jsp:include page="/resources/assets/include/headCSS.jsp"></jsp:include>  
 <link href="/resources/assets/css/album.css" rel="stylesheet">
 <script>
-
+/* 
 $('#enrollmentBtn').click(function(e){
 	if(this.form.trim() != ''){
 	 e.preventDefault(); 
 	$('#enrollmentModal').modal("show");
 	}
 });	
-	
+	 */
 	
 function goReport(reportNo){
 		location.href="${ pageContext.request.contextPath }/consulting/admin/" + reportNo;
@@ -26,6 +26,10 @@ function goReport(reportNo){
 	
 function goMember(customerId){
 	location.href="${ pageContext.request.contextPath }/myPage/" + customerId;
+}
+
+function calendar(){
+	location.href="${ pageContext.request.contextPath }/adminSchedule";
 }
 
 </script>
@@ -51,11 +55,13 @@ a#ho:hover{
  	<c:if test="${ empty adminLoginVO and not empty loginVO}">
  	  <div class="section-title">
           <h2>${ loginVO.id }님의  추가 상담 리스트</h2>
-        </div>
+       </div>
     </c:if>
     	<c:if test="${ not empty adminLoginVO and empty loginVO}">
         <div class="section-title">
           <h2>관리자 [${ adminLoginVO.empno }]님의  추가 상담 리스트</h2>
+          <br>
+            <input type="button" class="btn btn-primary px-3 ml-4" id="calendar" onclick="calendar()" value="달력보기">
         </div>	
     </c:if>
     </div>

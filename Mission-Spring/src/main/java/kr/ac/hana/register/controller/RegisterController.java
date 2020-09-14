@@ -9,24 +9,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.ac.hana.admin.vo.AdminVO;
 import kr.ac.hana.board.service.BoardService;
 import kr.ac.hana.board.vo.BoardVO;
+import kr.ac.hana.consulting.service.ConsultingService;
 import kr.ac.hana.consulting.vo.ConsultingVO;
 import kr.ac.hana.member.vo.MemberVO;
 import kr.ac.hana.register.service.RegisterService;
 import kr.ac.hana.register.vo.RegisterVO;
+import kr.ac.hana.reply.vo.ReplyVO;
 
 @Controller 
 public class RegisterController {
 
 	@Autowired
  	private RegisterService registerService;
-	
+	@Autowired
+	private ConsultingService consultingService;
+
+
 	//고객별 추가상담리스트 전체 조회
 	@RequestMapping("/addConsulting") //이 메소드를 실행해라
 	public ModelAndView userAddConsultingList(HttpSession session){
@@ -56,6 +64,8 @@ public class RegisterController {
 	return mav;
 	}
 	
+	
+
 	//추가상담 등록 
 	@RequestMapping("/register")
 	public String registerForm(Model model, HttpSession session) {
@@ -81,6 +91,48 @@ public class RegisterController {
 		registerService.insert(registerVO);
 		return "redirect:/addConsulting";
 	}
+
+	
+	// 캘린더 화면 보여주기 (사원별로 예약 가능 일정 보여주기)
+	@ResponseBody //ajax쓰겠다.	
+	@GetMapping("/schedule/{empno}")
+		public List<RegisterVO> getList(@PathVariable("empno") String empno) {
+			List<RegisterVO> reservationList = registerService.selectAllByEmpno(empno);
+			/*
+			 * for (RegisterVO r : reservationList) { System.out.println("캘린더테스트:" + r); }
+			 */
+			return reservationList;
+		}
+	
+	//관리자 일정관리 캘린더 보여주기 (관리자용)
+	@RequestMapping("/adminSchedule") 
+		public String enrollment() {
+		  
+		  return "consulting/adminSchedule"; 
+		  
+		  }
+		 
+	 
+	 //캘린더 화면 보여주기 (상담리스트 값을 달력에서 가져다 쓰기 위해 가져오기 + 포워드)
+		@RequestMapping("/schedulePage/{no}") //pstmt가 아닌 주소값 그대로 가져오기  {써주고싶은이름} 가변적일때 {}로묶기
+		public ModelAndView detail(@PathVariable("no") int no) { //주소값 이름 no를 int boardNo로 설정 밑에 메소드 안에서 쓸거다!
+		
+	   ConsultingVO consulting = consultingService.selectByConsultingNo(no);
+				
+		ModelAndView mav = new ModelAndView("consulting/schedule");
+		mav.addObject("consulting",consulting);
+		return mav;
+			
+	}
+	
+		
+	 //캘린더에 일정 등록하기(유저)
+		@PostMapping("/enrollmentSchedule") //WEB-INF/jsp/reply.jsp 찾는  //insert
+		public void addEnrollment(RegisterVO registerVO) {
+			
+			registerService.insertSchedule(registerVO); 
+
+		}
 	
 }
 

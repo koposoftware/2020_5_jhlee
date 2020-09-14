@@ -268,14 +268,5 @@ public class MemberController {
 		return searchMember;
 	}
 	
-	//일정관리 스케줄
-	
-	@RequestMapping("/schedule") //getmapping과 같다.
-	public String schedule() {
-		
-		 return "member/schedule"; //어떤 jsp랑 연동시킬건지 
-	  }
-
-	
  }
 

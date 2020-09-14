@@ -57,7 +57,16 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 		return customerConsultingList;
 	}
 
+	
 
+	@Override
+	public ConsultingVO selectByEmpno(String empno) {
+	ConsultingVO consulting = sqlSession.selectOne("consulting.dao.ConsultingDAO.selectByEmpno",empno);
+		
+		return consulting;
+	}
+
+	
 	@Override
 	public void insert(ConsultingVO consulting) {
 		

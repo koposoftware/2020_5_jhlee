@@ -8,26 +8,20 @@ import kr.ac.hana.consulting.vo.ConsultingVO;
 
 public interface ConsultingDAO {
 
-	/*
-	 * 전체 상담리스트 조회서비스 
-	 */
 	
+	//전체 상담리스트 조회서비스 
 	public List<ConsultingVO> selectAllConsulting();
 	
-	/*
-	 * 고객별 상담리스트 조회서비스 (session id)
-	 */
+	//고객별 상담리스트 조회서비스 (session id)
 	public List<ConsultingVO> selectById(String id);
 	
-	
-	/*
-	 * 상담 노트에 상담등록 서비스 
-	 */
+	//관리자 empno로 리스트 조회서비스
+	public ConsultingVO selectByEmpno(String empno);
+    
+	//상담 노트에 상담등록 서비스 
 	public void insert(ConsultingVO consulting);
 	
-	/*
-	 *  상담 노트 상세 조회 서비스 
-	 */
+	//상담 노트 상세 조회 서비스 
 	public ConsultingVO selectByConsultingNo(int no);
 	
 	/*
@@ -44,9 +38,7 @@ public interface ConsultingDAO {
 	
 	List<ConsultingVO> selectSearchInfoList(Map<String, String> searchMap);
 
-	/*
-	 * 고객id로 검색 
-	 */
+	// 고객id로 검색 
 	List<ConsultingVO> selectSearchInfoListById(Map<String, String> searchMap);
 	
     //상담건수  

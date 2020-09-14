@@ -14,6 +14,7 @@
 		<result column="add_consulting" property="addConsulting" />
 		<result column="registeration_ymd" property="registerationYmd" />
 		<result column="report_ymd" property="reportYmd" />
+		<result column="start_time" property="startTime" />
 	</resultMap>
 	
 	<select id="selectAllRegisterById" resultMap="registerMap" parameterType="String">
@@ -31,6 +32,22 @@
 		where empno = #{empno}
 		order by no desc
 	</select>
+	
+	<!-- 관리자별 상담예약 리스트 일정 조회   -->
+	<select id="selectAllByEmpno" resultMap="registerMap" parameterType="String">
+		select title, registeration_ymd
+		from register_tb
+		where empno = #{ empno } 
+		order by no asc <!-- 최근것 순서대로 나오게 하기  -->
+	</select>
+	
+		<!-- 예약 등록  -->
+	<insert id="insertSchedule" parameterType="registerVO">
+		insert into register_tb( title, registeration_ymd, no, consulting_no, 
+		main_category, middle_category, id , name, consulting_channel, admin_name, empno)
+		values( #{title}, #{registerationYmd}, seq_register_tb_no.nextval, #{consultingNo}, #{mainCategory}, #{middleCategory}, 
+		#{id}, #{name}, #{consultingChannel}, #{adminName}, #{empno})
+	</insert> 
 	
 	</mapper>
 	

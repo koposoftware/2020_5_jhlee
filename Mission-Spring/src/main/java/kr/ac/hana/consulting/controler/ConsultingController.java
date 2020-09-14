@@ -265,12 +265,6 @@ public class ConsultingController {
 		return "consulting/consultingEnrollment";
 	}
 
-	// 캘린더 화면 보여주기
-	@RequestMapping("/calendar")
-	public String calendar() {
-
-		return "consulting/calendar";
-	}
 
 	// 상담노트 작성 서비스1
 	@GetMapping("/consultingNote")
@@ -304,5 +298,6 @@ public class ConsultingController {
 		consultingService.insert(consultingVO);// 바꿈
 		return "redirect:/consultingList/admin/1/1";
 	}
+	
 
 }

@@ -65,7 +65,7 @@
           </c:if>
           </ul>
           </li>
-          <li class="drop-down"><a href="#testimonials">HANADO</a>
+          <li class="drop-down"><a href="${ pageContext.request.contextPath }/education">HANADO</a>
           <ul>          
           <li><a href="${ pageContext.request.contextPath }/education">HANADO</a></li>
           <li><a href="${ pageContext.request.contextPath }/inquiry/1/1">Q&A</a></li>
@@ -79,7 +79,7 @@
           <ul>          
           <li><a href="${ pageContext.request.contextPath }/management">실적 관리</a></li>
           <li><a href="${ pageContext.request.contextPath }/customerInform/1/1">손님 관리</a></li>
-          <li><a href="${ pageContext.request.contextPath }/calendar">일정 관리</a></li>
+          <li><a href="${ pageContext.request.contextPath }/adminSchedule">일정 관리</a></li>
           </ul>
           </li>
           </c:if>

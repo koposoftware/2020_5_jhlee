@@ -32,13 +32,15 @@ public class ConsultingServiceImpl implements ConsultingService {
 		return customerConsultingList;
 	}
 
-	/*
-	 * @Override public List<ConsultingVO> selectByPaId(String id) {
-	 * 
-	 * List<ConsultingVO> customerConsulting = consultingDAO.selectByPaId(id);
-	 * 
-	 * return customerConsulting; }
-	 */
+    
+
+	@Override
+	public ConsultingVO selectByEmpno(String empno) {
+		
+		ConsultingVO consulting = consultingDAO.selectByEmpno(empno);
+
+		return consulting;
+	}
 
 	@Override
 	public void insert(ConsultingVO consulting) {

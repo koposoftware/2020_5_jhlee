@@ -17,7 +17,7 @@
 		$.ajax({
 			url : '${ pageContext.request.contextPath }/reply/${ inquiry.no }',
 			type : 'get',
-			success : function(data){
+			success : function(data){ //db에서 가져와
 
 			
 // 				$('#replyList').empty(); //조회에 있던것 지우기 위해
@@ -81,7 +81,7 @@ $(document).ready(function(){
 			data : {
 				inquiryNo : ${ inquiry.no }, 
 				content : content, 
-				writer : writer 
+				writer : writer
 			}, 
 			success : function(){
 			getReplyList(); //전체 댓글리스트 호출
@@ -256,7 +256,12 @@ $(document).ready(function(){
                                         <textarea class="form-control" id="textarea" cols="30" rows="2" placeholder="댓글 작성" name="content"></textarea>
                                     </div>
                                     <div class="d-flex align-items-center">
+                                    <c:if test="${ not empty adminLoginVO and empty loginVO}">  
+                                      <input type="hidden" class="btn btn-outline-light text-dark" name="writer" value="${ adminLoginVO.empno }"> 
+                                    </c:if>
+                                    <c:if test="${ empty adminLoginVO and not empty loginVO}">  
                                       <input type="hidden" class="btn btn-outline-light text-dark" name="writer" value="${ loginVO.id }"> 
+                                    </c:if>     
                                         <input type="button" class="btn btn-primary px-3 ml-4" id="replyAddBtn" name="replyAddBtn" value="Send"></button>
                                     </div>
                                 </form>

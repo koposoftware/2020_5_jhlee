@@ -98,7 +98,7 @@ input.search-go {
       </div>
       </main>
      </c:if>
-      
+      <br>
       <div align="center">
       <c:if test="${ empty adminLoginVO and  not empty loginVO}">  
          <div class="section-title">
@@ -177,11 +177,12 @@ input.search-go {
                   <td>${ consulting.empno }</td>
                   <td align="center">${ consulting.progress }</td>
                   <td align="center">${ consulting.addConsulting } 
-                  	<button onclick="openModal(${ consulting.consultingNo })" class="btn btn-primary px-3 ml-4">신청</button>
+                  	<%-- <button onclick="openModal(${ consulting.consultingNo })" class="btn btn-primary px-3 ml-4">신청</button> --%>
+                   <button onclick="enrollment(${ consulting.consultingNo })" class="btn btn-primary px-3 ml-4">신청</button>
                   </td>
                  </tr>
-                
-              
+   
+             
                 
                 <!-- 모달 창 -->  
 	  <div class="modal fade" id="reserveModal${ consulting.consultingNo }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -456,7 +457,9 @@ function goReport(reportNo){
 	location.href="${ pageContext.request.contextPath }/consulting/admin/" + reportNo;
 }
  
-
+function enrollment(no){
+	location.href="${ pageContext.request.contextPath }/schedulePage/" + no;
+}
 
 
 function openModal(consultingNo) {

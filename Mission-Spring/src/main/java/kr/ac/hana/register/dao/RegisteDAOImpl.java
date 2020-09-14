@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import kr.ac.hana.board.vo.BoardVO;
 import kr.ac.hana.register.service.RegisterService;
 import kr.ac.hana.register.vo.RegisterVO;
+import kr.ac.hana.reply.vo.ReplyVO;
 
 
 @Repository
@@ -39,6 +40,20 @@ public class RegisteDAOImpl implements RegisterDAO {
 		sqlSession.insert("register.dao.RegisterDAO.insert",register);
 		
 	}
+
+	@Override
+	public List<RegisterVO> selectAllByEmpno(String empno) {
+		List<RegisterVO> reservationList = sqlSession.selectList("register.dao.RegisterDAO.selectAllByEmpno", empno);
+
+		return reservationList;
+	}
+
+	@Override
+	public void insertSchedule(RegisterVO register) {
+	  
+		sqlSession.insert("register.dao.RegisterDAO.insertSchedule", register);
+	}
+	
 	
 
 }
