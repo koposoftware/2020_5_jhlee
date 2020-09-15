@@ -298,6 +298,6 @@ public class ConsultingController {
 		consultingService.insert(consultingVO);// 바꿈
 		return "redirect:/consultingList/admin/1/1";
 	}
-	
+
 
 }

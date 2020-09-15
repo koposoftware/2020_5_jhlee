@@ -83,7 +83,8 @@
 				<hr>	 
 				<div style="text-align: center; margin-bottom: 1.8rem;">
 					 <input type="submit" id="enrollmentBtn" class="btn btn-primary px-3 ml-4"  value="접수" style="width: 20%;  align:center;">
-					 <input type="button" onclick="close()" class="btn btn-primary px-3 ml-4"  value="취소" style="width: 20%;  align:center;">
+					<!--  <input type="button" onclick="close()" class="btn btn-primary px-3 ml-4"  value="취소" style="width: 20%;  align:center;"> -->
+					<input type="button"  class="btn btn-primary px-3 ml-4" value="취소"  style="width: 20%;  align:center;" onClick="history.go(-1)"> 
 				</div>
 				
 				</div>

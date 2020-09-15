@@ -58,7 +58,8 @@ public class ConsultingServiceImpl implements ConsultingService {
 
 	@Override
 	public void updateAddConsulting(int no) {
-		// TODO Auto-generated method stub
+	  
+		consultingDAO.updateAddConsulting(no);
 
 	}
 

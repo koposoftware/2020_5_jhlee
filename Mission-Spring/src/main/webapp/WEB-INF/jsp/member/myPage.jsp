@@ -45,14 +45,17 @@ function updateAction() {
  } //매퍼에서 select써서 넘겨주기 기능
 
 
-</script>	
+</script>
+<style>
+body {background-color:#fafafa;padding:0px;}
+</style>	
 </head>
 <body>
 <header>	
 		<jsp:include page="/resources/assets/include/topMenu.jsp" />
 </header>
-
 	<section style="align:center">
+
 	  <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
  
        <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden" style="width:50%">
@@ -125,11 +128,12 @@ function updateAction() {
  		 <input type="button" class="btn btn-primary px-3 ml-4" value="정보 수정" onclick="updateAction()">
  		 <c:if test="${ not empty adminLoginVO and empty loginVO}"> 
 		 <input type="button" class="btn btn-primary px-3 ml-4" value="회원  삭제" onclick="deleteAction()">
-		 <input type="button" class="btn btn-primary px-3 ml-4" value="상담 노트 작성" onclick="writeAction('${ customerInform.id }')">
+		 <input type="button" class="btn btn-primary px-3 ml-4" value="상담 노트" onclick="writeAction('${ customerInform.id }')">
 		</c:if>
 		 <c:if test="${ empty adminLoginVO and not empty loginVO}"> 
 		 <input type="button" class="btn btn-primary px-3 ml-4" value="회원  탈퇴" onclick="deleteAction()">
 		</c:if>
+		<input type="button"  class="btn btn-primary px-3 ml-4" value="돌아가기" onClick="history.go(-1)"> 
 		</c:forEach>		
 			 	
 <br><br><br>
@@ -198,6 +202,9 @@ function updateAction() {
 	<br>
 	<br>
 	<br> 
+	<br>
+	<br>
+	<br>
 	<br>
 	<br>
 	<br>

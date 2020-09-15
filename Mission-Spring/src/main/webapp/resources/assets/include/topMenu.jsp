@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+ 
+ <script>
+
+ </script>   
  <!-- ======= Top Bar ======= -->
    <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
     
@@ -31,6 +34,9 @@
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
+<%--   <c:if test="${ not empty adminLoginVO and empty loginVO}">  
+     <input type="button" value="상담노트 " style="border-radius:50%; font-size: 0.9rem!important; margin-left: 0%!important; margin-right:1%; height:60px; width:65px" class="btn btn-outline-secondary" onclick="goNote()">
+   </c:if>  --%>
     <div class="container d-flex align-items-center">
        <img src="${ pageContext.request.contextPath }/resources/assets/img/hana4.png" width="40px" height="40px">
       <h1 class="logo mr-auto"><a href="${ pageContext.request.contextPath }/">ONEHANA</a></h1>

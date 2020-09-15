@@ -117,7 +117,7 @@ $(document).ready(function(){
 					//alert('성공')
 					getReplyList()
 				},error: function(){
-					alert('실패')
+					alert('실패') 
 				}
 			});
 			
@@ -135,7 +135,7 @@ $(document).ready(function(){
 			}
 			break;
 		case 'L' :
-			location.href ="${ pageContext.request.contextPath }/inquiry";
+			location.href ="${ pageContext.request.contextPath }/inquiry/1/1";
 			break;
 		}
 	}
@@ -233,7 +233,7 @@ $(document).ready(function(){
 
          <c:if test="${ not empty adminLoginVO and empty loginVO}"> 
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         <input type="button"  style="align:right" value="상담접수" class="btn btn-primary px-3 ml-4" onclick="doAction('R')">&nbsp;&nbsp;
+        <!--  <input type="button"  style="align:right" value="상담접수" class="btn btn-primary px-3 ml-4" onclick="doAction('R')">&nbsp;&nbsp; -->
          </c:if>
          <br>
          <br>

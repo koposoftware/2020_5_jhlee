@@ -75,28 +75,29 @@
 
  -->
 
-				<form name="eform" >
+<!-- 				<form name="eform" > -->
 				<div id="calendar">
 				<div class="modal-body">* 예약하실 시간을 선택해주세요(30분 단위로 예약이 가능합니다.)</div> 
 				<%-- <div> 담당자 :${ consulting.name }</div> --%>
-				<input type="hidden" class="btn btn-outline-light text-dark" name="id" value="${ consulting.id }"> 
-				<input type="hidden" class="btn btn-outline-light text-dark" name="title" value="${ consulting.title }"> 
-				<input type="hidden" class="btn btn-outline-light text-dark" name="consultingNo" value="${ consulting.consultingNo }"> 
-				<input type="hidden" class="btn btn-outline-light text-dark" name="mainCategory" value="${  consulting.mainCategory }"> 
-				<input type="hidden" class="btn btn-outline-light text-dark" name="middleCategory" value="${ consulting.middleCategory }"> 
-				<input type="hidden" class="btn btn-outline-light text-dark" name="name" value="${ consulting.name }"> 
-				<input type="hidden" class="btn btn-outline-light text-dark" name="consultingChannel" value="${ consulting.consultingChannel }"> 
-				<input type="hidden" class="btn btn-outline-light text-dark" name="adminName" value="${ consulting.adminName }"> 
-				<input type="hidden" class="btn btn-outline-light text-dark" name="empno" value="${ consulting.empno }"> 
+<%-- 				<input type="hidden" class="btn btn-outline-light text-dark" name="id" value="${ consulting.id }">  --%>
+<%-- 				<input type="hidden" class="btn btn-outline-light text-dark" name="title" value="${ consulting.title }">  --%>
+<%-- 				<input type="hidden" class="btn btn-outline-light text-dark" name="consultingNo" value="${ consulting.consultingNo }">  --%>
+<%-- 				<input type="hidden" class="btn btn-outline-light text-dark" name="mainCategory" value="${  consulting.mainCategory }">  --%>
+<%-- 				<input type="hidden" class="btn btn-outline-light text-dark" name="middleCategory" value="${ consulting.middleCategory }">  --%>
+<%-- 				<input type="hidden" class="btn btn-outline-light text-dark" name="name" value="${ consulting.name }">  --%>
+<%-- 				<input type="hidden" class="btn btn-outline-light text-dark" name="consultingChannel" value="${ consulting.consultingChannel }">  --%>
+<%-- 				<input type="hidden" class="btn btn-outline-light text-dark" name="adminName" value="${ consulting.adminName }">  --%>
+<%-- 				<input type="hidden" class="btn btn-outline-light text-dark" name="empno" value="${ consulting.empno }">  --%>
 				
 				<input type="datetime-local" name="date" style="align-self: center ;width: 20rem" id="reserveDate" >
 				<hr>	 
 				<div style="text-align: center; margin-bottom: 1.8rem;">
 					 <input type="button" id="enrollmentBtn" class="btn btn-primary px-3 ml-4"  value="접수" style="width: 20%;  align:center;">
-					 <input type="button" onclick="close()" class="btn btn-primary px-3 ml-4"  value="취소" style="width: 20%;  align:center;">
+					<!--  <input type="button" onclick="close()" class="btn btn-primary px-3 ml-4"  value="취소" style="width: 20%;  align:center;"> -->
+					<input type="button"  class="btn btn-primary px-3 ml-4" value="취소"  style="width: 20%;  align:center;" onClick="history.go(-1)"> 
 				</div>
 				</div>
-				</form>
+<!-- 				</form> -->
 
 
 
@@ -104,8 +105,8 @@
 //CRUD - R
  function getreservationList(){ //댓글 있는 곳 로드시, 댓글 추가 시 댓글리스트가 뜨게끔 
      //ajax통해서 해당 게시물의 댓글리스트를 조회  => <div id="replyList"></div> 조회데이터 업데이트 
-   console.log(${ consulting.consultingNo })
-   console.log('${ consulting.empno }')
+//    console.log(${ consulting.consultingNo })
+//    console.log('${ consulting.empno }')
    $.ajax({
         url : '${ pageContext.request.contextPath }/schedule/${ consulting.empno }', //관리자 로그인시 adminLoginVO로 바꾸기
         type : 'get',
@@ -113,11 +114,12 @@
         success : function(data){ //db에서 가져와
         
         //$('#enrollmentBtn').empty(); //조회에 있던것 지우기 위해 	추가한것**
-        console.log(typeof data)
-        console.log(data)
+//         console.log(typeof data)
+//         console.log(data)
         
         
         let reservationList = JSON.parse(data);
+        console.log("reservationList")
         console.log(reservationList)
         
         var consultingSchedule = [];
@@ -126,6 +128,9 @@
              consultingSchedule.push({
               title : this.title,//(이건 너가 vo에 저장해준 이름으로 일단 임의로 컨설팅타이틀이라고 함)
               start : this.registerationYmd //(얘도 마찬가지로 너가 정한 이름으로 고쳐)
+              
+//               console.log("this.title" + this.title)
+//               console.log("this.registerationYmd " + this.registerationYmd )
         /*    consultingNO : this.consultingNo,
               mainCategory: this.maninCategory,
               middleCategory: this.middleCategory,
@@ -135,7 +140,17 @@
               adminName : this.adminName,
               empno: this.empno */
              });
+             console.log("this.title" + this.title)
+             console.log("this.registerationYmd " + this.registerationYmd )
+             console.log(typeof this.registerationYmd )
           });
+//           let l = JSON.parse(consultingSchedule);
+        console.log("consultingSchedule : " + consultingSchedule )
+        console.log("consultingSchedule title : " + consultingSchedule['title'] )
+        console.log("consultingSchedule start : " + consultingSchedule['start'] )
+        
+//         console.log(l)
+        
            
           $('#calendar').fullCalendar({
                 header: {
@@ -164,29 +179,36 @@
 
   
 //CRUD-C	
- /* $(document).ready(function(){
+  $(document).ready(function(){
 	 
 	$('#enrollmentBtn').click(function(){
-		let reservationYmd = document.eform.date.value; */
-		/* let title = document.eform.title.value;
-		let consultingNo = document.eform.consultingNo.value;
-		let mainCategory = document.eform.mainCategory.value;
-		let middleCategory = document.eform.middleCategory.value;
-		let id = document.eform.id.value;
-		let name = document.eform.name.value;
-		let consultingChannel = document.eform.consultingChannel.value;
-		let adminName  = document.eform.adminName.value;
-		let empno  = document.eform.empno.value; */
-		
+// 		let reservationYmd = document.eform.date.value;
+		let registerationYmd = $("#reserveDate").val();
+// 		let title = document.eform.title.value;
+// 		let consultingNo = document.eform.consultingNo.value;
+// 		let mainCategory = document.eform.mainCategory.value;
+// 		let middleCategory = document.eform.middleCategory.value;
+// 		let id = document.eform.id.value;
+// 		let name = document.eform.name.value;
+// 		let consultingChannel = document.eform.consultingChannel.value;
+// 		let adminName  = document.eform.adminName.value;
+// 		let empno  = document.eform.empno.value;
+
+		let a = registerationYmd.split('T');
+		let registeration = a.join(' ');
+// 		console.log(b)
+// 		console.log(registerationYmd)
+// 		console.log(typeof parseInt('${ consulting.consultingNo }'))
+// 		console.log(parseInt('${ consulting.consultingNo }'))
 		//  /reply/insert?boardNo=12&content=aaa&writer=bbb 
 			
-	/* 	$.ajax({
+	 	$.ajax({
 			url : '${ pageContext.request.contextPath }/enrollmentSchedule',
 			type : 'post',
 			data : {
 				title : '${ consulting.title }', 
-				start: reservationYmd, 
-				consultingNo : '${ consulting.consultingNo }',
+				registerationYmd : registeration, 
+				consultingNo : parseInt('${ consulting.consultingNo }'),
 				mainCategory: '${ consulting.mainCategory }',
 	            middleCategory: '${ consulting.middleCategory }', 
 	            id: '${ consulting.id }',
@@ -196,7 +218,10 @@
 	            empno: '${ consulting.empno }',
 			}, 
 			success : function(){
-		    getreservationList(); //전체 댓글리스트 호출
+		    	getreservationList(); //전체 댓글리스트 호출
+		    	alert(registeration + '에 상담이 추가 접수 되었습니다. 리스트에서 확인해주세요.')
+		    		document.location.href="${ pageContext.request.contextPath }/addConsulting";
+		    	
 			}, 
 			error : function(){
 				alert('실패')
@@ -209,7 +234,7 @@
 		})		
 	})
 }) 
- */
+ 
 
 
 </script>

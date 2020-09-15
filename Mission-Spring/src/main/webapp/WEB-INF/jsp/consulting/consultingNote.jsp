@@ -145,6 +145,7 @@
                              상담리포트 :  <textarea name="consultingReport" style="text-align: left; width:100%; height:100%" placeholder="*필수입력 [ 문의 내용, 고객 성향, 상품가입유무, 추가 관심사항 또는 불만사항 (만족 /불만족 표기) ]"></textarea>
           </p>
 	    <button type="submit" class="btn btn-primary px-3 ml-4" onclick="goWrite(this.form)" >등록</button>
+		<input type="button"  class="btn btn-primary px-3 ml-4" value="취소" onClick="history.go(-1)"> 
 		</div>
 	</div>
 	</div>

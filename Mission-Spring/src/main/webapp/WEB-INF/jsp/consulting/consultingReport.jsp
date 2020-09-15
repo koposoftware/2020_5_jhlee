@@ -15,7 +15,10 @@
 		location.href="${ pageContext.request.contextPath }/consultingList/admin/1/1";
 	}
 
-
+	 function goNote(id){
+		 location.href="${ pageContext.request.contextPath }/consultingNote/" + id;
+		 
+	 } 
 </script>
  <body class="bg-light">
 <header>	
@@ -25,6 +28,7 @@
 	<br>
 	<br>
 <section class="section">
+ <a href="#" class="back-to-top">하이</a>
   <div class="container">
   <br><br>
    <div class="section-title">
@@ -65,12 +69,13 @@
           </div>
           <br>
            <input type="button" value="목록" class="btn btn-primary px-3 ml-4" onclick="goList()">
+    <br>
     </div>
   </div>
  </div>
  </div>
  </div>
-  
+   <input type="button" value="상담노트 " style="border-radius:50%; font-size: 0.9rem!important; margin-left: 77%!important; margin-right:1%; height:60px; width:65px" class="btn btn-outline-secondary" onclick="goNote( '${ consulting.id }' )">
 </section>
 	<footer id="footer">
 		<%@ include file="/resources/assets/include/footer.jsp"%>

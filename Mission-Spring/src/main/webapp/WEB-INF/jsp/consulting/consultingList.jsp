@@ -17,7 +17,7 @@
 
 <style>
 *{margin:0;padding:0;}
-body {background-color:#fafafa;padding:50px;}
+body {background-color:#fafafa;padding:0px;}
 h1 {font-family:tahoma;color:#999;font-size:24px;}
 /* P{font-family:����;font-size:12px;letter-spacing:-1px;margin-bottom:40px;} */
 
@@ -104,11 +104,13 @@ input.search-go {
          <div class="section-title">
           <h2>${ loginVO.id }님의 상담 리스트</h2>
         </div>
+       
       </c:if>
       <c:if test="${ not empty adminLoginVO and empty loginVO}">  
       <div class="section-title">
           <h2>상담 리스트 조회</h2>
         </div>
+         <button style="height: 29px;"  class="receive" onclick="receiveRecord()">지누션</button>
       </c:if>
       
 <!-- 여기서부터 검색항목 시작 -->
@@ -145,15 +147,16 @@ input.search-go {
             <table class="table table-hover table-sm" style="width:77%">
               <thead>
                 <tr class="jj">
-                  <th>상담번호</th>
+                  <!-- <th>상담번호</th> -->
                   <th>등록일시</th>
-                  <th>고객유형</th>
-                  <th>고객이름</th>
+                  <th>손님유형</th>
+                  <th>성함</th>
                   <th>ID</th>
                   <th>생일</th>
                   <th>대분류</th>
                   <th>중분류</th>
                   <th>제목</th>
+                  <th>채널</th>
                   <th>담당직원</th>
                   <th>사원번호</th>
                   <th>진행상태</th>
@@ -163,20 +166,22 @@ input.search-go {
               <c:if test="${ empty adminLoginVO and  not empty loginVO}"> 
                  <tbody id="userConsultingList">
         	 <c:forEach items="${ consultingList }" var="consulting" varStatus="loop">
+                 <input type="hidden" name="consultingNo" value="${ consulting.consultingNo }">
                  <tr>
-                  <td align="center">${ consulting.consultingNo }</td>
+                 <%--  <td align="center">${ consulting.consultingNo }</td> --%>
                   <td>${ consulting.reportYmd }</td>
-                  <td align="center">${ consulting.customerType }</td>
+                  <td>${ consulting.customerType }</td>
                   <td>${ consulting.id }</td>
                   <td>${ consulting.name }</td>
                   <td>${ consulting.birth }</td>
                   <td>${ consulting.mainCategory }</td>
                   <td>${ consulting.middleCategory }</td>
                   <td>${ consulting.title }</td>
+                  <td>${ consulting.consultingChannel }</td>
                   <td>${ consulting.adminName }</td>
                   <td>${ consulting.empno }</td>
-                  <td align="center">${ consulting.progress }</td>
-                  <td align="center">${ consulting.addConsulting } 
+                  <td>${ consulting.progress }</td>
+                  <td>${ consulting.addConsulting } 
                   	<%-- <button onclick="openModal(${ consulting.consultingNo })" class="btn btn-primary px-3 ml-4">신청</button> --%>
                    <button onclick="enrollment(${ consulting.consultingNo })" class="btn btn-primary px-3 ml-4">신청</button>
                   </td>
@@ -211,8 +216,9 @@ input.search-go {
          <c:if test="${ not empty adminLoginVO and empty loginVO}"> 
                  <tbody id="adminConsultingList" >
           <c:forEach items="${ consultingList }" var="consulting" varStatus="loop">
+                  <input type="hidden" name="consultingNo" value="${ consulting.consultingNo }">
                  <tr>
-                  <td align="center">${ consulting.consultingNo }</td>
+               <%--    <td align="center">${ consulting.consultingNo }</td> --%>
                   <td>${ consulting.reportYmd }</td>
                   <td>${ consulting.customerType }</td>
                    <td>${ consulting.name }</td>
@@ -221,10 +227,11 @@ input.search-go {
                   <td>${ consulting.mainCategory }</td>
                   <td>${ consulting.middleCategory }</td>
                   <td><a href="javascript:goReport(${ consulting.consultingNo })">${ consulting.title }</a></td>
+                  <td>${ consulting.consultingChannel }</td>
                   <td>${ consulting.adminName }</td>
                   <td>${ consulting.empno }</td>
-                  <td align="center">${ consulting.progress }</td>
-                  <td align="center">${ consulting.addConsulting } 
+                  <td>${ consulting.progress }</td>
+                  <td>${ consulting.addConsulting } 
                  </tr>
           </c:forEach>
                 </tbody>
@@ -281,13 +288,8 @@ input.search-go {
 
 
 	</section> 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	
+	<br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br>
 	<footer id="footer">
 		<%@ include file="/resources/assets/include/footer.jsp"%>
 	</footer>
@@ -447,7 +449,6 @@ function searchByAdmin() {
 
 
 
-
 function doAction(customerInformId){
 	
 	location.href="${ pageContext.request.contextPath }/myPage/" + customerInformId;
@@ -500,6 +501,27 @@ $(document).ready(function(){
 		});
 }); 
  
+ 
+$(document).ready(function(){
+	$(document).on('click','.receive', function(){ //delBtn클릭했을 때 ---해라 동적으로 만든애는 그냥 안붙고 on을 써줘야 함. 
+		
+		if(!confirm('상담기록을 전송 받겠습니까?')) 
+			return;
+		
+		$.ajax({ 
+			url: 'http://192.168.217.52:9999/spring-project/ddd',
+			type: 'get',
+			success : function(){
+				//alert('성공')
+				//getReplyList()
+			},error: function(){
+				alert('실패') 
+			}
+		});
+		
+	})
+})	
+
 //  $('#reserveBtn').click(function(e){
 // 	 e.preventDefault(); 
 // 	$('#reserveModal').modal("show");

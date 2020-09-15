@@ -934,7 +934,7 @@
 		        level: 3 // 지도의 확대 레벨
 		    };
 		
-		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다 
 		
 		// 마커가 표시될 위치입니다 
 		var markerPosition  = new kakao.maps.LatLng(37.566598, 126.981927); 
