@@ -23,4 +23,8 @@ public interface RegisterDAO {
 	
 	//직원별 상담예약 등록 서비스(유저 UI) 
 	public void insertSchedule(RegisterVO register);
+	
+	//직원 일정 등록 서비스(관리자 UI)
+	public void insertAdminSchedule(RegisterVO register);
+	
 }

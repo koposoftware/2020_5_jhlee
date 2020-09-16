@@ -128,7 +128,17 @@ public class RegisterController {
 
 		System.out.println(registerVO);
 		registerService.insertSchedule(registerVO);
-        consultingService.updateAddConsulting(registerVO.getNo());
+        //consultingService.updateAddConsulting(registerVO.getNo());
+        System.out.println(registerVO.getNo());
+	}
+	
+	// 캘린더에 일정 등록하기(관리자)
+	@ResponseBody
+	@PostMapping("/enrollmentByAdmin") // WEB-INF/jsp/reply.jsp 찾는 //insert
+	public void addAdminSchedule(RegisterVO registerVO) {
+
+		System.out.println(registerVO);
+		registerService.insertAdminSchedule(registerVO);
         System.out.println(registerVO.getNo());
 	}
 

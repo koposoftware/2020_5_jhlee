@@ -926,7 +926,7 @@
 	  <h6>주소  [04538] 하나은행 서울시 중구 을지로66 (66, Eulji-ro, Jung-gu, Seoul, Republic of Korea)</h6><br>
 	  <div id="map" style="width:1000px;height:400px;"></div>
 	
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey="></script>
 	    <script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = { 

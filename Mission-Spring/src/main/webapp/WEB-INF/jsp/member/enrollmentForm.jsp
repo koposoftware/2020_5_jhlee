@@ -234,7 +234,7 @@ margin-left:5px;
                <c:if test="${ not empty adminLoginVO and empty loginVO}">
                 <button type="submit" class="btn btn-primary px-3 ml-4" onclick="goEnrollment(this.form)">등록</button>
                </c:if>
-               <!--  <input type="submit" id="enrollmentBtn" class="btn btn-outline-light text-dark" value="가입"> -->
+                <input type="button"  class="btn btn-primary px-3 ml-4" value="취소" onClick="history.go(-1)"> 
                 <input type="reset" class="btn btn-primary px-3 ml-4" value="초기화">
                 </td>
             </tr>     

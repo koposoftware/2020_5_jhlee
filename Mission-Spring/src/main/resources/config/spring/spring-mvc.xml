@@ -88,6 +88,7 @@
 		<mvc:exclude-mapping path="/login"/> <!--로그인이 들어오면 인터셉트를 호출하지 않겠다!   -->
 		<mvc:exclude-mapping path="/adminLogin"/>
 		<mvc:exclude-mapping path="/admin/logout"/>
+		<mvc:exclude-mapping path="/videoConsulting"/>
 		<mvc:exclude-mapping path="/logout"/>
 		<mvc:exclude-mapping path="/board"/>
 		<mvc:exclude-mapping path="/inquiry"/>

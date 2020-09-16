@@ -53,8 +53,12 @@ public class RegisteDAOImpl implements RegisterDAO {
 	  
 		sqlSession.insert("register.dao.RegisterDAO.insertSchedule", register);
 	}
-	
-	
+
+	@Override
+	public void insertAdminSchedule(RegisterVO register) {
+		
+		sqlSession.insert("register.dao.RegisterDAO.insertAdminSchedule", register);
+	}
 
 }
 

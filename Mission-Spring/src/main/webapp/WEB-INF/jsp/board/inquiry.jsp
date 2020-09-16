@@ -49,7 +49,7 @@
          <button onclick="goWriteForm()" class="btn btn-primary px-3 ml-4" style="align:write; margin-left: 63%!important;">문의하기</button>  
       </c:if>
         </div>    
-      <table style="width: 70%">
+      <table style="width:70%">
          <tr class="jj">
             <th width="7%">번호</th>
             <th width="10%">대분류</th>
@@ -210,12 +210,8 @@ function searchInquiry() {
 
 </script>  
    
-    <br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+    <br><br><br><br><br><br><br><br>
+     <br><br><br><br><br><br><br><br>
    <footer id="footer">
 		<%@ include file="/resources/assets/include/footer.jsp"%>
 	</footer>

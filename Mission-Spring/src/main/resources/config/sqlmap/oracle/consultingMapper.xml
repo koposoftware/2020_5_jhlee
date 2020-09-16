@@ -104,8 +104,9 @@
 						<when test="searchWord != '' ">
 							title like '%'||#{searchWord}||'%' 
 						</when>
-						<when test="startDate != '' and endDate == '' ">
-							report_ymd >= #{startDate}
+						<when test="startDate != '' and endDate != '' ">
+							<!-- report_ymd >= #{startDate} and report_ymd <= #{endDate} -->
+							report_ymd between #{startDate} and #{endDate}
 						</when>
 					</choose>
 			order by consulting_no desc
@@ -163,4 +164,15 @@
 			set add_consulting = 'Y'
 		  where consulting_no = #{no}
 	</update>
+	
+	<!-- 손님 즐겨찾기 -->
+	<insert id="fav" parameterType="consultingVO">
+		insert into favorites(no, admin_name, empno, name, id)
+			 values(seq_favorites_no.nextval, #{adminName}, #{empno}, #{name}, #{id})
+	</insert>
+	
+	<!--즐겨찾기 손님 조회  -->
+	<select id="selectFavorites" parameterType="map" resultMap="consultingMap">
+	   select * from favorites
+	 </select> 
 </mapper>

@@ -92,7 +92,7 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 
 	@Override
 	public int cntConsulting() {
-		// TODO Auto-generated method stub
+		
 		int totalBoardCnt = sqlSession.selectOne("consulting.dao.ConsultingDAO.cntConsulting");
 		return totalBoardCnt;
 	}
@@ -129,6 +129,25 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 
 		return consultingList;
 	}
+
+
+
+	// 즐겨찾기
+	@Override
+	public void favorite(ConsultingVO consulting) {
+		sqlSession.insert("consulting.dao.ConsultingDAO.fav",consulting);
+	}
+
+
+
+	//즐겨찾기 조회 
+	@Override
+	public List<ConsultingVO> selectFavorites(Map<String, String> searchMap) {
+		List<ConsultingVO> favorites = sqlSession.selectList("consulting.dao.ConsultingDAO.selectFavorites");	
+		return favorites;
+	}
+	
+	
 	
 	
 }

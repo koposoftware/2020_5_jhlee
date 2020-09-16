@@ -10,11 +10,21 @@
 
 <jsp:include page="/resources/assets/include/headCSS.jsp"></jsp:include>  
  
- <script>
-
-</script>	
 
 <style>
+.btn1{animation:bgcolor 1s both;
+}
+
+@keyframes bgcolor{
+  from{background:white;} to {background:white; color:red;}
+}
+
+.btn .fa.fa-3x {
+    font-size: 3em;
+}
+.btn .fa.fa-2x {
+    font-size: 2em;
+}
 
 #inform:hover tbody tr:hover td {
     background: #5f9ea0;
@@ -41,6 +51,39 @@
 
 
 </style>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+
+
+	// 즐겨찾기
+	$(document).ready(function(){
+		$('.star').click(function(){
+			/* alert('누름'); */
+			$(this).toggleClass("btn1")
+			let btn = this;
+			let fav = $(this).attr('id').split('-');
+			alert( fav[3]+ "님을 즐겨찾기로 등록하였습니다.");
+			
+			$.ajax ({
+				url : '${pageContext.request.contextPath}/addFavorite',
+				type : 'post',
+				data : {
+					adminName : fav[0],
+					empno : fav[1],
+					name :fav[2],
+					id :fav[3]
+				}, success : function() {
+					$(btn).attr('', true);
+				}, error : function() {
+					alert('다시시도해주세요');
+				}
+			})
+				
+			
+		})
+	})
+		
+</script>
 </head>
 <body>
 <header>	
@@ -130,7 +173,7 @@
 				<tbody id="memberList">
 			<c:forEach items="${ allInformList }" var="customerInform">
 				<tr>
-					<td><c:out value='☆'/></td>
+					<td><input type="button" value="☆" class = "star btn btn-default" id="${ adminLoginVO.admin_name }-${ adminLoginVO.empno }-${ customerInform.name }-${ customerInform.id }" style="border:0; background-color:white"></td>
 					<td><c:out value='${ customerInform.name }'/></td>
 					<td><strong><a href="javascript:doAction('${ customerInform.id }')">
 					<c:out value='${ customerInform.id }'/></a></strong></td>
@@ -181,7 +224,7 @@
 	
 <!-- ==== 페이징 끝! ================================================================== -->	
 
-		 <input type="button"  style="align:right; margin-left: 80%!important;" class="btn btn-primary px-3 ml-4" value="손님등록" onclick="enrollAction()">
+		 <input type="button"  style="align:right; margin-left: 82%!important;" class="btn btn-primary px-3 ml-4" value="손님등록" onclick="enrollAction()">
 		<br>
 		<br>
 		<br>
@@ -246,7 +289,7 @@ function searchMember() {
 				let str = ""
 				
 				str += "<tr>";
-				str += '<td>' + '☆' +'</td>'
+				str += '<td>' + '<input type="button">' +'</td>'
 				str += '<td>' + md[key]['name'] + '</td>'
 				str += '<td>' + '<a href="javascript:doAction(' + md[key]['id'] + ')">' + md[key]['id'] +'</a>' + '</td>'
 				str += '<td>' + md[key]['password'] + '</td>'
@@ -282,6 +325,10 @@ function doAction(customerInformId){
 			
 			location.href="${ pageContext.request.contextPath }/myPage/" + customerInformId;
 		}
+		
+function enrollAction(){
+	 location.href="${ pageContext.request.contextPath }/enrollmentForm"
+}
 
 </script>
 	<footer id="footer">

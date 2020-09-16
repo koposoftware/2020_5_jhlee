@@ -90,12 +90,10 @@
 
 	</div>
 </section>
- <br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	<br><br><br><br><br><br><br><br>
+   <br><br><br><br><br><br><br><br>
+   	<br><br><br><br><br><br><br><br>
+   <br><br><br><br><br><br><br><br>
    <footer id="footer"> 
 		<%@ include file="/resources/assets/include/footer.jsp"%>
 	</footer>

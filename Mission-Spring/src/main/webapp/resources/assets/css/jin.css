@@ -166,3 +166,12 @@ element.style {
 	color:#2C4964!important;
 	
 }
+.btn-secondary{
+	border:0;
+	outline:0;
+	background-color:#4F76A3!important;	
+}
+.btn-warning{
+	border:0;
+	outline:0;
+}

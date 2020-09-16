@@ -11,14 +11,7 @@
 <jsp:include page="/resources/assets/include/headCSS.jsp"></jsp:include>  
 <link href="/resources/assets/css/album.css" rel="stylesheet">
 <script>
-/* 
-$('#enrollmentBtn').click(function(e){
-	if(this.form.trim() != ''){
-	 e.preventDefault(); 
-	$('#enrollmentModal').modal("show");
-	}
-});	
-	 */
+
 	
 function goReport(reportNo){
 		location.href="${ pageContext.request.contextPath }/consulting/admin/" + reportNo;
@@ -34,6 +27,7 @@ function calendar(){
 
 </script>
 <style>
+body {background-color:#fafafa;padding:0px;}
 a#ho:hover{
 	color:#008C8C;
 	text-decoration: underline;
@@ -84,13 +78,13 @@ a#ho:hover{
 				<strong>상담채널</strong>: ${ register.consultingChannel }<br>                   
                 <strong>담당직원</strong>: ${ register. adminName }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <strong>사원번호</strong>:  ${ register.empno }<br>
-                <strong style="color:#008C8C">추가 상담 예약일시</strong>: ${ register.registerationYmd }<br> 
+                <strong style="color:#008C8C">추가 상담 예약일시</strong>: ${ register.registerationDate } ${ register.registerationTime }<br> 
                   </p>
                   <hr>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary"><strong>수정</strong></button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary"><strong>취소</strong></button>
+                      <button type="button" class="btn btn-secondary"><strong>수정</strong></button>&nbsp;&nbsp;
+                      <button type="button" class="btn btn-secondary"><strong>삭제</strong></button>
                     </div>
                     <small class="text-muted"><strong>${ register.no }</strong></small>
                   </div>
@@ -118,14 +112,14 @@ a#ho:hover{
 				<strong>상담채널</strong>: ${ register.consultingChannel }<br>                   
                 <strong>담당직원</strong>: ${ register. adminName }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <strong>사원번호</strong>:  ${ register.empno }<br>
-                <strong style="color:#008C8C">추가 상담 예약일시: ${ register.registerationYmd }</strong><br> 
+                <strong style="color:#008C8C">추가 상담 예약일시: ${ register.registerationYmd } ${ register.registerationTime }</strong><br> 
                   </p>
                   <hr>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary"><strong>상세보기</strong></button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary"><strong>알림전송</strong></button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary"><strong>진행상태:[${ register.progress }]</strong></button>
+                      <button type="button" class="btn btn-secondary"><strong>상세보기</strong></button>&nbsp;&nbsp;
+                      <button type="button" class="btn btn-secondary"><strong>알림전송</strong></button>&nbsp;&nbsp;
+                      <button type="button" class="btn btn-warning"><strong>상태: ${ register.progress }</strong></button>
                     </div>
                     <small class="text-muted"><strong>${ register.no }</strong></small>
                   </div>
@@ -159,11 +153,8 @@ a#ho:hover{
          
          
 	</section>
-	<br>
-	<br>  
-	<br>
-	<br>
-	<br> 
+<br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br>
 	<footer id="footer">
 		<%@ include file="/resources/assets/include/footer.jsp"%>
 	</footer>

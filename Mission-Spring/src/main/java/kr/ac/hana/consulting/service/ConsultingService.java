@@ -43,5 +43,9 @@ public interface ConsultingService {
 	//고객별 상담조회(페이징포함 )
 	List<ConsultingVO> selectPageConsultingById(int pageNo,int boardCntPerPage,String id);
 	
+	// 즐겨찾기
+	public void favorite(ConsultingVO consulting);
 	
+	//즐겨찾기만 조회 
+	List<ConsultingVO> selectFavorites(Map<String, String> searchMap);
 }

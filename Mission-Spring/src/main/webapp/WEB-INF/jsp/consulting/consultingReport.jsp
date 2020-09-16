@@ -19,7 +19,18 @@
 		 location.href="${ pageContext.request.contextPath }/consultingNote/" + id;
 		 
 	 } 
+	 function doAction(customerInformId){
+			
+			location.href="${ pageContext.request.contextPath }/myPage/" + customerInformId;
+		}
 </script>
+<style>
+a{
+    color: #2C4964!important;;
+    text-decoration: underline;
+}
+
+</style>
  <body class="bg-light">
 <header>	
 		<jsp:include page="/resources/assets/include/topMenu.jsp" />
@@ -48,7 +59,7 @@
           <div class="mt-5">
             <!-- changelog post -->
             <h3 id="february-updates"> [${ consulting.title }] </h3>
-            <p><strong>고객ID : ${ consulting.id } &nbsp;&nbsp;&nbsp;&nbsp; 손님유형 : ${ consulting.customerType }&nbsp;&nbsp;&nbsp;&nbsp;
+            <p><strong>고객ID : <a href="javascript:doAction('${ consulting.id }')">${ consulting.id }</a> &nbsp;&nbsp;&nbsp;&nbsp; 손님유형 : ${ consulting.customerType }&nbsp;&nbsp;&nbsp;&nbsp;
                             생년월일 : ${ consulting.birth } &nbsp;&nbsp;&nbsp;&nbsp; </strong></p>
             <p>
             </p>
@@ -75,8 +86,18 @@
  </div>
  </div>
  </div>
-   <input type="button" value="상담노트 " style="border-radius:50%; font-size: 0.9rem!important; margin-left: 77%!important; margin-right:1%; height:60px; width:65px" class="btn btn-outline-secondary" onclick="goNote( '${ consulting.id }' )">
 </section>
+ <input type="button" value="상담노트 " style="border-radius:50%; font-size: 0.9rem!important; margin-left: 77%!important; margin-right:1%; height:60px; width:65px" class="btn btn-outline-secondary" onclick="goNote( '${ consulting.id }' )">
+	<br>
+	<br>
+	<br> 
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+    <br>
 	<footer id="footer">
 		<%@ include file="/resources/assets/include/footer.jsp"%>
 	</footer>

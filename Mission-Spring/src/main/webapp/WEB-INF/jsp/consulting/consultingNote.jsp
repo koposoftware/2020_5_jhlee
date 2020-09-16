@@ -154,6 +154,15 @@
           </div>
 	
 </section> 
+	<br>
+	<br>
+	<br> 
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<footer>
 		<%@ include file="/resources/assets/include/footer.jsp"%>
 	</footer>

@@ -338,7 +338,7 @@ function searchByUser() {
 				let str = ""
 				
 				str += "<tr>";
-				str += '<td align="center">' + cd[key]["consultingNo"] + '</td>'
+				/* str += '<td align="center">' + cd[key]["consultingNo"] + '</td>' */
 				str += '<td>' + cd[key]['reportYmd'] + '</td>'
 				str += '<td>' + cd[key]['customerType'] + '</td>'
 				str += '<td>' + cd[key]['name'] + '</td>'
@@ -347,13 +347,14 @@ function searchByUser() {
 				str += '<td>' + cd[key]['mainCategory'] + '</td>'
 				str += '<td>' + cd[key]['middleCategory'] + '</td>'
 				str += '<td>' + '<a href="javascript:goReport(' + cd[key]['consultingNo'] + ')">' + cd[key]['title'] +'</a>' + '</td>'
-              str += '<td>' + cd[key]['adminName'] + '</td>'
-              str += '<td>' + cd[key]['empno'] + '</td>'
-              str += '<td align="center">' + cd[key]['progress'] +'</td>'
-              str += '<td align="center">' + cd[key]['addConsulting']
-              str += '<button onclick="openModal(' + cd[key]['consultingNo'] + ')" class="btn btn-primary px-3 ml-4">' + '신청' + '</button>'
-              str += '</td>'
-              str += '<tr>';
+				str += '<td>' + cd[key]['consultingChannel'] + '</td>' 
+				str += '<td>' + cd[key]['adminName'] + '</td>'
+              	str += '<td>' + cd[key]['empno'] + '</td>'
+             	str += '<td align="center">' + cd[key]['progress'] +'</td>'
+             	str += '<td align="center">' + cd[key]['addConsulting']
+              	str += '<button onclick="openModal(' + cd[key]['consultingNo'] + ')" class="btn btn-primary px-3 ml-4">' + '신청' + '</button>'
+              	str += '</td>'
+              	str += '<tr>';
               
               $("#userConsultingList").append(str)
 
@@ -390,6 +391,8 @@ function searchByAdmin() {
 	console.log(startDate )
 	console.log(endDate)
 
+	let arr;
+	
 	if(mainCategory != '' || middleCategory != '' || searchWord != '' || startDate != '' || endDate != '') {
 	
 	$.ajax({
@@ -405,7 +408,106 @@ function searchByAdmin() {
 		success : function(data) {
 			console.log("성공")
 // 			console.log(typeof data)
-			let cd = JSON.parse(data) 
+			let cd = JSON.parse(data)
+			
+			
+			
+			arr=cd;
+			
+			//시작일 split
+			let registerationYmd = $("#startDate").val();
+			let a = registerationYmd.split('-');
+			let start = a.join('');
+	        //끝나는일 split
+			let registerationYmd2 = $("#endDate").val();
+			let c = registerationYmd2.split('-');
+			let end = c.join('');
+			
+			
+			var middleSelect = document.getElementById("middleCategory");
+	        
+		      // select element에서 선택된 option의 value가 저장된다.
+		    var selectValue = middleSelect.options[middleSelect.selectedIndex].value;
+	         
+			let studentNo = '2060340006'
+			
+			let m;
+			if(selectValue =='예금'){
+				m = '01'
+			}
+			if(selectValue =='적금'){
+				m = '02'
+			}
+			if(selectValue =='카드'){
+				m = '03'
+			}
+			if(selectValue =='대출'){
+				m = '04'
+			}
+			if(selectValue =='연금'){
+				m = '05'
+			}
+			if(selectValue =='펀드'){
+				m = '06'
+			}
+			if(selectValue =='보험'){
+				m = '07'
+			}
+			if(selectValue =='외환'){
+				m = '08'
+			}
+			if(selectValue =='수표'){
+				m = '09'
+			}
+			if(selectValue =='금'){
+				m = '10'
+			}
+			
+			console.log(start)
+			console.log(end)
+			console.log(selectValue)
+			
+			let str = '';
+			if(start != '') {//날짜가 눌렸을 때 
+				str += start + end
+			}
+			if(selectValue != '') {//예금적금이 눌렸을 때 
+				str += m;
+			}
+			let jUrl = 'http://192.168.217.52:9999/spring-project/rest/' +studentNo;//아무것도 눌리지 않았을 때 
+			if(str != '') {
+				jUrl += ('/' + str); //무언가 눌렸을 때 
+			}
+			console.log(jUrl);
+			
+			//////////////////////////
+			/*
+	 		$.ajax({ 
+				//url: 'http://192.168.217.52:9999/spring-project/rest/' +studentNo + '/' + start + end + m,
+				url: jUrl,
+				type: 'get',
+				async : false, //해당 에이작스 끝날 때까지 기다려주는거 
+				success : function(data2){
+					//let cd2 = JSON.parse(data2)
+					
+					for(let i = 0; i<data2.length; i++) {
+						arr.push(data2[i]); //기존 내역에 j내역 합치기 
+					}
+					
+					console.log(arr)
+				},error: function(){
+					alert('실패') 
+				}
+			}); 
+			//날짜정렬 
+	 		arr.sort(function(a,b){
+	 			  // Turn your strings into dates, and then subtract them
+	 			  // to get a value that is either negative, positive, or zero.
+	 			  return new Date(b.reportYmd) - new Date(a.reportYmd);
+	 		});
+			
+			*/
+			////////////////////////////////
 			console.log(cd)
 			$("#adminConsultingList").empty()
 			for (key in cd) {
@@ -415,19 +517,32 @@ function searchByAdmin() {
 				let str = ""
 				
 				str += "<tr>";
-				str += '<td align="center">' + cd[key]["consultingNo"] + '</td>'
+				//str += '<td align="center">' + cd[key]["consultingNo"] + '</td>'
 				str += '<td>' + cd[key]['reportYmd'] + '</td>'
-				str += '<td>' + cd[key]['customerType'] + '</td>'
+				if(cd[key]['customerType'] != undefined) {
+					str += '<td>' + cd[key]['customerType'] + '</td>'
+				} else {
+					str += '<td>잠재</td>'
+				}
 				str += '<td>' + cd[key]['name'] + '</td>'
 				str += '<td>' + '<a href="javascript:doAction(' + cd[key]['id'] + ')">' + cd[key]['id'] +'</a>' + '</td>'
 				str += '<td>' + cd[key]['birth'] + '</td>'
 				str += '<td>' + cd[key]['mainCategory'] + '</td>'
 				str += '<td>' + cd[key]['middleCategory'] + '</td>'
 				str += '<td>' + '<a href="javascript:goReport(' + cd[key]['consultingNo'] + ')">' + cd[key]['title'] +'</a>' + '</td>'
-                str += '<td>' + cd[key]['adminName'] + '</td>'
+				str += '<td>' + cd[key]['consultingChannel'] + '</td>' 
+				str += '<td>' + cd[key]['adminName'] + '</td>'
                 str += '<td>' + cd[key]['empno'] + '</td>'
+                if(cd[key]['progress'] != undefined) {
                 str += '<td align="center">' + cd[key]['progress'] +'</td>'
+                }else{
+                	str += '<td align="center">완료</td>'
+                }
+                if(cd[key]['addConsulting'] != undefined) {
                 str += '<td align="center">' + cd[key]['addConsulting'] +'</td>'
+                }else{
+                	str += '<td align="center">N</td>'
+                }
                 str += '<tr>';
                 
                 $("#adminConsultingList").append(str)
@@ -503,24 +618,94 @@ $(document).ready(function(){
  
  
 $(document).ready(function(){
-	$(document).on('click','.receive', function(){ //delBtn클릭했을 때 ---해라 동적으로 만든애는 그냥 안붙고 on을 써줘야 함. 
+	$(document).on('click','.receive', function(){ 
 		
 		if(!confirm('상담기록을 전송 받겠습니까?')) 
 			return;
 		
-		$.ajax({ 
-			url: 'http://192.168.217.52:9999/spring-project/ddd',
+        //시작일 split
+		let registerationYmd = $("#startDate").val();
+		let a = registerationYmd.split('-');
+		let start = a.join('');
+        //끝나는일 split
+		let registerationYmd2 = $("#endDate").val();
+		let c = registerationYmd2.split('-');
+		let end = c.join('');
+		
+		
+		var middleSelect = document.getElementById("middleCategory");
+        
+	      // select element에서 선택된 option의 value가 저장된다.
+	    var selectValue = middleSelect.options[middleSelect.selectedIndex].value;
+         
+		let studentNo = '2060340006'
+		
+		let m;
+		if(selectValue =='예금'){
+			m = '01'
+		}
+		if(selectValue =='적금'){
+			m = '02'
+		}
+		if(selectValue =='카드'){
+			m = '03'
+		}
+		if(selectValue =='대출'){
+			m = '04'
+		}
+		if(selectValue =='연금'){
+			m = '05'
+		}
+		if(selectValue =='펀드'){
+			m = '06'
+		}
+		if(selectValue =='보험'){
+			m = '07'
+		}
+		if(selectValue =='외환'){
+			m = '08'
+		}
+		if(selectValue =='수표'){
+			m = '09'
+		}
+		if(selectValue =='금'){
+			m = '10'
+		}
+		
+		console.log(start)
+		console.log(end)
+		console.log(selectValue)
+		
+		let str = '';
+		if(start != '') {//날짜가 눌렸을 때 
+			str += start + end
+		}
+		if(selectValue != '') {//예금적금이 눌렸을 때 
+			str += m;
+		}
+		let jUrl = 'http://192.168.217.52:9999/spring-project/rest/' +studentNo;//아무것도 눌리지 않았을 때 
+		if(str != '') {
+			jUrl += ('/' + str); //무언가 눌렸을 때 
+		}
+		console.log(jUrl);
+		
+ 		$.ajax({ 
+			//url: 'http://192.168.217.52:9999/spring-project/rest/' +studentNo + '/' + start + end + m,
+			url: jUrl,
 			type: 'get',
-			success : function(){
-				//alert('성공')
-				//getReplyList()
+			
+			success : function(data){
+				console.log(data)
 			},error: function(){
 				alert('실패') 
 			}
-		});
+		}); 
 		
 	})
 })	
+
+
+
 
 //  $('#reserveBtn').click(function(e){
 // 	 e.preventDefault(); 

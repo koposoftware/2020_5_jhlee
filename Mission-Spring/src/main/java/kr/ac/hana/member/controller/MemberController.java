@@ -2,6 +2,7 @@ package kr.ac.hana.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,9 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired 
+	private ConsultingService consultingService;
 
 	// @RequestMapping(value = "/login", method = RequestMethod.GET)
 	@GetMapping("/login") // 로그인 uri들어왔을 때 최초 포워드
@@ -231,9 +235,8 @@ public class MemberController {
 		return "member/customerInform";
 	}
 
-	//손님 정보 검색 
 	
-	// 고객 정보 검색(관리자 ui)
+	// 손님 정보 검색(관리자 ui)
 	@ResponseBody
 	@RequestMapping("/searchMember")
 	public List<MemberVO> searchMember(HttpServletRequest request) {
@@ -264,8 +267,16 @@ public class MemberController {
 		searchMap.put("searchWord", searchWord);
 
 		List<MemberVO> searchMember = memberService.selectSearchMember(searchMap);
-
+		
 		return searchMember;
+	}
+	
+	
+	// 실적관리 화면 보여주기
+	@RequestMapping("/management")
+	public String management() {
+		
+		return "member/management";
 	}
 	
  }

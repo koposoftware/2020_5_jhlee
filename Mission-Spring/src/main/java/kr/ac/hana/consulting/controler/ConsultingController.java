@@ -298,6 +298,23 @@ public class ConsultingController {
 		consultingService.insert(consultingVO);// 바꿈
 		return "redirect:/consultingList/admin/1/1";
 	}
+	
+	//즐겨찾기 
+	@ResponseBody
+	@PostMapping("/addFavorite")
+	public void favorite(ConsultingVO consulting) {
+		consultingService.favorite(consulting);
+	}
+     
+	//즐겨찾기 손님 조회 
+	
 
-
+	
+	
+	
+	
+	
+	
+	
+	
 }

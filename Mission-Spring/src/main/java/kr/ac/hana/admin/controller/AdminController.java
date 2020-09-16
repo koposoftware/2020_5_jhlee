@@ -7,12 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.ac.hana.admin.service.AdminService;
 import kr.ac.hana.admin.vo.AdminVO;
+import kr.ac.hana.consulting.vo.ConsultingVO;
 
 
 @SessionAttributes({"adminLoginVO"}) //MAV객체에 등록되는 이름이 로그인 객체인경우에는  세션에 등록시켜 
@@ -64,5 +66,13 @@ public class AdminController {
 			status.setComplete();
 			return "redirect:/";
 		}
-		 
+		
+		
+		@ResponseBody 
+		@GetMapping("/videoConsulting")
+		public String videoConsulting(/* ConsultingVO consulting */) {
+			System.out.println("왔음");
+			return "ok";
+		}
+		
 }

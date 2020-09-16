@@ -12,10 +12,10 @@ public class RegisterVO {
 	private String consultingChannel;
 	private String empno;
 	private String adminName;
-	private String registerationYmd;
+	private String registerationDate;
+	private String registerationTime;
 	private String reportYmd;
 	private String progress;
-	private String startTime;
 	public int getNo() {
 		return no;
 	}
@@ -76,11 +76,17 @@ public class RegisterVO {
 	public void setAdminName(String adminName) {
 		this.adminName = adminName;
 	}
-	public String getRegisterationYmd() {
-		return registerationYmd;
+	public String getRegisterationDate() {
+		return registerationDate;
 	}
-	public void setRegisterationYmd(String registerationYmd) {
-		this.registerationYmd = registerationYmd;
+	public void setRegisterationDate(String registerationDate) {
+		this.registerationDate = registerationDate;
+	}
+	public String getRegisterationTime() {
+		return registerationTime;
+	}
+	public void setRegisterationTime(String registerationTime) {
+		this.registerationTime = registerationTime;
 	}
 	public String getReportYmd() {
 		return reportYmd;
@@ -94,19 +100,14 @@ public class RegisterVO {
 	public void setProgress(String progress) {
 		this.progress = progress;
 	}
-	public String getStartTime() {
-		return startTime;
-	}
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
 	@Override
 	public String toString() {
 		return "RegisterVO [no=" + no + ", consultingNo=" + consultingNo + ", mainCategory=" + mainCategory
 				+ ", middleCategory=" + middleCategory + ", id=" + id + ", name=" + name + ", title=" + title
 				+ ", consultingChannel=" + consultingChannel + ", empno=" + empno + ", adminName=" + adminName
-				+ ", registerationYmd=" + registerationYmd + ", reportYmd=" + reportYmd + ", progress=" + progress
-				+ ", startTime=" + startTime + "]";
+				+ ", registerationDate=" + registerationDate + ", registerationTime=" + registerationTime
+				+ ", reportYmd=" + reportYmd + ", progress=" + progress + "]";
 	}
-
+	
+	
 }

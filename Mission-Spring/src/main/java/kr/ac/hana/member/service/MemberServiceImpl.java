@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.ac.hana.consulting.dao.ConsultingDAO;
 import kr.ac.hana.consulting.vo.ConsultingVO;
 import kr.ac.hana.member.dao.MemberDAO;
 import kr.ac.hana.member.vo.MemberVO;
@@ -16,6 +17,8 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	private MemberDAO memberDAO ;	
+	@Autowired
+	private ConsultingDAO consultingDAO ;	
 	
 	@Override
 	public MemberVO login(MemberVO member) {
@@ -64,9 +67,10 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> selectSearchMember(Map<String, String> searchMap) {
 
 		List<MemberVO> searchMemberList = new ArrayList<MemberVO>();
+		List<ConsultingVO>  selectFavorites = new ArrayList<ConsultingVO>();
 		
 		searchMemberList = memberDAO.selectSearchMember(searchMap);
-		
+		selectFavorites = consultingDAO.selectFavorites(searchMap);
 		return  searchMemberList;
 	}
 	

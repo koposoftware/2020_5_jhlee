@@ -50,6 +50,9 @@ public interface ConsultingDAO {
 	//페이징(id별 전체상담조회)
 	List<ConsultingVO> selectPageConsultingById(int pageNo, int boardCntPerPage, String id);
 
-
+	// 즐겨찾기 추가
+	public void favorite(ConsultingVO consulting);
 	
+	//즐겨찾기 조회 
+	public List<ConsultingVO> selectFavorites(Map<String, String> searchMap);
 }

@@ -12,22 +12,22 @@
 		<result column="consulting_channel" property="consultingChannel" />
 		<result column="admin_name" property="adminName" />
 		<result column="add_consulting" property="addConsulting" />
-		<result column="registeration_ymd" property="registerationYmd" />
+		<result column="registeration_date" property="registerationDate" />
+		<result column="registeration_time" property="registerationTime" />
 		<result column="report_ymd" property="reportYmd" />
-		<result column="start_time" property="startTime" />
 	</resultMap>
 	
 	<select id="selectAllRegisterById" resultMap="registerMap" parameterType="String">
-		select no, consulting_no, to_char(registeration_ymd, 'yyyy-mm-dd HH24:MI:SS') as registeration_ymd, id, name, 
-		main_category, middle_category,title, consulting_channel, admin_name, empno, registeration_ymd, report_ymd, progress
+		select no, consulting_no, to_char(registeration_date, 'yyyy-mm-dd') as registeration_date, registeration_time, id, name, 
+		main_category, middle_category,title, consulting_channel, admin_name, empno, report_ymd, progress
 		from register_tb 
 		where id = #{id}
 		order by no desc
 	</select>
 	
 	<select id="selectAllRegisterByEmpno" resultMap="registerMap" parameterType="String">
-		select no, consulting_no, to_char(registeration_ymd, 'yyyy-mm-dd HH24:MI:SS') as registeration_ymd, id, name, 
-		main_category, middle_category,title, consulting_channel, admin_name, empno, registeration_ymd, report_ymd, progress
+		select no, consulting_no, to_char(registeration_date, 'yyyy-mm-dd') as registeration_date, registeration_time, id, name, 
+		main_category, middle_category,title, consulting_channel, admin_name, empno, report_ymd, progress
 		from register_tb
 		where empno = #{empno}
 		order by no desc
@@ -35,7 +35,7 @@
 	
 	<!-- 관리자별 상담예약 리스트 일정 조회   --> <!-- 최근것 순서대로 나오게 하기  -->
 	<select id="selectAllByEmpno" resultMap="registerMap" parameterType="String">
-		select title, registeration_ymd
+		select title, registeration_date , registeration_time
 		from register_tb
 		where empno = #{ empno } 
 		order by no asc 
@@ -43,11 +43,24 @@
 	
 		<!-- 예약 등록  -->
 	<insert id="insertSchedule" parameterType="registerVO">
-		insert into register_tb( title, registeration_ymd, no, consulting_no, 
-		main_category, middle_category, id , name, consulting_channel, admin_name, empno)
-		values( #{title}, to_date(#{registerationYmd},'yyyy-mm-dd hh24:mi'), seq_register_tb_no.nextval, #{consultingNo}, #{mainCategory}, #{middleCategory}, 
-		#{id}, #{name}, #{consultingChannel}, #{adminName}, #{empno})
+		insert into 
+		register_tb
+			( title, registeration_date, registeration_time, no, consulting_no, 
+			main_category, middle_category, id , name, consulting_channel, admin_name, empno)
+		values
+			( #{title}, to_date(#{registerationDate},'yyyy-mm-dd hh24:mi'), #{registerationTime}, seq_register_tb_no.nextval, #{consultingNo}, #{mainCategory}, #{middleCategory}, 
+			#{id}, #{name}, #{consultingChannel}, #{adminName}, #{empno})
 	</insert> 
+	
+	<!-- 관리자 일정등록  --> 
+	<insert id="insertAdminSchedule" parameterType="registerVO">
+	insert into 
+		register_tb
+			( title, registeration_date, registeration_time , empno ,consulting_no )
+		values
+			( #{title}, to_date(#{registerationDate},'yyyy-mm-dd hh24:mi'), #{registerationTime}, #{empno} ,#{consultingNo})
+			
+	</insert>
 	
 	</mapper>
 	

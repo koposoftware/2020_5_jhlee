@@ -58,4 +58,15 @@ public class RegisterServiceImpl implements RegisterService {
 
 	}
 
+
+	@Override
+	public void insertAdminSchedule(RegisterVO register) {
+		
+		registerDAO.insertAdminSchedule(register);
+		
+		
+	}
+	
+	 
+
 }

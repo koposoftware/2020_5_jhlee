@@ -110,10 +110,19 @@ public class ConsultingServiceImpl implements ConsultingService {
 		
 		return consultingList;
 	}
-	
-	
-	
-	
-	
 
+	
+	// 즐겨찾기
+	@Override
+	public void favorite(ConsultingVO consulting) {
+		consultingDAO.favorite(consulting);
+	}
+
+	//즐겨찾기 조회
+	@Override
+	public List<ConsultingVO> selectFavorites(Map<String, String> searchMap) {
+		List<ConsultingVO> favorites = consultingDAO.selectFavorites(searchMap);
+
+		return favorites;
+	}
 }

@@ -23,5 +23,7 @@ public interface RegisterService {
 	//예약 등록서비스(유저)
 	void insertSchedule(RegisterVO register);
 	
+	//일정 등록서비스(관리자)
+	void insertAdminSchedule(RegisterVO register);
 	
 }
