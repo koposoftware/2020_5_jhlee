@@ -44,6 +44,11 @@
 
       return true;
    }
+    
+/*   function goAdminInfo(){ 
+	  location.href="${ pageContext.request.contextPath }/adminAlert";	
+  }  */
+   
 </script>
 </head>
 <body>
@@ -75,9 +80,9 @@
                                     <div class="form-group">
                                         <input type="password" class="form-control" placeholder="비밀번호" name="password">
                                     </div>
-                                    <button type="submit" class="btn login-form__btn submit w-100">Sign In</button> 
+                                    <button type="submit" class="btn login-form__btn submit w-100">Sign In</button>  <!-- onclick="goAdminInfo" -->
                                 </form>
-                                <p class="mt-5 login-form__footer"> 관리자님 오늘도 화이팅입니다! 
+                                <p class="mt-5 login-form__footer" style="font-size:18px"> 관리자님 오늘도 화이팅입니다! 
                             </div>
                         </div>
                     </div>

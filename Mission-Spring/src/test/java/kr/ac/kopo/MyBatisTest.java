@@ -21,6 +21,7 @@ import kr.ac.hana.board.dao.BoardDAO;
 import kr.ac.hana.board.service.BoardService;
 import kr.ac.hana.board.vo.BoardVO;
 import kr.ac.hana.consulting.vo.ConsultingVO;
+import kr.ac.hana.map.vo.BranchLatLngVO;
 import kr.ac.hana.register.service.RegisterService;
 import kr.ac.hana.register.vo.RegisterVO;
 
@@ -46,7 +47,7 @@ public class MyBatisTest {
    @Autowired
    private SqlSessionTemplate sqlSession;
    
-   
+   @Ignore
    @Test
 	public void selectPageConsulting() {
 		// TODO Auto-generated method stub
@@ -104,12 +105,27 @@ public class MyBatisTest {
 	   BoardVO board = boardDAO.selectByNo(38);
 	   System.out.println(board);
    }
-   
+   @Ignore
    @Test
    public void 댓글증가test() throws Exception{
 	   boardDAO.incrementReplyCnt(45);
    }
+   
+   @Ignore
+   @Test
+   public void 위경도test() throws Exception{
+	   List<BranchLatLngVO> branchLatLng =  sqlSession.selectList("map.dao.MapDAO.selectLatLng");
+		for(BranchLatLngVO vo : branchLatLng) {
+			System.out.println(vo.toString());
+		}
+   }
 
+   @Test
+   public void 지점이름test() throws Exception{
+	   BranchLatLngVO branchLatLng =  sqlSession.selectOne("map.dao.MapDAO.selectBranch", "0801092");
+	   System.out.println(branchLatLng.toString());
+		
+   }
 }
 
 

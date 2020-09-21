@@ -15,7 +15,7 @@
 	
 function goReport(reportNo){
 		location.href="${ pageContext.request.contextPath }/consulting/admin/" + reportNo;
-	}	
+	}	 
 	
 function goMember(customerId){
 	location.href="${ pageContext.request.contextPath }/myPage/" + customerId;
@@ -25,6 +25,25 @@ function calendar(){
 	location.href="${ pageContext.request.contextPath }/adminSchedule";
 }
 
+function userCalendar(){
+	location.href="${ pageContext.request.contextPath }/userSchedule";
+}
+
+function progress(consultingNo){
+	location.href="${ pageContext.request.contextPath }/updateProgress/" +consultingNo;
+}
+
+function goReport(reportNo){
+	location.href="${ pageContext.request.contextPath }/consulting/admin/" + reportNo;
+}
+
+function delSchedule(consultingNo){
+	location.href="${ pageContext.request.contextPath }/delSchedule/" +consultingNo;
+}
+
+function consultingList(){
+	location.href="${ pageContext.request.contextPath }/consultingList/1/1";
+}
 </script>
 <style>
 body {background-color:#fafafa;padding:0px;}
@@ -40,7 +59,7 @@ a#ho:hover{
 	</header>
 	<br>
 	<br>
-	<br>
+	<br><br><br>
 	<section>
       <div class="album py-5 bg-light">
         <div class="container">
@@ -49,13 +68,15 @@ a#ho:hover{
  	<c:if test="${ empty adminLoginVO and not empty loginVO}">
  	  <div class="section-title">
           <h2>${ loginVO.id }님의  추가 상담 리스트</h2>
+          <br>
+          <input type="button" class="btn btn-primary px-3 ml-4" id="calendar" style="height:40px; font-size:20px" onclick="userCalendar()" value="내 달력보기">
        </div>
     </c:if>
     	<c:if test="${ not empty adminLoginVO and empty loginVO}">
         <div class="section-title">
           <h2>관리자 [${ adminLoginVO.empno }]님의  추가 상담 리스트</h2>
           <br>
-            <input type="button" class="btn btn-primary px-3 ml-4" id="calendar" onclick="calendar()" value="달력보기">
+            <input type="button" class="btn btn-primary px-3 ml-4" id="calendar" style="height:40px" onclick="calendar()" value="내 달력보기">
         </div>	
     </c:if>
     </div>
@@ -78,13 +99,13 @@ a#ho:hover{
 				<strong>상담채널</strong>: ${ register.consultingChannel }<br>                   
                 <strong>담당직원</strong>: ${ register. adminName }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <strong>사원번호</strong>:  ${ register.empno }<br>
-                <strong style="color:#008C8C">추가 상담 예약일시</strong>: ${ register.registerationDate } ${ register.registerationTime }<br> 
+                <strong style="color:#008C8C">추가 상담 예약일시: ${ register.registerationDate }</strong><br> 
                   </p>
                   <hr>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-secondary"><strong>수정</strong></button>&nbsp;&nbsp;
-                      <button type="button" class="btn btn-secondary"><strong>삭제</strong></button>
+                      <button type="button" class="btn btn-secondary" onclick="consultingList()"><strong>목록</strong></button>&nbsp;&nbsp;
+                      <button type="button" class="btn btn-secondary" onclick="delSchedule(${ register.consultingNo })"><strong>접수취소</strong></button>
                     </div>
                     <small class="text-muted"><strong>${ register.no }</strong></small>
                   </div>
@@ -112,14 +133,15 @@ a#ho:hover{
 				<strong>상담채널</strong>: ${ register.consultingChannel }<br>                   
                 <strong>담당직원</strong>: ${ register. adminName }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <strong>사원번호</strong>:  ${ register.empno }<br>
-                <strong style="color:#008C8C">추가 상담 예약일시: ${ register.registerationYmd } ${ register.registerationTime }</strong><br> 
+                
+                <strong style="color:#008C8C">추가 상담 예약일시: ${ register.registerationDate }</strong><br> 
                   </p>
                   <hr>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-secondary"><strong>상세보기</strong></button>&nbsp;&nbsp;
+                      <button type="button" class="btn btn-secondary" onclick="goReport(${ register.consultingNo })"><strong>상세보기</strong></button>&nbsp;&nbsp;
                       <button type="button" class="btn btn-secondary"><strong>알림전송</strong></button>&nbsp;&nbsp;
-                      <button type="button" class="btn btn-warning"><strong>상태: ${ register.progress }</strong></button>
+                      <button type="button" class="btn btn-warning" onclick="progress(${ register.consultingNo })"><strong>상태: ${ register.progress }</strong></button>
                     </div>
                     <small class="text-muted"><strong>${ register.no }</strong></small>
                   </div>

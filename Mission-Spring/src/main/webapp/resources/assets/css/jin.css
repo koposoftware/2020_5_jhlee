@@ -97,7 +97,7 @@ td{
 	
 .btn-outline-secondary{
 	padding: .1rem .2rem!important;
-    font-size: 0.7rem!important;
+    font-size: 18px!important;
     float: right!important;
     border:2px;
     border-radius:3px;
@@ -175,3 +175,74 @@ element.style {
 	border:0;
 	outline:0;
 }
+#topbar{
+	font-size:16px!important;
+	
+}
+.nav-menu a {
+font-size:16px!important;	
+}
+
+.nav-menu .drop-down > a:after{
+	font-size:16px!important;
+}
+.appointment-btn {
+	font-size:16px!important;
+}
+
+#header .logo a{
+	font-size:33px!important;
+	color:#2c4964!important;
+}
+
+#hero h1{
+	color:#2c4964!important;
+}
+
+#header{
+	padding:20px!important;
+}
+
+section{
+	padding:40px!important;
+	
+}
+/* body{
+	font-family:하나!important;
+} */
+
+.pt-4, .py-4 {
+	font-size:16px!important;
+}
+
+#footer{
+	font-size:16px!important;
+}
+
+.btn-primary{
+	font-size:20px!important;
+}
+
+.pt-5, .py-5 {
+	font-size:20px!important;
+}
+
+.card-body{
+	font-size:16px!important;
+}
+
+.login-form__btn {
+	font-size:22px!important;
+}
+
+.col-xl-6 {
+  padding-top:50px!important;	
+	}
+	
+.text-primary {
+	font-size:20px!important;
+	}
+	
+.form-control{
+font-size:16px!important;	
+}	

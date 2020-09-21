@@ -77,7 +77,7 @@
                                     </div>
                                     <button type="submit" class="btn login-form__btn submit w-100">Sign In</button> 
                                     <br><br>
-                                    <a href="${ pageContext.request.contextPath }/adminLogin" class="text-primary">관리자로그인</a>
+                                    <a href="${ pageContext.request.contextPath }/adminLogin" class="text-primary">관리자 로그인</a>
                                 </form>
                                 <p class="mt-5 login-form__footer">Dont have account? <a href="${ pageContext.request.contextPath }/enrollmentForm" class="text-primary">Sign Up</a> now</p>
                             </div>

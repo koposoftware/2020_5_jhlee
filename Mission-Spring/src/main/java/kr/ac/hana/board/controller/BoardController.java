@@ -24,6 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.ac.hana.board.service.BoardService;
 import kr.ac.hana.board.vo.BoardVO;
+import kr.ac.hana.consulting.service.ConsultingService;
+import kr.ac.hana.consulting.vo.ConsultingVO;
 import kr.ac.hana.member.vo.MemberVO;
 import kr.ac.hana.reply.vo.ReplyVO;
 
@@ -32,6 +34,9 @@ public class BoardController {
 
 		@Autowired
 	 	private BoardService boardService;
+		
+		@Autowired
+	 	private ConsultingService consultingService;
 		
 		/*
 		 * @RequestMapping("/") public String home() { return "index2"; }
@@ -184,6 +189,13 @@ public class BoardController {
 			return searchInquiry;
 		}	
 		
+	//문의게시판 내역을 상담리스트로 보내기 
+	@RequestMapping("/enrollmentInquiry")
+	public String enrollmentInquiry(ConsultingVO consulting) {
+     
+		consultingService.insert(consulting);
+		return "redirect:/consultingList";
+	}
    }
 
 

@@ -90,7 +90,7 @@
           </li>
           </c:if>
          
-          <li><a href="#contact">영업점 찾기</a></li>
+          <li><a href="${ pageContext.request.contextPath }/branchMap">영업점 찾기</a></li>
 	
         </ul>   
       </nav><!-- .nav-menu -->

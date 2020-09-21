@@ -10,4 +10,5 @@ public interface ReplyService {
 	List<ReplyVO>selectAllByInquiryNo(int inquiryNo);
 	void removeReply(int replyNo);
 	void removeReply(ReplyVO replyVO);
+	
 }

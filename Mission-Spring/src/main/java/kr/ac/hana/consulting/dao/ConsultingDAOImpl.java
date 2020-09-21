@@ -87,8 +87,12 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 		sqlSession.update("consulting.dao.ConsultingDAO.updateAddConsulting",no);
 		
 	}
-
-
+   
+	@Override
+	public void updateAddConsulting2(int no) {
+		sqlSession.update("consulting.dao.ConsultingDAO.updateAddConsulting2",no);
+		
+	}
 
 	@Override
 	public int cntConsulting() {
@@ -146,8 +150,5 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 		List<ConsultingVO> favorites = sqlSession.selectList("consulting.dao.ConsultingDAO.selectFavorites");	
 		return favorites;
 	}
-	
-	
-	
-	
+
 }

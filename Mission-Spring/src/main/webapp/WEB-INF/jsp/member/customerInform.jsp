@@ -89,9 +89,9 @@
 <header>	
 		<jsp:include page="/resources/assets/include/topMenu.jsp" />
 </header>
-   <br>
+    <br>
 	<br>
-	<br>
+	<br><br><br>
 	<section style="align:center">
 	<br>
 	<br>
@@ -101,17 +101,17 @@
           <h2>손님 리스트</h2>
         </div>
 		<div class="table-responsive" align="center">
-          <select id="gender" name="gender" style="width:6%">
+          <select id="gender" name="gender" style="width:6%; font-size:20px">
                       <option>성별</option>
                      <option value="M">남성</option>
                      <option value="F">여성</option>
 	      </select>
-	      <select id="digitalEdu" name="digitalEdu" style="width:8%">
+	      <select id="digitalEdu" name="digitalEdu" style="width:8%; font-size:20px">
                      <option>디지털교육</option>
                      <option value="Y">교육 받음</option>
                      <option value="N">교육 받지 않음</option>
 	      </select>
-	       <select id="interest" name="interest" style="width:8%">
+	       <select id="interest" name="interest" style="width:8%; font-size:20px">
                       <option>관심사</option>
                     <option value="예금">예금</option>
                     <option value="적금">적금</option>
@@ -123,7 +123,7 @@
                     <option value="연금">연금</option>
                     <option value="기타">기타</option>
 	      </select>
-	      <select id="age" name="age" style="width:8%">
+	      <select id="age" name="age" style="width:8%; font-size:20px">
 	      			 <option>연령</option>
                      <option value="20대">20대</option>
                      <option value="30대">30대</option>
@@ -131,14 +131,14 @@
                      <option value="50대">50대</option>
                      <option value="60대이상">60대 이상</option>
 	      </select>
-	      <select id="job" name="job" style="width:8%">
+	      <select id="job" name="job" style="width:8%; font-size:20px">
 	      			 <option>직업</option>
                     <option value="회사원">회사원</option>
                     <option value="주부">주부</option>
                     <option value="학생">학생</option>
                     <option value="기타">기타</option>
 	      </select>
-	      <select id="customerType" name="customerType" style="width:8%">
+	      <select id="customerType" name="customerType" style="width:8%; font-size:20px">
 	      			 <option>유형</option>
                     <option value="잠재">잠재</option>  <!-- 상품가입안함, 상담만 진행 -->
                     <option value="일반">일반</option>  <!-- 상품 가입하고 이용중 -->
@@ -146,12 +146,12 @@
                     <option value="블랙">블랙</option>  <!-- 이유없는 폭언, 영업장 피해 ETC -->
 	      </select>
 	      
-          <input type="text" id="searchWord" placeholder=" ID/이름 /생년월일  조회" style="width:20%">
-          <button style="height: 29px;" class="btn btn-primary px-3 ml-4" onclick="searchMember()">검색</button>
-      	<br><br>
+          <input type="text" id="searchWord" placeholder=" ID /이름 /생년월일  조회" style="width:20%; font-size:18px">
+          <button style="height: 33px; font-size:20px" class="btn btn-primary px-3 ml-4" onclick="searchMember()">검색</button>
+      	<br><br><br>
             <table class="table table-hover table-sm" style="width:89%; height:15%" id="inform">
               <thead> 
-               <tr class="jj">
+               <tr class="jj" style="font-size:20px">
 			   <th></th>
                <th>이름</th>
                <th>아이디</th>
@@ -172,7 +172,7 @@
              
 				<tbody id="memberList">
 			<c:forEach items="${ allInformList }" var="customerInform">
-				<tr>
+				<tr style="font-size:large;">
 					<td><input type="button" value="☆" class = "star btn btn-default" id="${ adminLoginVO.admin_name }-${ adminLoginVO.empno }-${ customerInform.name }-${ customerInform.id }" style="border:0; background-color:white"></td>
 					<td><c:out value='${ customerInform.name }'/></td>
 					<td><strong><a href="javascript:doAction('${ customerInform.id }')">
@@ -223,8 +223,7 @@
 	</div>	
 	
 <!-- ==== 페이징 끝! ================================================================== -->	
-
-		 <input type="button"  style="align:right; margin-left: 82%!important;" class="btn btn-primary px-3 ml-4" value="손님등록" onclick="enrollAction()">
+		 <input type="button"  style="align:right;font-size:20px; margin-left: 82%!important;" class="btn btn-primary px-3 ml-4" value="손님등록" onclick="enrollAction()">
 		<br>
 		<br>
 		<br>

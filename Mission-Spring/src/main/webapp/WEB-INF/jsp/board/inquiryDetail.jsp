@@ -127,13 +127,18 @@ $(document).ready(function(){
 	function doAction(type){
 		switch(type){
 		case 'U' :    
-			location.href = "/IntegratedAccountSystem/updateBoardForm.do?no=${ param.no }"
+			location.href = "'${ pageContext.request.contextPath }/updateBoardForm"
 			break;
 		case 'D' :
 			if(confirm('삭제하시겠습니까?')){
-				location.href="/IntegratedAccountSystem/delete.do?no=${ param.no }"; /*el은 자바스크립트에서 쌍따옴표 안에 집어 넣어야 한다 */
+				location.href="'${ pageContext.request.contextPath }/deleteBoardForm"; /*el은 자바스크립트에서 쌍따옴표 안에 집어 넣어야 한다 */
 			}
 			break;
+		case 'E' :
+			if(confirm('해당 문의를 접수하시겠습니까?')){
+				location.href="${ pageContext.request.contextPath }/enrollmentInquiry"; /*el은 자바스크립트에서 쌍따옴표 안에 집어 넣어야 한다 */
+			}
+			break;	
 		case 'L' :
 			location.href ="${ pageContext.request.contextPath }/inquiry/1/1";
 			break;
@@ -147,22 +152,22 @@ $(document).ready(function(){
 <header>	
 		<jsp:include page="/resources/assets/include/topMenu.jsp" />
 	</header>
-	<c:if test="${ not empty adminLoginVO and empty loginVO}">
+<%-- 	<c:if test="${ not empty adminLoginVO and empty loginVO}">
 	<div id="jb-sidebar">
-        <h4>손님과 함께 smile~!</h4>
+        <h4>손님과 함께 웃어요~!</h4>
         <ul>
-          <li>상담노트</li>
-          <li>고객정보조회</li>
-          <li>미정</li>
+          <li>상담 노트</li>
+          <li>손님 정보 조회</li>
+          <li>손님 상담 리스트</li>
         </ul>
       </div>
-      </c:if>
+      </c:if> --%>
 	<br>
 	<br>
 	<br>
-	<section>
+	<section style="font-size:large">
 	<br>
-	<br>
+	<br><br><br>
       <div align="center">
           <div class="section-title">
           <h2>손님의 소중한 문의</h2>
@@ -170,22 +175,27 @@ $(document).ready(function(){
          <br>
          <div class="container">
          <table style="width: 70%">
+         <input type="hidden" value="${ inquiry.writer }" name="id">
         <%--  <input type="hidden" value="${ board.replyCnt }"> --%>
             <tr>
                <th width="15%">번호</th>
                <td class="jj">${ inquiry.no }</td>
+               <input type="hidden" value="${ inquiry.no }" name="consultingNo">
             </tr>
              <tr>
                <th width="15%">대분류</th>
                <td class="jj"><c:out value="${ inquiry.mainCategory }" /></td>
+                 <input type="hidden" value="${ inquiry.mainCategory }" name="maniCategory">
             </tr>
             <tr>
                <th width="15%">중분류</th>
                <td class="jj"><c:out value="${ inquiry.middleCategory }" /></td>
+                <input type="hidden" value="${ inquiry.middleCategory }" name="middleCategory">
             </tr>
             <tr>
                <th width="15%">제목</th>
                <td class="jj"><c:out value="${ inquiry.title }" /></td>
+                <input type="hidden" value="${ inquiry.title }" name="title">
             </tr>
             <tr>
                <th width="15%">글쓴이</th>
@@ -194,6 +204,7 @@ $(document).ready(function(){
             <tr>
                <th width="15%">내용</th>
                <td class="jj">${ inquiry.content }</td>
+                <input type="hidden" value="${ inquiry.content }" name="consultingReport">
             </tr>
             <tr>
                <th width="15%">조회수</th>
@@ -202,6 +213,7 @@ $(document).ready(function(){
             <tr>
                <th width="15%">등록일</th>
                <td class="jj">${ inquiry.regDate } </td>
+                <input type="hidden" value="${ inquiry.regDate }" name="regDate"> 
             </tr>
             <c:if test="${ not empty fileList }">
                   <tr>
@@ -230,7 +242,7 @@ $(document).ready(function(){
          </c:if>
          &nbsp;&nbsp;<input type="button"  value="삭제" class="btn btn-primary px-3 ml-4" onclick="doAction('D')">&nbsp;&nbsp; 
          &nbsp;&nbsp;<input type="button"  value="목록" class="btn btn-primary px-3 ml-4" onclick="doAction('L')">&nbsp;&nbsp;
-
+ 
          <c:if test="${ not empty adminLoginVO and empty loginVO}"> 
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <!--  <input type="button"  style="align:right" value="상담접수" class="btn btn-primary px-3 ml-4" onclick="doAction('R')">&nbsp;&nbsp; -->
@@ -241,7 +253,7 @@ $(document).ready(function(){
       <%--   <hr style="width:70%">
         <img src="/Mission-Spring/resources/assets/img/reply2.JPG" /><div class="reply"> 댓글 ${ board.replyCnt }건 </div> --%>
         <div id="replyCnt"></div>
-		고객님의 문의 내역을 접수한 ${ inquiry.adminName }[${inquiry.empno}]( ${ inquiry.consultingChannel})입니다.
+		<%-- 고객님의 문의 내역을 접수한 ${ inquiry.adminName }[${inquiry.empno}]( ${ inquiry.consultingChannel})입니다. --%>
 		<br>
 		<br>	
 		<div id="replyList" style="width:70%" align="left"></div> 

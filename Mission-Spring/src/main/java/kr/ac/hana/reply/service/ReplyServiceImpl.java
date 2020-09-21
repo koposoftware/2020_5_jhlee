@@ -67,8 +67,7 @@ public class ReplyServiceImpl implements ReplyService {
 		boardDao.reduceReplyCnt(replyVO.getInquiryNo());
 		replyDao.delete(replyVO.getNo());
 		System.out.println("DAO에서 보드넘버: " +replyVO.getInquiryNo());
-
-		
+	
 	}
 	
 	

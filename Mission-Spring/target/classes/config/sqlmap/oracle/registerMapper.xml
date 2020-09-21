@@ -18,7 +18,7 @@
 	</resultMap>
 	
 	<select id="selectAllRegisterById" resultMap="registerMap" parameterType="String">
-		select no, consulting_no, to_char(registeration_date, 'yyyy-mm-dd') as registeration_date, registeration_time, id, name, 
+		select no, consulting_no, to_char(registeration_date, 'yyyy-mm-dd hh24:mi') as registeration_date, registeration_time, id, name, 
 		main_category, middle_category,title, consulting_channel, admin_name, empno, report_ymd, progress
 		from register_tb 
 		where id = #{id}
@@ -26,10 +26,10 @@
 	</select>
 	
 	<select id="selectAllRegisterByEmpno" resultMap="registerMap" parameterType="String">
-		select no, consulting_no, to_char(registeration_date, 'yyyy-mm-dd') as registeration_date, registeration_time, id, name, 
+		select no, consulting_no, to_char(registeration_date, 'yyyy-mm-dd hh24:mi') as registeration_date, registeration_time, id, name, 
 		main_category, middle_category,title, consulting_channel, admin_name, empno, report_ymd, progress
 		from register_tb
-		where empno = #{empno}
+		where empno = #{empno} and id is not null
 		order by no desc
 	</select>
 	
@@ -61,6 +61,36 @@
 			( #{title}, to_date(#{registerationDate},'yyyy-mm-dd hh24:mi'), #{registerationTime}, #{empno} ,#{consultingNo})
 			
 	</insert>
+	
+	<!-- 추가상담 상태 업데이트  -->
+	<update id="updateProgress" parameterType="int">
+	 update register_tb set progress = '완료'
+      where consulting_no = #{no}	
+	</update>
+	
+	<!-- 추가상담 예약 취소 -->
+	<delete id="delSchedule" parameterType="int">
+	delete from register_tb
+	where consulting_no = #{no}
+	</delete>
+	
+	<!--손님 일정 (달력)조회   -->
+		
+	<select id="selectAllById" resultMap="registerMap" parameterType="String">
+		select no, consulting_no, to_char(registeration_date, 'yyyy-mm-dd hh24:mi') as registeration_date, registeration_time, id, name, 
+		main_category, middle_category,title, consulting_channel, admin_name, empno, report_ymd, progress
+		from register_tb
+		where id = #{id}
+		order by no desc
+	</select>
+
+	<!-- 관리자 일정 삭제  -->
+	<delete id="removeRegister" parameterType="registerVO">
+	delete from register_tb
+	where empno = #{ empno } and title = #{title}  and id is null
+
+	</delete>
+	
 	
 	</mapper>
 	

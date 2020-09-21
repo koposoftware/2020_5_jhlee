@@ -34,11 +34,11 @@
 		padding: 0 10px;
 	}
 .fc-event{
-background-color:#de5151;
+background-color:#F17676;
 border:0px!important;
 }
 .fc-content{
-    background-color:#de5151;
+    background-color:#F17676;
     color:white;
     border-color:0;
 }
@@ -58,8 +58,8 @@ border-width:0px;
 	<br>
 	<br>   
 				<div id="calendar" style="text-align:center">
-				<div class="modal-body">* 관리자님 상담이 불가한 일정을 추가해주세요 </div> 
-				<textarea name="textarea" cols="60" rows="1" id="scheduleInfo" style="font-size:20px";></textarea>
+				<div class="modal-body"><h6 style="text-decoration: underline;">※ 관리자님 상담이 불가한 일정을 추가해주세요</h6></div> 
+				<textarea name="textarea" cols="60" rows="1" id="scheduleInfo" style="font-size:20px; width:403px";></textarea>
 				<br>
 				<input type="date" name="reserveDate" onchange="checkTime()" style="align-self: center ;width:200px;height:37px; font-size:16px;" id="reserveDate" >
 		
@@ -79,8 +79,8 @@ border-width:0px;
 			</select>
 			
 				<hr>
-			<input type="button" id="enrollmentBtn" class="btn btn-primary px-3 ml-4"  value="접수" style="width: 20%;  align:center;">
-			<input type="button"  class="btn btn-primary px-3 ml-4" value="취소"  style="width: 20%;  align:center;" onClick="history.go(-1)"> 	 
+			<input type="button" id="enrollmentBtn" class="btn btn-primary px-3 ml-4"  value="접수" style="width:20%; font-size:18px;  align:center;">
+			<input type="button"  class="btn btn-primary px-3 ml-4" value="취소"  style="width: 20%; font-size:18px;  align:center;" onClick="history.go(-1)"> 	 
 			</div>
 
  <script>
@@ -89,39 +89,41 @@ border-width:0px;
  //CRUD - 달력 내역 조회
  function getreservationList(){ //댓글 있는 곳 로드시, 댓글 추가 시 댓글리스트가 뜨게끔 
      //ajax통해서 해당 게시물의 댓글리스트를 조회  => <div id="replyList"></div> 조회데이터 업데이트 
+   
+	
    $.ajax({
         url : '${ pageContext.request.contextPath }/schedule/${ adminLoginVO.empno }', //관리자 로그인시 adminLoginVO로 바꾸기
         type : 'get',
         plugins: ["interaction", "dayGrid"],
-        //datatype: "json",
+        //datatype: "json", 
+        async : false,
         success : function(data){ //db에서 가져와
         
-        let reservationList = JSON.parse(data);
-        console.log("reservationList")
-        console.log(reservationList)
+        	let reservationList = JSON.parse(data);
+        	console.log("reservationList")
+        	console.log(reservationList)
         
-        var consultingSchedule = [];
+        	var consultingSchedule = [];
+        	//var url='usa__en@holiday.calendar.google.com';
         
-          $(reservationList).each(function(){
-             consultingSchedule.push({
-              title : this.title,
-              start : this.registerationDate,
-               
-
-             });
-             console.log("this.title" + this.title)
-             console.log("this.registerationYmd " + this.registerationYmd )
-             console.log(typeof this.registerationYmd )
-          });
-
-        console.log("consultingSchedule : " + consultingSchedule )
-        console.log("consultingSchedule title : " + consultingSchedule['title'] )
-        console.log("consultingSchedule start : " + consultingSchedule['start'] )
-        console.log(consultingSchedule)
-
-           
-          $('#calendar').fullCalendar({
-                header: {
+          	$(reservationList).each(function(){
+          		consultingSchedule.push({
+          			title : this.title,
+          			start : this.registerationDate,
+          			//url : "${ pageContext.request.contextPath }/deleteSchedule/${ adminLoginVO.empno }"
+          		});
+          		console.log("this.title" + this.title)
+          		console.log("this.registerationYmd " + this.registerationYmd )
+          		console.log(typeof this.registerationYmd )
+          	});
+          	
+          	console.log("consultingSchedule : " + consultingSchedule )
+          	console.log("consultingSchedule title : " + consultingSchedule['title'] )
+          	console.log("consultingSchedule start : " + consultingSchedule['start'] )
+          	console.log(consultingSchedule)
+          	
+          	$('#calendar').fullCalendar({
+          		header: {
                    left: 'prev,next today',
                    center: 'title',
                    right: 'month,agendaWeek,agendaDay'
@@ -132,16 +134,26 @@ border-width:0px;
                 locale: "ko",
                 events: consultingSchedule,
                 eventContent : consultingSchedule,
-                
+                eventClick: function(event) {
+                	
+    				if(confirm('해당 일정을 삭제하시겠습니까?')) {
+    					document.location.href="${ pageContext.request.contextPath }/deleteSchedule/${ adminLoginVO.empno }/" + event.title;
+    				}
+    				//callback(events);
+    				//window.open(event.url, 'gcalevent', 'width=500, height=500');
+    				//return false;
+    			},
+
                 dayClick: function() {
-                    alert('상담 예약을 진행 하시겠습니까?'); 
-                    }
-             });
-       
+                    alert('상담 예약을 진행 하시겠습니까?');
+                },
+          	/* $('#calendar').fullCalendar('updateEvent', event); */
+    		});
+          	
           }
    
        });
-
+     
   };
  
   
@@ -182,9 +194,6 @@ function checkTime() {
 				$("#reserveTime option[value*='" + disableTime[i] +  "']").prop('disabled',true);
 			}
 
-
-			
-			
 // 	        console.log("불가능한시간: " +  disableTime)
 	           
 	       
@@ -212,6 +221,8 @@ function checkTime() {
 		let a = registerationTime2 .split("-")
 		let subTime = a[0]
 		
+		let events;
+		
 		console.log(registerationDate )
 		console.log(subTime )
 		console.log(registerationTime )
@@ -235,8 +246,12 @@ function checkTime() {
 			success : function(){
 		    	getreservationList(); //전체 댓글리스트 호출
 		    	 alert(registerationDate +" "+registerationTime + '에 새로운 일정이 추가 되었습니다.') 
-		    	 document.location.reload();  
-		    	// window.location.reload()
+		    	
+		    	/* $('#calendar').fullCalendar('updateEvent', event); */
+		    	 
+		    	 //document.location.reload();
+		    	
+		    	window.location.reload()
 		    	 //callback(events);
 		    	//document.location.href="${ pageContext.request.contextPath }/addConsulting";
 		    	 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="map.dao.MapDAO">
+
+	<!--컬럼 값 _ 다른것 맞춰주기   -->
+	<resultMap type="branchLatLngVO" id="branchMap">
+		<result column="branch_no" property="branchNo" />
+		<result column="branch_name" property="branchName" />
+		<result column="phone_number_1" property="phoneNumber1" />
+		<result column="phone_number_2" property="phoneNumber2" />
+		<result column="start_time" property="startTime" />
+		<result column="finish_time" property="finishTime" />
+	</resultMap>
+	
+	<select id="selectLatLng" resultMap="branchMap">
+		select branch_no, latitude, longtitude
+		from branch_tb	
+	</select>
+	
+	<select id="selectBranch" resultMap="branchMap" parameterType="String">
+		select branch_no, branch_name, phone_number_1, phone_number_2, latitude, longtitude, post, loc, 
+		start_time, finish_time, remarks
+		from branch_tb where branch_no = #{branchNo}
+	</select>
+	
+</mapper>
+	

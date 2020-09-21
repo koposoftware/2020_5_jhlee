@@ -27,7 +27,7 @@
 <style>
 a{
     color: #2C4964!important;;
-    text-decoration: underline;
+  /*   text-decoration: underline; */
 }
 
 </style>
@@ -39,7 +39,7 @@ a{
 	<br>
 	<br>
 <section class="section">
- <a href="#" class="back-to-top">하이</a>
+ <a href="#" class="back-to-top"></a>
   <div class="container">
   <br><br>
    <div class="section-title">
@@ -58,8 +58,8 @@ a{
            <hr>
           <div class="mt-5">
             <!-- changelog post -->
-            <h3 id="february-updates"> [${ consulting.title }] </h3>
-            <p><strong>고객ID : <a href="javascript:doAction('${ consulting.id }')">${ consulting.id }</a> &nbsp;&nbsp;&nbsp;&nbsp; 손님유형 : ${ consulting.customerType }&nbsp;&nbsp;&nbsp;&nbsp;
+            <h3 id="february-updates"> [${ consulting.title }] </h3> 
+            <p><strong>고객ID : <a href="javascript:doAction('${ consulting.id }')" style="text-decoration: underline";>${ consulting.id }</a> &nbsp;&nbsp;&nbsp;&nbsp; 손님유형 : ${ consulting.customerType }&nbsp;&nbsp;&nbsp;&nbsp;
                             생년월일 : ${ consulting.birth } &nbsp;&nbsp;&nbsp;&nbsp; </strong></p>
             <p>
             </p>
@@ -79,7 +79,8 @@ a{
               <div class="badge added">하나 원큐 대출  하나 적금  하나 보험  핀크</div>
           </div>
           <br>
-           <input type="button" value="목록" class="btn btn-primary px-3 ml-4" onclick="goList()">
+           <input type="button" value="목록" class="btn btn-primary px-3 ml-4" onclick="goList()">&nbsp;&nbsp;
+           <input type="button"  class="btn btn-primary px-3 ml-4" value="돌아가기" onClick="history.go(-1)"> 
     <br>
     </div>
   </div>

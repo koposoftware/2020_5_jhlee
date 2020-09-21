@@ -60,6 +60,31 @@ public class RegisteDAOImpl implements RegisterDAO {
 		sqlSession.insert("register.dao.RegisterDAO.insertAdminSchedule", register);
 	}
 
+	@Override
+	public void updateProgress(int consultingNo) {
+		sqlSession.update("register.dao.RegisterDAO.updateProgress", consultingNo);
+		
+	}
+
+	@Override
+	public void delSchedule(int consultingNo) {
+		sqlSession.delete("register.dao.RegisterDAO.delSchedule", consultingNo);
+		
+	}
+
+	@Override
+	public List<RegisterVO> selectAllById(String id) {
+		List<RegisterVO> userList = sqlSession.selectList("register.dao.RegisterDAO.selectAllById", id);
+		return userList;
+	}	
+	
+	//예약 내역 삭제 
+	@Override
+	public void removeRegister(RegisterVO register) {
+		System.out.println(register);
+		sqlSession.delete("register.dao.RegisterDAO.removeRegister", register);
+		
+	}
 }
 
 

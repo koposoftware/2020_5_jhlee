@@ -12,7 +12,7 @@
 <jsp:include page="/resources/assets/include/headCSS.jsp"></jsp:include>  
 
  <script>
-
+ 
 function doAction(customerInformId){
 	
 	location.href="${ pageContext.request.contextPath }/consultingList/" + customerInformId;
@@ -57,11 +57,12 @@ body {background-color:#fafafa;padding:0px;}
 
 	  <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
  
-       <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden" style="width:50%">
+       <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden" style="width:50%; font-size:20px">
         <div class="my-3 p-3">
 	     <div align="center">
+			<br><br>
 			<hr>
-			<h4 class="title"><strong>손님 상세 정보</strong></h4>
+			<h3 class="title"><strong>손님 상세 정보</strong></h3>
 			<hr>
 			<br>
 			<br>
@@ -143,15 +144,16 @@ body {background-color:#fafafa;padding:0px;}
       </div>
 
  		<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden" style="width:50%">
-        <div class="my-3 p-3" align="center">
+        <div class="my-3 p-3" align="center" style="padding-top: 27px!important;">
         
 	<!-- 유저로그인 시 ui  -->	
     <!-- 차트  -->
+    <br><br>
       <hr>	
-          <h4 class="titles"> <strong>상담 문의 유형 별 관심도</h4>
+          <h3 class="titles"> <strong>상담 문의 유형 별 관심도</h3>
       <hr>
-      <br><br><br>
-	  <canvas class="my-4" id="myChart" width="600" height="300"></canvas>
+      <br><br>
+	  <canvas class="my-4" id="myChart" width="750" height="400"></canvas>
      
      
    <!-- Icons -->

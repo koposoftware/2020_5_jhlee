@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -101,6 +102,19 @@ public class RegisterController {
 		return reservationList;
 	}
 
+	//유저 예약 일정 캘린더 보여주기
+	@ResponseBody
+	@GetMapping("/userSchedule/{id}")
+	public List<RegisterVO> userList(@PathVariable("id") String id) {
+		List<RegisterVO> reservationList = registerService.selectAllById(id);
+		return reservationList;
+	}
+	
+	@RequestMapping("/userSchedule")
+	public String userSchedule() {
+		return "consulting/userSchedule";
+	}
+	
 	// 관리자 일정관리 캘린더 보여주기 (관리자용)
 	@RequestMapping("/adminSchedule")
 	public String enrollment() {
@@ -128,7 +142,7 @@ public class RegisterController {
 
 		System.out.println(registerVO);
 		registerService.insertSchedule(registerVO);
-        //consultingService.updateAddConsulting(registerVO.getNo());
+        consultingService.updateAddConsulting(registerVO.getConsultingNo());
         System.out.println(registerVO.getNo());
 	}
 	
@@ -141,5 +155,39 @@ public class RegisterController {
 		registerService.insertAdminSchedule(registerVO);
         System.out.println(registerVO.getNo());
 	}
+	
+	//추가상담 진행상태 업데이트 
+    @RequestMapping("/updateProgress/{consultingNo}")
+	public String updateProgress(@PathVariable("consultingNo") int no ) {
+		registerService.updateProgress(no);
+		return "redirect://addConsulting/admin";
+	}
+	
+	//추가상담 접수 취소 (유저)
+    @RequestMapping("/delSchedule/{consultingNo}")
+  	public String delSchedule(@PathVariable("consultingNo") int no ) {
+  		 registerService.delSchedule(no);
+  		 consultingService.updateAddConsulting2(no);
+  		return "redirect://consultingList/1/1";
+  	}
+    
+	//일정 삭제 하기(관리자단)
+	@RequestMapping("/deleteSchedule/{empno}/{title}")
+	public String delete(@PathVariable("empno") String empno, @PathVariable("title") String title) {
+		
+		RegisterVO register = new RegisterVO();
+		register.setEmpno(empno);
+		register.setTitle(title);
+		System.out.println("deleteControl : empno : " + empno + ", title : " + title);
+		registerService.removeRegister(register);
+		return "redirect://adminSchedule";
+	}
+	
+	// 관리자 일정삭제 캘린더 보여주기 (관리자용)
+	@RequestMapping("/deleteSchedule")
+	public String delete() {
+		return "consulting/deleteSchedule";
 
+	}
+	
 }

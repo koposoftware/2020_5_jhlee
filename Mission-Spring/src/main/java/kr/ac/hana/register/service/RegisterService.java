@@ -26,4 +26,15 @@ public interface RegisterService {
 	//일정 등록서비스(관리자)
 	void insertAdminSchedule(RegisterVO register);
 	
+	//추가상담 업데이트 
+	void updateProgress(int consultingNo);
+	
+	//추가상담 취소 
+	void delSchedule(int consultingNo);
+	
+	//유저 예약 달력 조회 서비스 
+	List<RegisterVO> selectAllById(String id);
+	
+	//일정 삭제(관리자단)
+	void removeRegister(RegisterVO register);
 }

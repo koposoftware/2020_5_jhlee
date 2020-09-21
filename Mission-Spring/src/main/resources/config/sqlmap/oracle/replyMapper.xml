@@ -30,7 +30,16 @@
 		select inquiry_no
 			from reply_tb
 	 	where no= #{no}
-	</select>
+	
+	</select>	
+	
+<!-- 	차트 그리기 
+
+<select id="sel" resultType="replyVO">
+	
+	</select> -->
+	
+
 </mapper>
 
 

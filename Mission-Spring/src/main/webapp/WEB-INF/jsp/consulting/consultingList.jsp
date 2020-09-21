@@ -67,7 +67,7 @@ input.search-go {
 	<section>
 	<br>
 	<br>
-	 <c:if test="${ not empty adminLoginVO and empty loginVO}">  
+	<%--  <c:if test="${ not empty adminLoginVO and empty loginVO}">  
        <main role="main" class="container">
       <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">최근 상담 업데이트</h6>
@@ -97,8 +97,9 @@ input.search-go {
         </small>
       </div>
       </main>
-     </c:if>
+     </c:if> --%>
       <br>
+      <br><br>
       <div align="center">
       <c:if test="${ empty adminLoginVO and  not empty loginVO}">  
          <div class="section-title">
@@ -110,33 +111,33 @@ input.search-go {
       <div class="section-title">
           <h2>상담 리스트 조회</h2>
         </div>
-         <button style="height: 29px;"  class="receive" onclick="receiveRecord()">지누션</button>
+        <!--  <button style="height: 29px;"  class="receive" onclick="receiveRecord()">지누션</button> -->
       </c:if>
       
 <!-- 여기서부터 검색항목 시작 -->
-      	 <select id="mainCategory" name="mainCategory" class="f0" style="width:10%">
+      	 <select id="mainCategory" name="mainCategory" class="f0" style="width:10%; font-size:20px">
                     <option value="">대분류</option>
                     <option value="금융상품">금융상품</option>
                     <option value="금융경험">금융경험</option>
                     <option value="기타">기타</option>
           </select>
-          <select id="middleCategory" name="middleCategory" class="f1" style="width:15%">
+          <select id="middleCategory" name="middleCategory" class="f1" style="width:15%; font-size:20px">
                      <option value="">중분류</option>
 	      </select>
 	    <c:if test="${ not empty adminLoginVO and empty loginVO}">  
-      		<input type="text" id="searchWord" placeholder="  손님 ID / 이름  및 직원사번 조회" style="width:20%">
+      		<input type="text" id="searchWord" placeholder=" 손님 ID / 이름  및 직원사번 조회" style="width:20%; font-size:18px">
       	</c:if>
       	<c:if test="${ empty adminLoginVO and  not empty loginVO}"> 
-      		<input type="text" id="searchWord" placeholder="제목으로 검색" style="width:20%">
+      		<input type="text" id="searchWord" placeholder="제목으로 검색" style="width:20%; font-size:18px">
       	</c:if>
-      	
-      	<input type="date" id="startDate">-<input type="date" id="endDate">
+      	&nbsp;
+      	<input type="date" id="startDate"  style="font-size:18px"> <strong>―</strong> <input type="date" id="endDate" style="font-size:18px">
 	    <c:if test="${ not empty adminLoginVO and empty loginVO}">  
       	
-	      	<button style="height: 29px;"  class="btn btn-primary px-3 ml-4" onclick="searchByAdmin()">검색</button>
+	      	<button style="height: 29px; font-size:20px"  class="btn btn-primary px-3 ml-4" onclick="searchByAdmin()">검색</button>
 	     </c:if>
 	     <c:if test="${ empty adminLoginVO and  not empty loginVO}"> 
-      		<button style="height: 29px;"  class="btn btn-primary px-3 ml-4" onclick="searchByUser()">검색</button>
+      		<button style="height: 29px; font-size:20px"  class="btn btn-primary px-3 ml-4" onclick="searchByUser()">검색</button>
       	</c:if>
 <!--       	여기서 검색 항목 끝 -->
       	                                                                      
@@ -144,9 +145,9 @@ input.search-go {
      <br>
        <!--유저 로그인시 보여지는 ui  -->
           <div class="table-responsive" align="center">
-            <table class="table table-hover table-sm" style="width:77%">
+            <table class="table table-hover table-sm" style="width:77%; font-size:large;">
               <thead>
-                <tr class="jj">
+                <tr class="jj" style="font-size:20px">
                   <!-- <th>상담번호</th> -->
                   <th>등록일시</th>
                   <th>손님유형</th>
@@ -221,7 +222,7 @@ input.search-go {
                <%--    <td align="center">${ consulting.consultingNo }</td> --%>
                   <td>${ consulting.reportYmd }</td>
                   <td>${ consulting.customerType }</td>
-                   <td>${ consulting.name }</td>
+                  <td>${ consulting.name }</td>
                   <td><a href="javascript:doAction('${ consulting.id }')">${ consulting.id }</a></td>
                   <td>${ consulting.birth }</td>
                   <td>${ consulting.mainCategory }</td>
@@ -231,7 +232,7 @@ input.search-go {
                   <td>${ consulting.adminName }</td>
                   <td>${ consulting.empno }</td>
                   <td>${ consulting.progress }</td>
-                  <td>${ consulting.addConsulting } 
+                  <td align="center">${ consulting.addConsulting } 
                  </tr>
           </c:forEach>
                 </tbody>
@@ -481,7 +482,7 @@ function searchByAdmin() {
 			console.log(jUrl);
 			
 			//////////////////////////
-			/*
+			
 	 		$.ajax({ 
 				//url: 'http://192.168.217.52:9999/spring-project/rest/' +studentNo + '/' + start + end + m,
 				url: jUrl,
@@ -499,14 +500,14 @@ function searchByAdmin() {
 					alert('실패') 
 				}
 			}); 
-			//날짜정렬 
-	 		arr.sort(function(a,b){
-	 			  // Turn your strings into dates, and then subtract them
-	 			  // to get a value that is either negative, positive, or zero.
-	 			  return new Date(b.reportYmd) - new Date(a.reportYmd);
-	 		});
+			//날짜정렬  자바스크립트에 배열 정렬 함수가 있는데 거기에 인자로 콜백함수를 불러서 뒤날짜 - 앞날짜 빼주는 식으로 정렬을 했다. 
+	 		arr.sort(
+	 				function(a,b){
+	 					return new Date(b.reportYmd) - new Date(a.reportYmd);
+	 				}
+	 		);
+			//양수면 위로가게하고 주르륵 소트 
 			
-			*/
 			////////////////////////////////
 			console.log(cd)
 			$("#adminConsultingList").empty()
@@ -683,7 +684,8 @@ $(document).ready(function(){
 		if(selectValue != '') {//예금적금이 눌렸을 때 
 			str += m;
 		}
-		let jUrl = 'http://192.168.217.52:9999/spring-project/rest/' +studentNo;//아무것도 눌리지 않았을 때 
+		//let jUrl = 'http://192.168.217.52:9999/spring-project/report/' +studentNo;//아무것도 눌리지 않았을 때
+		let jUrl = 'http://192.168.217.52:9999/spring-project/rest/' +studentNo;//아무것도 눌리지 않았을 때
 		if(str != '') {
 			jUrl += ('/' + str); //무언가 눌렸을 때 
 		}

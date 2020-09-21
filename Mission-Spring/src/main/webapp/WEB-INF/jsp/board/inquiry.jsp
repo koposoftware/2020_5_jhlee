@@ -21,6 +21,9 @@
       location.href = "${ pageContext.request.contextPath }/inquiry/" + inquiryNo;   //이런 방식으로 보내주기
    }
    
+   function doAlert(){
+	   alert('작성자 본인만 확인할 수 있습니다. 글쓴이를 확인해주세요!')
+   }
 
 
 </script>
@@ -38,7 +41,7 @@
 	</header>
 	<br>
 	<br>
-	<br>
+	<br><br><br>
 	<section>
 	<br>
 	<br>
@@ -49,8 +52,8 @@
          <button onclick="goWriteForm()" class="btn btn-primary px-3 ml-4" style="align:write; margin-left: 63%!important;">문의하기</button>  
       </c:if>
         </div>    
-      <table style="width:70%">
-         <tr class="jj">
+      <table style="width:70%;font-size:large;">
+         <tr class="jj" style="font-size:20px">
             <th width="7%">번호</th>
             <th width="10%">대분류</th>
             <th width="8%">중분류</th>
@@ -68,12 +71,31 @@
                <td class="jj">${ inquiry.no }</td>
                <td class="jj">${ inquiry.mainCategory }</td>
                <td class="jj">${ inquiry.middleCategory }</td>
+               <c:choose>
+               <c:when test="${ inquiry.writer eq loginVO.id }">
                <td class="jj">
                   <!-- 로그인 해야 상세 페이지 보게끔! board.no를 보내줌 -->
                   <a href="javascript:doAction(${ inquiry.no })">
                      <c:out value= "${ inquiry.title }" />
                   </a>
-                 </td> 
+               </td> 
+               </c:when>
+               <c:when test="${ not empty adminLoginVO and empty loginVO }">
+               <td class="jj">
+                  <!-- 로그인 해야 상세 페이지 보게끔! board.no를 보내줌 -->
+                  <a href="javascript:doAction(${ inquiry.no })">
+                     <c:out value= "${ inquiry.title }" />
+                  </a>
+               </td> 
+               </c:when>
+               <c:otherwise>
+               <td class="jj">
+                 <a href="javascript:doAlert()"> 
+                    <c:out value= "${ inquiry.title }" />
+                 </a> 
+                </td>  
+                </c:otherwise>
+                </c:choose>
                <td class="jj" style="padding-right: 8px; font-size: 14px; color:#D70037; align:right">   
                                  댓글 ${ inquiry.replyCnt }건
                </td>

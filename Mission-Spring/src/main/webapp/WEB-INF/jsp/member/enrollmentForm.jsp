@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<br><br>
 <c:if test="${ not empty adminLoginVO and empty loginVO}">
 <title>손님 등록</title>
 </c:if>

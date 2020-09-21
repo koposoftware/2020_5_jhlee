@@ -15,6 +15,7 @@
 		<typeAlias type="kr.ac.hana.admin.vo.AdminVO" alias="adminVO"/>
 		<typeAlias type="kr.ac.hana.consulting.vo.ConsultingVO" alias="consultingVO"/>
 		<typeAlias type="kr.ac.hana.register.vo.RegisterVO" alias="registerVO"/>
+		<typeAlias type="kr.ac.hana.map.vo.BranchLatLngVO" alias="branchLatLngVO"/>
 	</typeAliases>
 	
 </configuration>

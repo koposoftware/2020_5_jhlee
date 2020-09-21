@@ -133,10 +133,18 @@
                 locale: "ko",
                 events: consultingSchedule,
                 eventContent : consultingSchedule,
-                
+               
+              /*   dayRender: function (date, cell) {
+                    cell.css("background-color", "red");
+                } */
+             /*    eventClick: function(event) {
+    				// opens events in a popup window
+    				window.open(event.url, 'gcalevent', 'width=700,height=600');
+    				return false;
+    			} *//* ,
                 dayClick: function() {
                     alert('상담 예약을 진행 하시겠습니까?'); 
-                    }
+                    } */
              });
        
           }
@@ -184,22 +192,14 @@ function checkTime() {
 			}
 
 
-			
-			
 // 	        console.log("불가능한시간: " +  disableTime)
-	           
-	       
 	          },
 	          error : function() {
 				console.log("실패")
 			}
 	   
-	       });
-	
-		
-	
-	
-}
+	       });	
+     }
 
   
 //CRUD-달력 내역 추가 
@@ -253,7 +253,28 @@ function checkTime() {
 	})
 }) 
  
-
+//CRUD-D 달력 일정 삭제 
+/* $(document).ready(function(){
+		$(document).on('click','delBtn', function(){ 
+			
+			if(!confirm('댓글을 삭제하시겠습니까?'))return;
+			
+			let replyNo = $(this).attr('id'); //버튼객체의 id = no를 가져옴 
+			
+			$.ajax({ //삭제하기 위해서 ajax통신 다시 
+				url: '${ pageContext.request.contextPath }/reply/' + replyNo + '/${inquiry.no}',
+				type: 'delete',
+				success : function(){
+					//alert('성공')
+					getReplyList()
+				},error: function(){
+					alert('실패') 
+				}
+			});
+			
+		})
+	}) */	
+	
 
 </script>
 

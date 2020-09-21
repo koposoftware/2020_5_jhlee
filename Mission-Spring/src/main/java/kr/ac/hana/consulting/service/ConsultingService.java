@@ -29,8 +29,9 @@ public interface ConsultingService {
 	 * @param no 업데이트시킬 상담게시물 번호 
 	 */
 	void updateAddConsulting(int no);
+	//추가 상담 컬럼의 Y값을 N값으로 업데이트 
+	void updateAddConsulting2(int no);
 	
-   
 	//고객 정보 검색
 	List<ConsultingVO> selectSearchInfoList(Map<String,String> searchMap);
 	
@@ -48,4 +49,5 @@ public interface ConsultingService {
 	
 	//즐겨찾기만 조회 
 	List<ConsultingVO> selectFavorites(Map<String, String> searchMap);
+	
 }

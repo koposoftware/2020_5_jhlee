@@ -93,7 +93,10 @@
 		<mvc:exclude-mapping path="/board"/>
 		<mvc:exclude-mapping path="/inquiry"/>
 		<mvc:exclude-mapping path="/consulting"/>
+		<mvc:exclude-mapping path="/branchMap"/>
+		<mvc:exclude-mapping path="/deleteEvent"/>
 		<mvc:exclude-mapping path="/enrollmentForm"/>
+		<mvc:exclude-mapping path="/map/**/"/>
 		<!-- <mvc:exclude-mapping path="/reply"/> -->
 		<mvc:exclude-mapping path="/resources/**"/>
 			<ref bean="LoginInterceptor" />

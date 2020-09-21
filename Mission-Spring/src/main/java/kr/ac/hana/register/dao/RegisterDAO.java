@@ -27,4 +27,15 @@ public interface RegisterDAO {
 	//직원 일정 등록 서비스(관리자 UI)
 	public void insertAdminSchedule(RegisterVO register);
 	
+	//추가상담상태 업데이트 
+	public void updateProgress(int consultingNo);
+	
+	//추가상담 취소 서비스 
+	public void delSchedule(int consultingNo);
+    
+	//유저 추가상담 조회서비스 
+	public List<RegisterVO> selectAllById(String id);
+	
+	//예약 내역삭제(관리자단)
+	public void removeRegister(RegisterVO register);
 }

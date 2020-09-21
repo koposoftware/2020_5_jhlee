@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.hana.consulting.dao.ConsultingDAO;
 import kr.ac.hana.consulting.vo.ConsultingVO;
+import kr.ac.hana.register.dao.RegisterDAO;
+import kr.ac.hana.register.dao.RegisterDAO;
 
 @Service
 public class ConsultingServiceImpl implements ConsultingService {
@@ -60,7 +62,13 @@ public class ConsultingServiceImpl implements ConsultingService {
 	public void updateAddConsulting(int no) {
 	  
 		consultingDAO.updateAddConsulting(no);
+	}
 
+	@Override
+	public void updateAddConsulting2(int no) {
+		
+		consultingDAO.updateAddConsulting2(no);
+		
 	}
 
 	@Override
@@ -125,4 +133,5 @@ public class ConsultingServiceImpl implements ConsultingService {
 
 		return favorites;
 	}
+
 }

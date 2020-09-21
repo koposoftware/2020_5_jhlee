@@ -30,6 +30,9 @@ public interface ConsultingDAO {
 	 */
 	public void updateAddConsulting(int no);
 	
+	//추가 상담 컬럼의 Y값을 N값으로 업데이트 
+	public void updateAddConsulting2(int no);
+	
 	/*
 	 * 메인카테고리로 고객정보 검색
 	*/
@@ -55,4 +58,5 @@ public interface ConsultingDAO {
 	
 	//즐겨찾기 조회 
 	public List<ConsultingVO> selectFavorites(Map<String, String> searchMap);
+	
 }

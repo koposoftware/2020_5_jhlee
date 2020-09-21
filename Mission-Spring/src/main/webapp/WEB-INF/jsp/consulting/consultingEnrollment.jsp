@@ -27,14 +27,15 @@ function doEnrollment(){
 </header>
 	<br>
 	<br>
-	<br>
+	<br><br><br>
 <section id="services" class="services">
       <div class="container">
 		<br>
 		<br>
+		<br>
         <div class="section-title">
           <h2>상담 등록</h2>
-          <p>상담을 등록하기 위해 첫 손님과 기존 손님을 구분하여 업무를 시작하세요.</p>
+          <p><h6><strong>상담을 등록하기 위해 첫 손님과 기존 손님을 구분하여 업무를 시작하세요.</strong></h6></p>
         </div>
         <div class="row" style="padding-left:120px">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">

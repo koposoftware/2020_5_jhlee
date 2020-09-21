@@ -134,14 +134,14 @@ $(document).ready(function(){
    <br>
    <br>
    <br>
-    
+   <br><br>
       <div align = "center" style="font-size:15px">
       <div class="section-title">
           <h2>손님의 소중한 문의</h2>
        </div>     
     
       
-      <form method="post" autocomplete="off">
+      <form method="post" autocomplete="off" style="font-size:large">
       <table style="width:60%"> <!--  -->
                 <tr>
                    <th width="20%">제목</th>
