@@ -1,6 +1,7 @@
 package kr.ac.hana.consulting.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -58,5 +59,11 @@ public interface ConsultingDAO {
 	
 	//즐겨찾기 조회 
 	public List<ConsultingVO> selectFavorites(Map<String, String> searchMap);
+	
+	//메인차트 만들기
+	public List<ConsultingVO> selectMainChart(); 
+	
+	//메인차트 만들기
+//	public List<HashMap<String, Object>> selectMainChart2(); 
 	
 }

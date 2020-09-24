@@ -107,6 +107,9 @@ public class MemberController {
 	public String enrollmentForm(@Valid MemberVO memberVO, BindingResult result) {
 		 //유효성 검사,memberVO 에 대한 validationcheck
 		 System.out.println(memberVO);
+		 System.out.println(memberVO.getPost());
+		 memberVO.setAddress("(" + memberVO.getPost() + ")" + memberVO.getAddress());
+		 System.out.println(memberVO.getAddress());
 		 System.out.println("result: " + result.hasErrors());
 		 if (result.hasErrors()) {
 		    System.out.println("오류발생...");
@@ -248,7 +251,7 @@ public class MemberController {
 		String job = request.getParameter("job");
 		String customerType = request.getParameter("customerType");
 		String searchWord = request.getParameter("searchWord");
-
+		
 		System.out.println(gender);
 		System.out.println(digitalEdu);
 		System.out.println(interest);
@@ -274,9 +277,26 @@ public class MemberController {
 	
 	// 실적관리 화면 보여주기
 	@RequestMapping("/management")
-	public String management() {
+	public ModelAndView management() {
 		
-		return "member/management";
+		  ModelAndView mav = new ModelAndView("member/management");
+		  
+		 // mav.addObject("\",customerInform);
+		  
+		  mav.addObject("chart", consultingService.selectMainChart());
+//		  mav.addObject("chart2", consultingService.selectMainChart2());
+		  //List<ConsultingVO> jinee =  consultingService.selectMainChart();
+//		  List<HashMap<String, Object>> dysing = consultingService.selectMainChart2();
+		  
+//		  for(ConsultingVO j : jinee) {
+//			  System.out.println(j);
+//		  }
+		  
+//		  for(HashMap<String, Object> m : dysing) {
+//			  System.out.println(m.get("MAIN_CATEGORY"));
+//		  }
+	
+		return mav;
 	}
 	
  }

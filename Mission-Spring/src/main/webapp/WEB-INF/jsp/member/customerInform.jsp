@@ -149,6 +149,7 @@
           <input type="text" id="searchWord" placeholder=" ID /이름 /생년월일  조회" style="width:20%; font-size:18px">
           <button style="height: 33px; font-size:20px" class="btn btn-primary px-3 ml-4" onclick="searchMember()">검색</button>
       	<br><br><br>
+      	<div id="content">
             <table class="table table-hover table-sm" style="width:89%; height:15%" id="inform">
               <thead> 
                <tr class="jj" style="font-size:20px">
@@ -194,8 +195,9 @@
 				</tbody> 
 		</table>
 		<br>
+		
 <!-- ====페이징======================================================================================= -->
-	<div><!--style="margin-left: 10%"  -->
+	<div id="paging"><!--style="margin-left: 10%"  -->
 <!-- ---------이전 버튼 구현 --------------------------- -->
 			<c:if test="${blockNo != 1 }"> 
 				<a href= "${pageContext.request.contextPath}/customerInform/${blockNo - 1}/${blockStartPageNo-1 }">이전</a> &nbsp;
@@ -221,6 +223,7 @@
 				<a href="${pageContext.request.contextPath}/customerInform/${blockNo + 1}/${blockEndPageNo+1 }">다음</a> &nbsp;
 			</c:if>
 	</div>	
+	</div>
 	
 <!-- ==== 페이징 끝! ================================================================== -->	
 		 <input type="button"  style="align:right;font-size:20px; margin-left: 82%!important;" class="btn btn-primary px-3 ml-4" value="손님등록" onclick="enrollAction()">
@@ -234,13 +237,6 @@
 	</div>
 
 </section>
-	<br>
-	<br>
-	<br> 
-	<br>
-	<br>
-	<br>
-
 <script>
 
 function searchMember() {
@@ -264,7 +260,7 @@ function searchMember() {
 	if(gender != '' || digitalEdu != '' || interest != '' || age != '' || job != '' || customerType != '' || searchWord != '' ) {
 	
 	$.ajax({
-		url : "${pageContext.request.contextPath}/searchMember",
+		url : "${pageContext.request.contextPath}/searchMember/",
 		type : 'get',
 		data : {
 			gender :  gender,
@@ -278,9 +274,11 @@ function searchMember() {
 		},
 		success : function(data) {
 			console.log("성공")
+			//console.log(typeof data);
 			let md = JSON.parse(data) 
 			console.log(md)
 			$("#memberList").empty()
+			
 			for (key in md) {
 				
 				console.log(md[key]["id"])
@@ -288,7 +286,7 @@ function searchMember() {
 				let str = ""
 				
 				str += "<tr>";
-				str += '<td>' + '<input type="button">' +'</td>'
+				str += '<td>' + '<input type="button"value="☆" class = "star btn btn-default" id="${ adminLoginVO.admin_name }-${ adminLoginVO.empno }-${ customerInform.name }-${ customerInform.id }" style="border:0; background-color:white">' +'</td>'
 				str += '<td>' + md[key]['name'] + '</td>'
 				str += '<td>' + '<a href="javascript:doAction(' + md[key]['id'] + ')">' + md[key]['id'] +'</a>' + '</td>'
 				str += '<td>' + md[key]['password'] + '</td>'
@@ -330,7 +328,7 @@ function enrollAction(){
 }
 
 </script>
-	<footer id="footer">
+   <footer id="footer" style="margin-top:200px">
 		<%@ include file="/resources/assets/include/footer.jsp"%>
 	</footer>
     <jsp:include page="/resources/assets/include/jsFiles.jsp"></jsp:include> 

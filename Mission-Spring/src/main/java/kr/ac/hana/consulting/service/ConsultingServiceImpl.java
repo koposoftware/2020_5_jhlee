@@ -1,6 +1,7 @@
 package kr.ac.hana.consulting.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -133,5 +134,20 @@ public class ConsultingServiceImpl implements ConsultingService {
 
 		return favorites;
 	}
+
+	@Override
+	public List<ConsultingVO> selectMainChart() {
+		
+		List<ConsultingVO> chartList = consultingDAO.selectMainChart();
+		return chartList;
+	}
+
+//	@Override
+//	public List<HashMap<String, Object>> selectMainChart2() {
+//		return consultingDAO.selectMainChart2();
+//	}
+//	
+	
+	
 
 }

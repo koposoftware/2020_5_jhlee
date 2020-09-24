@@ -18,7 +18,7 @@
      <!--  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/lang-all.js"></script>
 	 -->
 </head>
-<style>
+<style> 
 
 	body {
 		margin: 0;
@@ -121,7 +121,7 @@ border-width:0px;
           	console.log("consultingSchedule title : " + consultingSchedule['title'] )
           	console.log("consultingSchedule start : " + consultingSchedule['start'] )
           	console.log(consultingSchedule)
-          	
+          	console.log(event[1])
           	$('#calendar').fullCalendar({
           		header: {
                    left: 'prev,next today',
@@ -145,7 +145,13 @@ border-width:0px;
     			},
 
                 dayClick: function() {
-                    alert('상담 예약을 진행 하시겠습니까?');
+                 	if(confirm('상담 예약을 진행 하시겠습니까?')){
+                 		document.location.href="${ pageContext.request.contextPath }//adminSchedule/#reserveDate";
+                		
+                	} 
+                 	
+                  /*   alert('상담 예약을 진행 하시겠습니까?');
+                    $('#reserveDate').val('this.registerationDate') */
                 },
           	/* $('#calendar').fullCalendar('updateEvent', event); */
     		});
@@ -271,13 +277,7 @@ function checkTime() {
 </script>
 
 </section>
-	<br>
-	<br>
-	<br> 
-	<br>
-	<br>
-	<br>
-     <footer id="footer">
+	<footer id="footer" style="margin-top:200px">
 		<%@ include file="/resources/assets/include/footer.jsp"%>
 	</footer>
 </body>

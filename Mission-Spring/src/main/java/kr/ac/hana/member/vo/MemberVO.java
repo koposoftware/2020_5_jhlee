@@ -31,9 +31,19 @@ public class MemberVO {
 	private String age;
 	private String type;
 	private String customerType;
+	private String post;
 	
 
 	
+	
+	public String getPost() {
+		return post;
+	}
+
+	public void setPost(String post) {
+		this.post = post;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -125,14 +135,16 @@ public class MemberVO {
 	public void setCustomerType(String customerType) {
 		this.customerType = customerType;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "MemberVO [id=" + id + ", name=" + name + ", password=" + password + ", birth=" + birth + ", gender="
 				+ gender + ", phoneNo=" + phoneNo + ", job=" + job + ", address=" + address + ", emailId=" + emailId
 				+ ", emailDomain=" + emailDomain + ", digitalEdu=" + digitalEdu + ", interest=" + interest + ", age="
-				+ age + ", type=" + type + ", customerType=" + customerType + "]";
+				+ age + ", type=" + type + ", customerType=" + customerType + ", post=" + post + "]";
 	}
+	
+
 	
 
 	/*

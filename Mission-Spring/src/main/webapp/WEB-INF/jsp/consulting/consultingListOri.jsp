@@ -187,35 +187,29 @@ input.search-go {
                   <button onclick="openModal(${ consulting.consultingNo })" class="btn btn-primary px-3 ml-4">신청</button >
                   </c:if>
                   <c:if test="${ consulting.consultingChannel ne '창구'}"> 
-                  <button onclick="openModal(${ consulting.consultingNo })" class="btn btn-primary px-3 ml-4">신청</button> 
+                  <button onclick="enrollment(${ consulting.consultingNo })" class="btn btn-primary px-3 ml-4">신청</button> 
                   </c:if>
                   </td>
                  </tr>
    
                 
                 <!-- 모달 창 -->  
-	  <div class="modal fade" id="reserveModal${ consulting.consultingNo }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:300px">
+	  <div class="modal fade" id="reserveModal${ consulting.consultingNo }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content" style="text-align: center;">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel"><strong>추가 상담 예약</strong></h5>
+					<h6 class="modal-title" id="exampleModalLabel"><strong>추가 상담 예약</strong></h6>
 					<!-- <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
 					<!-- <button class="close" type="button" data-dismiss="modal" aria-label="Close"> </button> -->
 				</div>
 				<div class="modal-body">예약 하실 방법을 선택하세요</div>
-				<div align="center" class="d-flex mr-5">
-				<c:if test="${ consulting.consultingChannel eq '창구'}">
-				<button onclick="enrollment(${ consulting.consultingNo })"class="btn btn-primary px-3 ml-4" style="width:260px">${consulting.empno } 행원 전화 상담 예약하기</button>
-				</c:if>
-				<c:if test="${ consulting.consultingChannel ne '창구'}"> 
-				<button onclick="enrollment(${ consulting.consultingNo })"class="btn btn-primary px-3 ml-4" style="width:260px">${consulting.empno } 직원 전화 상담 예약하기</button>
-				</c:if>
-				<br><br>
-				<button onclick="enrollment(${ consulting.consultingNo })"class="btn btn-primary px-3 ml-4" style="width:260px" >하나은행 영업점 찾아가기</button>
-				</div>
+				
+				<button onclick="enrollment(${ consulting.consultingNo })"class="btn btn-primary px-3 ml-4" >${consulting.adminName } 행원 추가 상담 예약하기</button>
+				<button onclick="enrollment(${ consulting.consultingNo })"class="btn btn-primary px-3 ml-4" >${consulting.adminName } 행원 추가 상담 예약하기</button>
+				
 				<hr>	 
 				<div style="text-align: center; margin-bottom: 1.8rem;">
-					<!--  <input type="submit" id="enrollmentBtn" class="btn btn-primary px-3 ml-4"  value="접수" style="width: 20%;  align:center;"> -->
+					 <input type="submit" id="enrollmentBtn" class="btn btn-primary px-3 ml-4"  value="접수" style="width: 20%;  align:center;">
 					 <input type="button" onclick="closeModal()" class="btn btn-primary px-3 ml-4"  value="취소" style="width: 20%;  align:center;">
 				</div>
 			</div>

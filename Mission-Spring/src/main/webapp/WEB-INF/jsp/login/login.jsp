@@ -90,11 +90,8 @@
 
 	</div>
 </section>
-	<br><br><br><br><br><br><br><br>
-   <br><br><br><br><br><br><br><br>
-   	<br><br><br><br><br><br><br><br>
-   <br><br><br><br><br><br><br><br>
-   <footer id="footer"> 
+
+ 	<footer id="footer" style="margin-top:200px">
 		<%@ include file="/resources/assets/include/footer.jsp"%>
 	</footer>
     <jsp:include page="/resources/assets/include/jsFiles.jsp"></jsp:include> 

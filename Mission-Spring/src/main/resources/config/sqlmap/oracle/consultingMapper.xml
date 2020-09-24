@@ -182,4 +182,19 @@
 	<select id="selectFavorites" parameterType="map" resultMap="consultingMap">
 	   select * from favorites
 	 </select> 
+	 
+	 <!--메인차트만들기  -->
+     <select id="selectMainChart" resultMap="consultingMap">
+      select main_category, count(main_category) as consulting_no 
+      from report_tb 
+      group by main_category
+     </select>
+     
+	 <!--메인차트만들기  -->
+<!--      <select id="selectMainChart2" resultType="map">
+      select main_category, count(main_category) as consulting_no 
+      from report_tb 
+      group by main_category
+     </select> -->
+     
 </mapper>

@@ -279,13 +279,7 @@ function checkTime() {
 </script>
 
 </section>
-	<br>
-	<br>
-	<br> 
-	<br>
-	<br>
-	<br>
-     <footer id="footer">
+	<footer id="footer" style="margin-top:200px">
 		<%@ include file="/resources/assets/include/footer.jsp"%>
 	</footer>
 </body>

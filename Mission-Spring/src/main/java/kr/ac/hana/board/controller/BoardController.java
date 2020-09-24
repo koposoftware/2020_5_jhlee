@@ -196,6 +196,14 @@ public class BoardController {
 		consultingService.insert(consulting);
 		return "redirect:/consultingList";
 	}
+	
+	// 지도 화면 보여주기
+	@RequestMapping("/branchMap")
+	public String selectBranch() {
+		
+		return "map/branchMap";
+	}
+	
    }
 
 

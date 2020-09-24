@@ -151,4 +151,25 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 		return favorites;
 	}
 
+
+	@Override
+	public List<ConsultingVO> selectMainChart() {
+		
+		List<ConsultingVO> chartList = sqlSession.selectList("consulting.dao.ConsultingDAO.selectMainChart");
+		
+//		for(ConsultingVO a : chartList) { //vo형 리스트를 for문 하나 돌때마다 a라고 alias로 붙여줌
+//			System.out.println(a);
+//		}
+		
+		return chartList;
+	}
+
+
+
+	/*
+	 * @Override public List<HashMap<String, Object>> selectMainChart2() { return
+	 * sqlSession.selectList("consulting.dao.ConsultingDAO.selectMainChart2"); }
+	 */
+	
+
 }

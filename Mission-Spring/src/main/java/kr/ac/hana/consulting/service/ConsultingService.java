@@ -3,6 +3,7 @@ package kr.ac.hana.consulting.service;
 import kr.ac.hana.board.vo.BoardVO;
 import kr.ac.hana.consulting.vo.ConsultingVO;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -50,4 +51,10 @@ public interface ConsultingService {
 	//즐겨찾기만 조회 
 	List<ConsultingVO> selectFavorites(Map<String, String> searchMap);
 	
+	//메인차트 만들기
+	List<ConsultingVO> selectMainChart(); 
+	
+	//메인차트 만들기
+//	public List<HashMap<String, Object>> selectMainChart2(); 
+	 
 }

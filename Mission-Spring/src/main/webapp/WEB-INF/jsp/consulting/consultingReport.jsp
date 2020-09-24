@@ -89,17 +89,7 @@ a{
  </div>
 </section>
  <input type="button" value="상담노트 " style="border-radius:50%; font-size: 0.9rem!important; margin-left: 77%!important; margin-right:1%; height:60px; width:65px" class="btn btn-outline-secondary" onclick="goNote( '${ consulting.id }' )">
-	<br>
-	<br>
-	<br> 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-    <br>
-	<footer id="footer">
+	<footer id="footer" style="margin-top:200px">
 		<%@ include file="/resources/assets/include/footer.jsp"%>
 	</footer>
     <jsp:include page="/resources/assets/include/jsFiles.jsp"></jsp:include> 

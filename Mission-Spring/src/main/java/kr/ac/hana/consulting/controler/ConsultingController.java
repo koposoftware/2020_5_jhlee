@@ -35,19 +35,21 @@ public class ConsultingController {
 	@Autowired
 	private ConsultingService consultingService;
 
+	// 임의 설정이 필요한 부분
+	int boardCntPerPage = 10;
+	int pageCntPerBlock = 3;
+
 	// 상담리스트 전체 조회
 	@RequestMapping(value = { "/consultingList/admin/{blockNo}/{pageNo}"})
 //	public ModelAndView consultingList(HttpServletRequest request) {
 	public String consultingList(@PathVariable("blockNo")int blockNo, @PathVariable("pageNo")int pageNo,  HttpServletRequest request) {
 
-		System.out.println("블럭넘"+blockNo);
-		System.out.println("페이지넘"+pageNo);
-
-
-		// 임의 설정이 필요한 부분
-		int boardCntPerPage = 10;
-		int pageCntPerBlock = 3;
-
+		// 첫페이지는 무조건 1 / 1 로
+		if (blockNo == 0 && pageNo == 0 ) {
+			blockNo = 1;
+			pageNo = 1;
+		}
+		
 		// 블록의 시작 페이지와 끝 페이지 (등차수열 적용)
 		int blockStartPageNo = 1 + pageCntPerBlock * (blockNo - 1);
 		int blockEndPageNo = pageCntPerBlock * blockNo;
@@ -145,14 +147,14 @@ public class ConsultingController {
 			request.setAttribute("pageNo", pageNo);
 			/* request.setAttribute("id", id); */
 			
-			System.out.println("id:"+id);
+			//System.out.println("id:"+id);
 			
 			request.setAttribute("consultingList", consultingList);
 			
 //			List<ConsultingVO> consultingList = consultingService.selectAllConsulting();
 //			ModelAndView mav = new ModelAndView("consulting/consultingList"); // spring-mvc.xml에 view-resolvers태그에 정해둠
 //			mav.addObject("consultingList", consultingList);
-			System.out.println(consultingList);
+			//System.out.println(consultingList);
 			return "consulting/consultingList";
 		}
 
@@ -185,11 +187,7 @@ public class ConsultingController {
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
 
-		System.out.println(mainCategory);
-		System.out.println(middleCategory);
-		System.out.println(searchWord);
-		System.out.println(startDate);
-		System.out.println(endDate);
+	
 
 		Map<String, String> searchMap = new HashMap<String, String>();
 		searchMap.put("mainCategory", mainCategory);
@@ -220,7 +218,7 @@ public class ConsultingController {
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
 		String id = loginVO.getId();
-		System.out.println("id" + id);
+		//System.out.println("id" + id);
 
 		Map<String, String> searchMap = new HashMap<String, String>();
 		searchMap.put("mainCategory", mainCategory);
@@ -238,9 +236,9 @@ public class ConsultingController {
 	// 상담기록 번호로 상세조회
 	@RequestMapping("/consulting/admin/{no}") // pstmt가 아닌 주소값 그대로 가져오기 {써주고싶은이름} 가변적일때 {}로묶기
 	public ModelAndView detail(@PathVariable("no") int consultingNo) { // 주소값 이름 no를 int boardNo로 설정 밑에 메소드 안에서 쓸거다!
-		System.out.println(consultingNo);
+		//System.out.println(consultingNo);
 		ConsultingVO consulting = consultingService.selectByConsultingNo(consultingNo);
-		System.out.println(consulting);
+		//System.out.println(consulting);
 		ModelAndView mav = new ModelAndView("consulting/consultingReport");
 
 		mav.addObject("consulting", consulting);
@@ -279,7 +277,7 @@ public class ConsultingController {
 			consulting.setEmpno(adminLoginVO.getEmpno()); // 자동으로 글쓴이 보여지게 등록
 
 		model.addAttribute("consultingVO", consulting);
-		System.out.println("컨설팅 컨트롤러:" + consulting);
+		//System.out.println("컨설팅 컨트롤러:" + consulting);
 		return "/consulting/consultingNote"; // viewer에 의해서 /jsp로 포워드 보내줌
 	}
 
@@ -289,7 +287,7 @@ public class ConsultingController {
 		// 유효성 검사, boardVO boardVo 에 대한 validationcheck
 		AdminVO adminLoginVO = (AdminVO) session.getAttribute("adminLoginVO");
 		consultingVO.setAdminName(adminLoginVO.getAdmin_name());
-		System.out.println("찍어보자: " + consultingVO);
+		//System.out.println("찍어보자: " + consultingVO);
 		// System.out.println("result: " + result.hasErrors());
 		if (result.hasErrors()) {
 			System.out.println("오류발생...");
@@ -309,6 +307,6 @@ public class ConsultingController {
 	}
      
 	//즐겨찾기 손님 조회 
-		
+	
 	
 }
