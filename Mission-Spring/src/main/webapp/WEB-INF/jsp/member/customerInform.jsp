@@ -102,17 +102,17 @@
         </div>
 		<div class="table-responsive" align="center">
           <select id="gender" name="gender" style="width:6%; font-size:20px">
-                      <option>성별</option>
+                      <option value=''>성별</option>
                      <option value="M">남성</option>
                      <option value="F">여성</option>
 	      </select>
 	      <select id="digitalEdu" name="digitalEdu" style="width:8%; font-size:20px">
-                     <option>디지털교육</option>
+                     <option value=''>디지털교육</option>
                      <option value="Y">교육 받음</option>
                      <option value="N">교육 받지 않음</option>
 	      </select>
 	       <select id="interest" name="interest" style="width:8%; font-size:20px">
-                      <option>관심사</option>
+                      <option value=''>관심사</option>
                     <option value="예금">예금</option>
                     <option value="적금">적금</option>
                     <option value="대출">대출</option>
@@ -124,7 +124,7 @@
                     <option value="기타">기타</option>
 	      </select>
 	      <select id="age" name="age" style="width:8%; font-size:20px">
-	      			 <option>연령</option>
+	      			 <option value=''>연령</option>
                      <option value="20대">20대</option>
                      <option value="30대">30대</option>
                      <option value="40대">40대</option>
@@ -132,14 +132,14 @@
                      <option value="60대이상">60대 이상</option>
 	      </select>
 	      <select id="job" name="job" style="width:8%; font-size:20px">
-	      			 <option>직업</option>
+	      			 <option value=''>직업</option>
                     <option value="회사원">회사원</option>
                     <option value="주부">주부</option>
                     <option value="학생">학생</option>
                     <option value="기타">기타</option>
 	      </select>
 	      <select id="customerType" name="customerType" style="width:8%; font-size:20px">
-	      			 <option>유형</option>
+	      			 <option value=''>유형</option>
                     <option value="잠재">잠재</option>  <!-- 상품가입안함, 상담만 진행 -->
                     <option value="일반">일반</option>  <!-- 상품 가입하고 이용중 -->
                     <option value="VIP">VIP</option> <!-- 다수의 상품 가입, 5년이상 이용 -->
@@ -156,14 +156,14 @@
 			   <th></th>
                <th>이름</th>
                <th>아이디</th>
-               <th>비밀번호</th>
+               <!-- <th>비밀번호</th> -->
                <th>생년월일</th>
                <th>성별</th>
                <th>전화번호</th>
                <th>직업</th>
                <th>주소</th>
                <th>이메일</th>
-               <th>디지털교육</th>
+               <!-- <th>디지털교육</th> -->
                <th>관심사</th>
                <th>나이대</th>
                <th>유형</th>
@@ -178,14 +178,14 @@
 					<td><c:out value='${ customerInform.name }'/></td>
 					<td><strong><a href="javascript:doAction('${ customerInform.id }')">
 					<c:out value='${ customerInform.id }'/></a></strong></td>
-					<td><c:out value='${ customerInform.password }'/></td>
+					<%-- <td><c:out value='${ customerInform.password }'/></td> --%>
 					<td><c:out value='${ customerInform.birth }'/></td>
 					<td align="center"><c:out value='${ customerInform.gender }'/></td>
 					<td><a href='tel:${ customerInform.phoneNo }'><c:out value='${ customerInform.phoneNo }'/></a></td>
 					<td><c:out value='${ customerInform.job }'/></td>
 					<td><c:out value='${ customerInform.address }'/></td>
 					<td><c:out value='${ customerInform.emailId }'/>@<c:out value='${ customerInform.emailDomain }'/></td>
-					<td align="center"><c:out value='${ customerInform.digitalEdu }'/></td>
+					<%-- <td align="center"><c:out value='${ customerInform.digitalEdu }'/></td> --%>
 					<td><c:out value='${ customerInform.interest }'/></td>
 					<td><c:out value='${ customerInform.age }'/></td>
 					<td align="center"><c:out value='${ customerInform.type }'/></td>
@@ -238,8 +238,22 @@
 
 </section>
 <script>
+function searchMember(){
+	let gender = $("#gender").val()
+	let digitalEdu = $("#digitalEdu").val()
+	let interest = $("#interest").val()
+	let age = $("#age").val()
+	let job = $("#job").val()
+	let customerType = $("#customerType").val()
+	let searchWord = $("#searchWord").val()
+	
+	var memberSearch = gender + "&" + digitalEdu + "&" + interest + "&" + age + "&" + job + "&" + customerType + "&" + searchWord ;  
+	window.location.href="${pageContext.request.contextPath}/customerInform/1/1/" + memberSearch;
 
-function searchMember() {
+}
+
+
+/* function searchMember() {
 	let gender = $("#gender").val()
 	let digitalEdu = $("#digitalEdu").val()
 	let interest = $("#interest").val()
@@ -316,7 +330,7 @@ function searchMember() {
 } else {
 	location.href = "${pageContext.request.contextPath}/customerInform"
  }		
-}
+} */
 
 function doAction(customerInformId){
 			

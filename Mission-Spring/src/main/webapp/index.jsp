@@ -43,7 +43,7 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=&libraries=services"></script> 
+ <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a6e615362d7f97308d32aaa3e87c8816&libraries=services"></script> 
  <style>
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
@@ -82,6 +82,7 @@
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 </style>
+
 </head> 
 <body> 
 	<%-- <%@include file="resources/assets/include/topMenu.jsp" %> --%>
@@ -99,17 +100,17 @@
       
       <div class="social-links">
        <c:if test="${ not empty loginVO}">
-        <strong>${ loginVO.id }</strong>님 환영합니다 
+        <strong>${ loginVO.id }</strong>님 안녕하세요 
        </c:if>
         
         <c:if test="${ not empty adminLoginVO}">
-         <strong>${ adminLoginVO.empno }</strong>관리자님 환영합니다 
+         <strong>${ adminLoginVO.empno }</strong> 관리자님 안녕하세요 
         </c:if>
         <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
         <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
         <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
         <a href="#" class="skype"><i class="icofont-skype"></i></a>
-        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></a>
       </div>
     </div>
   </div>
@@ -140,20 +141,23 @@
           <li><a href="${ pageContext.request.contextPath }/consultingList/1/1">상담 리스트</a></li>
           </c:if>
           <c:if test="${ empty adminLoginVO and empty loginVO}">      
-          <li><a href="${ pageContext.request.contextPath }/login">추가 상담</a></li>
+          <li><a href="${ pageContext.request.contextPath }/login"><strong>추가 상담</strong></a></li>
           </c:if>
           <c:if test="${ empty adminLoginVO and not empty loginVO}">   
-          <li><a href="${ pageContext.request.contextPath }/addConsulting">추가 상담</a></li>
+          <li><a href="${ pageContext.request.contextPath }/addConsulting"><strong>추가 상담</strong></a></li>
           </c:if>
           <c:if test="${ not empty adminLoginVO and empty loginVO}">   
-          <li><a href="${ pageContext.request.contextPath }/addConsulting/admin">추가 상담</a></li>
+          <li><a href="${ pageContext.request.contextPath }/addConsulting/admin"><strong>추가 상담</strong></a></li>
           </c:if>
           </ul>  
           </li> 
           <li class="drop-down"><a href="${ pageContext.request.contextPath }/education">HANADO</a>
-          <ul>          
+          <ul>
+          <c:if test="${  not empty adminLoginVO and empty loginVO}">  
+          <li><a href="${ pageContext.request.contextPath }/">공지 사항</a></li> 
+          </c:if>         
           <li><a href="${ pageContext.request.contextPath }/education">HANADO</a></li>
-          <li><a href="${ pageContext.request.contextPath }/inquiry/1/1">Q&A</a></li>
+          <li><a href="${ pageContext.request.contextPath }/inquiry/1/1"><strong>Q&A</strong></a></li>
           </ul>
           </li>       
      <%--   
@@ -166,12 +170,12 @@
           <li class="drop-down"><a href="#">마이페이지</a>
           <ul>          
           <li><a href="${ pageContext.request.contextPath }/management">실적 관리</a></li>
-          <li><a href="${ pageContext.request.contextPath }/customerInform/1/1">손님 관리</a></li>
+          <li><a href="${ pageContext.request.contextPath }/customerInform/1/1"><strong>손님 관리</strong></a></li>
           <li><a href="${ pageContext.request.contextPath }/adminSchedule">일정 관리</a></li>
           </ul>
           </li>
           </c:if>
-          <li><a href="${ pageContext.request.contextPath }/branchMap">영업점 찾기</a></li>
+          <li><a href="${ pageContext.request.contextPath }/findBranch">영업점 찾기</a></li>
 	
         </ul>   
       </nav><!-- .nav-menu -->

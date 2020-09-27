@@ -47,8 +47,9 @@
 	<br>
 	<br>   
 				<div id="calendar">
-				<div class="modal-body">* 예약하실 시간을 선택해주세요(30분 단위로 예약이 가능합니다.) 
-				 <br>*일요일 및 공휴일을 제외한 상담은 AM9:00-PM6:00까지 가능합니다.</div> 
+				<div class="modal-body" style="font-size:16px">
+				   * 예약하실 시간을 선택해주세요 ( <strong>30분</strong> 단위로 예약이 가능합니다. ) 
+				 <br>* 주말 및 공휴일을 제외한 상담은 <strong style="color:red">AM 9:00-PM 6:00</strong> 까지 가능합니다.  </div> 
 				<input type="date" name="reserveDate" onchange="checkTime()" style="align-self: center ;width:200px;height:37px; font-size:16px;" id="reserveDate" >
 				
 				<select id="reserveTime" style="width:140px; width:200px;height:37px; font-size:16px;">
@@ -68,9 +69,10 @@
 					<option  value="11">17:30-18:00</option>
 			</select>
 				<hr>	 
-				
 				<div style="text-align: center; margin-bottom: 1.8rem;">
-				<textarea name="textarea" cols="105" rows="8" readonly="readonly" style="padding:12px;">개인정보의 수집 목적 및 이용 목적</textarea>
+				<textarea name="textarea" cols="105" rows="4" readonly="readonly" style="padding:12px;">[ 개인정보의 수집 목적 및 이용 목적 ]     
+해당 상담을 접수한 후 상담기록 및 개인정보는 5년간 기록이 보관되며 이에 동의합니다. 
+				</textarea>
 	 			 <br />
      			 <div align="center">
 	 			 <input name="" type="checkbox" value="" style="border:0; background-color:#ffffff;">

@@ -27,11 +27,15 @@ style="height:600px!important";
 		<jsp:include page="/resources/assets/include/topMenu.jsp" />
 </header>
 <section style="align:center; margin-bottom:100px">
+  		<div class="section-title" style="margin-top:170px; margin-bottom:0px"> 
+          <h2>실적 관리</h2>
+        </div>
+
 <br><br><br><br><br><br><br>
  	<div align="center" class="d-flex m-3" style="margin-left:150px!important">
-	<canvas class="m-3" id="myChart" width="500" height="500"></canvas> &nbsp;&nbsp;&nbsp;
-	<canvas class="m-3" id="myChart2" width="500" height="500"></canvas>  &nbsp;&nbsp;&nbsp;
-	<canvas id="horizontalBar" class="m-3"  width="500" height="500"></canvas>  &nbsp;&nbsp;&nbsp;
+	<canvas  id="myChart" width="500" height="500"></canvas> &nbsp;&nbsp;&nbsp;&nbsp;
+	<canvas  id="myChart2" width="500" height="500"></canvas>  &nbsp;&nbsp;&nbsp;&nbsp;
+	<canvas id="horizontalBar"  width="500" height="500"></canvas>  
 	
 </div>
 </section>

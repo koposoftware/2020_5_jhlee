@@ -165,6 +165,14 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 	}
 
 
+	
+	//오늘 상담건수 알리기(관리자)
+	@Override
+	public ConsultingVO cntAddConsulting(String empno) {
+		ConsultingVO consulting = sqlSession.selectOne("consulting.dao.ConsultingDAO.cntAddConsulting",empno);
+		return consulting;
+	}
+
 
 	/*
 	 * @Override public List<HashMap<String, Object>> selectMainChart2() { return

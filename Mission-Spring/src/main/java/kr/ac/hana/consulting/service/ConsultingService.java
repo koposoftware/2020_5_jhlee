@@ -51,10 +51,16 @@ public interface ConsultingService {
 	//즐겨찾기만 조회 
 	List<ConsultingVO> selectFavorites(Map<String, String> searchMap);
 	
-	//메인차트 만들기
+	//메인차트 만들기1
 	List<ConsultingVO> selectMainChart(); 
 	
-	//메인차트 만들기
+	//메인차트 만들기2
 //	public List<HashMap<String, Object>> selectMainChart2(); 
-	 
+	
+	//메인차트 만들기3
+//	public List<HashMap<String, Object>> selectMainChart2(); 
+	
+	//오늘 상담건수 알리기 
+	public ConsultingVO cntAddConsulting(String empno);
+
 }

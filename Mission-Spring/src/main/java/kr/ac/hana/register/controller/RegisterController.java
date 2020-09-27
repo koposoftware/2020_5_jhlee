@@ -157,8 +157,8 @@ public class RegisterController {
 	}
 	
 	//추가상담 진행상태 업데이트 
-    @RequestMapping("/updateProgress/{consultingNo}")
-	public String updateProgress(@PathVariable("consultingNo") int no ) {
+    @GetMapping("/updateProgress/{consultingNo}")
+	public String updateProgress(@PathVariable("consultingNo") int no, ConsultingVO consulting ) {
 		registerService.updateProgress(no);
 		return "redirect://addConsulting/admin";
 	}

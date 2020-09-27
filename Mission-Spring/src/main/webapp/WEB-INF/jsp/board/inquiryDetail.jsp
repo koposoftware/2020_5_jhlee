@@ -134,7 +134,7 @@ $(document).ready(function(){
 				location.href="'${ pageContext.request.contextPath }/deleteBoardForm"; /*el은 자바스크립트에서 쌍따옴표 안에 집어 넣어야 한다 */
 			}
 			break;
-		case 'E' :
+		 case 'E' :
 			if(confirm('해당 문의를 접수하시겠습니까?')){
 				location.href="${ pageContext.request.contextPath }/enrollmentInquiry"; /*el은 자바스크립트에서 쌍따옴표 안에 집어 넣어야 한다 */
 			}
@@ -173,29 +173,38 @@ $(document).ready(function(){
           <h2>손님의 소중한 문의</h2>
         </div>
          <br>
+         
          <div class="container">
+         <form action="${ pageContext.request.contextPath }/enrollmentInquiry" method="post">
+               <%--  <input type="hidden" value="${ inquiry.no }" name="consultingNo"> --%>
+            	<input type="hidden" value="${ inquiry.writer }" name="id">
+            	<input type="hidden" value="${ inquiry.writerName }" name="name">
+            	<input type="hidden" value="${ inquiry.birth }" name="birth">
+                <input type="hidden" value="${ inquiry.mainCategory }" name="mainCategory">
+                <input type="hidden" value="${ inquiry.middleCategory }" name="middleCategory">
+                <input type="hidden" value="${ inquiry.title }" name="title">
+                <input type="hidden" value='${ inquiry.content }' name='consultingReport'>
+                <input type="hidden" value="${ inquiry.consultingChannel}" name="consultingChannel">
+                <input type="hidden" value="${ adminLoginVO.admin_name }" name="adminName">
+                <input type="hidden" value="${ adminLoginVO.empno }" name="empno">
+                <input type="hidden" value="${ inquiry.regDate }" name="reportYmd"> 
          <table style="width: 70%">
-         <input type="hidden" value="${ inquiry.writer }" name="id">
         <%--  <input type="hidden" value="${ board.replyCnt }"> --%>
             <tr>
                <th width="15%">번호</th>
                <td class="jj">${ inquiry.no }</td>
-               <input type="hidden" value="${ inquiry.no }" name="consultingNo">
             </tr>
              <tr>
                <th width="15%">대분류</th>
                <td class="jj"><c:out value="${ inquiry.mainCategory }" /></td>
-                 <input type="hidden" value="${ inquiry.mainCategory }" name="maniCategory">
             </tr>
             <tr>
                <th width="15%">중분류</th>
                <td class="jj"><c:out value="${ inquiry.middleCategory }" /></td>
-                <input type="hidden" value="${ inquiry.middleCategory }" name="middleCategory">
             </tr>
             <tr>
                <th width="15%">제목</th>
                <td class="jj"><c:out value="${ inquiry.title }" /></td>
-                <input type="hidden" value="${ inquiry.title }" name="title">
             </tr>
             <tr>
                <th width="15%">글쓴이</th>
@@ -204,7 +213,6 @@ $(document).ready(function(){
             <tr>
                <th width="15%">내용</th>
                <td class="jj">${ inquiry.content }</td>
-                <input type="hidden" value="${ inquiry.content }" name="consultingReport">
             </tr>
             <tr>
                <th width="15%">조회수</th>
@@ -213,7 +221,6 @@ $(document).ready(function(){
             <tr>
                <th width="15%">등록일</th>
                <td class="jj">${ inquiry.regDate } </td>
-                <input type="hidden" value="${ inquiry.regDate }" name="regDate"> 
             </tr>
             <c:if test="${ not empty fileList }">
                   <tr>
@@ -230,18 +237,23 @@ $(document).ready(function(){
                
             </c:if>
          </table>
-         </div>
-       
-         
-         <br>
-         <c:if test="${ empty adminLoginVO and  not empty loginVO}"> 
-         <input type="button" value="수정" class="btn btn-primary px-3 ml-4" onclick="doAction('U')">&nbsp;&nbsp; 
-         </c:if>
+         <br><br>
          <c:if test="${ not empty adminLoginVO and empty loginVO}"> 
-         <input type="button" value="접수" class="btn btn-primary px-3 ml-4" onclick="doAction('E')">&nbsp;&nbsp; 
+         <input type="submit" value="접수" class="btn btn-primary px-3 ml-4" onclick="doAction('E')">&nbsp;&nbsp; 
          </c:if>
          &nbsp;&nbsp;<input type="button"  value="삭제" class="btn btn-primary px-3 ml-4" onclick="doAction('D')">&nbsp;&nbsp; 
          &nbsp;&nbsp;<input type="button"  value="목록" class="btn btn-primary px-3 ml-4" onclick="doAction('L')">&nbsp;&nbsp;
+         <c:if test="${ empty adminLoginVO and  not empty loginVO}"> 
+         <input type="button" value="수정" class="btn btn-primary px-3 ml-4" onclick="doAction('U')">&nbsp;&nbsp; 
+         </c:if>
+            </form>
+         </div>
+       
+         
+       
+         <%-- <c:if test="${ not empty adminLoginVO and empty loginVO}"> 
+         <input type="submit" value="접수" class="btn btn-primary px-3 ml-4" onclick="doAction('E')">&nbsp;&nbsp; 
+         </c:if> --%>
  
          <c:if test="${ not empty adminLoginVO and empty loginVO}"> 
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

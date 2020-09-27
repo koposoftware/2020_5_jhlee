@@ -142,6 +142,13 @@ public class ConsultingServiceImpl implements ConsultingService {
 		return chartList;
 	}
 
+	@Override
+	public ConsultingVO cntAddConsulting(String empno) {
+		
+		ConsultingVO consulting = consultingDAO.cntAddConsulting(empno);
+		return consulting;
+	}
+
 //	@Override
 //	public List<HashMap<String, Object>> selectMainChart2() {
 //		return consultingDAO.selectMainChart2();

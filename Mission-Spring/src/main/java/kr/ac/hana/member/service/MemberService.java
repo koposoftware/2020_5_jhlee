@@ -23,7 +23,7 @@ public interface MemberService {
 	int cntMember();
 	
 	//전체 상담 조회(페이징포함)
-	List<MemberVO> selectPageMember(int pageNo,int boardCntPerPage);
+	List<MemberVO> selectPageMember(Map<String, Object> map);
 
 	//고객정보검색
 	List<MemberVO> selectSearchMember(Map<String,String> searchMap);

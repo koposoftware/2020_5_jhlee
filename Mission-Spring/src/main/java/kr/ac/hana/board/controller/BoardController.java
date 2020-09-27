@@ -190,11 +190,11 @@ public class BoardController {
 		}	
 		
 	//문의게시판 내역을 상담리스트로 보내기 
-	@RequestMapping("/enrollmentInquiry")
+	@PostMapping("/enrollmentInquiry")
 	public String enrollmentInquiry(ConsultingVO consulting) {
      
 		consultingService.insert(consulting);
-		return "redirect:/consultingList";
+		return "redirect:/consultingList/admin/1/1";
 	}
 	
 	// 지도 화면 보여주기

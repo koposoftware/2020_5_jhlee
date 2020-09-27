@@ -61,9 +61,6 @@
             <th width="10%"></th>
             <th width="8%" align="center">글쓴이</th>
             <th width="14%">등록일</th>
-          <%--   <c:if test="${not empty adminLoginVO and empty loginVO }"> 
-            <th style="width:7%; padding-left:35px">접수</th>
-            </c:if> --%>
          </tr>
          
          <c:forEach items="${ inquiryList }" var="inquiry" varStatus="loop">

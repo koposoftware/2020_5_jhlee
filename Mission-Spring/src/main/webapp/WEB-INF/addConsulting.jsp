@@ -116,21 +116,9 @@ a#ho:hover{
            </c:if>
              
              
-          <!-- 관리자 로그인 시 ui -->  
+          <!-- 관리자 로그인 시 ui -->     
           <c:if test="${ not empty adminLoginVO and empty loginVO}">
       		<c:forEach items="${ adminAddConsultingList }" var="register" varStatus="loop">
-           <%--  <form action="${ pageContext.request.contextPath }/updateProgress/{consultingNo}" method="post">  
-                <input type="hidden" value="${ register.id }" name="id">
-            	<input type="hidden" value="${ register.name }" name="name">
-            	<input type="hidden" value="${ register.birth }" name="birth">
-                <input type="hidden" value="${ register.mainCategory }" name="mainCategory">
-                <input type="hidden" value="${ register.middleCategory }" name="middleCategory">
-                <input type="hidden" value="[추가]${ register.title }" name="title">
-                <input type="hidden" value='${ register.content }' name='consultingReport'>
-                <input type="hidden" value="${ register.consultingChannel}" name="consultingChannel">
-                <input type="hidden" value="${ register.adminName }" name="adminName">
-                <input type="hidden" value="${ register.empno }" name="empno">
-                <input type="hidden" value="${ register.regDate }" name="reportYmd">  --%>    
             <div class="col-md-4">
               <div class="card mb-4 shadow rounded content">
                 <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail">
@@ -143,7 +131,7 @@ a#ho:hover{
 				<strong>손님 성함</strong>: ${ register.name }<br>
 				<strong>제목</strong>: <a href="javascript:goReport(${ register.consultingNo })" style="color:#2C4964" id="ho"><strong>${ register.title }</strong></a><br>
 				<strong>상담채널</strong>: ${ register.consultingChannel }<br>                   
-                <strong>담당직원</strong>: ${ register.adminName }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <strong>담당직원</strong>: ${ register. adminName }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <strong>사원번호</strong>:  ${ register.empno }<br>
                 
                 <strong style="color:#008C8C">추가 상담 예약일시: ${ register.registerationDate }</strong><br> 
@@ -153,19 +141,19 @@ a#ho:hover{
                     <div class="btn-group">
                       <button type="button" class="btn btn-secondary" onclick="goReport(${ register.consultingNo })"><strong>상세보기</strong></button>&nbsp;&nbsp;
                       <button type="button" class="btn btn-secondary"><strong>알림전송</strong></button>&nbsp;&nbsp;
-                      <button type="submit" class="btn btn-warning" onclick="progress(${ register.consultingNo })"><strong>상태: ${ register.progress }</strong></button>
+                      <button type="button" class="btn btn-warning" onclick="progress(${ register.consultingNo })"><strong>상태: ${ register.progress }</strong></button>
                     </div>
                     <small class="text-muted"><strong>${ register.no }</strong></small>
                   </div>
                 </div>
               </div>
              </div>
-    <!--      </form> -->
             </c:forEach>
            </c:if>     
             </div>
            </div>
          </div>
+         
          
          <!-- 모달 창 -->  
 	 <div class="modal fade" id="enrollmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

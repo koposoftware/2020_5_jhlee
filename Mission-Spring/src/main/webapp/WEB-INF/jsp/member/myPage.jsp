@@ -133,7 +133,7 @@ body {background-color:#fafafa;padding:0px;}
 		 <c:if test="${ empty adminLoginVO and not empty loginVO}"> 
 		 <input type="button" class="btn btn-primary px-3 ml-4" value="회원  탈퇴" onclick="deleteAction()">
 		</c:if>
-		<input type="button"  class="btn btn-primary px-3 ml-4" value="돌아가기" onClick="history.go(-1)"> 
+		<input type="button"  class="btn btn-primary px-3 ml-4" value="이전으로" onClick="history.go(-1)"> 
 		</c:forEach>		
 			 	
 <br><br><br>

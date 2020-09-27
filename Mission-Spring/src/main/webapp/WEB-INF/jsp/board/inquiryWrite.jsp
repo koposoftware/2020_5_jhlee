@@ -142,6 +142,8 @@ $(document).ready(function(){
     
       
       <form method="post" autocomplete="off" style="font-size:large">
+      <input type="hidden" name="writerName" value=${ loginVO.name }>
+      <input type="hidden" name="birth" value=${ loginVO.birth }>
       <table style="width:60%"> <!--  -->
                 <tr>
                    <th width="20%">제목</th>

@@ -56,9 +56,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberVO> selectPageMember(int pageNo, int boardCntPerPage) {
+	public List<MemberVO> selectPageMember(Map<String, Object> map) {
 		
-		List<MemberVO> memberList = memberDAO.selectPageMember(pageNo, boardCntPerPage);
+		List<MemberVO> memberList = memberDAO.selectPageMember(map);
 				
 		return memberList;
 	}

@@ -19,6 +19,9 @@ public class BoardVO {
 	private String title ;
 	private String content;
 	private int viewCnt;
+	private String writerName;
+	private String birth;
+	private String customerType;
 	private String regDate;
 	private String likeIt;
 	private String adminName;
@@ -67,6 +70,24 @@ public class BoardVO {
 	public void setViewCnt(int viewCnt) {
 		this.viewCnt = viewCnt;
 	}
+	public String getWriterName() {
+		return writerName;
+	}
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
+	}
+	public String getBirth() {
+		return birth;
+	}
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+	public String getCustomerType() {
+		return customerType;
+	}
+	public void setCustomerType(String customerType) {
+		this.customerType = customerType;
+	}
 	public String getRegDate() {
 		return regDate;
 	}
@@ -103,10 +124,12 @@ public class BoardVO {
 	public void setReplyCnt(int replyCnt) {
 		this.replyCnt = replyCnt;
 	}
+	
 	@Override
 	public String toString() {
 		return "BoardVO [no=" + no + ", writer=" + writer + ", mainCategory=" + mainCategory + ", middleCategory="
-				+ middleCategory + ", title=" + title + ", content=" + content + ", viewCnt=" + viewCnt + ", regDate="
+				+ middleCategory + ", title=" + title + ", content=" + content + ", viewCnt=" + viewCnt
+				+ ", writerName=" + writerName + ", birth=" + birth + ", customerType=" + customerType + ", regDate="
 				+ regDate + ", likeIt=" + likeIt + ", adminName=" + adminName + ", empno=" + empno
 				+ ", consultingChannel=" + consultingChannel + ", replyCnt=" + replyCnt + "]";
 	}

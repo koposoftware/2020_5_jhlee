@@ -58,7 +58,7 @@ border-width:0px;
 	<br>
 	<br>   
 				<div id="calendar" style="text-align:center"> <br>
-	        <input type="button"  class="btn btn-primary px-3 ml-4" value="돌아가기" onClick="history.go(-1)" style="height:40px"> 
+	        <input type="button"  class="btn btn-primary px-3 ml-4" value="이전으로" onClick="history.go(-1)" style="height:40px"> 
 			<!-- 	<div class="modal-body">* 관리자님 상담이 불가한 일정을 추가해주세요 </div> 
 				<textarea name="textarea" cols="60" rows="1" id="scheduleInfo" style="font-size:20px";></textarea>
 				<br>

@@ -212,8 +212,9 @@ margin-left:5px;
               
               <tr>
                 <th>주소</th>
-            <td><input type="text" name="post" id="post"  required="required" class="form-control">
-            <button onclick="execDaumPostcode();" class="btn btn-outline-info py-2 px-1 px-md-3 w3-button w3-green">주소검색</button>
+             <td> 
+             <input type="text" name="post" id="post"  required="required" class="form-control">
+             <button onclick="execDaumPostcode();" class="btn btn-primary px-3 ml-2">주소검색</button>
              <input type="text" name="address" id="address"  required="required" class="form-control"></td> 
             
               </tr>
@@ -266,7 +267,14 @@ margin-left:5px;
                  </select>
                 </td>     
             </tr> 
-             
+            <tr>
+                <th>개인정보 수집 목적 및 이용 목적 </th>	 
+            	<td>
+				    하나은행 내 상담기록 및 개인정보는  5년간 보관되며 이에 동의합니다. 			 		
+	 			 <input name="" type="checkbox" value="" style="border:0;background-color:#ffffff;">
+	 			 <font color="#776091;"><b> 개인정보 취급방침에 동의함</b></font>
+            	</td>
+            </tr>
             <tr align="right">
                 <td colspan="2">
                <c:if test="${ empty adminLoginVO and empty loginVO}">

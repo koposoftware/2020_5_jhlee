@@ -76,11 +76,12 @@ a{
             <!-- changelog post -->
             <h3 id="changelog-label">하나 손님을 위한 추천 상품</h3>
             <div class="mt-4">
-              <div class="badge added">하나 원큐 대출  하나 적금  하나 보험  핀크</div>
+              <div class="badge added"><h6>하나 원큐 정기예금  | 하나 원큐 적금   | 영하나플러스 통장  | 자녀사랑외화로유학적금  | 가족배려신탁</h6></div>
+              
           </div>
           <br>
            <input type="button" value="목록" class="btn btn-primary px-3 ml-4" onclick="goList()">&nbsp;&nbsp;
-           <input type="button"  class="btn btn-primary px-3 ml-4" value="돌아가기" onClick="history.go(-1)"> 
+           <input type="button"  class="btn btn-primary px-3 ml-4" value="이전으로" onClick="history.go(-1)"> 
     <br>
     </div>
   </div>

@@ -17,11 +17,11 @@
       
       <div class="social-links">
        <c:if test="${ not empty loginVO}">
-        <strong>${ loginVO.id }</strong>님 환영합니다 
+        <strong>${ loginVO.id }</strong>님 안녕하세요 
        </c:if>
         
         <c:if test="${ not empty adminLoginVO}">
-         <strong>${ adminLoginVO.empno }</strong>관리자님 환영합니다 
+         <strong>${ adminLoginVO.empno }</strong> 관리자님 안녕하세요 
         </c:if>
         <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
         <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
@@ -61,20 +61,23 @@
           <li><a href="${ pageContext.request.contextPath }/consultingList/1/1">상담 리스트</a></li>
           </c:if>
           <c:if test="${ empty adminLoginVO and empty loginVO}">      
-          <li><a href="${ pageContext.request.contextPath }/login">추가 상담</a></li>
+          <li><a href="${ pageContext.request.contextPath }/login"><strong>추가 상담</strong></a></li>
           </c:if>
           <c:if test="${ empty adminLoginVO and not empty loginVO}">   
-          <li><a href="${ pageContext.request.contextPath }/addConsulting">추가 상담</a></li>
+          <li><a href="${ pageContext.request.contextPath }/addConsulting"><strong>추가 상담</strong></a></li>
           </c:if>
           <c:if test="${ not empty adminLoginVO and empty loginVO}">   
-          <li><a href="${ pageContext.request.contextPath }/addConsulting/admin">추가 상담</a></li>
+          <li><a href="${ pageContext.request.contextPath }/addConsulting/admin"><strong>추가 상담</strong></a></li>
           </c:if>
           </ul>
           </li>
           <li class="drop-down"><a href="${ pageContext.request.contextPath }/education">HANADO</a>
-          <ul>          
+          <ul>    
+		  <c:if test="${  not empty adminLoginVO and empty loginVO}">  
+          <li><a href="${ pageContext.request.contextPath }/">공지 사항</a></li> 
+          </c:if>     
           <li><a href="${ pageContext.request.contextPath }/education">HANADO</a></li>
-          <li><a href="${ pageContext.request.contextPath }/inquiry/1/1">Q&A</a></li>
+          <li><a href="${ pageContext.request.contextPath }/inquiry/1/1"><strong>Q&A</strong></a></li>
           </ul>
           </li>       
           <c:if test="${ empty adminLoginVO and not empty loginVO}">  
@@ -84,13 +87,13 @@
           <li class="drop-down"><a href="#testimonials">마이페이지</a>
           <ul>          
           <li><a href="${ pageContext.request.contextPath }/management">실적 관리</a></li>
-          <li><a href="${ pageContext.request.contextPath }/customerInform/1/1">손님 관리</a></li>
+          <li><a href="${ pageContext.request.contextPath }/customerInform/1/1"><strong>손님 관리</strong></a></li>
           <li><a href="${ pageContext.request.contextPath }/adminSchedule">일정 관리</a></li>
           </ul>
           </li>
           </c:if>
          
-          <li><a href="${ pageContext.request.contextPath }/branchMap">영업점 찾기</a></li>
+          <li><a href="${ pageContext.request.contextPath }/findBranch">영업점 찾기</a></li>
 	
         </ul>   
       </nav><!-- .nav-menu -->

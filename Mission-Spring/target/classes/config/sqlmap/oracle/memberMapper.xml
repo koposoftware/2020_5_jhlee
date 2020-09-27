@@ -50,10 +50,36 @@
 		SELECT *
 			FROM ( 
 				SELECT ROWNUM AS RNUM, A.*
-					FROM ( select * from customer_tb  order by name asc ) A 
+					FROM ( select * from customer_tb  
+							<where>
+									<if test="gender != '' ">
+										gender = #{gender}
+									</if>
+									<if test="digitalEdu != '' ">
+										and digital_edu = #{digitalEdu}
+									</if>
+									<if test="interest != '' ">
+										and interest = #{interest} 
+									</if>
+									<if test="age != '' ">
+										and age = #{age}
+									</if>
+									<if test="job != '' ">
+										and job = #{job}
+									</if>
+									<if test="customerType != '' ">
+										and customer_type = #{customerType}
+									</if>
+									<if test="searchWord != '' ">
+										and id like '%'||#{searchWord}||'%' or name like '%'||#{searchWord}||'%' or birth like '%'||#{searchWord}||'%'
+									</if>
+								</where>
+							
+							order by name asc ) A 
 				<![CDATA[ WHERE ROWNUM <= #{ boardCntPerPage } * #{ pageNo } ]]>
 				)
-		WHERE RNUM > #{ boardCntPerPage } * ( #{ pageNo } - 1 )  
+		WHERE RNUM > #{ boardCntPerPage } * ( #{ pageNo } - 1 )
+			
 	</select>
 	
 	<!--페이징 건수마다 나오게 하려고   -->
@@ -101,6 +127,5 @@
 		from customer_tb 
 		where id = #{id}
 	</select>
-	
 	
 </mapper>

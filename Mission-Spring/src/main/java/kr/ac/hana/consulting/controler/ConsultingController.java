@@ -309,4 +309,11 @@ public class ConsultingController {
 	//즐겨찾기 손님 조회 
 	
 	
+	//영업점 찾기
+	@RequestMapping("/findBranch")
+	public String find() {
+		
+		return "map/findBranch";
+	}
+	
 }

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.ac.hana.admin.service.AdminService;
 import kr.ac.hana.admin.vo.AdminVO;
+import kr.ac.hana.consulting.service.ConsultingService;
 import kr.ac.hana.consulting.vo.ConsultingVO;
 
 @SessionAttributes({ "adminLoginVO" }) // MAV객체에 등록되는 이름이 로그인 객체인경우에는 세션에 등록시켜
@@ -23,6 +25,9 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
+	@Autowired
+	private ConsultingService consultingService;
+	
 	@GetMapping("/adminLogin") // 로그인 uri들어왔을 때 최초 포워드
 	public String loginForm() {
 
@@ -80,8 +85,14 @@ public class AdminController {
 	  // 관리자로그인 시페이지 보여주기
 	  
 	  @RequestMapping("/adminAlert") 
-	   public String alert() { 
-		  ConsultingVO consulting = new ConsultingVO(); 
-		  return "login/adminAlert"; 
+	   public ModelAndView alert(HttpSession session) { 
+		 
+		  AdminVO adminLoginVO =(AdminVO)session.getAttribute("adminLoginVO");
+		  ConsultingVO consulting= consultingService.cntAddConsulting(adminLoginVO.getEmpno());
+		  
+		  ModelAndView mav = new ModelAndView("login/adminAlert");
+		  mav.addObject("consulting", consulting);
+		  
+		  return mav; 
 	 }
 }

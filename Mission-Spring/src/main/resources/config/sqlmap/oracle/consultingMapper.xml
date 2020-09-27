@@ -183,11 +183,31 @@
 	   select * from favorites
 	 </select> 
 	 
-	 <!--메인차트만들기  -->
+	 <!--메인차트만들기1  -->
      <select id="selectMainChart" resultMap="consultingMap">
       select main_category, count(main_category) as consulting_no 
       from report_tb 
       group by main_category
+     </select>
+     
+     <!-- 메인 차트 만들기 2  -->
+     <select id="selectMainChart2" resultMap="consultingMap">
+
+     </select>
+    
+    <!-- 메인 차트 만들기3 --> 
+ <!--    <select id="selectMainChart2" resultMap="consultingMap">
+  
+    </select> -->
+    
+    
+     
+     <!--오늘 상담한 건수 구하기   -->
+      <select id="cntAddConsulting" resultMap="consultingMap" parameterType="string"> 
+       select count(*) as consulting_no
+       from register_tb 
+       where to_char(registeration_date, 'yy/mm/dd') = to_char(current_date, 'yy/mm/dd')
+       and empno= #{empno} 
      </select>
      
 	 <!--메인차트만들기  -->

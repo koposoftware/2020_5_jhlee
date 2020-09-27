@@ -44,6 +44,8 @@ public class MemberController {
 	@Autowired 
 	private ConsultingService consultingService;
 
+	
+
 	// @RequestMapping(value = "/login", method = RequestMethod.GET)
 	@GetMapping("/login") // 로그인 uri들어왔을 때 최초 포워드
 	public String loginForm() {
@@ -186,27 +188,31 @@ public class MemberController {
 	
 	}
 	
+
+	////////////////////////////////////////////////////////
+	////////////    지니 할것                                                                   ///
+	////////////////////////////////////////////////////////
 	
 	//전체 손님 조회 with 페이징(관리자단)
 	@RequestMapping(value = { "/customerInform/{blockNo}/{pageNo}"})
-	public String consultingList(@PathVariable("blockNo")int blockNo, @PathVariable("pageNo")int pageNo,  HttpServletRequest request) {
+	public String consultingList(@PathVariable("blockNo")Integer blockNo, @PathVariable("pageNo")Integer pageNo, HttpServletRequest request) {
 
 		System.out.println("블럭넘"+blockNo);
 		System.out.println("페이지넘"+pageNo);
 
 		// 임의 설정이 필요한 부분
-		int boardCntPerPage = 10;
-		int pageCntPerBlock = 3;
+		Integer boardCntPerPage = 10;
+		Integer pageCntPerBlock = 3;
 
 		// 블록의 시작 페이지와 끝 페이지 (등차수열 적용)
-		int blockStartPageNo = 1 + pageCntPerBlock * (blockNo - 1);
-		int blockEndPageNo = pageCntPerBlock * blockNo;
+		Integer blockStartPageNo = 1 + pageCntPerBlock * (blockNo - 1);
+		Integer blockEndPageNo = pageCntPerBlock * blockNo;
 
 		//// 전체 게시글 수 구하는 코드(dao로 db에 접근해서 cnt 얻어옴) 
-		int totalBoardCnt = memberService.cntMember();
+		Integer totalBoardCnt = memberService.cntMember();
 
 		//// 전체 페이지 수 구하는 코드
-		int totalPageCnt = totalBoardCnt / boardCntPerPage;
+		Integer totalPageCnt = totalBoardCnt / boardCntPerPage;
 		if (totalBoardCnt % boardCntPerPage > 0) {
 			totalPageCnt++; // 나머지가 있으면 페이지가 다 돌고 남은 게시글이 있는 것이기에 전체 페이지 수에 +1 해줌
 		}
@@ -218,14 +224,18 @@ public class MemberController {
 		}
 
 		// 전체 블록 개수 구하기 (다음 버튼 기능을 구현해주기 위해)
-		int totalBlockCnt = totalPageCnt / pageCntPerBlock;
+		Integer totalBlockCnt = totalPageCnt / pageCntPerBlock;
 		if (totalPageCnt % pageCntPerBlock > 0) {
 			totalBlockCnt++;
 
 		}
+       
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pageNo", pageNo);
+		map.put("boardCntPerPage", boardCntPerPage);
 
 		// 해당 페이지에서 필요한만큼의 게시글 데이터 얻어오기
-		List<MemberVO> allInformList = memberService.selectPageMember(pageNo, boardCntPerPage); // 이거 dao 설명 필요 (rownum)
+		List<MemberVO> allInformList = memberService.selectPageMember(map); // 이거 dao 설명 필요 (rownum)
 
 		request.setAttribute("blockStartPageNo", blockStartPageNo);
 		request.setAttribute("blockEndPageNo", blockEndPageNo);
@@ -235,6 +245,94 @@ public class MemberController {
 
 		request.setAttribute("allInformList", allInformList);
 
+		return "member/customerInform";
+	}
+	
+	
+	//전체 손님 조회 with 페이징  with 검색(관리자단)
+	@RequestMapping(value = { "/customerInform/{blockNo}/{pageNo}/{memberSearch}"})
+	public String consultingListSearch(@PathVariable("blockNo")Integer blockNo, @PathVariable("pageNo")Integer pageNo, @PathVariable("memberSearch") String memberSearch, HttpServletRequest request) {
+		
+		System.out.println("멤버 넘어오나요? : " + memberSearch);
+		System.out.println("블럭넘"+blockNo);
+		System.out.println("페이지넘"+pageNo);
+		
+		String[] memberSearchDetail = memberSearch.split("&",-1);
+		
+		String gender = memberSearchDetail[0];
+		String digitalEdu = memberSearchDetail[1];
+		String interest = memberSearchDetail[2];
+		String age = memberSearchDetail[3];
+		String job = memberSearchDetail[4];
+		String customerType = memberSearchDetail[5];
+		String searchWord = memberSearchDetail[6];
+		
+		
+		Map<String, String> searchMap = new HashMap<String, String>();
+		searchMap.put("gender", gender);
+		searchMap.put("digitalEdu", digitalEdu);
+		searchMap.put("interest", interest);
+		searchMap.put("age", age);
+		searchMap.put("job", job);
+		searchMap.put("customerType", customerType);
+		searchMap.put("searchWord", searchWord);
+		List<MemberVO> memberList = memberService.selectSearchMember(searchMap);
+		
+		
+		// 임의 설정이 필요한 부분
+		Integer boardCntPerPage = 10;
+		Integer pageCntPerBlock = 3;
+		
+		// 블록의 시작 페이지와 끝 페이지 (등차수열 적용)
+		Integer blockStartPageNo = 1 + pageCntPerBlock * (blockNo - 1);
+		Integer blockEndPageNo = pageCntPerBlock * blockNo;
+		
+		//// 전체 게시글 수 구하는 코드(dao로 db에 접근해서 cnt 얻어옴) 
+		//int totalBoardCnt = memberService.cntMember();
+		Integer totalBoardCnt = memberList.size();
+		
+		//// 전체 페이지 수 구하는 코드
+		Integer totalPageCnt = totalBoardCnt / boardCntPerPage;
+		if (totalBoardCnt % boardCntPerPage > 0) {
+			totalPageCnt++; // 나머지가 있으면 페이지가 다 돌고 남은 게시글이 있는 것이기에 전체 페이지 수에 +1 해줌
+		}
+		
+		//// 만약 위 연산으로 계산한 해당 블록 끝 번호가 전체 페이지 번호 수 보다 크다면 블록 끝 번호는 전체 페이지 번호 수 (블록 끝 번호가
+		//// 계속 전체 페이지 번호수보다 작다가 마지막에만 커지거나 같아짐)
+		if (blockEndPageNo > totalPageCnt) {
+			blockEndPageNo = totalPageCnt;
+		}
+		
+		// 전체 블록 개수 구하기 (다음 버튼 기능을 구현해주기 위해)
+		Integer totalBlockCnt = totalPageCnt / pageCntPerBlock;
+		if (totalPageCnt % pageCntPerBlock > 0) {
+			totalBlockCnt++;
+			
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pageNo", pageNo);
+		map.put("boardCntPerPage", boardCntPerPage);
+		
+		map.put("gender", gender);
+		map.put("digitalEdu", digitalEdu);
+		map.put("interest", interest);
+		map.put("age", age);
+		map.put("job", job);
+		map.put("customerType", customerType);
+		map.put("searchWord", searchWord);
+		
+		// 해당 페이지에서 필요한만큼의 게시글 데이터 얻어오기
+		List<MemberVO> allInformList = memberService.selectPageMember(map); // 이거 dao 설명 필요 (rownum)
+		
+		request.setAttribute("blockStartPageNo", blockStartPageNo);
+		request.setAttribute("blockEndPageNo", blockEndPageNo);
+		request.setAttribute("blockNo", blockNo);
+		request.setAttribute("totalBlockCnt", totalBlockCnt);
+		request.setAttribute("pageNo", pageNo);
+
+		request.setAttribute("allInformList", allInformList);
+		
 		return "member/customerInform";
 	}
 
@@ -287,7 +385,6 @@ public class MemberController {
 //		  mav.addObject("chart2", consultingService.selectMainChart2());
 		  //List<ConsultingVO> jinee =  consultingService.selectMainChart();
 //		  List<HashMap<String, Object>> dysing = consultingService.selectMainChart2();
-		  
 //		  for(ConsultingVO j : jinee) {
 //			  System.out.println(j);
 //		  }

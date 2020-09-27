@@ -202,17 +202,17 @@ input.search-go {
 					<!-- <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
 					<!-- <button class="close" type="button" data-dismiss="modal" aria-label="Close"> </button> -->
 				</div>
-				<div class="modal-body">예약 하실 방법을 선택하세요</div>
+				<br>
+				<div class="modal-body" style="font-size:20px"><strong>예약 하실 방법을 선택하세요</strong></div>
 				<div align="center" class="d-flex mr-5">
-				<c:if test="${ consulting.consultingChannel eq '창구'}">
-				<button onclick="enrollment(${ consulting.consultingNo })"class="btn btn-primary px-3 ml-4" style="width:260px">${consulting.empno } 행원 전화 상담 예약하기</button>
-				</c:if>
-				<c:if test="${ consulting.consultingChannel ne '창구'}"> 
-				<button onclick="enrollment(${ consulting.consultingNo })"class="btn btn-primary px-3 ml-4" style="width:260px">${consulting.empno } 직원 전화 상담 예약하기</button>
-				</c:if>
+			<%-- 	<c:if test="${ consulting.consultingChannel eq '창구'}">
+				<button onclick="enrollment(${ consulting.consultingNo })"class="btn btn-outline-secondary px-3  ml-5" style="width:260px"><strong>${consulting.empno } 전화 상담 예약</strong></button>
+				</c:if> --%>
+				<button onclick="enrollment(${ consulting.consultingNo })"class="btn btn-outline-secondary px-3 ml-5" style="width:260px"><strong>전화 상담 예약</strong></button>
 				<br><br>
-				<button onclick="enrollment(${ consulting.consultingNo })"class="btn btn-primary px-3 ml-4" style="width:260px" >하나은행 영업점 찾아가기</button>
+				<button onclick="branch()" class="btn btn-outline-secondary px-3 ml-4" style="width:260px; height:90px;" ><strong> 영업점 찾아가기 </strong></button>
 				</div>
+				<br>
 				<hr>	 
 				<div style="text-align: center; margin-bottom: 1.8rem;">
 					<!--  <input type="submit" id="enrollmentBtn" class="btn btn-primary px-3 ml-4"  value="접수" style="width: 20%;  align:center;"> -->
@@ -301,7 +301,7 @@ input.search-go {
 
 
 	</section> 
-	<footer id="footer" style="margin-top:200px">
+	<footer id="footer" style="margin-top:350px">
 		<%@ include file="/resources/assets/include/footer.jsp"%>
 	</footer>
     <jsp:include page="/resources/assets/include/jsFiles.jsp"></jsp:include>
@@ -588,6 +588,9 @@ function enrollment(no){
 	location.href="${ pageContext.request.contextPath }/schedulePage/" + no;
 }
 
+function branch(){
+	location.href="${ pageContext.request.contextPath }/findBranch"
+}
 
 function openModal(consultingNo) {
 	$("#reserveModal"+consultingNo).modal("show")

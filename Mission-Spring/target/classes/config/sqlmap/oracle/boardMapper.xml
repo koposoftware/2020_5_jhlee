@@ -9,6 +9,8 @@
 		<result column="main_category" property="mainCategory" />
 		<result column="middle_category" property="middleCategory" />
 		<result column="view_cnt" property="viewCnt" />
+		<result column="writer_name" property="writerName" />
+		<result column="customer_type" property="customerType" />
 		<result column="reg_date" property="regDate" />
 		<result column="reply_cnt" property="replyCnt" />
 		<result column="like_it" property="likeIt" />
@@ -19,7 +21,7 @@
 	
 	
 	<select id="selectByNo" resultMap="boardMap" parameterType="int">
-		select no, writer, main_category, middle_category, title, content, view_cnt, to_char(reg_date, 'yyyy-mm-dd') as reg_date,
+		select no, writer, writer_name, birth, customer_type, main_category, middle_category, title, content, view_cnt, to_char(reg_date, 'yyyy-mm-dd') as reg_date,
 			admin_name, empno, consulting_channel, reply_cnt
 			from inquiry_tb  where no = #{no}
 	</select>
@@ -32,8 +34,8 @@
 	</select>
 	
 	<insert id="insert" parameterType="boardVO">
-		insert into inquiry_tb(no, title, writer, main_category, middle_category, content)
-		 values(seq_inquiry_tb_no.nextval, #{title}, #{writer}, #{mainCategory}, #{middleCategory}, #{content})
+		insert into inquiry_tb(no, title, writer, main_category, middle_category, content, writer_name, birth)
+		 values(seq_inquiry_tb_no.nextval, #{title}, #{writer}, #{mainCategory}, #{middleCategory}, #{content} , #{writerName}, #{birth})
 	</insert>
 
 	<!-- 댓글 카운트 증가 -->
