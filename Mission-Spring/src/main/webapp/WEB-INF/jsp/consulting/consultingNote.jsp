@@ -115,6 +115,7 @@
                     <option value="창구">창구</option>
                     <option value="콜센터">콜센터</option>
                     <option value="원격">원격</option>
+                    <option value="인터넷">인터넷</option>
                  </select> <br>
                              
                              고객ID : ${ customer.id }

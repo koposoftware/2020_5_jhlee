@@ -43,6 +43,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		AdminVO adminLoginVO = (AdminVO)session.getAttribute("adminLoginVO");
 		//ConsultingVO consultingVO = (ConsultingVO)session.getAttribute("consultingVO");
 		
+		System.out.println("loginVO " + loginVO);
+		System.out.println("adminLoginVO " + adminLoginVO );
+		
 		
 		if(loginVO == null && adminLoginVO == null) {
 			

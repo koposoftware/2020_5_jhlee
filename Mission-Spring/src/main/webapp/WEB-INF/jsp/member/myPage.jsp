@@ -78,10 +78,10 @@ body {background-color:#fafafa;padding:0px;}
 					<th>아이디</th>
 					<td><c:out value='${ customerInform.id }'/></td>
 				</tr>  
-				<tr>
+			<%-- 	<tr>
 					<th>비밀번호</th>
 					<td><c:out value='${ customerInform.password }'/></td>
-				</tr>
+				</tr> --%>
 				<tr>
 					<th>생년월일</th>
 					<td><c:out value='${ customerInform.birth }'/></td>

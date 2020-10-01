@@ -150,7 +150,7 @@ input.search-go {
                 <tr class="jj" style="font-size:20px">
                   <!-- <th>상담번호</th> -->
                   <th>등록일시</th>
-                  <th>손님유형</th>
+                  <!-- <th>손님유형</th> -->
                   <th>성함</th>
                   <th>ID</th>
                   <th>생일</th>
@@ -171,7 +171,7 @@ input.search-go {
                  <tr>
                  <%--  <td align="center">${ consulting.consultingNo }</td> --%>
                   <td>${ consulting.reportYmd }</td>
-                  <td>${ consulting.customerType }</td>
+                 <%--  <td>${ consulting.customerType }</td> --%>
                   <td>${ consulting.id }</td>
                   <td>${ consulting.name }</td>
                   <td>${ consulting.birth }</td>
@@ -181,7 +181,7 @@ input.search-go {
                   <td>${ consulting.consultingChannel }</td>
                   <td>${ consulting.adminName }</td>
                   <td>${ consulting.empno }</td>
-                  <td>${ consulting.progress }</td>
+                  <td align="center">${ consulting.progress }</td>
                   <td>${ consulting.addConsulting } 
                   <c:if test="${ consulting.consultingChannel eq '창구'}"> 
                   <button onclick="openModal(${ consulting.consultingNo })" class="btn btn-primary px-3 ml-4">신청</button >
@@ -233,7 +233,7 @@ input.search-go {
                  <tr>
                <%--    <td align="center">${ consulting.consultingNo }</td> --%>
                   <td>${ consulting.reportYmd }</td>
-                  <td>${ consulting.customerType }</td>
+                  <%-- <td>${ consulting.customerType }</td> --%>
                   <td>${ consulting.name }</td>
                   <td><a href="javascript:doAction('${ consulting.id }')">${ consulting.id }</a></td>
                   <td>${ consulting.birth }</td>
@@ -243,7 +243,7 @@ input.search-go {
                   <td>${ consulting.consultingChannel }</td>
                   <td>${ consulting.adminName }</td>
                   <td>${ consulting.empno }</td>
-                  <td>${ consulting.progress }</td>
+                  <td align="center">${ consulting.progress }</td>
                   <td align="center">${ consulting.addConsulting } 
                  </tr>
           </c:forEach>

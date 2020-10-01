@@ -148,9 +148,9 @@
 	      
           <input type="text" id="searchWord" placeholder=" ID /이름 /생년월일  조회" style="width:20%; font-size:18px">
           <button style="height: 33px; font-size:20px" class="btn btn-primary px-3 ml-4" onclick="searchMember()">검색</button>
-      	<br><br><br>
+      	<br><br>
       	<div id="content">
-            <table class="table table-hover table-sm" style="width:89%; height:15%" id="inform">
+            <table class="table table-hover table-sm" style="width:80%; height:15%" id="inform">
               <thead> 
                <tr class="jj" style="font-size:20px">
 			   <th></th>
@@ -160,13 +160,13 @@
                <th>생년월일</th>
                <th>성별</th>
                <th>전화번호</th>
-               <th>직업</th>
+             <!--   <th>직업</th> -->
                <th>주소</th>
                <th>이메일</th>
                <!-- <th>디지털교육</th> -->
                <th>관심사</th>
-               <th>나이대</th>
-               <th>유형</th>
+              <!--  <th>나이대</th> -->
+             <!--   <th>유형</th> -->
                <th>손님유형</th>
               </tr>
              </thead>
@@ -182,13 +182,13 @@
 					<td><c:out value='${ customerInform.birth }'/></td>
 					<td align="center"><c:out value='${ customerInform.gender }'/></td>
 					<td><a href='tel:${ customerInform.phoneNo }'><c:out value='${ customerInform.phoneNo }'/></a></td>
-					<td><c:out value='${ customerInform.job }'/></td>
+					<%-- <td><input type="hidden" value='${ customerInform.job }'></td> --%>
 					<td><c:out value='${ customerInform.address }'/></td>
 					<td><c:out value='${ customerInform.emailId }'/>@<c:out value='${ customerInform.emailDomain }'/></td>
 					<%-- <td align="center"><c:out value='${ customerInform.digitalEdu }'/></td> --%>
 					<td><c:out value='${ customerInform.interest }'/></td>
-					<td><c:out value='${ customerInform.age }'/></td>
-					<td align="center"><c:out value='${ customerInform.type }'/></td>
+				<%-- 	<td><c:out value='${ customerInform.age }'/></td> --%>
+					<%-- <td align="center"><c:out value='${ customerInform.type }'/></td> --%>
 					<td align="center"><c:out value='${ customerInform.customerType }'/></td>
 				</tr>
 		</c:forEach>	

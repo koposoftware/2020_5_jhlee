@@ -70,7 +70,7 @@
         							
                                 <form class="mt-5 mb-5 login-input" action="${ pageContext.request.contextPath }/login" method="post" onclick="checkForm()" name="lform">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="ID" name="id">
+                                        <input type="text" class="form-control" placeholder="ID" name="id" autofocus="autofocus" >
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control" placeholder="Password" name="password">

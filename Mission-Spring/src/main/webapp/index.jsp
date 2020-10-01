@@ -43,7 +43,7 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a6e615362d7f97308d32aaa3e87c8816&libraries=services"></script> 
+ <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=&libraries=services"></script> 
  <style>
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
@@ -102,10 +102,21 @@
        <c:if test="${ not empty loginVO}">
         <strong>${ loginVO.id }</strong>님 안녕하세요 
        </c:if>
+        <c:choose>
+        <c:when test="${ not empty adminLoginVO and adminLoginVO.type eq 'B'}">
+         <strong>${ adminLoginVO.admin_name }</strong> 행원님 안녕하세요 
+         </c:when>
+        <c:when test="${ not empty adminLoginVO and adminLoginVO.type eq 'C'}">
+         <strong>${ adminLoginVO.admin_name }</strong> 상담사님 안녕하세요 
+        </c:when>
+        <c:when test="${ not empty adminLoginVO and adminLoginVO.type eq 'V'}">
+         <strong>${ adminLoginVO.admin_name }</strong> 상담사님 안녕하세요 
+        </c:when>
+        <c:when test="${ not empty adminLoginVO and adminLoginVO.type eq 'I'}">
+         <strong>${ adminLoginVO.admin_name }</strong> 상담사님 안녕하세요 
+        </c:when>
+        </c:choose>
         
-        <c:if test="${ not empty adminLoginVO}">
-         <strong>${ adminLoginVO.empno }</strong> 관리자님 안녕하세요 
-        </c:if>
         <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
         <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
         <a href="#" class="instagram"><i class="icofont-instagram"></i></a>

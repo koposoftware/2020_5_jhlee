@@ -95,7 +95,7 @@ style="height:600px!important";
 	var myChart = new Chart(ctx, {
 		type: 'line',
 		data: {
-			labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+			labels: ['6일전', '5일전', '4일전', '3일전', '2일전', '1일전'],
 			datasets: [{
 				label: '최근 상담 건수(일주일 내)',
 				data: [12, 19, 3, 5, 2, 3],

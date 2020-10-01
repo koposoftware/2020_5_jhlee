@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"> 
 <title>상담리포트</title>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 <jsp:include page="/resources/assets/include/headCSS.jsp"></jsp:include>  
@@ -28,6 +28,9 @@
 a{
     color: #2C4964!important;;
   /*   text-decoration: underline; */
+}
+p{
+  font-size:20px;
 }
 
 </style>
@@ -63,8 +66,9 @@ a{
                             생년월일 : ${ consulting.birth } &nbsp;&nbsp;&nbsp;&nbsp; </strong></p>
             <p>
             </p>
+            <br>
             <div class="mt-4">
-              <div class="badge changed">상담 리포트</div>
+              <h3>[상담 리포트]</h3>
               <ul>
                 <li>
                   <p> ${ consulting.consultingReport }</p>
@@ -76,7 +80,7 @@ a{
             <!-- changelog post -->
             <h3 id="changelog-label">하나 손님을 위한 추천 상품</h3>
             <div class="mt-4">
-              <div class="badge added"><h6>하나 원큐 정기예금  | 하나 원큐 적금   | 영하나플러스 통장  | 자녀사랑외화로유학적금  | 가족배려신탁</h6></div>
+              <div class="badge added"><h6>하나 원큐 정기예금  | 하나 원큐 적금   | 영하나 플러스 통장  | 자녀사랑 외화로 유학적금  | 가족 배려 신탁</h6></div>
               
           </div>
           <br>

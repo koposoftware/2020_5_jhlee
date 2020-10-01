@@ -19,10 +19,21 @@
        <c:if test="${ not empty loginVO}">
         <strong>${ loginVO.id }</strong>님 안녕하세요 
        </c:if>
-        
-        <c:if test="${ not empty adminLoginVO}">
-         <strong>${ adminLoginVO.empno }</strong> 관리자님 안녕하세요 
-        </c:if>
+       <c:choose>
+        <c:when test="${ not empty adminLoginVO and adminLoginVO.type eq 'B'}">
+         <strong>${ adminLoginVO.admin_name }</strong> 행원님 안녕하세요 
+         </c:when>
+        <c:when test="${ not empty adminLoginVO and adminLoginVO.type eq 'C'}">
+         <strong>${ adminLoginVO.admin_name }</strong> 상담사님 안녕하세요 
+         </c:when>
+        <c:when test="${ not empty adminLoginVO and adminLoginVO.type eq 'V'}">
+         <strong>${ adminLoginVO.admin_name }</strong> 상담사님 안녕하세요 
+        </c:when>
+        <c:when test="${ not empty adminLoginVO and adminLoginVO.type eq 'I'}">
+         <strong>${ adminLoginVO.admin_name }</strong> 상담사님 안녕하세요 
+        </c:when>
+       </c:choose>
+      
         <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
         <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
         <a href="#" class="instagram"><i class="icofont-instagram"></i></a>

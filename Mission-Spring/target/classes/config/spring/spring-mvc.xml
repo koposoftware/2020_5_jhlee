@@ -83,21 +83,19 @@
 	<bean class="kr.ac.hana.interceptor.LoginInterceptor" id="LoginInterceptor"></bean> <!--bean으로 등록  -->
 	<mvc:interceptors>
 		<mvc:interceptor>
-		<!-- <mvc:mapping path="/board/write" /> -->
-		<mvc:mapping path="/**/" /> <!--/가 나오고 그 뒤에 depth가 몇이던 간에   -->
+		<mvc:mapping path="/**/"/> <!--/가 나오고 그 뒤에 depth가 몇이던 간에   -->
 		<mvc:exclude-mapping path="/login"/> <!--로그인이 들어오면 인터셉트를 호출하지 않겠다!   -->
 		<mvc:exclude-mapping path="/adminLogin"/>
 		<mvc:exclude-mapping path="/admin/logout"/>
 		<mvc:exclude-mapping path="/videoConsulting"/>
 		<mvc:exclude-mapping path="/logout"/>
 		<mvc:exclude-mapping path="/board"/>
-		<mvc:exclude-mapping path="/inquiry"/>
-		<mvc:exclude-mapping path="/consulting"/>
+		<mvc:exclude-mapping path="/inquiry/**"/>
 		<mvc:exclude-mapping path="/branchMap"/>
 		<mvc:exclude-mapping path="/deleteEvent"/>
 		<mvc:exclude-mapping path="/enrollmentForm"/>
 		<mvc:exclude-mapping path="/map/**/"/>
-		<!-- <mvc:exclude-mapping path="/reply"/> -->
+		<mvc:exclude-mapping path="/"/>
 		<mvc:exclude-mapping path="/resources/**"/>
 			<ref bean="LoginInterceptor" />
 		</mvc:interceptor>
