@@ -141,6 +141,21 @@ public class ConsultingServiceImpl implements ConsultingService {
 		List<ConsultingVO> chartList = consultingDAO.selectMainChart();
 		return chartList;
 	}
+	
+	 
+	@Override
+	public List<ConsultingVO> selectMainChart2() {
+		
+		List<ConsultingVO> chartList = consultingDAO.selectMainChart2();
+		return chartList;
+	}
+
+	@Override
+	public List<ConsultingVO> selectMyChart(String id) {
+		
+		List<ConsultingVO> chartList = consultingDAO.selectMyChart(id);
+		return chartList;
+	}
 
 	@Override
 	public ConsultingVO cntAddConsulting(String empno) {

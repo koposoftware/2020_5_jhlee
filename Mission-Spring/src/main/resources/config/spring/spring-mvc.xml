@@ -92,8 +92,12 @@
 		<mvc:exclude-mapping path="/board"/>
 		<mvc:exclude-mapping path="/inquiry/**"/>
 		<mvc:exclude-mapping path="/branchMap"/>
+		<mvc:exclude-mapping path="/findBranch"/>
 		<mvc:exclude-mapping path="/deleteEvent"/>
 		<mvc:exclude-mapping path="/enrollmentForm"/>
+		<mvc:exclude-mapping path="/submitAuthNo"/>
+		<mvc:exclude-mapping path="/getAuthNo"/>
+		<mvc:exclude-mapping path="/sendMsg"/>
 		<mvc:exclude-mapping path="/map/**/"/>
 		<mvc:exclude-mapping path="/"/>
 		<mvc:exclude-mapping path="/resources/**"/>

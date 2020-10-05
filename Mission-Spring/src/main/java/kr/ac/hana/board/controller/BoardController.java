@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -190,7 +191,8 @@ public class BoardController {
 		}	
 		
 	//문의게시판 내역을 상담리스트로 보내기 
-	@PostMapping("/enrollmentInquiry")
+	@RequestMapping(value="/enrollmentInquiry", method = {RequestMethod.GET, RequestMethod.POST})
+
 	public String enrollmentInquiry(ConsultingVO consulting) {
      
 		consultingService.insert(consulting);

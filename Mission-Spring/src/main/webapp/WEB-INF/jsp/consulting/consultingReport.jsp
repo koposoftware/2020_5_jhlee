@@ -32,6 +32,9 @@ a{
 p{
   font-size:20px;
 }
+.half_HL {
+background: linear-gradient(to top, #FFE400 50%, transparent 50%);
+}
 
 </style>
  <body class="bg-light">
@@ -51,34 +54,25 @@ p{
     <div class="row">
       <div class="col-lg-10 mx-auto">
         <div class="p-5 shadow rounded content">
+          <h3><i class="icofont-ui-note"></i> <strong>상담 리포트</strong></h3><br>
           <h3> ${ consulting.reportYmd } &nbsp;&nbsp; ${ consulting.mainCategory } [${ consulting.middleCategory }]</h3>
           <p>
        		   상담번호 : [${ consulting.consultingNo }]  &nbsp;&nbsp;&nbsp;&nbsp; 
-       		   담당직원 : ${ consulting.adminName } (${ consulting.empno }) <br>
-  
-                            
-          </p>
-           <hr>
-          <div class="mt-5">
-            <!-- changelog post -->
-            <h3 id="february-updates"> [${ consulting.title }] </h3> 
-            <p><strong>고객ID : <a href="javascript:doAction('${ consulting.id }')" style="text-decoration: underline";>${ consulting.id }</a> &nbsp;&nbsp;&nbsp;&nbsp; 손님유형 : ${ consulting.customerType }&nbsp;&nbsp;&nbsp;&nbsp;
-                            생년월일 : ${ consulting.birth } &nbsp;&nbsp;&nbsp;&nbsp; </strong></p>
-            <p>
-            </p>
-            <br>
+       		   담당직원 : ${ consulting.adminName } (${ consulting.empno }) 
+            <hr>
             <div class="mt-4">
-              <h3>[상담 리포트]</h3>
-              <ul>
-                <li>
-                  <p> ${ consulting.consultingReport }</p>
-                </li>
-              </ul>
+            
+             <h4 id="february-updates"> <strong>[ ${ consulting.title } ]</strong> </h4>
+             <p>고객ID : <a href="javascript:doAction('${ consulting.id }')" style="text-decoration: underline";>${ consulting.id }</a> &nbsp;&nbsp;&nbsp;&nbsp; 손님유형 : ${ consulting.customerType }&nbsp;&nbsp;&nbsp;&nbsp;
+                            생년월일 : ${ consulting.birth } &nbsp;&nbsp;&nbsp;&nbsp; </p>
+            <p>
+            <p><span class="half_HL">${ consulting.consultingReport }</span></p>
+                  
             </div>
             <hr>
             <br>
             <!-- changelog post -->
-            <h3 id="changelog-label">하나 손님을 위한 추천 상품</h3>
+            <h4 id="changelog-label">하나 손님을 위한 추천 상품</h4>
             <div class="mt-4">
               <div class="badge added"><h6>하나 원큐 정기예금  | 하나 원큐 적금   | 영하나 플러스 통장  | 자녀사랑 외화로 유학적금  | 가족 배려 신탁</h6></div>
               
@@ -91,7 +85,7 @@ p{
   </div>
  </div>
  </div>
- </div>
+
 </section>
  <input type="button" value="상담노트 " style="border-radius:50%; font-size: 0.9rem!important; margin-left: 77%!important; margin-right:1%; height:60px; width:65px" class="btn btn-outline-secondary" onclick="goNote( '${ consulting.id }' )">
 	<footer id="footer" style="margin-top:200px">

@@ -75,7 +75,7 @@
         							
                                 <form class="mt-5 mb-5 login-input" action="${ pageContext.request.contextPath }/adminLogin" method="post" onsubmit="return checkForm()" name="lform">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="사원번호" name="empno">
+                                        <input type="text" class="form-control" placeholder="사원번호" name="empno" autocomplete="off">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control" placeholder="비밀번호" name="password">

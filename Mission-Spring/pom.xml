@@ -136,8 +136,14 @@
 		    <artifactId>hibernate-validator</artifactId>
 		    <version>6.1.5.Final</version>
 		</dependency>
-	
-		
+	 
+	   <!-- 문자인증하게 해주는 -->
+    <dependency>
+    <groupId>net.nurigo</groupId>
+    <artifactId>javaSDK</artifactId>
+    <version>2.2</version>
+    </dependency>
+   
    </dependencies>
 
 </project>

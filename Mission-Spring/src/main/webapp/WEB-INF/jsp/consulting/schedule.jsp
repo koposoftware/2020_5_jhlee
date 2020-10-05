@@ -14,8 +14,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.js'></script>
 <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css" />
-        
-     <!--  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/lang-all.js"></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/lang-all.js"></script>        
+ -->     <!--  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/lang-all.js"></script>
 	 -->
 </head>
 <style>
@@ -33,7 +33,16 @@
 		margin: 40px auto;
 		padding: 0 10px;
 	}
+	
+	
 
+tr:first-child>td>.fc-day-grid-event {
+border:0px;
+
+}
+div.fc-content{
+color:#fff;
+}
 </style>
 
       <body>
@@ -65,13 +74,23 @@
 					<option  value="9">14:30-15:00</option>
 					<option  value="10">15:00-15:30</option>
 					<option  value="11">15:30-16:00</option>
-					<option  value="11">16:30-17:00</option>
-					<option  value="11">17:30-18:00</option>
+					<option  value="12">16:30-17:00</option>
+					<option  value="13">17:30-18:00</option>
 			</select>
 				<hr>	 
 				<div style="text-align: center; margin-bottom: 1.8rem;">
 				<textarea name="textarea" cols="105" rows="4" readonly="readonly" style="padding:12px;">[ 개인정보의 수집 목적 및 이용 목적 ]     
-해당 상담을 접수한 후 상담기록 및 개인정보는 5년간 기록이 보관되며 이에 동의합니다. 
+하나은행(이하 “당행”이라 합니다)은 개인정보보호법 제30조에 따라 고객의 개인정보 및 권익을 보호하고 개인정보와 관련한 고객의
+고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.
+
+제1조(개인정보의 처리 목적)
+당행은 개인정보를 다음 각 호의 목적을 위해 처리합니다. 수집된 개인정보는 다음의 목적 외의 용도로는 사용되지 않으며 이용 목적이
+변경될 시에는 사전동의를 구할 예정입니다.
+-금융 거래/ 상품 서비스 홍보 및 판매 권유 /금융 기록 관리 
+
+제2조(개인정보의 처리 및 보유 기간)
+(금융)거래와 관련한 개인(신용)정보는 수집·이용에 관한 동의일로부터 (금융)거래 종료일로부터 5년까지 위 이용목적을 위하여 보유·이용됩니다.
+단, (금융)거래 종료일 이후에는 금융사고 조사, 분쟁 해결, 민원처리, 법령상 의무이행 및 당행의 리스크 관리업무만을 위하여 보유·이용됩니다.
 				</textarea>
 	 			 <br />
      			 <div align="center">
@@ -133,9 +152,66 @@
                 businessHours: true, // display business hours
                 editable: true,
                 locale: "ko",
+                lang : 'ko',
+                selectable: true,
+                eventLimit : true,
                 events: consultingSchedule,
+                allDay: 'true',
+                eventRender : function(event, element) {
+                	if( this.title.includes("휴가")){
+                		    $(element).find('.fc-content').css('background-color', 'red'); 
+                		    $(element).find('.fc-content').css('border', '0px'); 
+                		    $(element).find('span.fc-time').hide();
+                	
+                	}if( this.title.includes("대출")){
+                		 $(element).find('.fc-content').css('background-color', '#34C6BE'); 
+                		 $(element).find('.fc-content').css('border', '0px'); 
+                		 $(element).find('span.fc-title').hide();
+                		 $(element).find('span.fc-title').append('상담');
+                		 
+                	 }if( this.title.includes("적금")){
+                		 $(element).find('.fc-content').css('background-color', '#FF9E9B'); 
+                		 $(element).find('.fc-content').css('border', '0px');
+                		 $(element).find('span.fc-title').hide();
+                	 
+                	 }if( this.title.includes("카드")){
+                		
+           			 	$(element).find('.fc-content').css('background-color', '#FFB400'); 
+           		 	 	$(element).find('.fc-content').css('border', '0px'); 
+           			    $(element).find('span.fc-title').hide();
+
+                	 }if( this.title.includes("예금")){
+           			 	$(element).find('.fc-content').css('background-color', '#FF82FF'); 
+           		 	 	$(element).find('.fc-content').css('border', '0px'); 
+           			    $(element).find('span.fc-title').hide();
+           			
+     				}if( this.title.includes(" ")){
+     					$(element).find('span.fc-title').hide();
+     				}
+                },
                 eventContent : consultingSchedule,
-               
+                eventClick: function(event) {
+                	
+    				if(confirm('해당 일정을 삭제하시겠습니까?')) {
+    					document.location.href="${ pageContext.request.contextPath }/deleteSchedule/${ adminLoginVO.empno }/" + event.title;
+    				}
+    			},
+    			 
+    			dayClick: function(date,allDay,jsEvent, view) {
+    				var check = date.format('YYYY-MM-DD');
+                    var today = moment(new Date(), 'DD.MM.YYYY').format('YYYY-MM-DD');
+
+    				if(check < today)
+                    {     alert("현재 날짜보다 이전날짜는 예약이 불가합니다.");
+                          $('#calendar').fullCalendar('unselect');
+                    }else{
+    				if(confirm(date.format()+' '+'상담 예약을 진행 하시겠습니까?')){
+    					$('#reserveDate').val(date.format('YYYY-MM-DD'))
+    					 $('#calendar').fullCalendar('unselect');
+    					checkTime()
+    				 }
+                    }
+    			  },
               /*   dayRender: function (date, cell) {
                     cell.css("background-color", "red");
                 } */
@@ -156,11 +232,16 @@
   };
  
   
-  $(document).ready(function() {
+ $(document).ready(function() {
    getreservationList();
 });
   
 function checkTime() {
+	
+	// 시작 날짜 이전의 날짜는 마감날짜에서 선택 불가능하게끔
+	//var today = moment(new Date(), 'DD.MM.YYYY').format('YYYY-MM-DD');
+	//$("#reserveDate").val().min = today
+	
 	let registerationDate = $("#reserveDate").val();
 	console.log("상담예약 선택한 날짜: " + registerationDate )
 	   $.ajax({
@@ -188,10 +269,20 @@ function checkTime() {
 			console.log("불가능한 시간 배열: " + disableTime)
 			console.log(typeof disableTime)
 			
+			if (disableTime.includes("0")) {
+				for (var i = 0; i <= 13; i++) {
+					
+				$("#reserveTime option[value*='" + i +  "']").prop('disabled',true);
+				}
+				
+			} else {
+			
 			for ( i in disableTime) {
 				console.log("안되는시간 for문 " + disableTime[i])
 				$("#reserveTime option[value*='" + disableTime[i] +  "']").prop('disabled',true);
 			}
+			}
+			
 
 
 // 	        console.log("불가능한시간: " +  disableTime)
@@ -277,7 +368,6 @@ function checkTime() {
 		})
 	}) */	
 	
-
 </script>
 
 </section>

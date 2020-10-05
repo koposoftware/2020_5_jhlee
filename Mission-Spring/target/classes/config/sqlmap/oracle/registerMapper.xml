@@ -14,6 +14,8 @@
 		<result column="add_consulting" property="addConsulting" />
 		<result column="registeration_date" property="registerationDate" />
 		<result column="registeration_time" property="registerationTime" />
+		<result column="registeration_date2" property="registerationDate2" />
+		<result column="registeration_time2" property="registerationTime2" />
 		<result column="report_ymd" property="reportYmd" />
 	</resultMap>
 	
@@ -58,7 +60,7 @@
 		register_tb
 			( title, registeration_date, registeration_time , empno ,consulting_no )
 		values
-			( #{title}, to_date(#{registerationDate},'yyyy-mm-dd hh24:mi'), #{registerationTime}, #{empno} ,#{consultingNo})
+			( #{title}, to_date(#{registerationDate},'yyyy-mm-dd hh24:mi'), #{registerationTime}, #{empno}, #{consultingNo})
 			
 	</insert>
 	

@@ -14,6 +14,8 @@ public class RegisterVO {
 	private String adminName;
 	private String registerationDate;
 	private String registerationTime;
+	private String registerationDate2;
+	private String registerationTime2;
 	private String reportYmd;
 	private String progress;
 	public int getNo() {
@@ -88,6 +90,18 @@ public class RegisterVO {
 	public void setRegisterationTime(String registerationTime) {
 		this.registerationTime = registerationTime;
 	}
+	public String getRegisterationDate2() {
+		return registerationDate2;
+	}
+	public void setRegisterationDate2(String registerationDate2) {
+		this.registerationDate2 = registerationDate2;
+	}
+	public String getRegisterationTime2() {
+		return registerationTime2;
+	}
+	public void setRegisterationTime2(String registerationTime2) {
+		this.registerationTime2 = registerationTime2;
+	}
 	public String getReportYmd() {
 		return reportYmd;
 	}
@@ -106,8 +120,7 @@ public class RegisterVO {
 				+ ", middleCategory=" + middleCategory + ", id=" + id + ", name=" + name + ", title=" + title
 				+ ", consultingChannel=" + consultingChannel + ", empno=" + empno + ", adminName=" + adminName
 				+ ", registerationDate=" + registerationDate + ", registerationTime=" + registerationTime
+				+ ", registerationDate2=" + registerationDate2 + ", registerationTime2=" + registerationTime2
 				+ ", reportYmd=" + reportYmd + ", progress=" + progress + "]";
 	}
-	
-	
 }

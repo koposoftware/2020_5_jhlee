@@ -63,11 +63,14 @@ public interface ConsultingDAO {
 	//메인차트 만들기1
 	public List<ConsultingVO> selectMainChart(); 
 	
+	//마이페이지 차트 만들기 
+	public List<ConsultingVO> selectMyChart(String id);
+	
 	//오늘 상담건수 알리기 
 	public ConsultingVO cntAddConsulting(String empno);
 	
 	//메인차트 만들기2
-//	public List<HashMap<String, Object>> selectMainChart2(); 
+	public List<ConsultingVO> selectMainChart2();
 	
 	//메인차트 만들기3
 //	public List<HashMap<String, Object>> selectMainChart2(); 

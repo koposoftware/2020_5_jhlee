@@ -37,13 +37,14 @@ function goReport(reportNo){
 	location.href="${ pageContext.request.contextPath }/consulting/admin/" + reportNo;
 }
 
-function delSchedule(consultingNo){
-	location.href="${ pageContext.request.contextPath }/delSchedule/" +consultingNo;
-}
 
 function consultingList(){
 	location.href="${ pageContext.request.contextPath }/consultingList/1/1";
 }
+
+
+
+
 </script>
 <style>
 body {background-color:#fafafa;padding:0px;}
@@ -51,6 +52,17 @@ a#ho:hover{
 	color:#008C8C;
 	text-decoration: underline;
 }
+
+*, ::after, ::before {
+    box-sizing: content-box;
+    }
+    
+.btn-outline-primary{
+border-width:0px!important;
+font-size:15px;
+font-weight:600;
+}    
+
 </style>
 </head>
 <body>
@@ -67,16 +79,22 @@ a#ho:hover{
  	 <br>
  	<c:if test="${ empty adminLoginVO and not empty loginVO}">
  	  <div class="section-title">
-          <h2>${ loginVO.id }님의  추가 상담 리스트</h2>
+          <h2>MY 추가 상담 리스트</h2>
           <br>
-          <input type="button" class="btn btn-primary px-3 ml-4" id="calendar" style="height:40px; font-size:20px" onclick="userCalendar()" value="내 달력보기">
+          <!-- <i class="icofont-calendar"></i> --><input type="button" class="btn btn-primary px-3 ml-4" id="calendar" style="height:40px; font-size:20px" onclick="userCalendar()" value="내 달력보기">
        </div>
     </c:if>
     	<c:if test="${ not empty adminLoginVO and empty loginVO}">
         <div class="section-title">
-          <h2>관리자 [${ adminLoginVO.empno }]님의  추가 상담 리스트</h2>
+         <c:if test="${ adminLoginVO.type eq 'C' or 'V' or 'I'}">
+          <h2>  ${ adminLoginVO.admin_name } 상담사님의  추가 상담 리스트</h2>
+         </c:if>
+          <c:if test="${ adminLoginVO.type eq 'B' }">
+           <h2>  ${ adminLoginVO.admin_name } 행원님의  추가 상담 리스트</h2>
+          </c:if>
+          
           <br>
-            <input type="button" class="btn btn-primary px-3 ml-4" id="calendar" style="height:40px" onclick="calendar()" value="내 달력보기">
+            <!-- <i class="icofont-calendar"></i> --><input type="button" class="btn btn-primary px-3 ml-4" id="calendar" style="height:40px" onclick="calendar()" value="내 달력보기">
         </div>	
     </c:if>
     </div>
@@ -89,7 +107,7 @@ a#ho:hover{
               <div class="card mb-4 shadow rounded content">
                 <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail">
                 <div class="card-body">
-                  <p class="card-text" style="color:#2C4964">
+                  <p class="card-text" style="color:#2C4964;font-size:19px">
 				 <strong>상담번호</strong>: ${ register.consultingNo }<br>
 				 <strong>대분류</strong>: ${ register.mainCategory }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
 				 <strong>중분류</strong>: ${ register.middleCategory }<br>
@@ -112,6 +130,26 @@ a#ho:hover{
                 </div>
               </div>
             </div>
+            <script>
+         function delSchedule(consultingNo){
+	
+			$.ajax({
+		    	url: "${ pageContext.request.contextPath }/delSchedule/" +consultingNo,
+		    	type:"post",
+		    	data:{
+		    		name : '${ register.name }',
+		    		registerationDate  : '${ register.registerationDate }', 
+		    	},
+		    	success:function(){
+		    		alert("${ register.registerationDate } 상담이 접수 취소되었습니다.");
+		    		document.location.href = "${ pageContext.request.contextPath }/consultingList/1/1";
+		    	},
+		    	error : function(){
+		    		alert('접수 취소 실패')
+		    	}
+		      })
+         }
+               </script>     
             </c:forEach>
            </c:if>
              
@@ -119,23 +157,11 @@ a#ho:hover{
           <!-- 관리자 로그인 시 ui -->  
           <c:if test="${ not empty adminLoginVO and empty loginVO}">
       		<c:forEach items="${ adminAddConsultingList }" var="register" varStatus="loop">
-           <%--  <form action="${ pageContext.request.contextPath }/updateProgress/{consultingNo}" method="post">  
-                <input type="hidden" value="${ register.id }" name="id">
-            	<input type="hidden" value="${ register.name }" name="name">
-            	<input type="hidden" value="${ register.birth }" name="birth">
-                <input type="hidden" value="${ register.mainCategory }" name="mainCategory">
-                <input type="hidden" value="${ register.middleCategory }" name="middleCategory">
-                <input type="hidden" value="[추가]${ register.title }" name="title">
-                <input type="hidden" value='${ register.content }' name='consultingReport'>
-                <input type="hidden" value="${ register.consultingChannel}" name="consultingChannel">
-                <input type="hidden" value="${ register.adminName }" name="adminName">
-                <input type="hidden" value="${ register.empno }" name="empno">
-                <input type="hidden" value="${ register.regDate }" name="reportYmd">  --%>    
             <div class="col-md-4">
               <div class="card mb-4 shadow rounded content">
                 <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail">
                 <div class="card-body">
-                  <p class="card-text" style="color:#2C4964">
+                  <p class="card-text" style="color:#2C4964; font-size:19px">
 				 <strong>상담번호</strong>: ${ register.consultingNo }<br>
 				 <strong>대분류</strong>: ${ register.mainCategory }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
 				 <strong>중분류</strong>: ${ register.middleCategory }<br>
@@ -152,38 +178,109 @@ a#ho:hover{
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <button type="button" class="btn btn-secondary" onclick="goReport(${ register.consultingNo })"><strong>상세보기</strong></button>&nbsp;&nbsp;
-                      <button type="button" class="btn btn-secondary"><strong>알림전송</strong></button>&nbsp;&nbsp;
-                      <button type="submit" class="btn btn-warning" onclick="progress(${ register.consultingNo })"><strong>상태: ${ register.progress }</strong></button>
+                      <button type="button" class="btn btn-secondary" onclick="sendConsultingModal(${ register.consultingNo })"><strong>상담전달</strong></button>&nbsp;&nbsp;
+                      <button type="button"class="btn btn-outline-primary" onclick="openModal(${ register.consultingNo })"><strong>알림전송</strong></button>
+                       &nbsp;&nbsp; <button type="submit" class="btn btn-warning" onclick="progress(${ register.consultingNo })"><strong>상태: ${ register.progress }</strong></button>
                     </div>
                     <small class="text-muted"><strong>${ register.no }</strong></small>
                   </div>
                 </div>
               </div>
              </div>
-    <!--      </form> -->
-            </c:forEach>
+             
+             
+           <!-- 문자 알림 전송 모달 창 -->  
+	 <div class="modal fade" id="sendModal${ register.consultingNo }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:300px">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel" style="color:#444444"><strong>문자 알림 전송</strong></h5>
+				</div>
+				<div class="modal-body">문자 알림을 전송하시겠습니까?</div>
+				<div class="modal-footer">
+			  <button onclick="sendMsg()"class="btn btn-outline-primary" style="width: 20%; font-size:20px"><strong>전송</strong></button>
+			 <input type="button" onclick="closeModal()" class="btn btn-outline-primary"  value="취소" style="width: 20%; font-size:20px;  align:center;">
+				</div>
+			</div>
+		</div>
+	</div>
+    
+    
+          <!-- 상담 전달 모달 창 -->  
+	 <div class="modal fade" id="sendConsultingModal${ register.consultingNo }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:300px">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel" style="color:#444444"><strong>상담 전달하기</strong></h5>
+				</div><br>
+				
+				<select name="empno" style="width:470px; margin-left:15px;"> 
+				 <option value="hn0801">hn0801(창구)</option>
+				  <option value="hn0802">hn0802(창구)</option>
+				 <option value="hnc1001">hnc1001(콜센터)</option>
+				 <option value="hnc1002">hnc1002(콜센터)</option>
+				 <option value="hnv2004">hnv2004(원격)</option>
+				  <option value="hni3001">hni3001(원격)</option>
+				</select>
+				
+				<div class="modal-body"> 해당 상담을 전달하시겠습니까?</div>
+				<div class="modal-footer">
+			  <button type="submit" onclick="sendConsulting(${ register.consultingNo })"class="btn btn-outline-primary" style="width: 20%; font-size:20px"><strong>전달하기</strong></button>
+			 <input type="button" onclick="closeModal()" class="btn btn-outline-primary"  value="취소" style="width: 20%; font-size:20px;  align:center;">
+				</div>
+			</div>
+		</div>
+	</div>
+    
+    <script> /* 문자 알림 전송하기 */
+    
+    function openModal(consultingNo) {
+    	$("#sendModal"+consultingNo).modal("show")
+    }
+    
+    
+    function sendMsg(no){
+	
+	$.ajax({
+    	url: "${pageContext.request.contextPath}/sendMsg",
+    	type:"post",
+    	data:{
+    		name : '${ register.name }',
+    		registerationDate  : '${ register.registerationDate }', 
+    	},
+    	success:function(){
+    	alert("${ register.name }님께 예약 알림 문자 전송 완료 되었습니다.");
+    	document.location.href = '${ pageContext.request.contextPath }/addConsulting/admin'
+    	
+    	},
+    	error : function(){
+    		alert('문자보내기 실패')
+    	}
+      })
+	}
+    
+    function closeModal() {
+    	$(".modal").modal("hide")
+    }
+    
+    
+    
+    function sendConsultingModal(consultingNo){
+    	$("#sendConsultingModal"+consultingNo).modal("show")
+    }
+    
+    function sendConsulting(consultingNo){
+	location.href="${ pageContext.request.contextPath }/sendConsulting/" +consultingNo;
+		} 
+    
+    </script>        
+    </c:forEach>
            </c:if>     
             </div>
            </div>
          </div>
          
-         <!-- 모달 창 -->  
-	 <div class="modal fade" id="enrollmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-						<button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				
-					<h6 class="modal-title" id="exampleModalLabel" align="center"><strong>회원 등록 확인</strong></h6>
-					<button class="close" type="button" data-dismiss="modal" aria-label="Close"> </button>
-				</div>
-				<div class="modal-body">하나만의 손님이 되신걸 환영합니다, 로그인 후 이용해주세요</div>
-				<div class="modal-footer">
-					 <input type="submit" id="enrollmentBtn" class="btn btn-outline-light text-dark" value="확인" align="center">
-				</div>
-			</div>
-		</div>
-	</div>
+  
          
          
 	</section>

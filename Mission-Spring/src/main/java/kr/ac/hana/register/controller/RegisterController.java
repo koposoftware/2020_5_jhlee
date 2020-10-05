@@ -1,10 +1,13 @@
 package kr.ac.hana.register.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.ac.hana.SMSUtil.Coolsms;
 import kr.ac.hana.admin.vo.AdminVO;
 import kr.ac.hana.board.service.BoardService;
 import kr.ac.hana.board.vo.BoardVO;
@@ -138,12 +142,51 @@ public class RegisterController {
 	// 캘린더에 일정 등록하기(유저)
 	@ResponseBody
 	@PostMapping("/enrollmentSchedule") // WEB-INF/jsp/reply.jsp 찾는 //insert
-	public void addEnrollment(RegisterVO registerVO) {
+	public void addEnrollment(RegisterVO registerVO ,HttpServletRequest request,HttpSession session) {
 
 		System.out.println(registerVO);
 		registerService.insertSchedule(registerVO);
         consultingService.updateAddConsulting(registerVO.getConsultingNo());
         System.out.println(registerVO.getNo());
+        
+        String api_key = "NCSD3ETDGM25G7Q5";
+	    String api_secret = "X5G4CT9UPJVKE2UDTJDENLTSUVF5CGVP";
+	    
+	    String name = request.getParameter("name");
+	    String registerationDate =request.getParameter("registerationDate");
+	    
+	    String go ="ONEHANA 바로가기";
+	    //String phoneNo = request.getParameter("phoneNo");
+	    Coolsms coolsms = new Coolsms(api_key, api_secret);
+        
+	   // System.out.println("name:"+ name);
+	    
+        String sendMsg = "[ONEHANA]안녕하세요, "+ name + "님  추가 상담 예약("+registerationDate +")되었습니다.";
+	    HashMap<String, String> set = new HashMap<String, String>();
+	    set.put("to", "01099342187"); // 수신번호
+	    set.put("from", "01099342187"); // 발신번호
+	    set.put("text", sendMsg); // 문자내용
+	    set.put("type", "sms"); // 문자 타입
+
+	    System.out.println(set);
+
+	    JSONObject result = coolsms.send(set); // 보내기&전송결과받기
+
+	    if ((boolean)result.get("status") == true) {
+	      // 메시지 보내기 성공 및 전송결과 출력
+	      System.out.println("성공");
+	      System.out.println(result.get("group_id")); // 그룹아이디
+	      System.out.println(result.get("result_code")); // 결과코드
+	      System.out.println(result.get("result_message")); // 결과 메시지
+	      System.out.println(result.get("success_count")); // 메시지아이디
+	      System.out.println(result.get("error_count")); // 여러개 보낼시 오류난 메시지 수
+	    } else {
+	      // 메시지 보내기 실패
+	      System.out.println("실패");
+	      System.out.println(result.get("code")); // REST API 에러코드
+	      System.out.println(result.get("message")); // 에러메시지
+	    }
+        
 	}
 	
 	// 캘린더에 일정 등록하기(관리자)
@@ -164,11 +207,50 @@ public class RegisterController {
 	}
 	
 	//추가상담 접수 취소 (유저)
-    @RequestMapping("/delSchedule/{consultingNo}")
-  	public String delSchedule(@PathVariable("consultingNo") int no ) {
-  		 registerService.delSchedule(no);
+    @ResponseBody
+    @PostMapping("/delSchedule/{consultingNo}")
+  	public void delSchedule(@PathVariable("consultingNo") int no ,HttpServletRequest request,HttpSession session) {
+  		
+    	 registerService.delSchedule(no);
   		 consultingService.updateAddConsulting2(no);
-  		return "redirect://consultingList/1/1";
+  		 
+  		String api_key = "NCSD3ETDGM25G7Q5";
+	    String api_secret = "X5G4CT9UPJVKE2UDTJDENLTSUVF5CGVP";
+	    
+	    String name = request.getParameter("name");
+	    String registerationDate =request.getParameter("registerationDate");
+	    
+	    String go ="ONEHANA 바로가기";
+	    //String phoneNo = request.getParameter("phoneNo");
+	    Coolsms coolsms = new Coolsms(api_key, api_secret);
+        
+	   // System.out.println("name:"+ name);
+	    
+        String sendMsg = "[ONEHANA] "+ name + "님 추가 상담 예약("+registerationDate +")이 취소 되었습니다.";
+	    HashMap<String, String> set = new HashMap<String, String>();
+	    set.put("to", "01099342187"); // 수신번호
+	    set.put("from", "01099342187"); // 발신번호
+	    set.put("text", sendMsg); // 문자내용
+	    set.put("type", "sms"); // 문자 타입
+
+	    System.out.println(set);
+
+	    JSONObject result = coolsms.send(set); // 보내기&전송결과받기
+
+	    if ((boolean)result.get("status") == true) {
+	      // 메시지 보내기 성공 및 전송결과 출력
+	      System.out.println("성공");
+	      System.out.println(result.get("group_id")); // 그룹아이디
+	      System.out.println(result.get("result_code")); // 결과코드
+	      System.out.println(result.get("result_message")); // 결과 메시지
+	      System.out.println(result.get("success_count")); // 메시지아이디
+	      System.out.println(result.get("error_count")); // 여러개 보낼시 오류난 메시지 수
+	    } else {
+	      // 메시지 보내기 실패
+	      System.out.println("실패");
+	      System.out.println(result.get("code")); // REST API 에러코드
+	      System.out.println(result.get("message")); // 에러메시지
+	    }
   	}
     
 	//일정 삭제 하기(관리자단)
@@ -189,5 +271,60 @@ public class RegisterController {
 		return "consulting/deleteSchedule";
 
 	}
+	
+	//추가상담 메시지 보내기  
+	  @ResponseBody
+	  @PostMapping("/sendMsg")
+	  public void sendMsg( HttpServletRequest request,HttpSession session) throws Exception {
+	    String api_key = "NCSD3ETDGM25G7Q5";
+	    String api_secret = "X5G4CT9UPJVKE2UDTJDENLTSUVF5CGVP";
+	    
+	    String name = request.getParameter("name");
+	    String registerationDate =request.getParameter("registerationDate");
+	    
+	    String go ="ONEHANA 바로가기";
+	    //String phoneNo = request.getParameter("phoneNo");
+	    Coolsms coolsms = new Coolsms(api_key, api_secret);
+        
+	   // System.out.println("name:"+ name);
+	    
+        String sendMsg = "[ONEHANA]안녕하세요, "+ name + "님 오늘은 추가 상담 예약일 ("+registerationDate +")입니다.";
+	    HashMap<String, String> set = new HashMap<String, String>();
+	    set.put("to", "01099342187"); // 수신번호
+	    set.put("from", "01099342187"); // 발신번호
+	    set.put("text", sendMsg); // 문자내용
+	    set.put("type", "sms"); // 문자 타입
+
+	    System.out.println(set);
+
+	    JSONObject result = coolsms.send(set); // 보내기&전송결과받기
+
+	    if ((boolean)result.get("status") == true) {
+	      // 메시지 보내기 성공 및 전송결과 출력
+	      System.out.println("성공");
+	      System.out.println(result.get("group_id")); // 그룹아이디
+	      System.out.println(result.get("result_code")); // 결과코드
+	      System.out.println(result.get("result_message")); // 결과 메시지
+	      System.out.println(result.get("success_count")); // 메시지아이디
+	      System.out.println(result.get("error_count")); // 여러개 보낼시 오류난 메시지 수
+	    } else {
+	      // 메시지 보내기 실패
+	      System.out.println("실패");
+	      System.out.println(result.get("code")); // REST API 에러코드
+	      System.out.println(result.get("message")); // 에러메시지
+	    }
+
+	  }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

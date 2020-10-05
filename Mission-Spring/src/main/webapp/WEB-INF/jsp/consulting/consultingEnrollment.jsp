@@ -20,6 +20,11 @@ function doEnrollment(){
 	location.href="${ pageContext.request.contextPath }/enrollmentForm";
 }
 </script>
+<style>
+p{
+font-size:17px!important;
+}
+</style>
 </head>
 <body>
 <header>	
@@ -32,10 +37,10 @@ function doEnrollment(){
       <div class="container">
 		<br>
 		<br>
-		<br>
+		
         <div class="section-title">
-          <h2>상담 등록</h2>
-          <p><h6><strong>상담을 등록하기 위해 첫 손님과 기존 손님을 구분하여 업무를 시작하세요.</strong></h6></p>
+          <h2>상담 등록</h2><br>
+          <p><h4 style="color:#2C4964!important;"><strong>상담을 등록하기 위해 첫 손님과 기존 손님을 구분하여 업무를 시작하세요.</strong></h4></p>
         </div>
         <div class="row" style="padding-left:120px">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">

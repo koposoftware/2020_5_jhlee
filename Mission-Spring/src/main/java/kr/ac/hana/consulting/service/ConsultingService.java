@@ -54,9 +54,12 @@ public interface ConsultingService {
 	//메인차트 만들기1
 	List<ConsultingVO> selectMainChart(); 
 	
-	//메인차트 만들기2
-//	public List<HashMap<String, Object>> selectMainChart2(); 
+	//마이페이지 차트 만들기 
+	List<ConsultingVO> selectMyChart(String id);
 	
+	//메인차트 만들기2
+    List<ConsultingVO> selectMainChart2(); 
+		
 	//메인차트 만들기3
 //	public List<HashMap<String, Object>> selectMainChart2(); 
 	

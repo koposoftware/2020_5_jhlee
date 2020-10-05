@@ -62,7 +62,12 @@ body {background-color:#fafafa;padding:0px;}
 	     <div align="center">
 			<br><br>
 			<hr>
-			<h3 class="title"><strong>손님 상세 정보</strong></h3>
+			 <c:if test="${ empty adminLoginVO and  not empty loginVO}">  
+			<h3 class="title"><strong> 마이페이지 </strong></h3>
+			</c:if>
+			 <c:if test="${ not empty adminLoginVO and empty loginVO}">  
+			<h3 class="title"><strong> 손님 상세 정보</strong></h3>
+			</c:if>
 			<hr>
 			<br>
 			<br>
@@ -166,13 +171,20 @@ body {background-color:#fafafa;padding:0px;}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script>
+     var mainList = new Array();
+      <c:forEach items="${consulting}" var="myChart">  
+     var a = ${myChart.consultingNo};
+     mainList.push(a);
+      </c:forEach> 
+      console.log(mainList)
+      
       var ctx = document.getElementById("myChart");
       var myChart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
-          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          labels: ["예금", "적금", "대출", "카드", "보험", "펀드", "외환", "연금" , "기타"],
           datasets: [{
-            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+            data: mainList,
             lineTension: 0,
             backgroundColor: 'transparent',
             borderColor: '#008C8C',
@@ -185,11 +197,24 @@ body {background-color:#fafafa;padding:0px;}
           scales: {
             yAxes: [{
               ticks: {
-                beginAtZero: false
+                beginAtZero: false,
+                fontSize : 20,
+                min:0,
+                max:5,
+                stepSize: 1,
               }
-            }]
+            }],
+			xAxes: [{
+				ticks: {
+					beginAtZero: true,
+					fontSize : 20,
+				}
+			}]
           },
           legend: {
+        	  labels: {
+					fontSize: 20,
+				},
             display: false,
           }
         }

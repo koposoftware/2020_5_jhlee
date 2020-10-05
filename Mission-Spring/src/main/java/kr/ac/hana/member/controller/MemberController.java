@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.ac.hana.SMSUtil.Coolsms;
 import kr.ac.hana.board.vo.BoardVO;
 import kr.ac.hana.consulting.service.ConsultingService;
 import kr.ac.hana.consulting.vo.ConsultingVO;
@@ -125,17 +128,18 @@ public class MemberController {
 	public ModelAndView customerInform(HttpSession session) {
 
 		MemberVO loginVO = (MemberVO) session.getAttribute("loginVO");
-
+	
 		List<MemberVO> customerInform = memberService.selectCustomerInform(loginVO.getId());
-
+           
 		ModelAndView mav = new ModelAndView("member/myPage");
 
 		mav.addObject("customerInform", customerInform);
-
+		mav.addObject("consulting", consultingService.selectMyChart(loginVO.getId())); 
 		return mav;
 
 	}
-
+	
+	
 	// param id로 손님별 정보조회
 	@RequestMapping("/myPage/{id}")
 	public ModelAndView customerInform(@PathVariable("id") String cuId) {
@@ -145,7 +149,7 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView("member/myPage");
 
 		mav.addObject("customerInform", customerInform);
-
+		mav.addObject("consulting", consultingService.selectMyChart(cuId)); 
 		return mav;
 
 	}
@@ -365,22 +369,104 @@ public class MemberController {
 	public ModelAndView management() {
 
 		ModelAndView mav = new ModelAndView("member/management");
-
-		// mav.addObject("\",customerInform);
-
 		mav.addObject("chart", consultingService.selectMainChart());
-//		  mav.addObject("chart2", consultingService.selectMainChart2());
-		// List<ConsultingVO> jinee = consultingService.selectMainChart();
-//		  List<HashMap<String, Object>> dysing = consultingService.selectMainChart2();
-//		  for(ConsultingVO j : jinee) {
-//			  System.out.println(j);
-//		  }
-
-//		  for(HashMap<String, Object> m : dysing) {
-//			  System.out.println(m.get("MAIN_CATEGORY"));
-//		  }
-
+		mav.addObject("chart2", consultingService.selectMainChart2());
+         
 		return mav;
 	}
+	
+	
+	//문자인증하기 
+	@ResponseBody
+	   @PostMapping("/submitAuthNo")
+	   public boolean submitAuthNo(HttpServletRequest request, HttpSession session) {
+	      
+	      System.out.println("인증번호 입력 거치기");
+	      
+	      String inputAuthNo = request.getParameter("inputAuthNo");
+	      String authNo = (String)session.getAttribute("authNo");
+	      
+	      System.out.println("inputAuthNo " + inputAuthNo);
+	      System.out.println("authNo " + authNo );
+	      
+	      boolean authResult = false;
+	      
+	      if (inputAuthNo.equals(authNo)) {
+	         authResult = true;
+	         session.removeAttribute("authNo");
+	      }
+	      return authResult;
+	   }
+	   
+	   @ResponseBody
+	   @PostMapping("/getAuthNo")
+	   public void getAuthNo(HttpServletRequest request, HttpSession session) {
+
+	      Random rand = new Random();
+	      String authNo = ""; // 난수가 저장될 변수
+
+	      // n자리 인증번호
+	      int len = 6;
+	      // 중복허용(1) 불허(2)
+	      int dupCd = 1;
+	      for (int i = 0; i < len; i++) {
+
+	         // 0~9 까지 난수 생성
+	         String ran = Integer.toString(rand.nextInt(10));
+
+	         // 중복을 허용하지 않을시 중복된 값이 있는지 검사한다
+	         if (dupCd == 1) {
+	            // 중복 허용시 numStr에 append
+	            authNo += ran;
+	         } else if (dupCd == 2) {
+	            // 중복을 허용하지 않을시 중복된 값이 있는지 검사한다
+	            if (!authNo.contains(ran)) {
+	               // 중복된 값이 없으면 numStr에 append
+	               authNo += ran;
+	            } else {
+	               // 생성된 난수가 중복되면 루틴을 다시 실행한다
+	               i -= 1;
+	            }
+	         }
+	      }
+
+	      String api_key = "NCSD3ETDGM25G7Q5";
+	      String api_secret = "X5G4CT9UPJVKE2UDTJDENLTSUVF5CGVP";
+	      String phoneNo = request.getParameter("phoneNo");
+	      session.setAttribute("authNo", authNo);
+	      String sendMsg = "[ONEHANA] 본인확인 인증번호는 [" + authNo + "] 입니다.";
+
+	      Coolsms coolsms = new Coolsms(api_key, api_secret);
+
+	      HashMap<String, String> set = new HashMap<String, String>();
+	      set.put("to", phoneNo); // 수신번호
+
+	      set.put("from", "01099342187"); // 발신번호
+	      set.put("text", sendMsg); // 문자내용
+	      set.put("type", "sms"); // 문자 타입
+
+	      System.out.println(set);
+
+	      JSONObject result = coolsms.send(set); // 보내기&전송결과받기
+
+	      if ((boolean) result.get("status") == true) {
+	         // 메시지 보내기 성공 및 전송결과 출력
+	         System.out.println("성공");
+	         System.out.println(result.get("group_id")); // 그룹아이디
+	         System.out.println(result.get("result_code")); // 결과코드
+	         System.out.println(result.get("result_message")); // 결과 메시지
+	         System.out.println(result.get("success_count")); // 메시지아이디
+	         System.out.println(result.get("error_count")); // 여러개 보낼시 오류난 메시지 수
+	      } else {
+	         // 메시지 보내기 실패
+	         System.out.println("실패");
+	         System.out.println(result.get("code")); // REST API 에러코드
+	         System.out.println(result.get("message")); // 에러메시지
+	      }
+	   }
+ 	
+      //상담 예약일정 문자 보내기 (유저)
+           
 
 }
+	

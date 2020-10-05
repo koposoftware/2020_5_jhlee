@@ -103,7 +103,7 @@ input.search-go {
       <div align="center">
       <c:if test="${ empty adminLoginVO and  not empty loginVO}">  
          <div class="section-title">
-          <h2>${ loginVO.id }님의 상담 리스트</h2>
+          <h2>MY상담 리스트</h2>
         </div>
        
       </c:if>
@@ -192,7 +192,6 @@ input.search-go {
                   </td>
                  </tr>
    
-                
                 <!-- 모달 창 -->  
 	  <div class="modal fade" id="reserveModal${ consulting.consultingNo }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:300px">
 		<div class="modal-dialog" role="document">

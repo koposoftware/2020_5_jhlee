@@ -30,11 +30,11 @@ style="height:600px!important";
   		<div class="section-title" style="margin-top:170px; margin-bottom:0px"> 
           <h2>실적 관리</h2>
         </div>
-
-<br><br><br><br><br><br><br>
- 	<div align="center" class="d-flex m-3" style="margin-left:150px!important">
-	<canvas  id="myChart" width="500" height="500"></canvas> &nbsp;&nbsp;&nbsp;&nbsp;
-	<canvas  id="myChart2" width="500" height="500"></canvas>  &nbsp;&nbsp;&nbsp;&nbsp;
+       
+<br><br>
+ 	<div align="center" class="d-flex" style="margin-left:150px!important">
+	<canvas  id="myChart" width="500" height="500" ></canvas>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<canvas  id="myChart2" width="500" height="500"></canvas>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<canvas id="horizontalBar"  width="500" height="500"></canvas>  
 	
 </div>
@@ -78,11 +78,27 @@ style="height:600px!important";
 			}]
 		},
 		options: {
+			legend: {
+				labels: {
+					fontSize: 20,
+				}
+			},
+			 tooltips: {
+		            titleFontSize: 20,
+		            bodyFontSize: 20
+		        },
 			responsive: false,
 			scales: {
 				yAxes: [{
 					ticks: {
-						beginAtZero: true
+						beginAtZero: true,
+						fontSize : 20,
+					}
+				}],
+				xAxes: [{
+					ticks: {
+						beginAtZero: true,
+						fontSize : 20,
 					}
 				}]
 			},
@@ -119,11 +135,27 @@ style="height:600px!important";
 			}]
 		},
 		options: {
+			legend: {
+				labels: {
+					fontSize: 20,
+				}
+			},
+			tooltips: {
+	            titleFontSize: 20,
+	            bodyFontSize: 20
+	        },
 			responsive: false,
 			scales: {
 				yAxes: [{
 					ticks: {
-						beginAtZero: true
+						beginAtZero: true,
+						fontSize : 20,
+					}
+				}],
+				xAxes: [{
+					ticks: {
+						beginAtZero: true,
+						fontSize : 20,
 					}
 				}]
 			},
@@ -132,37 +164,70 @@ style="height:600px!important";
  
 	
 	//세번째 차트 
+		
+    var mainList2 = new Array(); //data배열 틀을 만들어줌 빈리스트에
+    
+    <c:forEach items="${chart2}" var="chart2">  // 반복돌면서 값을 push 리스트에 값을 넣어줌 
+     var a = ${ chart2.consultingNo };
+     mainList2.push(a);
+     </c:forEach>
+     console.log(mainList2)
+     
 	 new Chart(document.getElementById("horizontalBar"), {
-	"type": "horizontalBar",
-	"data": {
-	"labels": ["예금", "적금", "대출", "카드", "보험", "펀드", "외환", "연금","기타"],
-	"datasets": [{
-	"label": "금융상품 별 상담 문의 건수",
-	"data": [22, 33, 55, 12, 86, 23, 14],
-	"fill": false,
-	"backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)",
+	type: "horizontalBar",
+	data: {
+	labels: ["적금", "예금", "외환", "인터넷", "연금", "보험", "창구", "카드", "기타", "대출" ,"원격"],
+	datasets: [{
+	label: "금융상품 별 상담 문의 건수",
+	data: mainList2,
+	fill: false,
+	backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)",
 	"rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)",
 	"rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"
 	],
-	"borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)",
+	borderColor: ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)",
 	"rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"
 	],
-	"borderWidth": 1
+	borderWidth: 2
 	}]
 	},
-	"options": {
+	options: {
+		legend: {
+			labels: {
+				fontSize: 20,
+			}
+		},
+		 tooltips: {
+	            titleFontSize: 20,
+	            bodyFontSize: 20
+	        },
 			responsive: false,
 			scales: {
 				yAxes: [{
 					ticks: {
-						beginAtZero: true
+					beginAtZero: true,
+					fontSize : 20,
+					}
+				}],
+				xAxes: [{
+					ticks: {
+						beginAtZero: true,
+						stepSize: 1,
+						fontSize : 20,
 					}
 				}]
 			},
 		}
 		});
 	
-	//네번째 차트
+	
+     
+     
+/*    $(document).ready(function(){ 
+    $('#horizontalBar','#myChart','#myChart2').hide(); 
+     }); */
+
+ 
 
 </script>
 

@@ -151,7 +151,7 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 		return favorites;
 	}
 
-
+    //실적관리 차트 
 	@Override
 	public List<ConsultingVO> selectMainChart() {
 		
@@ -164,8 +164,29 @@ public class ConsultingDAOImpl implements ConsultingDAO {
 		return chartList;
 	}
 
+	
+	//마이페이지 차트 
+	@Override
+	public List<ConsultingVO> selectMyChart(String id) {
+		
+		List<ConsultingVO> chartList = sqlSession.selectList("consulting.dao.ConsultingDAO.selectMyChart",id);
+		
+		return chartList;
+	}
+	
+	
 
 	
+	@Override
+	public List<ConsultingVO> selectMainChart2() {
+		
+		List<ConsultingVO> chartList = sqlSession.selectList("consulting.dao.ConsultingDAO.selectMainChart2");
+		
+		return chartList;
+	}
+
+
+
 	//오늘 상담건수 알리기(관리자)
 	@Override
 	public ConsultingVO cntAddConsulting(String empno) {
