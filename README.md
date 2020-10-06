@@ -11,6 +11,7 @@ ONEHANA는 기존 하나은행에 없는 상담기록통합플랫폼이다. 하�
 
 ## 2-1. 발표 자료   
 [ONEHANA 상담기록옴니채널 제안서](/상담기록옴니채널_이진희.pdf)<br>
+<img src="onehana.png"/><br>
 ## 2-2. 시스템 아키텍쳐 및 ERD
 <img src="architecture.png" /><br>
 <img src="ERD.png"/><br>
