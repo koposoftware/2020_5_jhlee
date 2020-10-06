@@ -65,14 +65,14 @@ Etc : Git(Git Bash)
 
 ### 요구사항
 
-[손님]<br>
+<strong>[손님]</strong><br>
 상담 내역 조회 구현<br>
 추가 상담 예약, 삭제구현<br>
 추가 상담내역 조회 구현<br>
 2차 로그인 보안(문자인증)<br>
 문의게시판 문의<br><br>
 
-[행원/상담사]<br>
+<strong>[행원/상담사]</strong><br>
 상담 회원 내역 관리<br>
 내 회원 즐겨찾기 관리<br>
 추가 상담 접수<br>
@@ -81,10 +81,10 @@ Etc : Git(Git Bash)
 개사판 답글 등록<br>
 상담 일정 관리<br><br>
 
-[확장]<br>
+<strong>[확장]</strong><br>
 REST방식 기록 통합 구현<br><br>
 
-[분석]<br>
+<strong>[분석]</strong><br>
 상담 데이터 분석<br>
 
 <br>
