@@ -98,7 +98,7 @@ ONEHANA를 통해 N번 얘기해야 하는 번거로움이 줄어들며, 영업�
 
 본인 소개를 추가하세요
 
-|이름 |이진희|![JH](/JH.jpg )<br>
+|이름 |이진희|![JH](/JH.jpg ){: width="200" height="200"}<br>
 |연락처 | 2060340006(@)kopo.ac.kr | <br>
 |skill set| Frontend - HTML, CSS, Javascript |<br>
 | | Backend - Java, Spring, Oracle |<br>
