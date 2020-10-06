@@ -29,7 +29,7 @@
 본인 소개를 추가하세요
 
 |이름 |이진희| |
-<img src="lhj.jpg"/> <br>
+![ljh](https://user-images.githubusercontent.com/63223352/95179451-9735c000-07fb-11eb-9722-9509ebc69b92.jpg)<br>
 |연락처 | 2060340006(@)kopo.ac.kr | <br>
 |skill set| Frontend - HTML, CSS, Javascript |<br>
 | | Backend - Java, Spring, Oracle |<br>
