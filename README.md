@@ -4,7 +4,7 @@
 
 # 1. 프로젝트 개요
 
-<img src="hanasafe.png"/><br><br>
+<img src="hanasafe.png" width:"300" height:"300"/><br><br>
 ONEHANA는 기존 하나은행에 없는 상담기록통합플랫폼이다. 하나은행의 상담채널을 통합해 손님에게 온,오프라인의 일관된 경험을 제공한다. 
 
 # 2. 프로젝트 제안서
@@ -13,7 +13,7 @@ ONEHANA는 기존 하나은행에 없는 상담기록통합플랫폼이다. 하�
 [ONEHANA 상담기록옴니채널 제안서](/상담기록옴니채널_이진희.pdf)<br>
 <img src="onehana.png"/><br>
 ## 2-2. 시스템 아키텍쳐 및 ERD
-<img src="architecture.png" /><br>
+<img src="architecture.png"  /><br>
 <img src="ERD.png"/><br>
 
  
@@ -23,7 +23,7 @@ ONEHANA는 기존 하나은행에 없는 상담기록통합플랫폼이다. 하�
 
 ## 3-1. 발표 자료 
    [발표자료 ppt](/상담기록옴니채널_이진희.ppt)<br>
-   <img src="hana1.png"/><br>
+   <img src="hana1.png" width:"300" height:"300"/><br>
 
 ## 3-2. 시연 동영상 
 
