@@ -13,7 +13,7 @@ ONEHANA는 기존 하나은행에 없는 상담기록통합플랫폼이다. 하�
 <img src="onehana.png" /><br>
 
 ## 2-2. 시스템 아키텍쳐 및 ERD
-<img src="archi.png"/><br>
+<img src="archi.png"/><br><br>
 <img src="DB.png"  /><br>
 
 
