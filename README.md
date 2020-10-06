@@ -22,11 +22,11 @@ ONEHANA는 기존 하나은행에 없는 상담기록통합플랫폼이다. 하�
 
 ## 3-1. 발표 자료 
    [발표자료 pdf](/상담기록옴니채널_이진희.pdf)<br>
-   <img src="ppt.png"/><br>
+   <img src="onehana.png"/><br>
 
 ## 3-2. 시연 동영상 
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=efshhwYzvQ8&feature=youtu.be" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://youtu.be/efshhwYzvQ8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
    
 ## 3-3. HanaSafe 프로젝트 요약
 
