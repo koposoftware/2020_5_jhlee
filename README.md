@@ -102,7 +102,7 @@ ONEHANA를 통해 N번 얘기해야 하는 번거로움이 줄어들며, 영업�
 |skill set| Frontend - HTML, CSS, Javascript |<br>
 | | Backend - Java, Spring, Oracle |<br>
 |자격증|  기술신용평가사|<br>
-|수상| | 하나금융그룹 스마트홍보대사 대상<br>
+|수상| 하나금융그룹 스마트홍보대사 대상|<br>
 |특기사항| |<br>
 
 # 5. 기타
