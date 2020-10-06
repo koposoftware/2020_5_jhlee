@@ -111,20 +111,5 @@ ONEHANA를 통해 영업점 효율 및 비즈니스기회가 증가하고, 손�
 |자격증|  기술신용평가사|<br>
 |수상| 하나금융그룹 스마트홍보대사 대상|<br>
 |특기사항| |<br>
-
-# 5. 기타
-그외 프로젝트를 더욱 설명할수 있는 것들을 추가하세요
-
-# 홈페이지 설정
- 본인 repository에서 "Setting"를 들어가서 GitHub Pages에서 설정 변경.
- <Source>
- Source에서 원하는 branch와 directory 설정한다. 
- 기본값은 master 에 root를 설정 
- Save 버튼 꼭 누른다.
- 
- <Theme Chooser>
- theme을 변경하여 좀더 이쁜 홈페이지를 만든다.
-   
-   <img src="homepage.JPG"/><br>
    
  
