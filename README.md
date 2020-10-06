@@ -27,7 +27,7 @@ ONEHANA는 기존 하나은행에 없는 상담기록통합플랫폼이다. 하�
 ## 3-2. 시연 동영상 
 
 <iframe width="956" height="538" src="https://www.youtube.com/embed/efshhwYzvQ8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-   
+
 ## 3-3. HanaSafe 프로젝트 요약
 
 ### 수행기간
