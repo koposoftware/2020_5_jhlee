@@ -473,9 +473,12 @@ function searchByAdmin() {
 				m = '10'
 			}
 			
+			var userID = $("#searchWord").val()
+			
 			console.log(start)
 			console.log(end)
 			console.log(selectValue)
+			console.log(userID)
 			
 			let str = '';
 			if(start != '') {//날짜가 눌렸을 때 
@@ -484,13 +487,16 @@ function searchByAdmin() {
 			if(selectValue != '') {//예금적금이 눌렸을 때 
 				str += m;
 			}
+			if(userID != '') {
+				str += userID;
+			}
 			let jUrl = 'http://192.168.217.52:9999/spring-project/rest/' +studentNo;//아무것도 눌리지 않았을 때 
 			if(str != '') {
 				jUrl += ('/' + str); //무언가 눌렸을 때 
 			}
 			console.log(jUrl);
 			
-			//////////////////////////
+			//////////////////////////   
 			
 	 		$.ajax({ 
 				//url: 'http://192.168.217.52:9999/spring-project/rest/' +studentNo + '/' + start + end + m,
@@ -529,11 +535,11 @@ function searchByAdmin() {
 				str += "<tr>";
 				//str += '<td align="center">' + cd[key]["consultingNo"] + '</td>'
 				str += '<td>' + cd[key]['reportYmd'] + '</td>'
-				if(cd[key]['customerType'] != undefined) {
+				/* if(cd[key]['customerType'] != undefined) {
 					str += '<td>' + cd[key]['customerType'] + '</td>'
 				} else {
 					str += '<td>잠재</td>'
-				}
+				} */
 				str += '<td>' + cd[key]['name'] + '</td>'
 				str += '<td>' + '<a href="javascript:doAction(' + cd[key]['id'] + ')">' + cd[key]['id'] +'</a>' + '</td>'
 				str += '<td>' + cd[key]['birth'] + '</td>'
@@ -685,6 +691,8 @@ $(document).ready(function(){
 			m = '10'
 		}
 		
+		//////////////////
+		
 		console.log(start)
 		console.log(end)
 		console.log(selectValue)
@@ -703,6 +711,19 @@ $(document).ready(function(){
 		}
 		console.log(jUrl);
 		
+		$.ajax({ 
+			url: 'http://192.168.217.52:9999/spring-project/rest/' +studentNo + '/' + start + end + m ,
+			//url: jUrl,
+			type: 'get',
+			
+			success : function(data){
+				console.log(data)
+			},error: function(){
+				alert('실패') 
+			}
+		});
+		
+		/*
  		$.ajax({ 
 			//url: 'http://192.168.217.52:9999/spring-project/rest/' +studentNo + '/' + start + end + m,
 			url: jUrl,
@@ -713,7 +734,8 @@ $(document).ready(function(){
 			},error: function(){
 				alert('실패') 
 			}
-		}); 
+		});
+		*/
 		
 	})
 })	
