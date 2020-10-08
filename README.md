@@ -24,7 +24,7 @@ ONEHANA는 기존 하나은행에 없는 상담기록통합플랫폼이다. 하�
 
 ## 3-1. 발표 자료 
    [발표자료 ppt](/하금티_ONEHANA_이진희.pptx)<br>
-   <img src="hana1.png" width="200%" height="500" /><br>
+   <img src="hana1.png"/><br>
 
 ## 3-2. 시연 동영상 
 
